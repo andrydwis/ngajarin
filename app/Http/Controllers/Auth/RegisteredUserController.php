@@ -35,7 +35,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'telepon' => 'required|unique:users,phone',
+            'telepon' => 'required|numeric|unique:users',
             'password' => 'required|string|confirmed|min:8',  
         ]);
 
