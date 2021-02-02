@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DocumentationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,12 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/documentation', [DocumentationController::class, 'code']);
+
 Route::get('/dashboard', function () {
     return view('layouts.admin.app');
-})->middleware(['auth','verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/test', function(){
+Route::get('/test', function () {
     return true;
 })->middleware(['password.confirm']);
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
