@@ -33,8 +33,9 @@
         <!-- Button section -->
         <section class="container px-8 py-20 mx-auto lg:px-4 prose">
             <h2 class="text-center">Button</h2>
-            <div class="block md:flex text-center lg:justify-center mt-5">
+            <div class="block md:flex flex-wrap text-center lg:justify-center mt-5">
                 <button class="btn btn-primary"> Primary </button>
+                <button class="btn btn-primary" disabled> Primary Disabled </button>
                 <button class="btn btn-success">
                     <svg class="w-6 h-6 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
