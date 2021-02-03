@@ -14,18 +14,25 @@
 
                     </div>
                     @if(session()->has('status'))
-                    <p class="bg-yellow-500 text-white">{{session()->get('status')}}</p>
+                    <p class="alert alert-warning">{{session()->get('status')}}</p>
                     @endif
                     <form action="{{route('login')}}" method="post" class="mt-8">
                         @csrf
                         <div class="mx-auto max-w-lg ">
+
                             <div class="py-1">
                                 <span class="px-1 text-sm text-gray-600">Email</span>
-                                <input name="email" placeholder="Masukan Email" type="email" @error('email') is-invalid @enderror" value="{{old('email')}}" class="text-md block px-3 py-2 rounded-lg w-full
-                bg-white border-2 border-gray-300 placeholder-gray-400 shadow-md
-                 focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">
+                                <div>
+                                    <span class="z-10 text-gray-600 absolute pl-3 pt-3">
+                                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </span>
+                                    <input type="text" name="email" placeholder="Masukan Email" type="email" @error('email') is-invalid @enderror" value="{{old('email')}}" class="input-text-icon" />
+                                </div>
+
                                 @error('email')
-                                <div class="px-5 my-2 py-2 rounded-xl bg-yellow-500 text-white">
+                                <div class="alert alert-warning">
                                     {{$message}}
                                 </div>
                                 @enderror
@@ -33,10 +40,16 @@
 
                             <div class="py-1">
                                 <span class="px-1 text-sm text-gray-600">Password</span>
-                                <input name="password" placeholder="Masukan Password" type="password" @error('password') is-invalid @enderror" class="text-md block px-3 py-2 rounded-lg w-full
-                bg-white border-2 border-gray-300 placeholder-gray-400 shadow-md
-                 focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none">@error('password')
-                                <div class="px-5 my-2 py-2 rounded-xl bg-yellow-500 text-white">
+                                <div>
+                                    <span class="z-10 text-gray-600 absolute pl-3 pt-3">
+                                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </span>
+                                    <input name="password" placeholder="Masukan Password" type="password" @error('password') is-invalid @enderror" class="input-text-icon" />
+                                </div>
+                                @error('password')
+                                <div class="alert alert-warning">
                                     {{$message}}
                                 </div>
                                 @enderror
