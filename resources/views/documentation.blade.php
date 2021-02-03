@@ -1,29 +1,5 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Nunito';
-        }
-    </style>
-</head>
-
-<body>
-
+   @extends('layouts.user.app')
+   @section('content')
     <main class="text-gray-700 mx-auto border">
         <section class="px-8 pt-20 mx-auto lg:px-4 text-center text-lg">
             <h1 class="text-4xl font-bold">Documentation</h1>
@@ -166,7 +142,4 @@
 
     <!-- syntax highlight buat tag code -->
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=doxy"></script>
-
-</body>
-
-</html>
+@endsection
