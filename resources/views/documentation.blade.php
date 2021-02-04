@@ -1,29 +1,5 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Nunito';
-        }
-    </style>
-</head>
-
-<body>
-
+   @extends('layouts.user.app')
+   @section('content')
     <main class="text-gray-700 mx-auto border">
         <section class="px-8 pt-20 mx-auto lg:px-4 text-center text-lg">
             <h1 class="text-4xl font-bold">Documentation</h1>
@@ -33,8 +9,9 @@
         <!-- Button section -->
         <section class="container px-8 py-20 mx-auto lg:px-4 prose">
             <h2 class="text-center">Button</h2>
-            <div class="block md:flex text-center lg:justify-center mt-5">
+            <div class="block md:flex flex-wrap text-center lg:justify-center mt-5">
                 <button class="btn btn-primary"> Primary </button>
+                <button class="btn btn-primary" disabled> Primary Disabled </button>
                 <button class="btn btn-success">
                     <svg class="w-6 h-6 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -165,7 +142,4 @@
 
     <!-- syntax highlight buat tag code -->
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=doxy"></script>
-
-</body>
-
-</html>
+@endsection
