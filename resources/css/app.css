@@ -13,12 +13,20 @@ code {
     @apply px-5 my-2 py-2 rounded-xl font-medium;
 }
 
+.input-is-invalid{
+    @apply border-2 border-red-500  bg-red-200;
+}
+
 .alert-warning {
-    @apply bg-yellow-500 text-white;
+    @apply bg-yellow-500 text-yellow-100;
+}
+
+.alert-danger {
+    @apply bg-red-500 text-red-100;
 }
 
 .input-text-icon {
-    @apply px-3 py-3 placeholder-gray-400 text-gray-700 border-gray-300 rounded-lg outline-none w-full pl-11;
+    @apply px-3 py-3 placeholder-gray-400 text-gray-700 rounded-lg outline-none w-full pl-11;
     &:focus {
         @apply outline-none;
     }

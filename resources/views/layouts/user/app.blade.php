@@ -12,11 +12,14 @@
             font-family: 'Nunito' !important;
         }
     </style>
+    @yield('customCSS')
 </head>
 
 <body>
 @yield('content')
 
+
+@yield('customJS')
 </body>
 
 </html>
