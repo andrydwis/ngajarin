@@ -29,3 +29,4 @@ Route::get('/test', function () {
 })->middleware(['password.confirm']);
 
 require __DIR__ . '/auth.php';
+require __DIR__ . '/admin.php';
