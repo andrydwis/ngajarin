@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Submission extends Model
+class CertificateUser extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'course_id',
-        'task',
-        'file',
-        'deadline'
+        'certificate_id',
+        'user_id',
+        'score'
     ];
 }
