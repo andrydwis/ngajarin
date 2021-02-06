@@ -20,6 +20,10 @@ Route::get('/', function () {
 
 Route::get('/documentation', [DocumentationController::class, 'code']);
 
+Route::get('/new_dashboard', function () {
+    return view('admin.main.index');
+});
+
 Route::get('/dashboard', function () {
     return view('layouts.admin.app');
 })->middleware(['auth', 'verified'])->name('dashboard');
