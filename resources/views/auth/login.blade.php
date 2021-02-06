@@ -18,17 +18,19 @@
                     @endif
                     <form action="{{route('login')}}" method="post" class="mt-8">
                         @csrf
-                        <div class="mx-auto max-w-lg ">
+                        <div class="mx-auto max-w-lg text-sm md:text-base ">
 
                             <div class="py-1">
-                                <span class="px-1 text-sm text-gray-600">Email</span>
+                                <span class="px-1 text-gray-600">Email</span>
                                 <div>
                                     <span class="z-10 text-gray-600 absolute pl-3 pt-3">
                                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
                                         </svg>
                                     </span>
-                                    <input type="text" name="email" placeholder="Masukan Email" type="email" @error('email') is-invalid @enderror" value="{{old('email')}}" class="input-text-icon" />
+                                    <input type="text" name="email" placeholder="Masukan Email" type="email" value="{{old('email')}}" 
+                                    class="input-text-icon @error('email') input-is-invalid @enderror" />
                                 </div>
 
                                 @error('email')
@@ -39,14 +41,14 @@
                             </div>
 
                             <div class="py-1">
-                                <span class="px-1 text-sm text-gray-600">Password</span>
+                                <span class="px-1 text-gray-600">Password</span>
                                 <div>
                                     <span class="z-10 text-gray-600 absolute pl-3 pt-3">
                                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
                                         </svg>
                                     </span>
-                                    <input name="password" placeholder="Masukan Password" type="password" @error('password') is-invalid @enderror" class="input-text-icon" />
+                                    <input name="password" placeholder="Masukan Password" type="password" class="input-text-icon @error('password') input-is-invalid @enderror" />
                                 </div>
                                 @error('password')
                                 <div class="alert alert-warning">
@@ -65,7 +67,7 @@
                             </div>
                             <div class="my-5 text-center">
                                 <p>Belum punya akun Ngajar.in?
-                                    <a href="{{route('register')}}" class="text-blue-500 hover:text-blue-700 border-b-2 border-blue-500 hover:border-blue-700">
+                                    <a href="{{route('register')}}" class="text-blue-500 hover:text-blue-700 border-b-2 border-blue-500 hover:border-blue-700 font-bold">
                                         Daftar disini</a>
                                 </p>
                             </div>
