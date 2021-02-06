@@ -15,4 +15,8 @@ class Classroom extends Model
         'semester',
         'token',
     ];
+
+    public function member(){
+        return $this->hasMany(ClassroomMember::class);
+    }
 }

@@ -13,4 +13,9 @@ class ClassroomMember extends Model
         'classroom_id',
         'user_id',
     ];
+
+    public function classroom()
+    {
+        return $this->belongsTo(Classroom::class);
+    }
 }
