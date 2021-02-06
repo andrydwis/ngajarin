@@ -20,11 +20,11 @@ class ClassroomMemberController extends Controller
     {
         //
         $data = [
-            'member' => ClassroomMember::where('classroom_id', $classroom->id)->get(),
+            'members' => ClassroomMember::where('classroom_id', $classroom->id)->get(),
             'classroom' => $classroom
         ];
 
-        
+        return view('mentor.classroom-member.index', $data);
     }
 
     /**
@@ -43,20 +43,20 @@ class ClassroomMemberController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($token, Request $request)
+    public function store(Request $request)
     {
         //
         //check token
-        $check = Classroom::where('token', $token)->first();
+        $check = Classroom::where('token', $request->token)->first();
 
-        if($check){
+        if ($check) {
             $classroomMember = new ClassroomMember();
             $classroomMember->classroom_id = $check->id;
             $classroomMember->user_id = Auth::user()->id;
             $classroomMember->save();
 
             Alert::success('Berhasil bergabung dengan kelas');
-        }else{
+        } else {
             Alert::error('Token kelas salah');
         }
     }
@@ -106,6 +106,8 @@ class ClassroomMemberController extends Controller
         //
         $classroomMember->delete();
 
-        Alert::success('Anggota kelas berhasil dihapus');
+        Alert::success('Anggota kelas berhasil dikeluarkan');
+
+        return back();
     }
 }

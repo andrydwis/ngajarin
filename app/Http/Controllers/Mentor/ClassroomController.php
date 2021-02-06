@@ -23,6 +23,8 @@ class ClassroomController extends Controller
         $data = [
             'classrooms' => ClassroomMember::where('user_id', Auth::user()->id)->with('classroom')->get()
         ];
+
+        return view('mentor.classroom.index', $data);
     }
 
     /**
@@ -33,6 +35,7 @@ class ClassroomController extends Controller
     public function create()
     {
         //
+        return view('mentor.classroom.create');
     }
 
     /**
@@ -46,8 +49,8 @@ class ClassroomController extends Controller
         //
         $request->validate([
             'nama' => ['required'],
-            'tahun' => ['required', 'numeric'],
-            'semester' => ['required', 'numeric'],
+            'tahun' => ['required', 'numeric', 'min:1'],
+            'semester' => ['required', 'numeric', 'min:1', 'max:8'],
         ]);
 
         $classroom = new Classroom();
@@ -56,13 +59,10 @@ class ClassroomController extends Controller
         $classroom->semester = $request->semester;
         $classroom->token = 'ngajar.in-' . Str::random(5);
         $classroom->save();
-
-        $classroomMember = new ClassroomMember();
-        $classroomMember->class_id = $classroom->id;
-        $classroomMember->user_id = Auth::user()->id;
-        $classroomMember->save();
-
+        
         Alert::success('Kelas berhasil dibuat');
+
+        return redirect()->route('mentor.classroom.index');
     }
 
     /**
@@ -91,6 +91,8 @@ class ClassroomController extends Controller
         $data = [
             'classroom' => $classroom,
         ];
+
+        return view('mentor.classroom.edit', $data);
     }
 
     /**
@@ -115,6 +117,8 @@ class ClassroomController extends Controller
         $classroom->save();
 
         Alert::success('Kelas berhasil diupdate');
+
+        return redirect()->route('mentor.classroom.index');
     }
 
     /**
@@ -129,5 +133,7 @@ class ClassroomController extends Controller
         $classroom->delete();
 
         Alert::success('Kelas berhasil dihapus');
+
+        return redirect()->route('mentor.classroom.index');
     }
 }

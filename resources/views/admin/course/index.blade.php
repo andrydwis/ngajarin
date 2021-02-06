@@ -41,7 +41,7 @@
     $(document).ready(function() {
         $('#datatables').DataTable({
             "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Indonesian.json"
+                "url": "https://cdn.datatables.net/plug-ins/1.10.22/i18n/Indonesian.json"
             }
         });
     });

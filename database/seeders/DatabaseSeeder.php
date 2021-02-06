@@ -31,5 +31,14 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('123'),
         ]);
         $admin->assignRole('admin');
+
+        $mentor = User::create([
+            'name' => 'mentor',
+            'email' => 'mentor@gmail.com',
+            'phone' => '085156058401',
+            'email_verified_at' => Carbon::now(),
+            'password' => Hash::make('123'),
+        ]);
+        $mentor->assignRole('mentor');
     }
 }
