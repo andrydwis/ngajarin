@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Mentor;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TagController extends Controller
 {
@@ -16,6 +19,11 @@ class TagController extends Controller
     public function index()
     {
         //
+        $data = [
+            'tags' => Tag::get(),
+        ];
+
+        return view('admin.tag.index', $data);
     }
 
     /**
@@ -26,6 +34,7 @@ class TagController extends Controller
     public function create()
     {
         //
+        return view('admin.tag.create');
     }
 
     /**
@@ -37,6 +46,20 @@ class TagController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'nama' => ['required', 'string'],
+            'icon' => ['image']
+        ]);
+
+        $tag = new Tag();
+        $tag->name = $request->nama;
+        $tag->slug = Str::slug($request->nama);
+        $tag->icon = $request->file('icon')->store('tag');
+        $tag->save();
+
+        Alert::success('Tag berhasil ditambahkan');
+
+        return redirect()->route('admin.tag.index');
     }
 
     /**
@@ -59,6 +82,11 @@ class TagController extends Controller
     public function edit(Tag $tag)
     {
         //
+        $data = [
+            'tag' => $tag,
+        ];
+
+        return view('admin.tag.edit', $data);
     }
 
     /**
@@ -71,6 +99,20 @@ class TagController extends Controller
     public function update(Request $request, Tag $tag)
     {
         //
+        $request->validate([
+            'nama' => ['required', 'string'],
+            'icon' => ['image']
+        ]);
+
+        Storage::delete($tag->icon);
+        $tag->name = $request->nama;
+        $tag->slug = Str::slug($request->nama);
+        $tag->icon = $request->file('icon')->store('tag');
+        $tag->save();
+
+        Alert::success('Tag berhasil diupdate');
+
+        return redirect()->route('admin.tag.index');
     }
 
     /**
@@ -82,5 +124,11 @@ class TagController extends Controller
     public function destroy(Tag $tag)
     {
         //
+        Storage::delete($tag->icon);
+        $tag->delete();
+
+        Alert::success('Tag berhasil dihapus');
+
+        return redirect()->route('admin.tag.index');
     }
 }

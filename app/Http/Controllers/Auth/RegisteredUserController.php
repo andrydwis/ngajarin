@@ -9,6 +9,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RegisteredUserController extends Controller
 {
@@ -32,11 +34,12 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
-            'nama' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'telepon' => 'required|numeric|unique:users',
-            'password' => 'required|string|confirmed|min:8',  
+            'nama' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')],
+            'telepon' => ['required', 'numeric', Rule::unique('users', 'phone')],
+            'password' => ['required', 'string', 'confirmed', 'min:8']
         ]);
 
         $user = User::create([
@@ -50,6 +53,8 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        return redirect(RouteServiceProvider::HOME);
+        Alert::success('Email verifikasi telah dikirim ke email anda');
+
+        return redirect()->route('auth.login');
     }
 }

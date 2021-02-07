@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CourseController extends Controller
 {
@@ -17,7 +21,7 @@ class CourseController extends Controller
     {
         //
         $data = [
-            'courses' => Course::get()
+            'courses' => Course::with('creator')->get()
         ];
 
         return view('admin.course.index', $data);
@@ -31,6 +35,11 @@ class CourseController extends Controller
     public function create()
     {
         //
+        $data = [
+            'tags' => Tag::get(),
+        ];
+
+        return view('admin.course.create', $data);
     }
 
     /**
@@ -42,6 +51,27 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'judul' => ['required', 'string'],
+            'deskripsi' => ['required', 'string'],
+            'level' => ['required'],
+        ]);
+
+        $course = new Course();
+        $course->title = $request->judul;
+        $course->slug = Str::slug($request->judul);
+        $course->description = $request->deskripsi;
+        $course->level = $request->level;
+        $course->created_by = Auth::user()->id;
+        $course->save();
+
+        if (!$request->tags) {
+            $course->tags()->sync($request->tag);
+        }
+
+        Alert::success('Course berhasil ditambahkan');
+
+        return redirect()->route('admin.course.index');
     }
 
     /**
@@ -64,6 +94,12 @@ class CourseController extends Controller
     public function edit(Course $course)
     {
         //
+        $data = [
+            'course' => $course,
+            'tags' => Tag::get(),
+        ];
+
+        return view('admin.course.edit', $data);
     }
 
     /**
@@ -76,6 +112,27 @@ class CourseController extends Controller
     public function update(Request $request, Course $course)
     {
         //
+        $request->validate([
+            'judul' => ['required', 'string'],
+            'deskripsi' => ['required', 'string'],
+            'level' => ['required'],
+        ]);
+
+        $course->title = $request->judul;
+        $course->slug = Str::slug($request->judul);
+        $course->description = $request->deskripsi;
+        $course->level = $request->level;
+        $course->save();
+
+        if (!$request->tags) {
+            $course->tags()->sync($request->tag);
+        }else{
+            $course->tags()->detach();
+        }
+
+        Alert::success('Course berhasil diupdate');
+
+        return redirect()->route('admin.course.index');
     }
 
     /**
@@ -87,5 +144,10 @@ class CourseController extends Controller
     public function destroy(Course $course)
     {
         //
+        $course->delete();
+
+        Alert::success('Course berhasil dihapus');
+
+        return redirect()->route('admin.course.index');
     }
 }

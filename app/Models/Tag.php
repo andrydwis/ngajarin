@@ -14,4 +14,9 @@ class Tag extends Model
        'slug',
        'icon'
     ];
+
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class, 'course_tag');
+    }
 }

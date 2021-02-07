@@ -21,7 +21,7 @@ class ClassroomMemberController extends Controller
         //
         $data = [
             'members' => ClassroomMember::where('classroom_id', $classroom->id)->get(),
-            'classroom' => $classroom
+            'classroom' => $classroom,
         ];
 
         return view('mentor.classroom-member.index', $data);
@@ -50,12 +50,18 @@ class ClassroomMemberController extends Controller
         $check = Classroom::where('token', $request->token)->first();
 
         if ($check) {
-            $classroomMember = new ClassroomMember();
-            $classroomMember->classroom_id = $check->id;
-            $classroomMember->user_id = Auth::user()->id;
-            $classroomMember->save();
+            $isAlreadyJoin = ClassroomMember::where('classroom_id', $check->id)->where('user_id', Auth::user()->id)->first();
+            
+            if (!$isAlreadyJoin) {
+                $classroomMember = new ClassroomMember();
+                $classroomMember->classroom_id = $check->id;
+                $classroomMember->user_id = Auth::user()->id;
+                $classroomMember->save();
 
-            Alert::success('Berhasil bergabung dengan kelas');
+                Alert::success('Berhasil bergabung dengan kelas');
+            } else {
+                Alert::error('Anda sudah bergabung di kelas ini');
+            }
         } else {
             Alert::error('Token kelas salah');
         }
@@ -101,7 +107,7 @@ class ClassroomMemberController extends Controller
      * @param  \App\Models\ClassroomMember  $classroomMember
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ClassroomMember $classroomMember)
+    public function destroy(Classroom $classroom, ClassroomMember $classroomMember)
     {
         //
         $classroomMember->delete();

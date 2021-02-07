@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class ProfileController extends Controller
+class MentorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,6 +20,11 @@ class ProfileController extends Controller
     public function index()
     {
         //
+        $data = [
+            'users' => User::role('mentor')->get(),
+        ];
+
+        return view('admin.mentor-list.index', $data);
     }
 
     /**
@@ -28,6 +35,7 @@ class ProfileController extends Controller
     public function create()
     {
         //
+        return view('admin.mentor-list.create');
     }
 
     /**
@@ -39,6 +47,27 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'nama' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')],
+            'telepon' => ['required', 'numeric', Rule::unique('users', 'phone')],
+            'password' => ['required', 'string', 'confirmed', 'min:8']
+        ]);
+
+        $user = User::create([
+            'name' => $request->nama,
+            'email' => $request->email,
+            'phone' => $request->telepon,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $user->assignRole('mentor');
+
+        event(new Registered($user));
+
+        Alert::success('Mentor berhasil ditambahkan');
+
+        return redirect()->route('admin.mentor-list.index');
     }
 
     /**
@@ -47,16 +76,9 @@ class ProfileController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show(User $user)
     {
         //
-        $user = $request->user();
-
-        $data = [
-            'user' => $user
-        ];
-
-        return view('auth.profile-show', $data);
     }
 
     /**
@@ -65,16 +87,9 @@ class ProfileController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request)
+    public function edit(User $user)
     {
         //
-        $user = $request->user();
-
-        $data = [
-            'user' => $user
-        ];
-
-        return view('auth.profile-edit', $data);
     }
 
     /**
@@ -84,25 +99,9 @@ class ProfileController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, User $user)
     {
         //
-        $user = $request->user();
-
-        $request->validate([
-            'nama' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user)],
-            'telepon' => ['required', 'numeric', Rule::unique('users', 'phone')->ignore($user)]
-        ]);
-
-        $user->name = $request->nama;
-        $user->email = $request->email;
-        $user->phone = $request->telepon;
-        $user->save();
-
-        Alert::success('Profile berhasil diupdate');
-
-        return redirect()->route('profile.show');
     }
 
     /**
