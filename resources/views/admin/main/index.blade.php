@@ -6,13 +6,13 @@
 
 
     <!-- General Report -->
-    <div class="grid gap-6 md:grid-flow-col xl:grid-cols-1">
+    <div class="grid gap-6 md:grid-flow-col">
 
 
         <!-- card -->
         <div class="report-card">
             <div class="card">
-                <div class="flex flex-col card-body">
+                <div class="grid flex-col md:flex card-body">
 
                     <!-- top -->
                     <div class="flex flex-row items-center justify-between">
@@ -129,14 +129,14 @@
     <!-- End General Report -->
 
     <!-- strat Analytics -->
-    <div class="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2 xl:grid-cols-1">
+    <div class="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2">
 
         <!-- update section -->
         <div class="text-white bg-green-400 border-green-400 shadow-md card">
             <div class="grid md:flex md:flex-row card-body">
 
                 <!-- image -->
-                <div class="flex items-center justify-center w-40 h-40 img-wrapper">
+                <div class="items-center justify-center hidden w-40 h-40 md:flex img-wrapper">
                     <img src="./img/happy.svg" alt="img title">
                 </div>
                 <!-- end image -->
@@ -215,26 +215,13 @@
         <!-- header -->
         <div class="flex flex-row justify-between card-header">
             <h1 class="h6">Sales Overview</h1>
-
-            <div class="flex flex-row items-center justify-center">
-
-                <a href="">
-                    <i class="mr-6 fad fa-chevron-double-down"></i>
-                </a>
-
-                <a href="">
-                    <i class="fad fa-ellipsis-v"></i>
-                </a>
-
-            </div>
-
         </div>
         <!-- end header -->
 
         <!-- body -->
-        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 card-body lg:grid-cols-1">
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 card-body">
 
-            <div class="p-8">
+            <div class="p-1 md:p-8">
                 <h1 class="h2">5,337</h1>
                 <p class="font-medium text-black">Sales this month</p>
 
@@ -252,7 +239,7 @@
                     <p class="text-black"><span class="text-red-400 num-2"></span><span class="text-red-400">% revenue per sale</span> in comparison to last month.</p>
                 </div>
 
-                <a href="#" class="mt-6 btn-shadow">view details</a>
+                <a href="#" class="mt-6 bg-green-500 btn-shadow">view details</a>
 
             </div>
 
@@ -267,10 +254,10 @@
     <!-- end Sales Overview -->
 
     <!-- start numbers -->
-    <div class="grid grid-cols-5 gap-6 xl:grid-cols-2">
+    <div class="grid grid-cols-2 gap-0 md:gap-6 md:grid-cols-5">
 
         <!-- card -->
-        <div class="mt-6 card">
+        <div class="col-span-2 mt-6 lg:col-span-1 card">
             <div class="flex items-center card-body">
 
                 <div class="px-3 py-2 mr-3 text-white bg-indigo-600 rounded">
@@ -287,7 +274,7 @@
         <!-- end card -->
 
         <!-- card -->
-        <div class="mt-6 card">
+        <div class="col-span-2 mt-6 lg:col-span-1 card">
             <div class="flex items-center card-body">
 
                 <div class="px-3 py-2 mr-3 text-white bg-green-600 rounded">
@@ -304,7 +291,7 @@
         <!-- end card -->
 
         <!-- card -->
-        <div class="mt-6 card xl:mt-1">
+        <div class="col-span-2 mt-6 lg:col-span-1 card">
             <div class="flex items-center card-body">
 
                 <div class="px-3 py-2 mr-3 text-white bg-yellow-600 rounded">
@@ -321,7 +308,7 @@
         <!-- end card -->
 
         <!-- card -->
-        <div class="mt-6 card xl:mt-1">
+        <div class="col-span-2 mt-6 lg:col-span-1 card">
             <div class="flex items-center card-body">
 
                 <div class="px-3 py-2 mr-3 text-white bg-red-600 rounded">
@@ -338,7 +325,7 @@
         <!-- end card -->
 
         <!-- card -->
-        <div class="mt-6 card xl:mt-1 xl:col-span-2">
+        <div class="col-span-2 mt-6 card lg:col-span-1">
             <div class="flex items-center card-body">
 
                 <div class="px-3 py-2 mr-3 text-white bg-pink-600 rounded">
@@ -358,7 +345,7 @@
     <!-- end nmbers -->
 
     <!-- start quick Info -->
-    <div class="grid grid-cols-3 gap-6 mt-6 xl:grid-cols-1">
+    <div class="grid grid-cols-1 gap-6 mt-6 lg:grid-cols-3">
 
 
         <!-- Browser Stats -->
@@ -417,57 +404,38 @@
         <!-- end Browser Stats -->
 
         <!-- Start Recent Sales -->
-        <div class="col-span-2 card xl:col-span-1">
+        <div class="col-span-1 lg:col-span-2 card">
             <div class="card-header">Recent Sales</div>
 
             <table class="w-full text-left table-auto">
                 <thead>
                     <tr>
-                        <th class="px-4 py-2 border-r"></th>
-                        <th class="px-4 py-2 border-r">product</th>
-                        <th class="px-4 py-2 border-r">price</th>
-                        <th class="px-4 py-2">date</th>
+                        <th class="px-1 py-2 text-sm border-r md:text-base md:px-4"></th>
+                        <th class="px-1 py-2 text-sm border-r md:text-base md:px-4">product</th>
+                        <th class="px-1 py-2 text-sm border-r md:text-base md:px-4">price</th>
+                        <th class="px-1 py-2 text-sm md:text-base md:px-4">date</th>
                     </tr>
                 </thead>
                 <tbody class="text-gray-600">
 
                     <tr>
-                        <td class="px-4 py-2 text-center text-green-500 border border-l-0"><i class="fad fa-circle"></i></td>
-                        <td class="px-4 py-2 border border-l-0">Lightning to USB-C Adapter Lightning.</td>
-                        <td class="px-4 py-2 border border-l-0">$<span class="num-2"></span></td>
-                        <td class="px-4 py-2 border border-l-0 border-r-0"><span class="num-2"></span> minutes ago</td>
+                        <td class="px-1 py-2 text-xs text-center text-green-500 border border-l-0 md:text-base md:px-4"><i class="fad fa-circle"></i></td>
+                        <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">Lightning to USB-C Adapter Lightning.</td>
+                        <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">$<span class="num-2"></span></td>
+                        <td class="px-1 py-2 text-sm text-center border border-l-0 border-r-0 md:text-left md:text-base md:px-4"><span class="num-2"></span> minutes ago</td>
                     </tr>
                     <tr>
-                        <td class="px-4 py-2 text-center text-yellow-500 border border-l-0"><i class="fad fa-circle"></i></td>
-                        <td class="px-4 py-2 border border-l-0">Apple iPhone 8.</td>
-                        <td class="px-4 py-2 border border-l-0">$<span class="num-2"></span></td>
-                        <td class="px-4 py-2 border border-l-0 border-r-0"><span class="num-2"></span> minutes ago</td>
+                        <td class="px-1 py-2 text-xs text-center text-yellow-500 border border-l-0 md:text-base md:px-4"><i class="fad fa-circle"></i></td>
+                        <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">Apple iPhone 8.</td>
+                        <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">$<span class="num-2"></span></td>
+                        <td class="px-1 py-2 text-sm text-center border border-l-0 border-r-0 md:text-left md:text-base md:px-4"><span class="num-2"></span> minutes ago</td>
                     </tr>
                     <tr>
-                        <td class="px-4 py-2 text-center text-green-500 border border-l-0"><i class="fad fa-circle"></i></td>
-                        <td class="px-4 py-2 border border-l-0">Apple MacBook Pro.</td>
-                        <td class="px-4 py-2 border border-l-0">$<span class="num-2"></span></td>
-                        <td class="px-4 py-2 border border-l-0 border-r-0"><span class="num-2"></span> minutes ago</td>
+                        <td class="px-1 py-2 text-xs text-center text-green-500 border border-l-0 md:text-base md:px-4"><i class="fad fa-circle"></i></td>
+                        <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">Apple MacBook Pro.</td>
+                        <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">$<span class="num-2"></span></td>
+                        <td class="px-1 py-2 text-sm text-center border border-l-0 border-r-0 md:text-left md:text-base md:px-4"><span class="num-2"></span> minutes ago</td>
                     </tr>
-                    <tr>
-                        <td class="px-4 py-2 text-center text-red-500 border border-l-0"><i class="fad fa-circle"></i></td>
-                        <td class="px-4 py-2 border border-l-0">Samsung Galaxy S9.</td>
-                        <td class="px-4 py-2 border border-l-0">$<span class="num-2"></span></td>
-                        <td class="px-4 py-2 border border-l-0 border-r-0"><span class="num-2"></span> minutes ago</td>
-                    </tr>
-                    <tr>
-                        <td class="px-4 py-2 text-center text-yellow-500 border border-l-0"><i class="fad fa-circle"></i></td>
-                        <td class="px-4 py-2 border border-l-0">Samsung Galaxy S8 256GB.</td>
-                        <td class="px-4 py-2 border border-l-0">$<span class="num-2"></span></td>
-                        <td class="px-4 py-2 border border-l-0 border-r-0"><span class="num-2"></span> minutes ago</td>
-                    </tr>
-                    <tr>
-                        <td class="px-4 py-2 text-center text-green-500 border border-b-0 border-l-0"><i class="fad fa-circle"></i></td>
-                        <td class="px-4 py-2 border border-b-0 border-l-0">apple watch.</td>
-                        <td class="px-4 py-2 border border-b-0 border-l-0">$<span class="num-2"></span></td>
-                        <td class="px-4 py-2 border border-b-0 border-l-0 border-r-0"><span class="num-2"></span> minutes ago</td>
-                    </tr>
-
                 </tbody>
             </table>
         </div>
