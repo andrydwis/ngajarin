@@ -1,30 +1,28 @@
 <?php
 
-namespace App\Http\Controllers\Mentor;
+namespace App\Http\Controllers\student;
 
 use App\Http\Controllers\Controller;
 use App\Models\Classroom;
 use App\Models\ClassroomMember;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use RealRashid\SweetAlert\Facades\Alert;
 
-class ClassroomMemberController extends Controller
+class ClassroomController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Classroom $classroom)
+    public function index()
     {
         //
         $data = [
-            'members' => ClassroomMember::where('classroom_id', $classroom->id)->get(),
-            'classroom' => $classroom,
+            'classrooms' => ClassroomMember::where('user_id', Auth::user()->id)->with('classroom')->get()
         ];
 
-        return view('mentor.classroom-member.index', $data);
+        return view('student.classroom.index', $data);
     }
 
     /**
@@ -51,10 +49,10 @@ class ClassroomMemberController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ClassroomMember  $classroomMember
+     * @param  \App\Models\Classroom  $classroom
      * @return \Illuminate\Http\Response
      */
-    public function show(ClassroomMember $classroomMember)
+    public function show(Classroom $classroom)
     {
         //
     }
@@ -62,10 +60,10 @@ class ClassroomMemberController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ClassroomMember  $classroomMember
+     * @param  \App\Models\Classroom  $classroom
      * @return \Illuminate\Http\Response
      */
-    public function edit(ClassroomMember $classroomMember)
+    public function edit(Classroom $classroom)
     {
         //
     }
@@ -74,10 +72,10 @@ class ClassroomMemberController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ClassroomMember  $classroomMember
+     * @param  \App\Models\Classroom  $classroom
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ClassroomMember $classroomMember)
+    public function update(Request $request, Classroom $classroom)
     {
         //
     }
@@ -85,16 +83,11 @@ class ClassroomMemberController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ClassroomMember  $classroomMember
+     * @param  \App\Models\Classroom  $classroom
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Classroom $classroom, ClassroomMember $classroomMember)
+    public function destroy(Classroom $classroom)
     {
         //
-        $classroomMember->delete();
-
-        Alert::success('Anggota kelas berhasil dikeluarkan');
-
-        return back();
     }
 }

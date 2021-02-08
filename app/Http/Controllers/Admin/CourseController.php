@@ -126,7 +126,7 @@ class CourseController extends Controller
 
         if (!$request->tags) {
             $course->tags()->sync($request->tag);
-        }else{
+        } else {
             $course->tags()->detach();
         }
 

@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Mentor;
 use App\Http\Controllers\Controller;
 use App\Models\Classroom;
 use App\Models\Course;
-use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ClassroomCourseController extends Controller
@@ -16,7 +16,7 @@ class ClassroomCourseController extends Controller
     {
         $data = [
             'classroom' => $classroom->with('courses')->first(),
-            'courses' => Course::whereIn('created_by', User::role(['admin', 'mentor'])->get()->pluck('id')->toArray())->get(),
+            'courses' => Course::where('created_by', Auth::user()->id)->get(),
         ];
 
         return view('mentor.classroom.course', $data);

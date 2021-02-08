@@ -55,6 +55,6 @@ class RegisteredUserController extends Controller
 
         Alert::success('Email verifikasi telah dikirim ke email anda');
 
-        return redirect()->route('auth.login');
+        return redirect()->route('login');
     }
 }

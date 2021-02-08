@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Mentor;
+namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Models\Classroom;
@@ -46,6 +46,35 @@ class ClassroomMemberController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'token' => ['required'],
+        ]);
+
+        //check token
+        $check = Classroom::where('token', $request->token)->first();
+
+        if ($check) {
+            $isAlreadyJoin = ClassroomMember::where('classroom_id', $check->id)->where('user_id', Auth::user()->id)->first();
+            
+            if (!$isAlreadyJoin) {
+                $classroomMember = new ClassroomMember();
+                $classroomMember->classroom_id = $check->id;
+                $classroomMember->user_id = Auth::user()->id;
+                $classroomMember->save();
+
+                Alert::success('Berhasil bergabung dengan kelas');
+
+                return redirect()->route('student.classroom.index');
+            } else {
+                Alert::error('Anda sudah bergabung di kelas ini');
+
+                return redirect()->route('student.classroom.index');
+            }
+        } else {
+            Alert::error('Token kelas salah');
+
+            return redirect()->route('student.classroom.index');
+        }
     }
 
     /**
@@ -88,12 +117,12 @@ class ClassroomMemberController extends Controller
      * @param  \App\Models\ClassroomMember  $classroomMember
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Classroom $classroom, ClassroomMember $classroomMember)
+    public function destroy(ClassroomMember $classroomMember)
     {
         //
         $classroomMember->delete();
 
-        Alert::success('Anggota kelas berhasil dikeluarkan');
+        Alert::success('Berhasil keluar dari kelas');
 
         return back();
     }
