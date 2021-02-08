@@ -36,7 +36,8 @@
                                     </div>
                                 </form>
                                 <a href="{{route('mentor.classroom.edit', ['classroom' => $classroom->classroom->id])}}" class="btn btn-secondary">Update</a>
-                                <a href="{{route('mentor.classroom-member.index', ['classroom' => $classroom->classroom->id])}}" class="btn btn-secondary">Lihat</a>
+                                <a href="{{route('mentor.classroom-member.index', ['classroom' => $classroom->classroom->id])}}" class="btn btn-secondary">Member</a>
+                                <a href="{{route('mentor.classroom-course.index', ['classroom' => $classroom->classroom->id])}}" class="btn btn-primary">Course Kelas</a>
                             </td>
                         </tr>
                         @endforeach

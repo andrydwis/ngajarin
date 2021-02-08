@@ -5,6 +5,8 @@ namespace App\Http\Controllers\mentor;
 use App\Http\Controllers\Controller;
 use App\Models\Classroom;
 use App\Models\ClassroomMember;
+use App\Models\Course;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -74,9 +76,6 @@ class ClassroomController extends Controller
     public function show(Classroom $classroom)
     {
         //
-        $data = [
-            'classroom' => $classroom,
-        ];
     }
 
     /**

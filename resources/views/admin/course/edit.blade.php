@@ -43,9 +43,9 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="tag[]">Tag</label>
+                        <label for="tag">Tag</label>
                         <select name="tag[]" id="tag" class="form-control @error('tag') is-invalid @enderror" multiple>
-                            <option value="">Pilih Tag</option>
+                            <option value="" disabled>Pilih Tag</option>
                             @foreach($tags as $tag)
                             @if(in_array($tag->id, $course->tags->pluck('id')->toArray()))
                             <option value="{{$tag->id}}" selected>{{$tag->name}}</option>
@@ -63,4 +63,17 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('customCSS')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endsection
+
+@section('customJS')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#tag').select2();
+    });
+</script>
 @endsection

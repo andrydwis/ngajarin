@@ -25,4 +25,9 @@ class Course extends Model
     public function tags(){
         return $this->belongsToMany(Tag::class, 'course_tag');
     }
+
+    public function classrooms()
+    {
+        return $this->belongsToMany(Classroom::class, 'classroom_course');
+    }
 }
