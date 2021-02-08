@@ -6,7 +6,7 @@
 
 
     <!-- General Report -->
-    <div class="grid gap-6 md:grid-flow-col">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 md:grid-flow-col">
 
 
         <!-- card -->
@@ -26,7 +26,7 @@
 
                     <!-- bottom -->
                     <div class="mt-8">
-                        <h1 class="h5 num-4"></h1>
+                        <h1 class="h5 num-4">2000</h1>
                         <p>items sales</p>
                     </div>
                     <!-- end bottom -->
@@ -55,7 +55,7 @@
 
                     <!-- bottom -->
                     <div class="mt-8">
-                        <h1 class="h5 num-4"></h1>
+                        <h1 class="h5 num-4">2000</h1>
                         <p>new orders</p>
                     </div>
                     <!-- end bottom -->
@@ -84,7 +84,7 @@
 
                     <!-- bottom -->
                     <div class="mt-8">
-                        <h1 class="h5 num-4"></h1>
+                        <h1 class="h5 num-4">2000</h1>
                         <p>total Products</p>
                     </div>
                     <!-- end bottom -->
@@ -113,7 +113,7 @@
 
                     <!-- bottom -->
                     <div class="mt-8">
-                        <h1 class="h5 num-4"></h1>
+                        <h1 class="h5 num-4">2000</h1>
                         <p>new Visitor</p>
                     </div>
                     <!-- end bottom -->
@@ -143,7 +143,7 @@
 
                 <!-- info -->
                 <div class="py-2 ml-0 md:ml-10">
-                    <h1 class="h6">Good Job, Mohamed!</h1>
+                    <h1 class="h6">Good Job, User!</h1>
                     <p class="text-xs text-white">You've finished all of your tasks for this week.</p>
 
                     <ul class="mt-4">
@@ -254,10 +254,10 @@
     <!-- end Sales Overview -->
 
     <!-- start numbers -->
-    <div class="grid grid-cols-2 gap-0 md:gap-6 md:grid-cols-5">
+    <div class="grid grid-cols-2 gap-0 md:gap-6 sm:grid-cols-3 xl:grid-cols-5">
 
         <!-- card -->
-        <div class="col-span-2 mt-6 lg:col-span-1 card">
+        <div class="col-span-2 mt-6 sm:col-span-1 lg:col-span-1 card">
             <div class="flex items-center card-body">
 
                 <div class="px-3 py-2 mr-3 text-white bg-indigo-600 rounded">
@@ -274,7 +274,7 @@
         <!-- end card -->
 
         <!-- card -->
-        <div class="col-span-2 mt-6 lg:col-span-1 card">
+        <div class="col-span-2 mt-6 lg:col-span-1 sm:col-span-1 card">
             <div class="flex items-center card-body">
 
                 <div class="px-3 py-2 mr-3 text-white bg-green-600 rounded">
@@ -291,7 +291,7 @@
         <!-- end card -->
 
         <!-- card -->
-        <div class="col-span-2 mt-6 lg:col-span-1 card">
+        <div class="col-span-2 mt-6 lg:col-span-1 sm:col-span-1 card">
             <div class="flex items-center card-body">
 
                 <div class="px-3 py-2 mr-3 text-white bg-yellow-600 rounded">
@@ -308,7 +308,7 @@
         <!-- end card -->
 
         <!-- card -->
-        <div class="col-span-2 mt-6 lg:col-span-1 card">
+        <div class="col-span-2 mt-6 lg:col-span-1 sm:col-span-1 card">
             <div class="flex items-center card-body">
 
                 <div class="px-3 py-2 mr-3 text-white bg-red-600 rounded">
@@ -325,7 +325,7 @@
         <!-- end card -->
 
         <!-- card -->
-        <div class="col-span-2 mt-6 card lg:col-span-1">
+        <div class="col-span-2 mt-6 card lg:col-span-1 sm:col-span-1">
             <div class="flex items-center card-body">
 
                 <div class="px-3 py-2 mr-3 text-white bg-pink-600 rounded">
@@ -449,4 +449,233 @@
 </div>
 <!-- end content -->
 
+@endsection
+
+@section('customJS')
+<script>
+    // Num Array Generator
+    var numArr = function(length, max) {
+        return Array.from({
+            length: length
+        }, () => Math.floor(Math.random() * max));
+    }
+    // end Num Array Generator
+
+    // APEX Charts
+    var options = function(type, height, numbers, color) {
+        return {
+            chart: {
+                height: height,
+                width: '100%',
+                type: type,
+                sparkline: {
+                    enabled: true
+                },
+                toolbar: {
+                    show: false,
+                },
+            },
+            grid: {
+                show: false,
+                padding: {
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            legend: {
+                show: false,
+            },
+            series: [{
+                name: "serie1",
+                data: numbers
+            }],
+            fill: {
+                colors: [color],
+            },
+            stroke: {
+                colors: [color],
+                width: 3
+            },
+            yaxis: {
+                show: false,
+            },
+            xaxis: {
+                show: false,
+                labels: {
+                    show: false,
+                },
+                axisBorder: {
+                    show: false,
+                },
+                tooltip: {
+                    enabled: false,
+                }
+            },
+
+        };
+    }
+
+    var sealsOptions = {
+        chart: {
+            height: 350,
+            type: "line",
+            stacked: false
+        },
+        dataLabels: {
+            enabled: false
+        },
+        colors: ['#99C2A2', '#C5EDAC', '#66C7F4'],
+        series: [
+
+            {
+                name: 'Column A',
+                type: 'column',
+                data: [21.1, 23, 33.1, 34, 44.1, 44.9, 56.5, 58.5]
+            },
+            {
+                name: "Column B",
+                type: 'column',
+                data: [10, 19, 27, 26, 34, 35, 40, 38]
+            },
+            {
+                name: "Line C",
+                type: 'column',
+                data: [1.4, 2, 2.5, 1.5, 2.5, 2.8, 3.8, 4.6]
+            },
+        ],
+        stroke: {
+            width: [4, 4, 4]
+        },
+        plotOptions: {
+            bar: {
+                columnWidth: "20%"
+            }
+        },
+        xaxis: {
+            categories: [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016]
+        },
+        yaxis: [{
+                seriesName: 'Column A',
+                axisTicks: {
+                    show: true
+                },
+                axisBorder: {
+                    show: true,
+                },
+                title: {
+                    text: "Columns"
+                }
+            },
+            {
+                seriesName: 'Column A',
+                show: false
+            }, {
+                opposite: true,
+                seriesName: 'Line C',
+                axisTicks: {
+                    show: true
+                },
+                axisBorder: {
+                    show: true,
+                },
+                title: {
+                    text: "Line"
+                }
+            }
+        ],
+        tooltip: {
+            shared: false,
+            intersect: true,
+            x: {
+                show: false
+            }
+        },
+        legend: {
+            horizontalAlign: "left",
+            offsetX: 40
+        }
+    };
+    // end APEX Charts
+
+
+    // page view & Unique Users
+    var analytics_1 = document.getElementsByClassName("analytics_1");
+
+    if (analytics_1 != null && typeof(analytics_1) != 'undefined') {
+        var chart = new ApexCharts(analytics_1[0], options("area", '51px', numArr(10, 99), '#4fd1c5'));
+        var chart_1 = new ApexCharts(analytics_1[1], options("area", '51px', numArr(10, 99), '#4c51bf'));
+        chart.render();
+        chart_1.render();
+    }
+    // end page view & Unique Users
+
+
+    // Sales Overview
+    var sealsOverview = document.getElementById('sealsOverview');
+    var sealsOverviewChart = new ApexCharts(sealsOverview, options('bar', '100%', numArr(20, 999), '#30aba0'));
+    sealsOverviewChart.render();
+    // endSales Overview
+
+
+    // dropdown Toggle
+    // var dropdown = document.getElementsByClassName('dropdown');
+
+    // if (dropdown.length >= 1) {
+
+        // for (let i = 0; i < dropdown.length; i++) {
+        //     const item = dropdown[i];
+
+        //     var menu, btn, overflow;
+
+        //     item.addEventListener('click', function() {
+
+        //         for (let i = 0; i < this.children.length; i++) {
+        //             const e = this.children[i];
+
+        //             if (e.classList.contains('menu')) {
+        //                 menu = e;
+        //             } else if (e.classList.contains('menu-btn')) {
+        //                 btn = e;
+        //             } else if (e.classList.contains('menu-overflow')) {
+        //                 overflow = e;
+        //             }
+
+        //         }
+
+        //         if (menu.classList.contains('hidden')) {
+                    // show the menu
+                //     showMenu();
+                // } else {
+                    // hide the menu
+                //     hideMenu()
+                // }
+
+
+        //     });
+
+
+        //     var showMenu = function() {
+        //         menu.classList.remove('hidden');
+        //         menu.classList.add('fadeIn');
+        //         overflow.classList.remove('hidden');
+        //     };
+
+        //     var hideMenu = function() {
+        //         menu.classList.add('hidden');
+        //         overflow.classList.add('hidden');
+        //         menu.classList.remove('fadeIn');
+        //     };
+
+
+
+        // }
+
+    // };
+    // end dropdown Toggle
+</script>
 @endsection

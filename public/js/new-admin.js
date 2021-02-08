@@ -116,38 +116,39 @@ if (names_2.length > 0) {
         e.innerText = generateName(2);
     }
 }
-var navbarToggle = document.getElementById('navbarToggle'),
-    navbar       = document.getElementById('navbar');
+// var navbarToggle = document.getElementById('navbarToggle'),
+//     navbar       = document.getElementById('navbar');
 
 
 
-navbarToggle.addEventListener('click' , function(){
+// navbarToggle.addEventListener('click' , function(){
 
-    if (navbar.classList.contains('md:hidden')) {
-        navbar.classList.remove('md:hidden');
-        navbar.classList.add('fadeIn');   
-    }else{
-        var _classRemover =  function () {
-            navbar.classList.remove('fadeIn');   
-            navbar.classList.add('fadeOut');
-            console.log('removed');
+//     if (navbar.classList.contains('md:hidden')) {
+//         navbar.classList.remove('md:hidden');
+//         navbar.classList.add('fadeIn');   
+//     }else{
+//         var _classRemover =  function () {
+//             navbar.classList.remove('fadeIn');   
+//             navbar.classList.add('fadeOut');
+//             console.log('removed');
             
-        };  
+//         };  
         
-        var animate = async function(){
-            await _classRemover();
-            console.log('animated');
+//         var animate = async function(){
+//             await _classRemover();
+//             console.log('animated');
             
-            setTimeout(function(){
-                navbar.classList.add('md:hidden');
-                navbar.classList.remove('fadeOut');
-            }, 450);            
-        };
+//             setTimeout(function(){
+//                 navbar.classList.add('md:hidden');
+//                 navbar.classList.remove('fadeOut');
+//             }, 450);            
+//         };
 
-        animate();        
-    };
+//         animate();        
+//     };
     
-});
+// });
+
 var num = function(from , to){
     return Math.floor(Math.random() * to)  + from;
 };
@@ -194,24 +195,20 @@ if (el_3.length > 0) {
 
 
 
-
-
-
-
 // return 4 digit
-var el_4 = document.getElementsByClassName('num-4');
-var display_4 = function(){
-    for (let i = 0; i < el_4.length; i++) {
-        const e = el_4[i];
+// var el_4 = document.getElementsByClassName('num-4');
+// var display_4 = function(){
+//     for (let i = 0; i < el_4.length; i++) {
+//         const e = el_4[i];
         
-        e.innerText = num(999 , 9999);
+//         e.innerText = num(999 , 9999);
         
-    }   
-};
+//     }   
+// };
 
-if (el_4.length > 0) {
-    display_4();   
-}
+// if (el_4.length > 0) {
+//     display_4();   
+// }
 // end 4 digits
 
 
@@ -257,75 +254,76 @@ var btn     = document.getElementById('sliderBtn'),
     });
 // end with sidebar
 
-var options = function(type, height, numbers , color){
-  return {     
-    chart: {
-      height: height,
-      width: '100%',
-      type: type,
-      sparkline: {
-        enabled: true
-      },
-      toolbar: {
-        show: false,
-       },
-    },
-    grid: {
-        show: false,
-        padding: {
-            top: 0,
-            right: 0,
-            bottom: 0,
-            left: 0    
-        }
-    },
-    dataLabels: {
-      enabled: false
-    },
-    legend: {
-        show: false,
-    },
-    series: [
-    {
-        name: "serie1",
-        data: numbers
-    }
-    ],    
-    fill: {
-      colors: [color],
-    },
-    stroke:{
-        colors: [color],
-        width: 3
-    },    
-    yaxis: {
-        show: false,        
-    }, 
-    xaxis: {
-      show: false,
-      labels: {
-          show: false,
-      },   
-      axisBorder: {
-        show: false,        
-      },   
-      tooltip: {
-          enabled: false,
-      }
-    },
+// APEX CHART
+// var options = function(type, height, numbers , color){
+//   return {     
+//     chart: {
+//       height: height,
+//       width: '100%',
+//       type: type,
+//       sparkline: {
+//         enabled: true
+//       },
+//       toolbar: {
+//         show: false,
+//        },
+//     },
+//     grid: {
+//         show: false,
+//         padding: {
+//             top: 0,
+//             right: 0,
+//             bottom: 0,
+//             left: 0    
+//         }
+//     },
+//     dataLabels: {
+//       enabled: false
+//     },
+//     legend: {
+//         show: false,
+//     },
+//     series: [
+//     {
+//         name: "serie1",
+//         data: numbers
+//     }
+//     ],    
+//     fill: {
+//       colors: [color],
+//     },
+//     stroke:{
+//         colors: [color],
+//         width: 3
+//     },    
+//     yaxis: {
+//         show: false,        
+//     }, 
+//     xaxis: {
+//       show: false,
+//       labels: {
+//           show: false,
+//       },   
+//       axisBorder: {
+//         show: false,        
+//       },   
+//       tooltip: {
+//           enabled: false,
+//       }
+//     },
     
-  };
-}
+//   };
+// }
   
 
-  var analytics_1 =  document.getElementsByClassName("analytics_1");
+  // var analytics_1 =  document.getElementsByClassName("analytics_1");
     
-  if (analytics_1 != null && typeof(analytics_1) != 'undefined') {
-      var chart = new ApexCharts(analytics_1[0], options("area" , '51px' , numArr(10,99) , '#4fd1c5')); 
-      var chart_1 = new ApexCharts(analytics_1[1], options("area" , '51px' , numArr(10,99) , '#4c51bf')); 
-      chart.render();       
-      chart_1.render();       
-  }
+  // if (analytics_1 != null && typeof(analytics_1) != 'undefined') {
+  //     var chart = new ApexCharts(analytics_1[0], options("area" , '51px' , numArr(10,99) , '#4fd1c5')); 
+  //     var chart_1 = new ApexCharts(analytics_1[1], options("area" , '51px' , numArr(10,99) , '#4c51bf')); 
+  //     chart.render();       
+  //     chart_1.render();       
+  // }
 
 
 
@@ -419,6 +417,7 @@ var sealsOptions = {
 var sealsOverview = document.getElementById('sealsOverview');
 var sealsOverviewChart = new ApexCharts(sealsOverview, options('bar' , '100%', numArr(20,999) , '#30aba0')); 
 sealsOverviewChart.render();       
+
 var options = {     
     chart: {
     //   height: 280,

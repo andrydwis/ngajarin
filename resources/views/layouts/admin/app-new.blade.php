@@ -15,8 +15,7 @@
 
 <body>
 
-
-    {{-- @include('layouts.admin.navbar') --}}
+    @include('layouts.admin.navbar')
 
     <div class="flex flex-row flex-wrap h-screen">
 
@@ -28,8 +27,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/new-admin.js') }}"></script>
     @yield('customJS')
+    <!-- <script src="{{ asset('js/new-admin.js') }}"></script> -->
+
 </body>
 
 </html>
