@@ -21,7 +21,7 @@ class CourseController extends Controller
     {
         //
         $data = [
-            'courses' => Course::with('creator')->get()
+            'courses' => Course::where('created_by', Auth::user()->id)->with('creator')->get()
         ];
 
         return view('admin.course.index', $data);

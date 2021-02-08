@@ -4,28 +4,22 @@
     <div class="col">
         <div class="card">
             <div class="card-header">
-                <h4>Daftar Anggota Kelas {{$classroom->name}}</h4>
+                <h4>Daftar Course Kelas {{$classroom->name}}</h4>
             </div>
             <div class="card-body">
                 <table id="datatables" class="display" style="width:100%">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama</th>
-                            <th>Email</th>
-                            <th>Telepon</th>
-                            <th>Role</th>
+                            <th>Nama Course</th>
                             <th>Menu</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($members as $member)
+                        @foreach($classroom->courses as $course)
                         <tr>
                             <td>{{$loop->index+1}}</td>
-                            <td>{{$member->user->name}}</td>
-                            <td>{{$member->user->email}}</td>
-                            <td>{{$member->user->phone}}</td>
-                            <td>{{$member->user->getRoleNames()->first()}}</td>
+                            <td>{{$course->title}}</td>
                             <td>
                                
                             </td>

@@ -5,10 +5,9 @@ namespace App\Http\Controllers\mentor;
 use App\Http\Controllers\Controller;
 use App\Models\Classroom;
 use App\Models\ClassroomMember;
-use App\Models\Course;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -61,7 +60,7 @@ class ClassroomController extends Controller
         $classroom->semester = $request->semester;
         $classroom->token = 'ngajar.in-' . Str::random(5);
         $classroom->save();
-        
+
         Alert::success('Kelas berhasil dibuat');
 
         return redirect()->route('mentor.classroom.index');

@@ -19,12 +19,20 @@ class ClassroomMemberController extends Controller
     public function index(Classroom $classroom)
     {
         //
-        $data = [
-            'members' => ClassroomMember::where('classroom_id', $classroom->id)->get(),
-            'classroom' => $classroom,
-        ];
+        $check = ClassroomMember::where('classroom_id', $classroom->id)->where('user_id', Auth::user()->id)->first();
 
-        return view('mentor.classroom-member.index', $data);
+        if ($check) {
+            $data = [
+                'members' => ClassroomMember::where('classroom_id', $classroom->id)->get(),
+                'classroom' => $classroom,
+            ];
+        } else {
+            Alert::warning('Anda tidak memiliki akses ke kelas ini');
+
+            return redirect()->route('student.classroom.index');
+        }
+
+        return view('student.classroom-member.index', $data);
     }
 
     /**
@@ -55,7 +63,7 @@ class ClassroomMemberController extends Controller
 
         if ($check) {
             $isAlreadyJoin = ClassroomMember::where('classroom_id', $check->id)->where('user_id', Auth::user()->id)->first();
-            
+
             if (!$isAlreadyJoin) {
                 $classroomMember = new ClassroomMember();
                 $classroomMember->classroom_id = $check->id;
@@ -83,7 +91,7 @@ class ClassroomMemberController extends Controller
      * @param  \App\Models\ClassroomMember  $classroomMember
      * @return \Illuminate\Http\Response
      */
-    public function show(ClassroomMember $classroomMember)
+    public function show()
     {
         //
     }
@@ -94,7 +102,7 @@ class ClassroomMemberController extends Controller
      * @param  \App\Models\ClassroomMember  $classroomMember
      * @return \Illuminate\Http\Response
      */
-    public function edit(ClassroomMember $classroomMember)
+    public function edit()
     {
         //
     }
@@ -106,7 +114,7 @@ class ClassroomMemberController extends Controller
      * @param  \App\Models\ClassroomMember  $classroomMember
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ClassroomMember $classroomMember)
+    public function update()
     {
         //
     }

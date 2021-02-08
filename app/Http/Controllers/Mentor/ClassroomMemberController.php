@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Classroom;
 use App\Models\ClassroomMember;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ClassroomMemberController extends Controller

@@ -1,4 +1,4 @@
-@extends('layouts.mentor.app')
+@extends('layouts.student.app')
 @section('content')
 <div class="row">
     <div class="col">
@@ -60,8 +60,8 @@
                                         <button type="submit" class="btn btn-danger">Keluar</button>
                                     </div>
                                 </form>
-                                <a href="{{route('mentor.classroom-member.index', ['classroom' => $classroom->classroom->id])}}" class="btn btn-secondary">Member</a>
-                                <a href="{{route('mentor.classroom-course.index', ['classroom' => $classroom->classroom->id])}}" class="btn btn-primary">Course Kelas</a>
+                                <a href="{{route('student.classroom-member.index', ['classroom' => $classroom->classroom->id])}}" class="btn btn-secondary">Member</a>
+                                <a href="{{route('student.classroom-course.index', ['classroom' => $classroom->classroom->id])}}" class="btn btn-primary">Course Kelas</a>
                             </td>
                         </tr>
                         @endforeach
