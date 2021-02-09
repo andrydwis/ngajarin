@@ -21,7 +21,7 @@ Route::get('/', function () {
 Route::get('/documentation', [DocumentationController::class, 'code']);
 
 Route::get('/new_dashboard', function () {
-    return view('admin.main.index');
+    return view('admin.dashboard.index');
 });
 
 Route::get('/dashboard', function () {

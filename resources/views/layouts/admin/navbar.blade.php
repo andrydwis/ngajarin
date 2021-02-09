@@ -17,57 +17,104 @@
                 </div>
 
                 <div class="flex ml-2 capitalize ">
-                    <h1 class="p-0 m-0 text-sm font-semibold leading-none text-gray-800">Admin</h1>
+                    <h1 class="p-0 m-0 text-sm font-semibold leading-none text-gray-800">
+                        {{auth()->user()->name}}
+                    </h1>
                     <i class="block ml-2 text-xs leading-none fad fa-chevron-down"></i>
                 </div>
             </button>
 
-        
+
 
             <div x-show="isOpen" @click.away="isOpen = false" class="fixed right-0 z-20 w-full py-2 mt-5 text-right text-gray-500 bg-white rounded shadow-md md:text-left md:absolute md:w-40 menu animated faster">
 
                 <!-- item -->
                 <a class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
                     <i class="mr-1 text-xs fad fa-user-edit"></i>
-                    edit my profile
+                    Profile
                 </a>
                 <!-- end item -->
 
                 <!-- item -->
                 <a class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
                     <i class="mr-1 text-xs fad fa-inbox-in"></i>
-                    my inbox
+                    Inbox
                 </a>
                 <!-- end item -->
 
                 <!-- item -->
                 <a class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
-                    <i class="mr-1 text-xs fad fa-badge-check"></i>
-                    tasks
+                    <i class="mr-1 text-xs fad fa-cogs"></i>
+                    Settings
                 </a>
                 <!-- end item -->
 
                 <!-- item -->
                 <a class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
-                    <i class="mr-1 text-xs fad fa-comment-alt-dots"></i>
-                    chats
+                    <i class="mr-1 text-xs fad fa-list"></i>
+                    Activity Log
                 </a>
                 <!-- end item -->
 
                 <hr>
 
-                <!-- item -->
-                <a class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
-                    <i class="mr-1 text-xs fad fa-user-times"></i>
-                    log out
-                </a>
-                <!-- end item -->
+                <div x-data="{modalLogout : false}">
+                    <!-- item -->
+                    <a @click="modalLogout = !modalLogout" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
+                        <i class="mr-1 text-xs fad fa-user-times"></i>
+                        Logout
+                    </a>
+                    <!-- end item -->
+
+                    @auth
+                    <!-- Modal-->
+                    <div @click.away="modalLogout = !modalLogout" x-show="modalLogout" class="fixed top-0 left-0 flex items-center justify-center w-full h-full">
+
+                        <!-- overlay -->
+                        <div class="absolute z-10 w-full h-full bg-gray-900 opacity-50">
+                        </div>
+                        <!-- overlay -->
+
+                        <div class="fixed z-50 flex flex-col w-full px-4 mx-auto mt-10 bg-white border rounded-lg py-7 lg:w-2/6 md:w-1/2 md:ml-auto md:mt-0">
+
+                            <div class="px-4 text-left">
+                                <!--Title-->
+                                <div class="flex items-center justify-between pb-3">
+                                    <p class="text-2xl font-bold text-gray-600">Ready to Leave?</p>
+                                    <button class="z-50" @click="modalLogout = !modalLogout">
+                                        <i class="fas fa-times hover:text-red-500"></i>
+                                    </button>
+                                </div>
+                                <hr>
+                                <!--Body-->
+                                <p class="py-4 ">Select "Logout" below if you are ready to end your current session</p>
+
+                                <!--Footer-->
+                                <div class="flex justify-end pt-8">
+                                    <form action="{{route('logout')}}" method="post">
+                                        <div class="flex gap-2">
+                                            @csrf
+                                            <button type="submit" class="btn-bs-danger">Logout</button>
+
+                                            <button class="btn-bs-secondary" @click="modalLogout = !modalLogout">Cancel</button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    @endauth
+                </div>
+
 
             </div>
         </div>
         <!-- end profile -->
 
-        
+
         <!-- dropdown notif & chat -->
         <div class="flex">
             <!-- notif -->
@@ -90,8 +137,7 @@
 
                     <!-- body -->
 
-                    @for ($i = 0; $i < 5; $i++)
-                        <!-- item -->
+                    @for ($i = 0; $i < 5; $i++) <!-- item -->
                         <a class="flex px-4 py-4 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white md:flex md:flex-row md:items-center md:justify-start hover:bg-gray-200" href="#">
 
                             <div class="px-3 py-2 mr-3 bg-gray-100 border border-gray-300 rounded">
@@ -106,24 +152,24 @@
                                 <div class="text-xs text-right text-gray-500">
                                     <p>4 min ago</p>
                                 </div>
-                                
+
                             </div>
 
                         </a>
                         <hr>
                         <!-- end item -->
-                    @endfor
+                        @endfor
 
-                    <!-- end body -->
+                        <!-- end body -->
 
-                    <!-- bottom -->
-                    <hr>
-                    <div class="px-4 py-2 mt-2">
-                        <a href="#" class="block p-1 text-xs text-center uppercase transition-all duration-500 ease-in-out border border-gray-300 rounded hover:text-green-500">
-                            lihat semua
-                        </a>
-                    </div>
-                    <!-- end bottom -->
+                        <!-- bottom -->
+                        <hr>
+                        <div class="px-4 py-2 mt-2">
+                            <a href="#" class="block p-1 text-xs text-center uppercase transition-all duration-500 ease-in-out border border-gray-300 rounded hover:text-green-500">
+                                lihat semua
+                            </a>
+                        </div>
+                        <!-- end bottom -->
                 </div>
             </div>
             <!-- end notif -->
@@ -149,8 +195,7 @@
                     <!-- end top -->
 
                     <!-- body -->
-                    @for ($i = 0; $i < 5; $i++)
-                        <!-- item -->
+                    @for ($i = 0; $i < 5; $i++) <!-- item -->
                         <a class="flex flex-row items-center justify-start px-4 py-4 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200" href="#">
 
                             <div class="w-10 h-10 mr-3 overflow-hidden bg-gray-100 border border-gray-300 rounded-full">
@@ -170,24 +215,24 @@
                         </a>
                         <hr>
                         <!-- end item -->
-                    @endfor
+                        @endfor
 
-                    <!-- end body -->
+                        <!-- end body -->
 
-                    <!-- bottom -->
-                    <hr>
-                    <div class="px-4 py-2 mt-2">
-                        <a href="#" class="block p-1 text-xs text-center uppercase transition-all duration-500 ease-in-out border border-gray-300 rounded hover:text-green-500">
-                            lihat semua
-                        </a>
-                    </div>
-                    <!-- end bottom -->
+                        <!-- bottom -->
+                        <hr>
+                        <div class="px-4 py-2 mt-2">
+                            <a href="#" class="block p-1 text-xs text-center uppercase transition-all duration-500 ease-in-out border border-gray-300 rounded hover:text-green-500">
+                                lihat semua
+                            </a>
+                        </div>
+                        <!-- end bottom -->
                 </div>
             </div>
         </div>
         <!-- end chat -->
         <!-- end dropdown notif & chat -->
-        
+
 
     </div>
     <!-- end navbar content -->
