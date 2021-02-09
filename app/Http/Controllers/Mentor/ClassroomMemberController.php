@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Classroom;
 use App\Models\ClassroomMember;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ClassroomMemberController extends Controller
@@ -21,7 +20,7 @@ class ClassroomMemberController extends Controller
         //
         $data = [
             'members' => ClassroomMember::where('classroom_id', $classroom->id)->get(),
-            'classroom' => $classroom
+            'classroom' => $classroom,
         ];
 
         return view('mentor.classroom-member.index', $data);
@@ -46,19 +45,6 @@ class ClassroomMemberController extends Controller
     public function store(Request $request)
     {
         //
-        //check token
-        $check = Classroom::where('token', $request->token)->first();
-
-        if ($check) {
-            $classroomMember = new ClassroomMember();
-            $classroomMember->classroom_id = $check->id;
-            $classroomMember->user_id = Auth::user()->id;
-            $classroomMember->save();
-
-            Alert::success('Berhasil bergabung dengan kelas');
-        } else {
-            Alert::error('Token kelas salah');
-        }
     }
 
     /**
@@ -101,7 +87,7 @@ class ClassroomMemberController extends Controller
      * @param  \App\Models\ClassroomMember  $classroomMember
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ClassroomMember $classroomMember)
+    public function destroy(Classroom $classroom, ClassroomMember $classroomMember)
     {
         //
         $classroomMember->delete();

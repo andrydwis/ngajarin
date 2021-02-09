@@ -3,14 +3,19 @@
 <div class="row">
     <div class="col">
         <div class="card">
-            <div class="card-header"></div>
+            <div class="card-header">
+                <h4>Data Course</h4>
+                <a href="{{route('admin.course.create')}}" class="btn btn-primary">Tambah Course</a>
+            </div>
             <div class="card-body">
                 <table id="datatables" class="display" style="width:100%">
                     <thead>
                         <tr>
                             <th>Judul Course</th>
+                            <th>Deskripsi</th>
                             <th>Level</th>
                             <th>Tags</th>
+                            <th>Dibuat Oleh</th>
                             <th>Menu</th>
                         </tr>
                     </thead>
@@ -18,9 +23,24 @@
                         @foreach($courses as $course)
                         <tr>
                             <td>{{$course->title}}</td>
+                            <td>{{$course->description}}</td>
                             <td>{{$course->level}}</td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                                @foreach($course->tags as $tag)
+                                <span class="badge badge-primary">{{$tag->name}}</span>
+                                @endforeach
+                            </td>
+                            <td>{{$course->creator->name}}</td>
+                            <td>
+                                <a href="{{route('admin.course.edit', ['course' => $course])}}" class="btn btn-success">Update</a>
+                                <form action="{{route('admin.course.destroy', ['course' => $course])}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                    </div>
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

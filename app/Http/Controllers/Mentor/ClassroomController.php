@@ -7,6 +7,7 @@ use App\Models\Classroom;
 use App\Models\ClassroomMember;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -59,7 +60,7 @@ class ClassroomController extends Controller
         $classroom->semester = $request->semester;
         $classroom->token = 'ngajar.in-' . Str::random(5);
         $classroom->save();
-        
+
         Alert::success('Kelas berhasil dibuat');
 
         return redirect()->route('mentor.classroom.index');
@@ -74,9 +75,6 @@ class ClassroomController extends Controller
     public function show(Classroom $classroom)
     {
         //
-        $data = [
-            'classroom' => $classroom,
-        ];
     }
 
     /**

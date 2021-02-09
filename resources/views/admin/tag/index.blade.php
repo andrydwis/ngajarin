@@ -1,43 +1,37 @@
-@extends('layouts.mentor.app')
+@extends('layouts.admin.app')
 @section('content')
 <div class="row">
     <div class="col">
         <div class="card">
             <div class="card-header">
-                <h4>Daftar Kelas</h4>
-                <a href="{{route('mentor.classroom.create')}}" class="btn btn-primary">Tambah Kelas</a>
+                <h4>Data Tag</h4>
+                <a href="{{route('admin.tag.create')}}" class="btn btn-primary">Tambah Tag</a>
             </div>
             <div class="card-body">
                 <table id="datatables" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>No</th>
-                            <th>Nama Kelas</th>
-                            <th>Tahun</th>
-                            <th>Semester</th>
-                            <th>Token Invite</th>
+                            <th>Nama Tag</th>
+                            <th>Icon</th>
                             <th>Menu</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($classrooms as $classroom)
+                        @foreach($tags as $tag)
                         <tr>
-                            <td>{{$loop->index+1}}</td>
-                            <td>{{$classroom->classroom->name}}</td>
-                            <td>{{$classroom->classroom->year}}</td>
-                            <td>{{$classroom->classroom->semester}}</td>
-                            <td>{{$classroom->classroom->token}}</td>
+                            <td>{{$tag->name}}</td>
                             <td>
-                                <form action="{{route('mentor.classroom.destroy', ['classroom' => $classroom->classroom->id])}}" method="post">
+                                <img src="{{asset('storage/'.$tag->icon)}}" alt="" class="img-thumbnail">
+                            </td>
+                            <td>
+                                <a href="{{route('admin.tag.edit', ['tag' => $tag])}}" class="btn btn-success">Update</a>
+                                <form action="{{route('admin.tag.destroy', ['tag' => $tag])}}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-danger">Hapus</button>
                                     </div>
                                 </form>
-                                <a href="{{route('mentor.classroom.edit', ['classroom' => $classroom->classroom->id])}}" class="btn btn-secondary">Update</a>
-                                <a href="{{route('mentor.classroom-member.index', ['classroom' => $classroom->classroom->id])}}" class="btn btn-secondary">Member</a>
-                                <a href="{{route('mentor.classroom-course.index', ['classroom' => $classroom->classroom->id])}}" class="btn btn-primary">Course Kelas</a>
                             </td>
                         </tr>
                         @endforeach

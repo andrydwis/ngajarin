@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Mentor;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
@@ -24,7 +24,7 @@ class CourseController extends Controller
             'courses' => Course::where('created_by', Auth::user()->id)->with('creator')->get()
         ];
 
-        return view('admin.course.index', $data);
+        return view('mentor.course.index', $data);
     }
 
     /**
@@ -39,7 +39,7 @@ class CourseController extends Controller
             'tags' => Tag::get(),
         ];
 
-        return view('admin.course.create', $data);
+        return view('mentor.course.create', $data);
     }
 
     /**
@@ -71,7 +71,7 @@ class CourseController extends Controller
 
         Alert::success('Course berhasil ditambahkan');
 
-        return redirect()->route('admin.course.index');
+        return redirect()->route('mentor.course.index');
     }
 
     /**
@@ -99,7 +99,7 @@ class CourseController extends Controller
             'tags' => Tag::get(),
         ];
 
-        return view('admin.course.edit', $data);
+        return view('mentor.course.edit', $data);
     }
 
     /**
@@ -132,7 +132,7 @@ class CourseController extends Controller
 
         Alert::success('Course berhasil diupdate');
 
-        return redirect()->route('admin.course.index');
+        return redirect()->route('mentor.course.index');
     }
 
     /**
@@ -148,6 +148,6 @@ class CourseController extends Controller
 
         Alert::success('Course berhasil dihapus');
 
-        return redirect()->route('admin.course.index');
+        return redirect()->route('mentor.course.index');
     }
 }

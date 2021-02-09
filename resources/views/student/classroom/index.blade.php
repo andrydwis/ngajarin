@@ -1,11 +1,36 @@
-@extends('layouts.mentor.app')
+@extends('layouts.student.app')
 @section('content')
 <div class="row">
     <div class="col">
         <div class="card">
             <div class="card-header">
+                <h4>Join Kelas</h4>
+            </div>
+            <div class="card-body">
+                <form action="{{route('student.classroom-member.store')}}" method="post">
+                    @csrf
+                    <div class="form-group">
+                        <label for="token">Token</label>
+                        <input type="text" name="token" id="token" class="form-control @error('token') is-invalid @enderror" value="{{old('token')}}">
+                        @error('token')
+                        <div class="alert alert-danger">
+                            {{$message}}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Join</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header">
                 <h4>Daftar Kelas</h4>
-                <a href="{{route('mentor.classroom.create')}}" class="btn btn-primary">Tambah Kelas</a>
             </div>
             <div class="card-body">
                 <table id="datatables" class="display" style="width:100%">
@@ -28,16 +53,15 @@
                             <td>{{$classroom->classroom->semester}}</td>
                             <td>{{$classroom->classroom->token}}</td>
                             <td>
-                                <form action="{{route('mentor.classroom.destroy', ['classroom' => $classroom->classroom->id])}}" method="post">
+                                <form action="{{route('student.classroom-member.destroy', ['classroomMember' => $classroom->id])}}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                        <button type="submit" class="btn btn-danger">Keluar</button>
                                     </div>
                                 </form>
-                                <a href="{{route('mentor.classroom.edit', ['classroom' => $classroom->classroom->id])}}" class="btn btn-secondary">Update</a>
-                                <a href="{{route('mentor.classroom-member.index', ['classroom' => $classroom->classroom->id])}}" class="btn btn-secondary">Member</a>
-                                <a href="{{route('mentor.classroom-course.index', ['classroom' => $classroom->classroom->id])}}" class="btn btn-primary">Course Kelas</a>
+                                <a href="{{route('student.classroom-member.index', ['classroom' => $classroom->classroom->id])}}" class="btn btn-secondary">Member</a>
+                                <a href="{{route('student.classroom-course.index', ['classroom' => $classroom->classroom->id])}}" class="btn btn-primary">Course Kelas</a>
                             </td>
                         </tr>
                         @endforeach

@@ -16,4 +16,18 @@ class Course extends Model
         'level',
         'created_by',
     ];
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function tags(){
+        return $this->belongsToMany(Tag::class, 'course_tag');
+    }
+
+    public function classrooms()
+    {
+        return $this->belongsToMany(Classroom::class, 'classroom_course');
+    }
 }

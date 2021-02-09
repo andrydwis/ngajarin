@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PasswordChangeController extends Controller
 {
@@ -33,6 +34,8 @@ class PasswordChangeController extends Controller
 
         $user->password = Hash::make($request->password);
         $user->save();
+
+        Alert::success('Password berhasil diupdate');
 
         return back();
     }
