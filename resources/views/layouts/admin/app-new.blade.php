@@ -27,9 +27,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/new-admin.js') }}"></script>
     @yield('customJS')
-    <!-- <script src="{{ asset('js/new-admin.js') }}"></script> -->
-
 </body>
 
 </html>
