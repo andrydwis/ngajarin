@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
     <link href="{{ asset('css/new-admin.css') }}" rel="stylesheet">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/@tailwindcss/custom-forms@0.2.1/dist/custom-forms.min.css">
     <style>
         @import url("https://fonts.googleapis.com/css?family=Ubuntu&display=swap");
         body{
