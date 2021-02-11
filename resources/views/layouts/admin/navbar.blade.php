@@ -13,7 +13,8 @@
 
             <button class="flex flex-wrap items-center menu-btn focus:outline-none focus:shadow-outline" @click="isOpen = true">
                 <div class="w-8 h-8 overflow-hidden rounded-full">
-                    <img class="object-cover w-full h-full" src="img/user.svg">
+                    <!-- <img class="object-cover w-full h-full" src="img/user.svg"> -->
+                    <i class="text-2xl fad fa-user-circle"></i>
                 </div>
 
                 <div class="flex ml-2 capitalize ">
