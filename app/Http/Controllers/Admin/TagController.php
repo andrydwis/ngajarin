@@ -48,13 +48,13 @@ class TagController extends Controller
         //
         $request->validate([
             'nama' => ['required', 'string'],
-            'icon' => ['image']
+            'icon' => ['required']
         ]);
 
         $tag = new Tag();
         $tag->name = $request->nama;
         $tag->slug = Str::slug($request->nama);
-        $tag->icon = $request->file('icon')->store('tag');
+        $tag->icon = $request->icon;
         $tag->save();
 
         Alert::success('Tag berhasil ditambahkan');
@@ -101,13 +101,13 @@ class TagController extends Controller
         //
         $request->validate([
             'nama' => ['required', 'string'],
-            'icon' => ['image']
+            'icon' => ['required']
         ]);
 
         Storage::delete($tag->icon);
         $tag->name = $request->nama;
         $tag->slug = Str::slug($request->nama);
-        $tag->icon = $request->file('icon')->store('tag');
+        $tag->icon = $request->icon;
         $tag->save();
 
         Alert::success('Tag berhasil diupdate');
@@ -124,7 +124,6 @@ class TagController extends Controller
     public function destroy(Tag $tag)
     {
         //
-        Storage::delete($tag->icon);
         $tag->delete();
 
         Alert::success('Tag berhasil dihapus');

@@ -61,6 +61,7 @@ class CourseController extends Controller
         $course->title = $request->judul;
         $course->slug = Str::slug($request->judul);
         $course->description = $request->deskripsi;
+        $course->thumbnail = $request->thumbnail;
         $course->level = $request->level;
         $course->created_by = Auth::user()->id;
         $course->save();
@@ -121,6 +122,7 @@ class CourseController extends Controller
         $course->title = $request->judul;
         $course->slug = Str::slug($request->judul);
         $course->description = $request->deskripsi;
+        $course->thumbnail = $request->thumbnail;
         $course->level = $request->level;
         $course->save();
 

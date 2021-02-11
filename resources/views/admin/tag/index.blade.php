@@ -21,7 +21,7 @@
                         <tr>
                             <td>{{$tag->name}}</td>
                             <td>
-                                <img src="{{asset('storage/'.$tag->icon)}}" alt="" class="img-thumbnail">
+                                <img src="{{$tag->icon}}" alt="" class="img-thumbnail">
                             </td>
                             <td>
                                 <a href="{{route('admin.tag.edit', ['tag' => $tag])}}" class="btn btn-success">Update</a>

@@ -35,7 +35,7 @@
                                     <i class="fa fa-picture-o"></i> Choose
                                 </a>
                             </span>
-                            <input id="thumbnail" class="form-control" type="text" name="thumbnail" value="{{old('thumbnail')}]" readonly>
+                            <input id="thumbnail" class="form-control" type="text" name="thumbnail" value="{{old('thumbnail')}}" readonly>
                         </div>
                         <div id="holder" style="margin-top:15px;max-height:100px;"></div>
                         @error('thumbnail')
@@ -45,31 +45,31 @@
                         @enderror
                     </div>
                     <div class=" form-group">
-                            <label for="level">Level</label>
-                            <select name="level" id="level" class="form-control @error('level') is-invalid @enderror">
-                                <option value="" @if(old('level')==null) selected @endif disabled>Pilih Level</option>
-                                <option value="pemula" @if(old('level')=='pemula' ) selected @endif>Pemula</option>
-                                <option value="menengah" @if(old('level')=='menengah' ) selected @endif>Menengah</option>
-                                <option value="expert" @if(old('level')=='expert' ) selected @endif>Expert</option>
-                            </select>
-                            @error('level')
-                            <div class="alert alert-danger">
-                                {{$message}}
-                            </div>
-                            @enderror
+                        <label for="level">Level</label>
+                        <select name="level" id="level" class="form-control @error('level') is-invalid @enderror">
+                            <option value="" @if(old('level')==null) selected @endif disabled>Pilih Level</option>
+                            <option value="pemula" @if(old('level')=='pemula' ) selected @endif>Pemula</option>
+                            <option value="menengah" @if(old('level')=='menengah' ) selected @endif>Menengah</option>
+                            <option value="expert" @if(old('level')=='expert' ) selected @endif>Expert</option>
+                        </select>
+                        @error('level')
+                        <div class="alert alert-danger">
+                            {{$message}}
                         </div>
-                        <div class="form-group">
-                            <label for="tag">Tag</label>
-                            <select name="tag[]" id="tag" class="form-control @error('tag') is-invalid @enderror" multiple>
-                                <option value="" disabled>Pilih Tag</option>
-                                @foreach($tags as $tag)
-                                <option value="{{$tag->id}}">{{$tag->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class=" form-group">
-                            <button type="submit" class="btn btn-primary">Buat</button>
-                        </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="tag">Tag</label>
+                        <select name="tag[]" id="tag" class="form-control @error('tag') is-invalid @enderror" multiple>
+                            <option value="" disabled>Pilih Tag</option>
+                            @foreach($tags as $tag)
+                            <option value="{{$tag->id}}">{{$tag->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class=" form-group">
+                        <button type="submit" class="btn btn-primary">Buat</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -131,7 +131,7 @@
 
     tinymce.init(editor_config);
 </script>
-
+<!-- upload-button -->
 <script src="{{asset('vendor/laravel-filemanager/js/stand-alone-button.js')}}"></script>
 <script>
     $('#lfm').filemanager('image');

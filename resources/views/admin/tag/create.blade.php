@@ -20,7 +20,15 @@
                     </div>
                     <div class="form-group">
                         <label for="icon">Icon</label>
-                        <input type="file" name="icon" id="icon" class="form-control @error('icon') is-invalid @enderror">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary text-white">
+                                    <i class="fa fa-picture-o"></i> Choose
+                                </a>
+                            </span>
+                            <input id="thumbnail" class="form-control" type="text" name="icon" value="{{old('icon')}}" readonly>
+                        </div>
+                        <div id="holder" style="margin-top:15px;max-height:100px;"></div>
                         @error('icon')
                         <div class="alert alert-danger">
                             {{$message}}
@@ -35,4 +43,12 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('customJS')
+<!-- upload-button -->
+<script src="{{asset('vendor/laravel-filemanager/js/stand-alone-button.js')}}"></script>
+<script>
+    $('#lfm').filemanager('image');
+</script>
 @endsection
