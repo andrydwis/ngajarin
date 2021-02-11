@@ -450,3 +450,7 @@
 <!-- end content -->
 
 @endsection
+
+@section('CustomJS')
+    <script src="{{ asset('js/new-admin.js') }}"></script>
+@endsection
