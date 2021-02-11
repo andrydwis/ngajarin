@@ -28,6 +28,10 @@ Route::get('/dashboard', function () {
     return view('layouts.admin.app');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
 require __DIR__ . '/mentor.php';

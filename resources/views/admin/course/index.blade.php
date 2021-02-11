@@ -12,7 +12,7 @@
                     <thead>
                         <tr>
                             <th>Judul Course</th>
-                            <th>Deskripsi</th>
+                            <th>Thumbnail</th>
                             <th>Level</th>
                             <th>Tags</th>
                             <th>Dibuat Oleh</th>
@@ -23,7 +23,7 @@
                         @foreach($courses as $course)
                         <tr>
                             <td>{{$course->title}}</td>
-                            <td>{{$course->description}}</td>
+                            <td><img src="{{$course->thumbnail ?? null}}" alt="" height="50" width="50"></td>
                             <td>{{$course->level}}</td>
                             <td>
                                 @foreach($course->tags as $tag)
