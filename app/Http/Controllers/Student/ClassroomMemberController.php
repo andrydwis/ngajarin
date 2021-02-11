@@ -19,18 +19,10 @@ class ClassroomMemberController extends Controller
     public function index(Classroom $classroom)
     {
         //
-        $check = ClassroomMember::where('classroom_id', $classroom->id)->where('user_id', Auth::user()->id)->first();
-
-        if ($check) {
-            $data = [
-                'members' => ClassroomMember::where('classroom_id', $classroom->id)->get(),
-                'classroom' => $classroom,
-            ];
-        } else {
-            Alert::warning('Anda tidak memiliki akses ke kelas ini');
-
-            return redirect()->route('student.classroom.index');
-        }
+        $data = [
+            'members' => ClassroomMember::where('classroom_id', $classroom->id)->get(),
+            'classroom' => $classroom,
+        ];
 
         return view('student.classroom-member.index', $data);
     }

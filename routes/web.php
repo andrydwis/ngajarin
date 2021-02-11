@@ -28,10 +28,6 @@ Route::get('/dashboard', function () {
     return view('layouts.admin.app');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/test', function () {
-    return true;
-})->middleware(['password.confirm']);
-
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
 require __DIR__ . '/mentor.php';

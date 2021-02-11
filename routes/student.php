@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth', 'verified', 'role:student'])->group(function () {
     Route::get('/student/classroom', [ClassroomController::class, 'index'])->name('student.classroom.index');
 
-    Route::get('/student/classroom/member/{classroom}', [ClassroomMemberController::class, 'index'])->middleware('verify_class')->name('student.classroom-member.index');
+    Route::get('/student/classroom/member/{classroom}', [ClassroomMemberController::class, 'index'])->middleware(['verify_class'])->name('student.classroom-member.index');
     Route::post('/student/classroom/member', [ClassroomMemberController::class, 'store'])->name('student.classroom-member.store');
-    Route::delete('/student/classroom/member/destroy/{classroomMember}', [ClassroomMemberController::class, 'destroy'])->name('student.classroom-member.destroy');
+    Route::delete('/student/classroom/member/destroy/{classroomMember}', [ClassroomMemberController::class, 'destroy'])->middleware(['password.confirm'])->name('student.classroom-member.destroy');
 
-    Route::get('/student/classroom/courses/{classroom}', [ClassroomCourseController::class, 'index'])->middleware('verify_class')->name('student.classroom-course.index');
+    Route::get('/student/classroom/courses/{classroom}', [ClassroomCourseController::class, 'index'])->middleware(['verify_class'])->name('student.classroom-course.index');
 });

@@ -13,6 +13,7 @@ class Course extends Model
         'title',
         'slug',
         'description',
+        'thumbnail',
         'level',
         'created_by',
     ];
@@ -29,5 +30,10 @@ class Course extends Model
     public function classrooms()
     {
         return $this->belongsToMany(Classroom::class, 'classroom_course');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'course_user');
     }
 }

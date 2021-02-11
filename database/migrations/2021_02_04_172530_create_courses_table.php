@@ -18,6 +18,7 @@ class CreateCoursesTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('description');
+            $table->string('thumbnail')->nullable();
             $table->enum('level', ['pemula', 'menengah',  'expert']);
             $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
             $table->timestamps();
