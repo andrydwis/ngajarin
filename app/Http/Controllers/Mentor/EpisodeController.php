@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Mentor;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
 use App\Models\Episode;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class EpisodeController extends Controller
 {
@@ -13,9 +16,15 @@ class EpisodeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Course $course)
     {
         //
+        $data = [
+            'course' => $course,
+            'episodes' => Episode::where('course_id', $course->id)->get(),
+        ];
+
+        return view('mentor.episode.index', $data);
     }
 
     /**
@@ -23,9 +32,14 @@ class EpisodeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Course $course)
     {
         //
+        $data = [
+            'course' => $course,
+        ];
+
+        return view('mentor.episode.create', $data);
     }
 
     /**
@@ -34,9 +48,27 @@ class EpisodeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Course $course, Request $request)
     {
         //
+        $request->validate([
+            'judul' => ['required', 'string'],
+            'deskripsi' => ['required', 'string'],
+            'tipe' => ['required'],
+        ]);
+
+        $episode = new Episode();
+        $episode->course_id = $course->id;
+        $episode->title = $request->judul;
+        $episode->slug = Str::slug($request->judul);
+        $episode->description = $request->deskripsi;
+        $episode->type = $request->tipe;
+        $episode->link = $request->link;
+        $episode->save();
+
+        Alert::success('Episode berhasil ditambahkan');
+
+        return redirect()->route('mentor.episode.index', ['course' => $course]);
     }
 
     /**
@@ -45,9 +77,15 @@ class EpisodeController extends Controller
      * @param  \App\Models\Episode  $episode
      * @return \Illuminate\Http\Response
      */
-    public function show(Episode $episode)
+    public function show(Course $course, Episode $episode)
     {
         //
+        $data = [
+            'course' => $course,
+            'episode' => $episode
+        ];
+
+        return view('mentor.episode.show', $data);
     }
 
     /**
@@ -56,9 +94,15 @@ class EpisodeController extends Controller
      * @param  \App\Models\Episode  $episode
      * @return \Illuminate\Http\Response
      */
-    public function edit(Episode $episode)
+    public function edit(Course $course, Episode $episode)
     {
         //
+        $data = [
+            'course' => $course,
+            'episode' => $episode
+        ];
+
+        return view('mentor.episode.edit', $data);
     }
 
     /**
@@ -68,9 +112,26 @@ class EpisodeController extends Controller
      * @param  \App\Models\Episode  $episode
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Episode $episode)
+    public function update(Request $request, Course $course, Episode $episode)
     {
         //
+        $request->validate([
+            'judul' => ['required', 'string'],
+            'deskripsi' => ['required', 'string'],
+            'tipe' => ['required'],
+        ]);
+
+        $episode->course_id = $course->id;
+        $episode->title = $request->judul;
+        $episode->slug = Str::slug($request->judul);
+        $episode->description = $request->deskripsi;
+        $episode->type = $request->tipe;
+        $episode->link = $request->link;
+        $episode->save();
+
+        Alert::success('Episode berhasil diupdate');
+
+        return redirect()->route('mentor.episode.index', ['course' => $course]);
     }
 
     /**
@@ -79,8 +140,13 @@ class EpisodeController extends Controller
      * @param  \App\Models\Episode  $episode
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Episode $episode)
+    public function destroy(Course $course, Episode $episode)
     {
         //
+        $episode->delete();
+
+        Alert::success('Episode berhasil dihapus');
+
+        return redirect()->route('mentor.episode.index', ['course' => $course]);
     }
 }

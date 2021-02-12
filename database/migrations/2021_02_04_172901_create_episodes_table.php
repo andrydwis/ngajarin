@@ -18,7 +18,7 @@ class CreateEpisodesTable extends Migration
             $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
             $table->string('title');
             $table->string('slug');
-            $table->string('description');
+            $table->text('description');
             $table->enum('type', ['video', 'text']);
             $table->string('link')->nullable();
             $table->timestamps();
