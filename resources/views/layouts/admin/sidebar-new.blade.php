@@ -17,47 +17,50 @@
                 </div>
                 <!-- end sidebar toggle -->
 
-                <p class="mb-4 text-xs tracking-wider text-gray-600 uppercase">homes</p>
+                <p class="mb-3 text-sm tracking-wider text-gray-600 uppercase">homes</p>
 
-                <!-- link -->
-                <a href="./index.html" class="mb-3 text-sm font-medium capitalize transition duration-500 ease-in-out hover:text-green-600">
-                    <i class="mr-2 text-xs fad fa-chart-pie"></i>
+
+                <a href="/dashboard" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
+                {{ Route::currentRouteNamed('dashboard') ? 'text-green-600' : '' }}
+                ">
+                    <i class="mr-2 text-sm fad fa-chart-pie"></i>
                     Dashboard
                 </a>
-                <!-- end link -->
 
-                <p class="mt-4 mb-4 text-xs tracking-wider text-gray-600 uppercase">apps</p>
+                <!-- pembatas link -->
+                <p class="mt-4 mb-3 text-sm tracking-wider text-gray-600 uppercase">Mentor</p>
 
-                <!-- link -->
-                <a href="./email.html" class="mb-3 text-sm font-medium capitalize transition duration-500 ease-in-out hover:text-green-600">
-                    <i class="mr-2 text-xs fad fa-envelope-open-text"></i>
-                    Menu
+                <a href="/admin/mentor-list" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
+                {{ Route::currentRouteNamed('admin.mentor-list.index') ? 'text-green-600' : '' }}
+                ">
+                    <i class="mr-2 text-sm fad fa-user-friends"></i>
+                    Mentor List
                 </a>
-                <!-- end link -->
 
-                <p class="mt-4 mb-4 text-xs tracking-wider text-gray-600 uppercase">UI Elements</p>
-
-                <!-- link -->
-                <a href="./typography.html" class="mb-3 text-sm font-medium capitalize transition duration-500 ease-in-out hover:text-green-600">
-                    <i class="mr-2 text-xs fad fa-text"></i>
-                    Menu
+                <a href="/admin/mentor-list/create" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
+                {{ Route::currentRouteNamed('admin.mentor-list.create') ? 'text-green-600' : '' }}
+                ">
+                    <i class="mr-2 text-sm fad fa-user-plus"></i>
+                    Tambahkan Mentor
                 </a>
-                <!-- end link -->
 
-                <!-- link -->
-                <a href="./alert.html" class="mb-3 text-sm font-medium capitalize transition duration-500 ease-in-out hover:text-green-600">
-                    <i class="mr-2 text-xs fad fa-whistle"></i>
-                    Menu
+                <!-- pembatas link -->
+                <p class="mt-4 mb-3 text-sm tracking-wider text-gray-600 uppercase">Course</p>
+
+                <a href="/admin/tag" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600">
+                    <i class="mr-2 text-sm fad fa-tags"></i>
+                    Tag List
                 </a>
-                <!-- end link -->
 
-
-                <!-- link -->
-                <a href="./buttons.html" class="mb-3 text-sm font-medium capitalize transition duration-500 ease-in-out hover:text-green-600">
-                    <i class="mr-2 text-xs fad fa-cricket"></i>
-                    Menu
+                <a href="/admin/course" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600">
+                    <i class="mr-2 text-sm fad fa-folders"></i>
+                    Course List
                 </a>
-                <!-- end link -->
+
+                <a href="/admin/course/create" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600">
+                    <i class="mr-2 text-base fad fa-folder-plus"></i>
+                    Tambahkan Course
+                </a>
 
             </div>
             <!-- end sidebar content -->
