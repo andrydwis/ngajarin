@@ -17,7 +17,7 @@
                 </div>
                 <!-- end sidebar toggle -->
 
-                <p class="mb-3 text-sm tracking-wider text-gray-600 uppercase">homes</p>
+                <p class="mb-3 text-sm tracking-wider text-gray-600 uppercase">Beranda</p>
 
 
                 <a href="/dashboard" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
@@ -47,17 +47,26 @@
                 <!-- pembatas link -->
                 <p class="mt-4 mb-3 text-sm tracking-wider text-gray-600 uppercase">Course</p>
 
-                <a href="/admin/tag" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600">
+                <a href="/admin/tag" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
+                {{ Route::currentRouteNamed('admin.tag.index') ||
+                     Route::currentRouteNamed('admin.tag.create') ||
+                     Route::currentRouteNamed('admin.tag.edit')
+                     ? 'text-green-600' : '' }}
+                ">
                     <i class="mr-2 text-sm fad fa-tags"></i>
                     Tag List
                 </a>
 
-                <a href="/admin/course" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600">
+                <a href="/admin/course" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
+                {{ Route::currentRouteNamed('admin.course.index') ? 'text-green-600' : '' }}
+                ">
                     <i class="mr-2 text-sm fad fa-folders"></i>
                     Course List
                 </a>
 
-                <a href="/admin/course/create" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600">
+                <a href="/admin/course/create" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
+                {{ Route::currentRouteNamed('admin.course.create') ? 'text-green-600' : '' }}
+                ">
                     <i class="mr-2 text-base fad fa-folder-plus"></i>
                     Tambahkan Course
                 </a>

@@ -53,46 +53,6 @@
 
 <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.css" /> -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.23/r-2.2.7/datatables.min.css" />
-<style>
-    #datatables {
-        width: 100% !important;
-    }
-
-    body {
-        table-layout: auto !important;
-    }
-
-    .dataTables_wrapper th {
-        font-weight: 500 !important;
-    }
-
-    /* Pagination Buttons*/
-    .dataTables_wrapper .dataTables_paginate .paginate_button {
-        font-weight: 700;
-        border-radius: .25rem;
-        border: 1px solid transparent;
-    }
-
-    /*Pagination Buttons - Current selected */
-    .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-        color: #fff !important;
-        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
-        font-weight: 700;
-        border-radius: .25rem;
-        background: #4f46e5 !important;
-        border: 1px solid transparent;
-    }
-
-    /*Pagination Buttons - Hover */
-    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-        color: #fff !important;
-        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
-        font-weight: 700;
-        border-radius: .25rem;
-        background: #4f46e5 !important;
-        border: 1px solid transparent;
-    }
-</style>
 @endsection
 
 @section('customJS')
