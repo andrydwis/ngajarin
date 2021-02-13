@@ -16,8 +16,8 @@ class CreateSubmissionsTable extends Migration
         Schema::create('submissions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
-            $table->string('task');
-            $table->string('file');
+            $table->text('task');
+            $table->string('file')->nullable();
             $table->dateTime('deadline')->nullable();
             $table->timestamps();
         });

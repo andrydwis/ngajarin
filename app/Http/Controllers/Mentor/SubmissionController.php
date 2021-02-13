@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Mentor;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
 use App\Models\Submission;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SubmissionController extends Controller
 {
@@ -13,9 +16,15 @@ class SubmissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Course $course)
     {
         //
+        $data = [
+            'course' => $course,
+            'submission' => Submission::where('course_id', $course->id)->get(),
+        ];
+
+        return view('mentor.submission.index', $data);
     }
 
     /**
@@ -23,9 +32,14 @@ class SubmissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Course $course)
     {
         //
+        $data = [
+            'course' => $course,
+        ];
+
+        return view('mentor.submission.create', $data);
     }
 
     /**
@@ -34,9 +48,24 @@ class SubmissionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Course $course, Request $request)
     {
         //
+        $request->validate([
+            'tugas' => ['required', 'string'],
+            'deadline' => ['required', 'after:' . Carbon::now()]
+        ]);
+
+        $submission = new Submission();
+        $submission->course_id = $course->id;
+        $submission->task = $submission->tugas;
+        $submission->file = $request->berkas;
+        $submission->deadline = $request->deadline;
+        $submission->save();
+
+        Alert::success('Submission berhasil dibuat');
+
+        return redirect()->route('mentor.submission.index', ['course' => $course]);
     }
 
     /**
@@ -45,9 +74,15 @@ class SubmissionController extends Controller
      * @param  \App\Models\Submission  $submission
      * @return \Illuminate\Http\Response
      */
-    public function show(Submission $submission)
+    public function show(Course $course, Submission $submission)
     {
         //
+        $data = [
+            'course' => $course,
+            'submission' => $submission
+        ];
+
+        return view('mentor.submission.show', $data);
     }
 
     /**
@@ -56,9 +91,15 @@ class SubmissionController extends Controller
      * @param  \App\Models\Submission  $submission
      * @return \Illuminate\Http\Response
      */
-    public function edit(Submission $submission)
+    public function edit(Course $course, Submission $submission)
     {
         //
+        $data = [
+            'course' => $course,
+            'submission' => $submission
+        ];
+
+        return view('mentor.submission.edit', $data);
     }
 
     /**
@@ -68,9 +109,23 @@ class SubmissionController extends Controller
      * @param  \App\Models\Submission  $submission
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Submission $submission)
+    public function update(Request $request, Course $course, Submission $submission)
     {
         //
+        $request->validate([
+            'tugas' => ['required', 'string'],
+            'deadline' => ['required']
+        ]);
+
+        $submission->course_id = $course->id;
+        $submission->task = $submission->tugas;
+        $submission->file = $request->berkas;
+        $submission->deadline = $request->deadline;
+        $submission->save();
+
+        Alert::success('Submission berhasil diupdate');
+
+        return redirect()->route('mentor.submission.index', ['course' => $course]);
     }
 
     /**
@@ -79,8 +134,13 @@ class SubmissionController extends Controller
      * @param  \App\Models\Submission  $submission
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Submission $submission)
+    public function destroy(Course $course, Submission $submission)
     {
         //
+        $submission->delete();
+
+        Alert::success('Submission berhasil dihapus');
+
+        return redirect()->route('mentor.submission.index', ['course' => $course]);
     }
 }
