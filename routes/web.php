@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CourseUserController;
 use App\Http\Controllers\DocumentationController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +29,7 @@ Route::get('/dashboard', function () {
     return view('layouts.admin.app');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth', 'verified']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
