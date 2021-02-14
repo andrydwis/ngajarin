@@ -5,6 +5,7 @@ use App\Http\Controllers\Mentor\ClassroomCourseController;
 use App\Http\Controllers\Mentor\ClassroomMemberController;
 use App\Http\Controllers\Mentor\CourseController;
 use App\Http\Controllers\Mentor\EpisodeController;
+use App\Http\Controllers\Mentor\SubmissionController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified', 'role:mentor'])->group(function () {
@@ -22,6 +23,14 @@ Route::middleware(['auth', 'verified', 'role:mentor'])->group(function () {
     Route::get('/mentor/course/episode/edit/{course:slug}/{episode:slug}', [EpisodeController::class, 'edit'])->name('mentor.course.episode.edit');
     Route::patch('/mentor/course/episode/edit/{course:slug}/{episode:slug}', [EpisodeController::class, 'update'])->name('mentor.course.episode.update');
     Route::delete('/mentor/course/episode/destroy/{course:slug}/{episode:slug}', [EpisodeController::class, 'destroy'])->name('mentor.course.episode.destroy');
+
+    Route::get('/mentor/course/submission/{course:slug}', [SubmissionController::class, 'index'])->name('mentor.course.submission.index');
+    Route::get('/mentor/course/submission/create/{course:slug}', [SubmissionController::class, 'create'])->name('mentor.course.submission.create');
+    Route::post('/mentor/course/submission/create/{course:slug}', [SubmissionController::class, 'store'])->name('mentor.course.submission.store');
+    Route::get('/mentor/course/submission/show/{course:slug}/{submission}', [SubmissionController::class, 'show'])->name('mentor.course.submission.show');
+    Route::get('/mentor/course/submission/edit/{course:slug}/{submission}', [SubmissionController::class, 'edit'])->name('mentor.course.submission.edit');
+    Route::patch('/mentor/course/submission/edit/{course:slug}/{submission}', [SubmissionController::class, 'update'])->name('mentor.course.submission.update');
+    Route::delete('/mentor/course/submission/destroy/{course:slug}/{submission}', [SubmissionController::class, 'destroy'])->name('mentor.course.submission.destroy');
 
     Route::get('/mentor/classroom', [ClassroomController::class, 'index'])->name('mentor.classroom.index');
     Route::get('/mentor/classroom/create', [ClassroomController::class, 'create'])->name('mentor.classroom.create');
