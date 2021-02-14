@@ -27,7 +27,7 @@
 
 
 
-            <div x-show="isOpen" @click.away="isOpen = false" class="fixed right-0 z-20 w-full py-2 mt-5 text-right text-gray-500 bg-white rounded shadow-md md:text-left md:absolute md:w-40 menu animated faster">
+            <div x-cloak x-show.transition.origin.top="isOpen" @click.away="isOpen = false" class="fixed right-0 z-20 w-full py-2 mt-5 text-right text-gray-500 bg-white rounded shadow-md md:text-left md:absolute md:w-40 menu animated faster">
 
                 <!-- item -->
                 <a class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
@@ -69,7 +69,7 @@
 
                     @auth
                     <!-- Modal-->
-                    <div @click.away="modalLogout = !modalLogout" x-show="modalLogout" class="fixed top-0 left-0 flex items-center justify-center w-full h-full">
+                    <div @click.away="modalLogout = !modalLogout" x-cloak x-show.transition.origin.top="modalLogout" class="fixed top-0 left-0 flex items-center justify-center w-full h-full">
 
                         <!-- overlay -->
                         <div class="absolute z-10 w-full h-full bg-gray-900 opacity-50">
@@ -125,7 +125,7 @@
                     <i class="fad fa-bells"></i>
                 </button>
 
-                <div x-show="isOpen2" @click.away="isOpen2 = false" class="absolute right-0 z-20 w-full py-2 mt-5 bg-white rounded shadow-md md:w-80 animated">
+                <div x-cloak x-show.transition.origin.top="isOpen2" @click.away="isOpen2 = false" class="absolute right-0 z-20 w-full py-2 mt-5 bg-white rounded shadow-md md:w-80 animated">
                     <!-- top -->
                     <div class="flex flex-row items-center justify-between px-4 py-2 text-sm font-semibold capitalize">
                         <h1>notifications</h1>
@@ -184,7 +184,7 @@
 
                 <!-- <button class="fixed top-0 left-0 z-10 hidden w-full h-full menu-overflow"></button> -->
 
-                <div x-show="isOpen3" @click.away="isOpen3 = false" class="absolute right-0 z-20 w-full py-2 mt-5 bg-white rounded shadow-md md:w-80 animated">
+                <div x-cloak x-show.transition.origin.top="isOpen3" @click.away="isOpen3 = false" class="absolute right-0 z-20 w-full py-2 mt-5 bg-white rounded shadow-md md:w-80 animated">
                     <!-- top -->
                     <div class="flex flex-row items-center justify-between px-4 py-2 text-sm font-semibold capitalize">
                         <h1>Pesan</h1>

@@ -4,10 +4,10 @@
             <i class="text-white fas fa-chevron-right"></i>
         </button>
 
-        <div :class="{'hidden' : isOpen4}" @click.away="isOpen4 = !isOpen4" id="sideBar" class="fixed top-0 left-0 z-40 flex-col flex-wrap flex-none w-64 h-screen p-6 mt-0 bg-white border-r border-gray-200 lg:relative md:pt-4 md:top-16 lg:flex">
+        <div :class="{'hidden' : isOpen4}" @click.away="isOpen4 = !isOpen4" id="sideBar" class="fixed top-0 left-0 z-40 flex-col flex-wrap flex-none w-64 h-screen p-6 mt-0 bg-white border-r border-gray-200 lg:relative md:pt-4 md:top-12 lg:flex">
 
             <!-- sidebar content -->
-            <div class="flex flex-col">
+            <div class="flex flex-col pt-7">
 
                 <!-- sidebar toggle -->
                 <div class="block mb-4 text-right lg:hidden">
@@ -17,47 +17,59 @@
                 </div>
                 <!-- end sidebar toggle -->
 
-                <p class="mb-4 text-xs tracking-wider text-gray-600 uppercase">homes</p>
+                <p class="mb-3 text-sm tracking-wider text-gray-600 uppercase">Beranda</p>
 
-                <!-- link -->
-                <a href="./index.html" class="mb-3 text-sm font-medium capitalize transition duration-500 ease-in-out hover:text-green-600">
-                    <i class="mr-2 text-xs fad fa-chart-pie"></i>
+
+                <a href="/dashboard" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
+                {{ Route::currentRouteNamed('dashboard') ? 'text-green-600' : '' }}
+                ">
+                    <i class="mr-2 text-sm fad fa-chart-pie"></i>
                     Dashboard
                 </a>
-                <!-- end link -->
 
-                <p class="mt-4 mb-4 text-xs tracking-wider text-gray-600 uppercase">apps</p>
+                <!-- pembatas link -->
+                <p class="mt-4 mb-3 text-sm tracking-wider text-gray-600 uppercase">Mentor</p>
 
-                <!-- link -->
-                <a href="./email.html" class="mb-3 text-sm font-medium capitalize transition duration-500 ease-in-out hover:text-green-600">
-                    <i class="mr-2 text-xs fad fa-envelope-open-text"></i>
-                    Menu
+                <a href="/admin/mentor-list" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
+                {{ Route::currentRouteNamed('admin.mentor-list.index') ? 'text-green-600' : '' }}
+                ">
+                    <i class="mr-2 text-sm fad fa-user-friends"></i>
+                    Mentor List
                 </a>
-                <!-- end link -->
 
-                <p class="mt-4 mb-4 text-xs tracking-wider text-gray-600 uppercase">UI Elements</p>
-
-                <!-- link -->
-                <a href="./typography.html" class="mb-3 text-sm font-medium capitalize transition duration-500 ease-in-out hover:text-green-600">
-                    <i class="mr-2 text-xs fad fa-text"></i>
-                    Menu
+                <a href="/admin/mentor-list/create" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
+                {{ Route::currentRouteNamed('admin.mentor-list.create') ? 'text-green-600' : '' }}
+                ">
+                    <i class="mr-2 text-sm fad fa-user-plus"></i>
+                    Tambahkan Mentor
                 </a>
-                <!-- end link -->
 
-                <!-- link -->
-                <a href="./alert.html" class="mb-3 text-sm font-medium capitalize transition duration-500 ease-in-out hover:text-green-600">
-                    <i class="mr-2 text-xs fad fa-whistle"></i>
-                    Menu
+                <!-- pembatas link -->
+                <p class="mt-4 mb-3 text-sm tracking-wider text-gray-600 uppercase">Course</p>
+
+                <a href="/admin/tag" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
+                {{ Route::currentRouteNamed('admin.tag.index') ||
+                     Route::currentRouteNamed('admin.tag.create') ||
+                     Route::currentRouteNamed('admin.tag.edit')
+                     ? 'text-green-600' : '' }}
+                ">
+                    <i class="mr-2 text-sm fad fa-tags"></i>
+                    Tag List
                 </a>
-                <!-- end link -->
 
-
-                <!-- link -->
-                <a href="./buttons.html" class="mb-3 text-sm font-medium capitalize transition duration-500 ease-in-out hover:text-green-600">
-                    <i class="mr-2 text-xs fad fa-cricket"></i>
-                    Menu
+                <a href="/admin/course" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
+                {{ Route::currentRouteNamed('admin.course.index') ? 'text-green-600' : '' }}
+                ">
+                    <i class="mr-2 text-sm fad fa-folders"></i>
+                    Course List
                 </a>
-                <!-- end link -->
+
+                <a href="/admin/course/create" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
+                {{ Route::currentRouteNamed('admin.course.create') ? 'text-green-600' : '' }}
+                ">
+                    <i class="mr-2 text-base fad fa-folder-plus"></i>
+                    Tambahkan Course
+                </a>
 
             </div>
             <!-- end sidebar content -->

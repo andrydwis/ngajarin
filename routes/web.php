@@ -26,7 +26,8 @@ Route::get('/new_dashboard', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('layouts.admin.app');
+    // return view('layouts.admin.app');
+    return view('admin.dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth', 'verified']], function () {

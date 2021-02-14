@@ -1052,7 +1052,7 @@ p {
 
 .btn-bs-primary {
   --tw-bg-opacity: 1;
-  background-color: rgba(79, 70, 229, var(--tw-bg-opacity));
+  background-color: rgba(90, 103, 216, var(--tw-bg-opacity));
   border-radius: 0.25rem;
   display: block;
   padding-top: 0.5rem;
@@ -1124,7 +1124,7 @@ p {
 
 .btn-bs-danger {
   --tw-bg-opacity: 1;
-  background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
+  background-color: rgba(245, 101, 101, var(--tw-bg-opacity));
   border-radius: 0.25rem;
   display: block;
   padding-top: 0.5rem;

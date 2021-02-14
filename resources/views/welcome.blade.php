@@ -25,7 +25,7 @@
 <body class="antialiased">
 
     @if (Route::has('login'))
-    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+    <div class="fixed top-0 right-0 hidden px-6 py-4 sm:block">
         @auth
         <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
         @else
@@ -43,10 +43,7 @@
             <div class="flex flex-col w-full mb-12 text-left lg:text-center">
                 <h2 class="mb-1 text-xs font-semibold tracking-widest text-blue-600 uppercase title-font">ini sub-header</h2>
                 <h1 class="mb-6 text-2xl font-semibold tracking-tighter text-blue-500 sm:text-5xl title-font">
-                    Capek belajar sendiri ? ditinggal dosen melulu ?
-                </h1>
-                <h1 class="mb-6 text-2xl font-semibold tracking-tighter text-blue-500 sm:text-5xl title-font">
-                    ikut <a href="#" class="text-blue-700">ngajar.in</a> aja!
+                    Ngajar.in - Work in Progress
                 </h1>
                 <p class="mx-auto text-base font-medium leading-relaxed text-gray-700 lg:w-2/3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque quam optio assumenda eveniet minima accusantium incidunt dignissimos aut, modi, ea at similique rem officiis sapiente earum quas! Pariatur, tenetur quo.</p>
             </div>
