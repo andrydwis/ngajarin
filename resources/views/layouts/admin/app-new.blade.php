@@ -53,6 +53,11 @@
             border: 1px solid transparent;
         }
 
+        .form-input {
+            background-color: rgb(243, 244, 246);
+        }
+
+
         .img-thumbnail {
             padding: 0.25rem;
             background-color: #fff;
@@ -65,7 +70,7 @@
     @yield('customCSS')
 </head>
 
-<body>
+<body class="bg-gray-50">
 
     @include('layouts.admin.navbar')
 

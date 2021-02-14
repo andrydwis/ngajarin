@@ -68,11 +68,3 @@
 
 </div>
 @endsection
-
-@section('customCSS')
-<style>
-    .form-input{
-        background-color: rgb(243,244,246);
-    }
-</style>
-@endsection
