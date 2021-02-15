@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CertificateController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\EpisodeController;
 use App\Http\Controllers\Admin\MentorController;
@@ -41,4 +42,12 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('/admin/course/submission/edit/{course:slug}/{submission}', [SubmissionController::class, 'edit'])->name('admin.course.submission.edit');
     Route::patch('/admin/course/submission/edit/{course:slug}/{submission}', [SubmissionController::class, 'update'])->name('admin.course.submission.update');
     Route::delete('/admin/course/submission/destroy/{course:slug}/{submission}', [SubmissionController::class, 'destroy'])->name('admin.course.submission.destroy');
+
+    Route::get('/admin/course/certificate/{course:slug}', [CertificateController::class, 'index'])->name('admin.course.certificate.index');
+    Route::get('/admin/course/certificate/create/{course:slug}', [CertificateController::class, 'create'])->name('admin.course.certificate.create');
+    Route::post('/admin/course/certificate/create/{course:slug}', [CertificateController::class, 'store'])->name('admin.course.certificate.store');
+    Route::get('/admin/course/certificate/show/{course:slug}/{certificate}', [CertificateController::class, 'show'])->name('admin.course.certificate.show');
+    Route::get('/admin/course/certificate/edit/{course:slug}/{certificate}', [CertificateController::class, 'edit'])->name('admin.course.certificate.edit');
+    Route::patch('/admin/course/certificate/edit/{course:slug}/{certificate}', [CertificateController::class, 'update'])->name('admin.course.certificate.update');
+    Route::delete('/admin/course/certificate/destroy/{course:slug}/{certificate}', [CertificateController::class, 'destroy'])->name('admin.course.certificate.destroy');
 });
