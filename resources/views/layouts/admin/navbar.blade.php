@@ -14,14 +14,14 @@
             <button class="flex flex-wrap items-center menu-btn focus:outline-none focus:shadow-outline" @click="isOpen = true">
                 <div class="w-8 h-8 overflow-hidden rounded-full">
                     <!-- <img class="object-cover w-full h-full" src="img/user.svg"> -->
-                    <i class="text-2xl fad fa-user-circle"></i>
+                    <i class="text-2xl fas fa-user-circle"></i>
                 </div>
 
                 <div class="flex ml-2 capitalize ">
                     <h1 class="p-0 m-0 text-sm font-semibold leading-none text-gray-800">
                         {{auth()->user()->name}}
                     </h1>
-                    <i class="block ml-2 text-xs leading-none fad fa-chevron-down"></i>
+                    <i class="block ml-2 text-xs leading-none fas fa-chevron-down"></i>
                 </div>
             </button>
 
@@ -31,28 +31,28 @@
 
                 <!-- item -->
                 <a class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
-                    <i class="mr-1 text-xs fad fa-user-edit"></i>
+                    <i class="mr-1 text-xs fas fa-user-edit"></i>
                     Profile
                 </a>
                 <!-- end item -->
 
                 <!-- item -->
                 <a class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
-                    <i class="mr-1 text-xs fad fa-inbox-in"></i>
+                    <i class="mr-1 text-xs fas fa-inbox-in"></i>
                     Inbox
                 </a>
                 <!-- end item -->
 
                 <!-- item -->
                 <a class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
-                    <i class="mr-1 text-xs fad fa-cogs"></i>
+                    <i class="mr-1 text-xs fas fa-cogs"></i>
                     Settings
                 </a>
                 <!-- end item -->
 
                 <!-- item -->
                 <a class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
-                    <i class="mr-1 text-xs fad fa-list"></i>
+                    <i class="mr-1 text-xs fas fa-list"></i>
                     Activity Log
                 </a>
                 <!-- end item -->
@@ -62,7 +62,7 @@
                 <div x-data="{modalLogout : false}">
                     <!-- item -->
                     <a @click="modalLogout = !modalLogout" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
-                        <i class="mr-1 text-xs fad fa-user-times"></i>
+                        <i class="mr-1 text-xs fas fa-user-times"></i>
                         Logout
                     </a>
                     <!-- end item -->
@@ -122,7 +122,7 @@
             <div class="static mr-5 md:relative" x-data="{ isOpen2 : false }">
 
                 <button class="p-0 m-0 text-gray-500 transition-all duration-300 ease-in-out menu-btn hover:text-gray-900 focus:text-gray-900 focus:outline-none" @click="isOpen2 = true">
-                    <i class="fad fa-bells"></i>
+                    <i class="fas fa-bells"></i>
                 </button>
 
                 <div x-cloak x-show.transition.origin.top="isOpen2" @click.away="isOpen2 = false" class="absolute right-0 z-20 w-full py-2 mt-5 bg-white rounded shadow-md md:w-80 animated">
@@ -142,7 +142,7 @@
                         <a class="flex px-4 py-4 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white md:flex md:flex-row md:items-center md:justify-start hover:bg-gray-200" href="#">
 
                             <div class="px-3 py-2 mr-3 bg-gray-100 border border-gray-300 rounded">
-                                <i class="text-sm fad fa-birthday-cake"></i>
+                                <i class="text-sm fas fa-birthday-cake"></i>
                             </div>
 
                             <div class="flex flex-row flex-1">
@@ -179,7 +179,7 @@
             <div class="static mr-5 md:relative" x-data="{ isOpen3 : false }">
 
                 <button @click="isOpen3 = true" class="p-0 m-0 text-gray-500 transition-all duration-300 ease-in-out menu-btn hover:text-gray-900 focus:text-gray-900 focus:outline-none">
-                    <i class="fad fa-comments"></i>
+                    <i class="fas fa-comments"></i>
                 </button>
 
                 <!-- <button class="fixed top-0 left-0 z-10 hidden w-full h-full menu-overflow"></button> -->

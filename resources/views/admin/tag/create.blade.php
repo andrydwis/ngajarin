@@ -23,7 +23,7 @@
                         <div class="flex items-center">
                             <a id="lfm" data-input="thumbnail" data-preview="holder" class="pr-2 mt-2 text-white">
                                 <button id="btn_lfm" class="flex items-center align-middle btn-bs-primary">
-                                    <i class="pr-2 fad fa-camera"></i>
+                                    <i class="pr-2 fas fa-camera"></i>
                                     Pilih
                                 </button>
                             </a>
@@ -40,7 +40,7 @@
                         <div id="holder" class="w-40 h-40" x-data>
                             <button type="button" @click="$('#btn_lfm').click();">
                                 <div class="grid w-40 h-40 text-gray-600 bg-gray-100 border-2 border-gray-200 border-dashed hover:bg-gray-50 place-items-center hover:text-gray-400 ">
-                                    <i class="text-4xl fad fa-camera"></i>
+                                    <i class="text-4xl fas fa-camera"></i>
                                 </div>
                             </button>
                         </div>

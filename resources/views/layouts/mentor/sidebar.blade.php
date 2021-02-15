@@ -12,7 +12,7 @@
                 <!-- sidebar toggle -->
                 <div class="block mb-4 text-right lg:hidden">
                     <button @click="isOpen4 = !isOpen4">
-                        <i class="text-lg fad fa-times-circle"></i>
+                        <i class="text-lg fas fa-times-circle"></i>
                     </button>
                 </div>
                 <!-- end sidebar toggle -->
@@ -23,7 +23,7 @@
                 <a href="/dashboard" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
                 {{ Route::currentRouteNamed('dashboard') ? 'text-green-600' : '' }}
                 ">
-                    <i class="mr-2 text-sm fad fa-chart-pie"></i>
+                    <i class="mr-2 text-sm fas fa-chart-pie"></i>
                     Dashboard
                 </a>
 
@@ -33,14 +33,14 @@
                 <a href="/admin/mentor-list" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
                 {{ Route::currentRouteNamed('admin.mentor-list.index') ? 'text-green-600' : '' }}
                 ">
-                    <i class="mr-2 text-sm fad fa-user-friends"></i>
+                    <i class="mr-2 text-sm fas fa-user-friends"></i>
                     Mentor List
                 </a>
 
                 <a href="/admin/mentor-list/create" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
                 {{ Route::currentRouteNamed('admin.mentor-list.create') ? 'text-green-600' : '' }}
                 ">
-                    <i class="mr-2 text-sm fad fa-user-plus"></i>
+                    <i class="mr-2 text-sm fas fa-user-plus"></i>
                     Tambahkan Mentor
                 </a>
 
@@ -53,21 +53,21 @@
                      Route::currentRouteNamed('admin.tag.edit')
                      ? 'text-green-600' : '' }}
                 ">
-                    <i class="mr-2 text-sm fad fa-tags"></i>
+                    <i class="mr-2 text-sm fas fa-tags"></i>
                     Tag List
                 </a>
 
                 <a href="/admin/course" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
                 {{ Route::currentRouteNamed('admin.course.index') ? 'text-green-600' : '' }}
                 ">
-                    <i class="mr-2 text-sm fad fa-folders"></i>
+                    <i class="mr-2 text-sm fas fa-folder"></i>
                     Course List
                 </a>
 
                 <a href="/admin/course/create" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
                 {{ Route::currentRouteNamed('admin.course.create') ? 'text-green-600' : '' }}
                 ">
-                    <i class="mr-2 text-base fad fa-folder-plus"></i>
+                    <i class="mr-2 text-base fas fa-folder-plus"></i>
                     Tambahkan Course
                 </a>
 
