@@ -10,7 +10,7 @@
                     <input type="hidden" name="token" value="{{ $request->route('token') }}">
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email')}}">
+                        <input id="email" type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email')}}">
                         @error('email')
                         <div class="invalid-feedback">
                             {{$message}}
@@ -19,7 +19,7 @@
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" value="">
+                        <input id="password" type="password" name="password" class="form-control @error('password') is-invalid @enderror" value="">
                         @error('password')
                         <div class="invalid-feedback">
                             {{$message}}
@@ -28,7 +28,7 @@
                     </div>
                     <div class="form-group">
                         <label for="password_confirmation">Password Konfirmasi</label>
-                        <input type="password" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" value="">
+                        <input id="password_confirmation" type="password" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" value="">
                         @error('password_confirmation')
                         <div class="invalid-feedback">
                             {{$message}}

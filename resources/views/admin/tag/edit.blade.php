@@ -20,7 +20,7 @@
                         @enderror
                     </div>
                     <div>
-                        <label for="icon">Icon</label>
+                        <label for="thumbnail">Icon</label>
                         <div class="flex items-center">
                             <a id="lfm" data-input="thumbnail" data-preview="holder" class="pr-2 mt-2 text-white">
                                 <button id="btn_lfm" class="flex items-center align-middle btn-bs-primary">

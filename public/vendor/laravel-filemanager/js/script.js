@@ -76,7 +76,7 @@ $(document).ready(function () {
     .done(function (response) {
       JSON.parse(response).forEach(function (message) {
         $('#alerts').append(
-          $('<div>').addClass('alert alert-warning')
+          $('<div>').addClass('alert alert-danger')
             .append($('<i>').addClass('fas fa-exclamation-circle'))
             .append(' ' + message)
         );

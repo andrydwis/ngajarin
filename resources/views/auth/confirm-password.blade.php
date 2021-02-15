@@ -9,7 +9,7 @@
                     @csrf
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" value="">
+                        <input id="password" type="password" name="password" class="form-control @error('password') is-invalid @enderror" value="">
                         @error('password')
                         <div class="invalid-feedback">
                             {{$message}}

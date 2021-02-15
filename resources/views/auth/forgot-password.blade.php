@@ -12,7 +12,7 @@
                     @csrf
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email')}}">
+                        <input id="email" type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email')}}">
                         @error('email')
                         <div class="invalid-feedback">
                             {{$message}}

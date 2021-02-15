@@ -1,65 +1,5 @@
 @extends('layouts.user.app')
 @section('content')
-<!-- <div class="row">
-    <div class="col">
-        <div class="card">
-            <div class="card-header"></div>
-            <div class="card-body">
-                <form action="{{route('register')}}" method="post">
-                    @csrf
-                    <div class="form-group">
-                        <label for="nama">Nama</label>
-                        <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" value="{{old('nama')}}">
-                        @error('nama')
-                        <div class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email')}}">
-                        @error('email')
-                        <div class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="telepon">Telepon</label>
-                        <input type="number" name="telepon" class="form-control @error('telepon') is-invalid @enderror" value="{{old('telepon')}}">
-                        @error('telepon')
-                        <div class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" value="">
-                        @error('password')
-                        <div class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="password_confirmation">Password Konfirmasi</label>
-                        <input type="password" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" value="">
-                        @error('password_confirmation')
-                        <div class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Login</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div> -->
 <div class="container max-w-full px-0 py-24 mx-auto md:px-6">
     <div class="max-w-md px-3 py-10 mx-auto bg-gray-100 rounded-lg md:px-8">
         <div class="relative flex flex-wrap">
@@ -76,14 +16,14 @@
                         @csrf
                         <div class="max-w-lg mx-auto ">
                             <div class="py-1">
-                                <span class="px-1 text-sm text-gray-600">Nama Lengkap</span>
+                                <label for="nama" class="px-1 text-sm text-gray-600">Nama Lengkap</label>
                                 <div>
                                     <span class="absolute z-10 pt-3 pl-3 text-gray-600">
                                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
                                         </svg>
                                     </span>
-                                    <input placeholder="isi dengan nama lengkap" type="text" class="input-text-icon @error('nama') input-is-invalid @enderror" name="nama" value="{{old('nama')}}">
+                                    <input placeholder="isi dengan nama lengkap" type="text" class="input-text-icon @error('nama') input-is-invalid @enderror" name="nama" id="nama" value="{{old('nama')}}">
                                 </div>
                                 @error('nama')
                                 <div class="alert alert-danger">
@@ -92,7 +32,7 @@
                                 @enderror
                             </div>
                             <div class="py-1">
-                                <span class="px-1 text-sm text-gray-600">Email</span>
+                                <label for="email" class="px-1 text-sm text-gray-600">Email</label>
                                 <div>
                                     <span class="absolute z-10 pt-3 pl-3 text-gray-600">
                                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -100,7 +40,7 @@
                                             <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
                                         </svg>
                                     </span>
-                                    <input placeholder="isi dengan email yang aktif" type="email" class="input-text-icon @error('email') input-is-invalid @enderror" name="email" value="{{old('email')}}">
+                                    <input placeholder="isi dengan email yang aktif" type="email" class="input-text-icon @error('email') input-is-invalid @enderror" id="email" name="email" value="{{old('email')}}">
                                 </div>
 
                                 @error('email')
@@ -110,14 +50,14 @@
                                 @enderror
                             </div>
                             <div class="py-1">
-                                <span class="px-1 text-sm text-gray-600">HP / Nomor Telepon</span>
+                                <label for="telepon" class="px-1 text-sm text-gray-600">HP / Nomor Telepon</label>
                                 <div>
                                     <span class="absolute z-10 pt-3 pl-3 text-gray-600">
                                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
                                         </svg>
                                     </span>
-                                    <input placeholder="masukkan nomor telepon" type="number" class="input-text-icon @error('telepon') input-is-invalid @enderror" name="telepon" value="{{old('telepon')}}">
+                                    <input placeholder="masukkan nomor telepon" type="number" class="input-text-icon @error('telepon') input-is-invalid @enderror" id="telepon" name="telepon" value="{{old('telepon')}}">
                                 </div>
 
                                 @error('telepon')
@@ -127,14 +67,14 @@
                                 @enderror
                             </div>
                             <div class="py-1">
-                                <span class="px-1 text-sm text-gray-600">Kata Sandi</span>
+                                <label for="password" class="px-1 text-sm text-gray-600">Kata Sandi</label>
                                 <div>
                                     <span class="absolute z-10 pt-3 pl-3 text-gray-600">
                                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
                                         </svg>
                                     </span>
-                                    <input placeholder="masukkan kata sandi" type="password" x-model="password" class="input-text-icon @error('password') input-is-invalid @enderror" name="password" value="">
+                                    <input placeholder="masukkan kata sandi" type="password" x-model="password" class="input-text-icon @error('password') input-is-invalid @enderror" id="password" name="password" value="">
                                 </div>
 
                                 @error('password')
@@ -158,14 +98,14 @@
                             </div> -->
 
                             <div class="py-1">
-                                <span class="px-1 text-sm text-gray-600">Konfirmasi Kata Sandi</span>
+                                <label for="password_confirmation" class="px-1 text-sm text-gray-600">Konfirmasi Kata Sandi</label>
                                 <div>
                                     <span class="absolute z-10 pt-3 pl-3 text-gray-600">
                                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
                                         </svg>
                                     </span>
-                                    <input placeholder="masukkan konfirmasi kata sandi" type="password" x-model="password_confirm" class="input-text-icon @error('password_confirmation') input-is-invalid @enderror" name="password_confirmation" value="">
+                                    <input placeholder="masukkan konfirmasi kata sandi" type="password" x-model="password_confirm" class="input-text-icon @error('password_confirmation') input-is-invalid @enderror" id="password_confirmation" name="password_confirmation" value="">
                                 </div>
 
                                 @error('password_confirmation')
