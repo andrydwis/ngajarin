@@ -38,7 +38,7 @@
 
                 <!-- item -->
                 <a class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
-                    <i class="mr-1 text-xs fas fa-inbox-in"></i>
+                    <i class="mr-1 text-xs fas fa-inbox"></i>
                     Inbox
                 </a>
                 <!-- end item -->
@@ -122,7 +122,7 @@
             <div class="static mr-5 md:relative" x-data="{ isOpen2 : false }">
 
                 <button class="p-0 m-0 text-gray-500 transition-all duration-300 ease-in-out menu-btn hover:text-gray-900 focus:text-gray-900 focus:outline-none" @click="isOpen2 = true">
-                    <i class="fas fa-bells"></i>
+                    <i class="fas fa-bell"></i>
                 </button>
 
                 <div x-cloak x-show.transition.origin.top="isOpen2" @click.away="isOpen2 = false" class="absolute right-0 z-20 w-full py-2 mt-5 bg-white rounded shadow-md md:w-80 animated">
