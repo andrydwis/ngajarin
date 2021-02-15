@@ -16,7 +16,7 @@
 
                     <!-- top -->
                     <div class="flex flex-row items-center justify-between">
-                        <div class="text-indigo-700 h6 fad fa-shopping-cart"></div>
+                        <div class="text-indigo-700 h6 fas fa-shopping-cart"></div>
                         <span class="text-xs text-white bg-green-400 rounded-full badge">
                             12%
                             <i class="ml-1 fal fa-chevron-up"></i>
@@ -45,7 +45,7 @@
 
                     <!-- top -->
                     <div class="flex flex-row items-center justify-between">
-                        <div class="text-red-700 h6 fad fa-store"></div>
+                        <div class="text-red-700 h6 fas fa-store"></div>
                         <span class="text-xs text-white bg-red-400 rounded-full badge">
                             6%
                             <i class="ml-1 fal fa-chevron-down"></i>
@@ -74,7 +74,7 @@
 
                     <!-- top -->
                     <div class="flex flex-row items-center justify-between">
-                        <div class="text-yellow-600 h6 fad fa-sitemap"></div>
+                        <div class="text-yellow-600 h6 fas fa-sitemap"></div>
                         <span class="text-xs text-white bg-green-400 rounded-full badge">
                             72%
                             <i class="ml-1 fal fa-chevron-up"></i>
@@ -103,7 +103,7 @@
 
                     <!-- top -->
                     <div class="flex flex-row items-center justify-between">
-                        <div class="text-green-700 h6 fad fa-users"></div>
+                        <div class="text-green-700 h6 fas fa-users"></div>
                         <span class="text-xs text-white bg-green-400 rounded-full badge">
                             150%
                             <i class="ml-1 fal fa-chevron-up"></i>
@@ -147,9 +147,9 @@
                     <p class="text-xs text-white">You've finished all of your tasks for this week.</p>
 
                     <ul class="mt-4">
-                        <li class="text-xs font-light md:text-sm"><i class="mb-2 mr-2 fad fa-check-double"></i> Finish Dashboard Design</li>
-                        <li class="text-xs font-light md:text-sm"><i class="mb-2 mr-2 fad fa-check-double"></i> Fix Issue #74</li>
-                        <li class="text-xs font-light md:text-sm"><i class="mr-2 fad fa-check-double"></i> Publish version 1.0.6</li>
+                        <li class="text-xs font-light md:text-sm"><i class="mb-2 mr-2 fas fa-check-double"></i> Finish Dashboard Design</li>
+                        <li class="text-xs font-light md:text-sm"><i class="mb-2 mr-2 fas fa-check-double"></i> Fix Issue #74</li>
+                        <li class="text-xs font-light md:text-sm"><i class="mr-2 fas fa-check-double"></i> Publish version 1.0.6</li>
                     </ul>
                 </div>
                 <!-- end info -->
@@ -179,7 +179,7 @@
                         </h1>
 
                         <div class="flex items-center justify-center w-10 h-10 text-green-700 bg-green-200 border border-green-300 rounded-full">
-                            <i class="fad fa-eye"></i>
+                            <i class="fas fa-eye"></i>
                         </div>
                     </div>
                     <div class="analytics_1"></div>
@@ -193,7 +193,7 @@
                         </h1>
 
                         <div class="flex items-center justify-center w-10 h-10 text-indigo-700 bg-indigo-200 border border-indigo-300 rounded-full">
-                            <i class="fad fa-users-crown"></i>
+                            <i class="fas fa-users-crown"></i>
                         </div>
                     </div>
                     <div class="analytics_1"></div>
@@ -261,7 +261,7 @@
             <div class="flex items-center card-body">
 
                 <div class="px-3 py-2 mr-3 text-white bg-indigo-600 rounded">
-                    <i class="fad fa-wallet"></i>
+                    <i class="fas fa-wallet"></i>
                 </div>
 
                 <div class="flex flex-col">
@@ -278,7 +278,7 @@
             <div class="flex items-center card-body">
 
                 <div class="px-3 py-2 mr-3 text-white bg-green-600 rounded">
-                    <i class="fad fa-shopping-cart"></i>
+                    <i class="fas fa-shopping-cart"></i>
                 </div>
 
                 <div class="flex flex-col">
@@ -295,7 +295,7 @@
             <div class="flex items-center card-body">
 
                 <div class="px-3 py-2 mr-3 text-white bg-yellow-600 rounded">
-                    <i class="fad fa-blog"></i>
+                    <i class="fas fa-blog"></i>
                 </div>
 
                 <div class="flex flex-col">
@@ -312,7 +312,7 @@
             <div class="flex items-center card-body">
 
                 <div class="px-3 py-2 mr-3 text-white bg-red-600 rounded">
-                    <i class="fad fa-comments"></i>
+                    <i class="fas fa-comments"></i>
                 </div>
 
                 <div class="flex flex-col">
@@ -329,7 +329,7 @@
             <div class="flex items-center card-body">
 
                 <div class="px-3 py-2 mr-3 text-white bg-pink-600 rounded">
-                    <i class="fad fa-user"></i>
+                    <i class="fas fa-user"></i>
                 </div>
 
                 <div class="flex flex-col">
@@ -419,19 +419,19 @@
                 <tbody class="text-gray-600">
 
                     <tr>
-                        <td class="px-1 py-2 text-xs text-center text-green-500 border border-l-0 md:text-base md:px-4"><i class="fad fa-circle"></i></td>
+                        <td class="px-1 py-2 text-xs text-center text-green-500 border border-l-0 md:text-base md:px-4"><i class="fas fa-circle"></i></td>
                         <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">Lightning to USB-C Adapter Lightning.</td>
                         <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">$<span class="num-2"></span></td>
                         <td class="px-1 py-2 text-sm text-center border border-l-0 border-r-0 md:text-left md:text-base md:px-4"><span class="num-2"></span> minutes ago</td>
                     </tr>
                     <tr>
-                        <td class="px-1 py-2 text-xs text-center text-yellow-500 border border-l-0 md:text-base md:px-4"><i class="fad fa-circle"></i></td>
+                        <td class="px-1 py-2 text-xs text-center text-yellow-500 border border-l-0 md:text-base md:px-4"><i class="fas fa-circle"></i></td>
                         <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">Apple iPhone 8.</td>
                         <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">$<span class="num-2"></span></td>
                         <td class="px-1 py-2 text-sm text-center border border-l-0 border-r-0 md:text-left md:text-base md:px-4"><span class="num-2"></span> minutes ago</td>
                     </tr>
                     <tr>
-                        <td class="px-1 py-2 text-xs text-center text-green-500 border border-l-0 md:text-base md:px-4"><i class="fad fa-circle"></i></td>
+                        <td class="px-1 py-2 text-xs text-center text-green-500 border border-l-0 md:text-base md:px-4"><i class="fas fa-circle"></i></td>
                         <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">Apple MacBook Pro.</td>
                         <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">$<span class="num-2"></span></td>
                         <td class="px-1 py-2 text-sm text-center border border-l-0 border-r-0 md:text-left md:text-base md:px-4"><span class="num-2"></span> minutes ago</td>

@@ -24,7 +24,7 @@
                         <div class="flex items-center">
                             <a id="lfm" data-input="thumbnail" data-preview="holder" class="pr-2 mt-2 text-white">
                                 <button id="btn_lfm" class="flex items-center align-middle btn-bs-primary">
-                                    <i class="pr-2 fad fa-camera"></i>
+                                    <i class="pr-2 fas fa-camera"></i>
                                     Pilih
                                 </button>
                             </a>

@@ -53,7 +53,7 @@
 
                                 <!-- pembatas button -->
                                 <div x-data="{ tooltip2: false }">
-                                    <a href="{{route('mentor.classroom.edit', ['classroom' => $classroom->classroom->id])}}" @mouseover="tooltip2 = true" @mouseleave="tooltip2 = false" class="button btn-bs-primary"><i class="text-sm fad fa-edit"></i></a>
+                                    <a href="{{route('mentor.classroom.edit', ['classroom' => $classroom->classroom->id])}}" @mouseover="tooltip2 = true" @mouseleave="tooltip2 = false" class="button btn-bs-primary"><i class="text-sm fas fa-edit"></i></a>
 
                                     <div class="relative" x-cloak x-show.transition.origin.top="tooltip2">
                                         <div class="absolute z-50 flex items-center p-2 text-sm leading-tight text-white rounded-lg shadow-lg btn-bs-primary w-36 top-2">
@@ -65,7 +65,7 @@
 
                                 <!-- pembatas button -->
                                 <div x-data="{ tooltip3: false }">
-                                    <a href="{{route('mentor.classroom-member.index', ['classroom' => $classroom->classroom->id])}}" @mouseover="tooltip3 = true" @mouseleave="tooltip3 = false" class="button btn-bs-success"><i class="text-sm fad fa-users"></i></a>
+                                    <a href="{{route('mentor.classroom-member.index', ['classroom' => $classroom->classroom->id])}}" @mouseover="tooltip3 = true" @mouseleave="tooltip3 = false" class="button btn-bs-success"><i class="text-sm fas fa-users"></i></a>
 
                                     <div class="relative" x-cloak x-show.transition.origin.top="tooltip3">
                                         <div class="absolute z-50 flex items-center p-2 text-sm leading-tight text-white rounded-lg shadow-lg w-44 btn-bs-success top-2">
