@@ -1,4 +1,4 @@
-@extends('layouts.admin.app-new-new')
+@extends('layouts.admin.app')
 @section('content')
 <!-- 
     keterangan
