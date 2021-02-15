@@ -88,6 +88,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/new-admin.js') }}"></script>
     @yield('customJS')
+    @include('sweetalert::alert')
 </body>
 
 </html>

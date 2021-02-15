@@ -1,4 +1,4 @@
-@extends('layouts.admin.app-new')
+@extends('layouts.admin.app-new-new')
 @section('content')
 <div class="w-full p-5 mt-20 md:w-auto lg:w-4/6 xl:w-3/4">
 
