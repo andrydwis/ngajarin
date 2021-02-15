@@ -1,4 +1,4 @@
-@extends('layouts.admin.app-new')
+@extends('layouts.mentor.app')
 @section('content')
 <div class="row">
     <div class="col">

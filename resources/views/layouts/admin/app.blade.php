@@ -76,7 +76,7 @@
 
     <div class="flex flex-row flex-wrap h-screen bg-gray-50">
 
-        @include('layouts.admin.sidebar-new')
+        @include('layouts.admin.sidebar')
 
         @yield('content')
     </div>

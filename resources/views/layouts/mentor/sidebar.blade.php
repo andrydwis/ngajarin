@@ -28,7 +28,7 @@
                 </a>
 
                 <!-- pembatas link -->
-                <p class="mt-4 mb-3 text-sm tracking-wider text-gray-600 uppercase">Mentor</p>
+                <!-- <p class="mt-4 mb-3 text-sm tracking-wider text-gray-600 uppercase">Mentor</p>
 
                 <a href="/admin/mentor-list" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
                 {{ Route::currentRouteNamed('admin.mentor-list.index') ? 'text-green-600' : '' }}
@@ -71,7 +71,7 @@
                     Tambahkan Course
                 </a>
 
-            </div>
+            </div> -->
             <!-- end sidebar content -->
 
         </div>
