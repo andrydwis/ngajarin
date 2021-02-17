@@ -1,20 +1,57 @@
 <!-- start card -->
-<a href="#" class="w-full px-2 py-4 mx-auto report-card md:w-1/2 2xl:w-1/3">
+<div class="w-full px-2 py-4 mx-auto report-card md:w-1/2 2xl:w-1/3">
     <div class="h-full px-5 pt-8 pb-5 bg-white border border-gray-200 rounded-md card">
         <div class="flex flex-col">
             <!-- bagian atas -->
-            <div class="flex justify-end text-gray-400 -mb-7">
-                <button>
+            <div class="flex justify-end text-gray-400 " x-data="{detailOpen : false}">
+                <button @click="detailOpen = true" class="focus:outline-none">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path>
                     </svg>
                 </button>
+
+                <div x-cloak x-show.transition.origin.top="detailOpen" @click.away="detailOpen = false" class="absolute z-50 w-40 py-2 mt-5 ml-10 text-left text-gray-500 bg-white border border-gray-300 rounded shadow-md">
+                    <!-- item -->
+                    <a href="#" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
+                        <i class="mr-1 text-xs fas fa-info"></i>
+                        Detail
+                    </a>
+                    <!-- end item -->
+
+                    <!-- item -->
+                    <a href="{{route('admin.course.edit', $courseId)}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
+                        <i class="mr-1 text-xs fas fa-edit"></i>
+                        Edit
+                    </a>
+                    <!-- end item -->
+
+                    <!-- item -->
+
+                    <!-- form di hidden -->
+                    <div x-data>
+                        <form action="{{route('admin.course.destroy', $courseId)}}" method="post" class="hidden">
+                            @csrf
+                            @method('DELETE')
+                            <button id="{{ $judul }}" type="submit">
+                                Hapus
+                            </button>
+                           
+                        </form>
+
+                        <a href="#" @click.prevent="$('#{{ $judul }}').click();" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900">
+                            <i class="mr-1 text-xs fas fa-trash"></i>
+                            Hapus
+                        </a>
+                    </div>
+                    <!-- end item -->
+                </div>
+
             </div>
             <div class="flex flex-col items-center md:flex-row md:items-start">
                 <img src=" {{$thumbnail}} " alt="missing img" class="object-cover w-20 h-20 rounded-full" />
 
                 <!-- jika image kosong pake gambar dibawah -->
-                
+
                 <!-- <img src="https://media.istockphoto.com/vectors/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-vector-id1128826884?k=6&m=1128826884&s=170667a&w=0&h=F6kUwTcsLXUojmGFxN2wApEKgjx63zcIshCSOmnfEFs=" alt="missing img" class="object-cover w-20 h-20 rounded-full" /> -->
 
                 <div class="flex flex-col items-start pl-5">
@@ -57,5 +94,5 @@
             <!-- end of bagian bawah -->
         </div>
     </div>
-</a>
+</div>
 <!-- end card -->

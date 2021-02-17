@@ -29,7 +29,8 @@ class card-course extends Component
         $submission = $this->submission;
         $tag = $this->tag;
         $thumbnail = $this->thumbnail;
+        $courseId = $this->courseId;
 
-        return view('components.admin.card-course',compact('judul','tanggal','murid','submission','tag','thumbnail'));
+        return view('components.admin.card-course',compact('judul','tanggal','murid','submission','tag','thumbnail','courseId'));
     }
 }
