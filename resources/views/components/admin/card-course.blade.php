@@ -1,10 +1,10 @@
 <!-- start card -->
 <div class="w-full px-2 py-4 mx-auto report-card md:w-1/2 2xl:w-1/3">
-    <div class="h-full px-5 pt-8 pb-5 bg-white border border-gray-200 rounded-md card">
+    <div class="h-full px-5 pt-8 pb-5 bg-white border border-gray-200 rounded-md shadow card ">
         <div class="flex flex-col">
             <!-- bagian atas -->
             <div class="flex justify-end text-gray-400 " x-data="{detailOpen : false}">
-                <button @click="detailOpen = true" class="focus:outline-none">
+                <button @click="detailOpen = true" class="focus:outline-none hover:text-gray-800">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path>
                     </svg>
@@ -35,7 +35,7 @@
                             <button id="{{ $judul }}" type="submit">
                                 Hapus
                             </button>
-                           
+
                         </form>
 
                         <a href="#" @click.prevent="$('#{{ $judul }}').click();" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900">
@@ -55,11 +55,18 @@
                 <!-- <img src="https://media.istockphoto.com/vectors/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-vector-id1128826884?k=6&m=1128826884&s=170667a&w=0&h=F6kUwTcsLXUojmGFxN2wApEKgjx63zcIshCSOmnfEFs=" alt="missing img" class="object-cover w-20 h-20 rounded-full" /> -->
 
                 <div class="flex flex-col items-start pl-5">
-                    <h3 class="text-xl font-semibold">{{ $judul }}</h3>
-                    <span class="text-sm tracking-tight text-gray-500">Dibuat pada : 12 Oktober 2020</span>
+                    <h3 class="text-xl font-semibold hover:text-blue-600">
+                        <a href="{{route('admin.course.edit', $courseId)}}">{{ $judul }}</a>
+                    </h3>
+                    <!-- kalo bisa mending get tanggal dibuat -->
+                    <!-- <span class="text-sm tracking-tight text-gray-500">Dibuat pada : 12 Oktober 2020</span> -->
+                    <span class="text-sm tracking-tight text-gray-500"> {{ $level }} </span>
                     <div class="flex flex-wrap gap-1 mt-1">
-                        <span class="px-2 py-1 text-xs tracking-tight text-gray-100 bg-red-400 rounded-full">Backend</span>
-                        <span class="px-2 py-1 text-xs tracking-tight text-gray-100 bg-red-400 rounded-full">Laravel</span>
+                        <!-- bikin perulangan disini -->
+                        @foreach($tags as $tag)
+                        <span class="px-2 py-1 text-xs tracking-tight text-gray-100 bg-blue-400 rounded-full"> {{ $tag->name }} </span>
+                        @endforeach
+                        <!-- bikin perulangan disini -->
                     </div>
                 </div>
             </div>

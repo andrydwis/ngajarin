@@ -1,11 +1,11 @@
 @extends('layouts.admin.app')
 @section('content')
-<div class="row">
-    <div class="col">
+<div class="w-full p-5 mt-20 md:w-auto lg:w-4/6 xl:w-3/4">
+    <!-- <div>
         <div class="card">
-            <div class="card-header">
-                <h4>Data Course</h4>
-                <a href="{{route('admin.course.create')}}" class="btn btn-primary">Tambah Course</a>
+            <div class="flex justify-between card-header">
+                <h4 class="h6">Daftar Course</h4>
+                <a href="{{route('admin.course.create')}}" class="btn-bs-primary">Tambah Course</a>
             </div>
             <div class="card-body">
                 <table id="datatables" class="display" style="width:100%">
@@ -47,7 +47,25 @@
                 </table>
             </div>
         </div>
+    </div> -->
+
+    <div>
+        <div class="card">
+            <div class="flex justify-between card-header">
+                <h4 class="h6">Daftar Course</h4>
+                <a href="{{route('admin.course.create')}}" class="btn-bs-primary">Tambah Course</a>
+            </div>
+            <div class="card-body">
+                <div class="flex flex-wrap">
+                    @foreach($courses as $course)
+                    <x-admin.card-course :judul="$course->title" :thumbnail="$course->thumbnail" :courseId="['course' => $course]" :tags="$course->tags" :level="$course->level" />
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
     </div>
+
 </div>
 @endsection
 
