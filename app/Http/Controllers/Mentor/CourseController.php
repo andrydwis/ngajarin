@@ -84,6 +84,11 @@ class CourseController extends Controller
     public function show(Course $course)
     {
         //
+        $data = [
+            'course' => $course,
+        ];
+
+        return view('mentor.course.show', $data);
     }
 
     /**
@@ -99,7 +104,7 @@ class CourseController extends Controller
             'course' => $course,
             'tags' => Tag::get(),
         ];
-
+       
         return view('mentor.course.edit', $data);
     }
 

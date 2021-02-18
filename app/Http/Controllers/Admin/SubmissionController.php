@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Mentor;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
@@ -24,7 +24,7 @@ class SubmissionController extends Controller
             'submission' => Submission::where('course_id', $course->id)->get(),
         ];
 
-        return view('mentor.submission.index', $data);
+        return view('admin.submission.index', $data);
     }
 
     /**
@@ -39,7 +39,7 @@ class SubmissionController extends Controller
             'course' => $course,
         ];
 
-        return view('mentor.submission.create', $data);
+        return view('admin.submission.create', $data);
     }
 
     /**
@@ -65,7 +65,7 @@ class SubmissionController extends Controller
 
         Alert::success('Submission berhasil dibuat');
 
-        return redirect()->route('mentor.submission.index', ['course' => $course]);
+        return redirect()->route('admin.submission.index', ['course' => $course]);
     }
 
     /**
@@ -82,7 +82,7 @@ class SubmissionController extends Controller
             'submission' => $submission
         ];
 
-        return view('mentor.submission.show', $data);
+        return view('admin.submission.show', $data);
     }
 
     /**
@@ -99,7 +99,7 @@ class SubmissionController extends Controller
             'submission' => $submission
         ];
 
-        return view('mentor.submission.edit', $data);
+        return view('admin.submission.edit', $data);
     }
 
     /**
@@ -125,7 +125,7 @@ class SubmissionController extends Controller
 
         Alert::success('Submission berhasil diupdate');
 
-        return redirect()->route('mentor.submission.index', ['course' => $course]);
+        return redirect()->route('admin.submission.index', ['course' => $course]);
     }
 
     /**
@@ -141,6 +141,6 @@ class SubmissionController extends Controller
 
         Alert::success('Submission berhasil dihapus');
 
-        return redirect()->route('mentor.submission.index', ['course' => $course]);
+        return redirect()->route('admin.submission.index', ['course' => $course]);
     }
 }

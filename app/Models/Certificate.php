@@ -13,4 +13,9 @@ class Certificate extends Model
         'course_id',
         'template'
     ];
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 }

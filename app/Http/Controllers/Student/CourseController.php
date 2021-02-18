@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Mentor;
+namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use App\Models\Certificate;
+use App\Models\Course;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class CertificateController extends Controller
+class CourseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,6 +17,11 @@ class CertificateController extends Controller
     public function index()
     {
         //
+        $data = [
+            'courses' => Course::whereIn('created_by', User::role('admin')->get()->pluck('id')->toArray())->with('creator', 'users')->get()
+        ];
+
+        return view('student.course.index', $data);
     }
 
     /**
@@ -42,21 +48,26 @@ class CertificateController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Certificate  $certificate
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function show(Certificate $certificate)
+    public function show(Course $course)
     {
         //
+        $data = [
+            'course' => $course->with('users')->get()
+        ];
+
+        return view('student.course.show', $data);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Certificate  $certificate
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function edit(Certificate $certificate)
+    public function edit(Course $course)
     {
         //
     }
@@ -65,10 +76,10 @@ class CertificateController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Certificate  $certificate
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Certificate $certificate)
+    public function update(Request $request, Course $course)
     {
         //
     }
@@ -76,10 +87,10 @@ class CertificateController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Certificate  $certificate
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Certificate $certificate)
+    public function destroy(Course $course)
     {
         //
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Mentor;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
@@ -24,7 +24,7 @@ class EpisodeController extends Controller
             'episodes' => Episode::where('course_id', $course->id)->get(),
         ];
 
-        return view('mentor.episode.index', $data);
+        return view('admin.episode.index', $data);
     }
 
     /**
@@ -39,7 +39,7 @@ class EpisodeController extends Controller
             'course' => $course,
         ];
 
-        return view('mentor.episode.create', $data);
+        return view('admin.episode.create', $data);
     }
 
     /**
@@ -68,7 +68,7 @@ class EpisodeController extends Controller
 
         Alert::success('Episode berhasil ditambahkan');
 
-        return redirect()->route('mentor.episode.index', ['course' => $course]);
+        return redirect()->route('admin.episode.index', ['course' => $course]);
     }
 
     /**
@@ -85,7 +85,7 @@ class EpisodeController extends Controller
             'episode' => $episode
         ];
 
-        return view('mentor.episode.show', $data);
+        return view('admin.episode.show', $data);
     }
 
     /**
@@ -102,7 +102,7 @@ class EpisodeController extends Controller
             'episode' => $episode
         ];
 
-        return view('mentor.episode.edit', $data);
+        return view('admin.episode.edit', $data);
     }
 
     /**
@@ -131,7 +131,7 @@ class EpisodeController extends Controller
 
         Alert::success('Episode berhasil diupdate');
 
-        return redirect()->route('mentor.episode.index', ['course' => $course]);
+        return redirect()->route('admin.episode.index', ['course' => $course]);
     }
 
     /**
@@ -147,6 +147,6 @@ class EpisodeController extends Controller
 
         Alert::success('Episode berhasil dihapus');
 
-        return redirect()->route('mentor.episode.index', ['course' => $course]);
+        return redirect()->route('admin.episode.index', ['course' => $course]);
     }
 }
