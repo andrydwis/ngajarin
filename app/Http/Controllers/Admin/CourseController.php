@@ -7,7 +7,6 @@ use App\Models\Course;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -119,7 +118,6 @@ class CourseController extends Controller
             'judul' => ['required', 'string'],
             'deskripsi' => ['required', 'string'],
             'level' => ['required'],
-
         ]);
 
         $course->title = $request->judul;
