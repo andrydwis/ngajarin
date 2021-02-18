@@ -1,67 +1,80 @@
 @extends('layouts.mentor.app')
 @section('content')
-<div class="row">
-    <div class="col">
-        <div class="card">
-            <div class="card-header">
-                <h4>Daftar Course</h4>
-            </div>
-            <div class="card-body">
-                <form action="{{route('mentor.course.update', ['course' => $course])}}" method="post">
-                    @csrf
-                    @method('PATCH')
-                    <div class="form-group">
+<div class="w-full p-5 mt-20 md:w-auto lg:w-4/6 xl:w-3/4">
+    <div class="card">
+        <div class="card-header">
+            <h6 class="h6">Edit Data Course</h6>
+        </div>
+        <div class="card-body">
+            <form action="{{route('mentor.course.update', ['course' => $course])}}" method="post">
+                @csrf
+                @method('PATCH')
+                <div class="grid gap-6">
+                    <div>
                         <label for="judul">Judul</label>
-                        <input type="text" name="judul" id="judul" class="form-control @error('judul') is-invalid @enderror" value="{{old('judul') ?? $course->title}}">
+                        <input type="text" name="judul" id="judul" class="form-input py-2 mt-2 block w-full @error('judul') is-invalid @enderror" value="{{old('judul') ?? $course->title}}">
                         @error('judul')
-                        <div class="alert alert-danger">
+                        <div class="alert alert-error">
                             {{$message}}
                         </div>
                         @enderror
                     </div>
-                    <div class="form-group">
+                    <div>
                         <label for="deskripsi">Deskripsi</label>
-                        <textarea name="deskripsi" id="deskripsi" class="form-control deskripsi @error('deskripsi') is-invalid @enderror">{!! old('deskripsi') ?? $course->description !!}</textarea>
+                        <textarea name="deskripsi" id="deskripsi" class="form-textarea deskripsi @error('deskripsi') is-invalid @enderror">{!! old('deskripsi') ?? $course->description !!}</textarea>
                         @error('deskripsi')
-                        <div class="alert alert-danger">
+                        <div class="alert alert-error">
                             {{$message}}
                         </div>
                         @enderror
                     </div>
-                    <div class="form-group">
+                    <div>
                         <label for="thumbnail">Thumbnail</label>
-                        <div class="input-group">
-                            <span class="input-group-btn">
-                                <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary text-white">
-                                    <i class="fa fa-picture-o"></i> Choose
-                                </a>
-                            </span>
-                            <input id="thumbnail" class="form-control" type="text" name="thumbnail" value="{{old('thumbnail') ?? $course->thumbnail}}" readonly>
+
+                        <div class="flex items-center">
+                            <a id="lfm" data-input="thumbnail" data-preview="holder" class="pr-2 mt-2 text-white">
+                                <button id="btn_lfm" class="flex items-center align-middle btn-bs-primary">
+                                    <i class="pr-2 fas fa-camera"></i>
+                                    Pilih
+                                </button>
+                            </a>
+                            <input id="thumbnail" class="block w-full py-2 mt-2 form-input" type="text" name="thumbnail" value="{{old('thumbnail') ?? $course->thumbnail}}" readonly>
                         </div>
-                        <div id="holder" style="margin-top:15px;max-height:100px;"></div>
+
+                        <div class="mt-8">
+                            <label>Thumbnail Preview : </label>
+                            <div id="holder" class="w-40 h-40" x-data>
+                                <button type="button" @click="$('#btn_lfm').click();">
+                                    <div class="grid w-56 h-40 text-gray-600 bg-gray-100 border-2 border-gray-200 border-dashed hover:bg-gray-50 place-items-center hover:text-gray-400 ">
+                                        <i class="text-4xl fas fa-camera"></i>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+
                         @error('thumbnail')
-                        <div class="alert alert-danger">
+                        <div class="alert alert-error">
                             {{$message}}
                         </div>
                         @enderror
                     </div>
-                    <div class="form-group">
+                    <div>
                         <label for="level">Level</label>
-                        <select name="level" id="level" class="form-control @error('level') is-invalid @enderror">
+                        <select name="level" id="level" class="py-2 mt-2 block w-full md:w-1/3 form-select @error('level') is-invalid @enderror">
                             <option value="" @if(old('level')==null) selected @endif disabled>Pilih Level</option>
                             <option value="pemula" @if(old('level')=='pemula' ) selected @elseif($course->level=='pemula') selected @endif>Pemula</option>
                             <option value="menengah" @if(old('level')=='menengah' ) selected @elseif($course->level=='menengah') selected @endif>Menengah</option>
                             <option value="expert" @if(old('level')=='expert' ) selected @elseif($course->level=='expert') selected @endif>Expert</option>
                         </select>
                         @error('level')
-                        <div class="alert alert-danger">
+                        <div class="alert alert-error">
                             {{$message}}
                         </div>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="tag">Tag</label>
-                        <select name="tag[]" id="tag" class="form-control @error('tag') is-invalid @enderror" multiple>
+                    <div class="py-1">
+                    <label for="tag" class="block mb-2">Tag</label>
+                        <select name="tag[]" id="tag" class="block w-full md:w-1/3 form-multiselect @error('tag') is-invalid @enderror" multiple>
                             <option value="" disabled>Pilih Tag</option>
                             @foreach($tags as $tag)
                             @if(in_array($tag->id, $course->tags->pluck('id')->toArray()))
@@ -72,11 +85,11 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class=" form-group">
-                        <button type="submit" class="btn btn-primary">Buat</button>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class="flex justify-center pt-5">
+                    <button type="submit" class="w-full md:w-auto btn-bs-primary">Tambahkan</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -85,6 +98,13 @@
 @section('customCSS')
 <!-- select2 -->
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<!-- styling image holder -->
+<style>
+    div#holder img {
+        height: 10rem !important;
+        margin-top: 1rem;
+    }
+</style>
 @endsection
 
 @section('customJS')
