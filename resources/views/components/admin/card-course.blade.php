@@ -12,38 +12,47 @@
 
                 <div x-cloak x-show.transition.origin.top="detailOpen" @click.away="detailOpen = false" class="absolute z-50 w-40 py-2 mt-5 ml-10 text-left text-gray-500 bg-white border border-gray-300 rounded shadow-md">
                     <!-- item -->
-                    <a href="#" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
+                    <!-- <a href="#" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
                         <i class="mr-1 text-xs fas fa-info"></i>
                         Detail
-                    </a>
+                    </a> -->
                     <!-- end item -->
 
                     <!-- item -->
+                    @role('admin')
                     <a href="{{route('admin.course.edit', $courseId)}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
-                        <i class="mr-1 text-xs fas fa-edit"></i>
-                        Edit
-                    </a>
-                    <!-- end item -->
+                        @else
+                        <a href="{{route('mentor.course.edit', $courseId)}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
+                            @endrole
 
-                    <!-- item -->
-
-                    <!-- form di hidden -->
-                    <div x-data>
-                        <form action="{{route('admin.course.destroy', $courseId)}}" method="post" class="hidden">
-                            @csrf
-                            @method('DELETE')
-                            <button id="{{ $judul }}" type="submit">
-                                Hapus
-                            </button>
-
-                        </form>
-
-                        <a href="#" @click.prevent="$('#{{ $judul }}').click();" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900">
-                            <i class="mr-1 text-xs fas fa-trash"></i>
-                            Hapus
+                            <i class="mr-1 text-xs fas fa-edit"></i>
+                            Edit
                         </a>
-                    </div>
-                    <!-- end item -->
+                        <!-- end item -->
+
+                        <!-- item -->
+
+                        <!-- form di hidden -->
+                        <div x-data>
+                            @role('admin')
+                            <form action="{{route('admin.course.destroy', $courseId)}}" method="post" class="hidden">
+                                @else
+                            <form action="{{route('mentor.course.destroy', $courseId)}}" method="post" class="hidden">
+                                @endrole
+                                    @csrf
+                                    @method('DELETE')
+                                    <button id="{{ $judul }}" type="submit">
+                                        Hapus
+                                    </button>
+
+                                </form>
+
+                                <a href="#" @click.prevent="$('#{{ $judul }}').click();" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900">
+                                    <i class="mr-1 text-xs fas fa-trash"></i>
+                                    Hapus
+                                </a>
+                        </div>
+                        <!-- end item -->
                 </div>
 
             </div>
