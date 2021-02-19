@@ -86,6 +86,7 @@ class CourseController extends Controller
         //
         $data = [
             'course' => $course,
+            'tags' => Tag::get(),
         ];
 
         return view('mentor.course.show', $data);

@@ -57,8 +57,8 @@
                     </div>
                 </div>
                 <div class="flex justify-end gap-2 py-5">
-                    <a href="{{route('admin.mentor-list.index')}}">
-                        <button class="btn-bs-secondary">kembali</button>
+                    <a href="{{route('admin.mentor-list.index')}}" class="btn-bs-secondary">
+                        Kembali
                     </a>
                     <button type="submit" class="btn-bs-primary">Tambah</button>
                 </div>

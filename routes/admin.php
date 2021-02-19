@@ -23,6 +23,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('/admin/course', [CourseController::class, 'index'])->name('admin.course.index');
     Route::get('/admin/course/create', [CourseController::class, 'create'])->name('admin.course.create');
     Route::post('/admin/course/create', [CourseController::class, 'store'])->name('admin.course.store');
+    Route::get('/admin/course/show/{course:slug}', [CourseController::class, 'show'])->name('admin.course.show');
     Route::get('/admin/course/edit/{course:slug}', [CourseController::class, 'edit'])->name('admin.course.edit');
     Route::patch('/admin/course/edit/{course:slug}', [CourseController::class, 'update'])->name('admin.course.update');
     Route::delete('/admin/course/destroy/{course:slug}', [CourseController::class, 'destroy'])->name('admin.course.destroy');
