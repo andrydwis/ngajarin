@@ -14,6 +14,8 @@
     <style>
         @import url("https://fonts.googleapis.com/css?family=Ubuntu&display=swap");
 
+        [x-cloak] { display: none }
+
         body {
             font-family: "Ubuntu";
             table-layout: auto !important;
