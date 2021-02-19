@@ -85,6 +85,12 @@ class CourseController extends Controller
     public function show(Course $course)
     {
         //
+        $data = [
+            'course' => $course,
+            'tags' => Tag::get(),
+        ];
+
+        return view('admin.course.show', $data);
     }
 
     /**

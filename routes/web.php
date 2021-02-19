@@ -21,9 +21,9 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard.index');
-Route::get('/dashboard/admin', [DashboardController::class, 'admin'])->middleware(['auth', 'verified', 'role:admin'])->name('dashboard.admin');
-Route::get('/dashboard/mentor', [DashboardController::class, 'mentor'])->middleware(['auth', 'verified', 'role:mentor'])->name('dashboard.mentor');
-Route::get('/dashboard/student', [DashboardController::class, 'student'])->middleware(['auth', 'verified', 'role:student'])->name('dashboard.student');
+Route::get('/admin/dashboard', [DashboardController::class, 'admin'])->middleware(['auth', 'verified', 'role:admin'])->name('dashboard.admin');
+Route::get('/mentor/dashboard', [DashboardController::class, 'mentor'])->middleware(['auth', 'verified', 'role:mentor'])->name('dashboard.mentor');
+Route::get('/student/dashboard', [DashboardController::class, 'student'])->middleware(['auth', 'verified', 'role:student'])->name('dashboard.student');
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth', 'verified']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
