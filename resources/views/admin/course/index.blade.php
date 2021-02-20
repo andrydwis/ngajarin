@@ -58,7 +58,7 @@
             <div class="card-body">
                 <div class="flex flex-wrap">
                     @foreach($courses as $course)
-                    <x-admin.card-course :judul="$course->title" :thumbnail="$course->thumbnail" :courseId="['course' => $course]" :tags="$course->tags" :level="$course->level" />
+                    <x-cardCourse :title="$course->title" :thumbnail="$course->thumbnail" :courseId="['course' => $course]" :tags="$course->tags" :level="$course->level" />
                     @endforeach
                 </div>
             </div>

@@ -41,13 +41,13 @@
                                 @endrole
                                     @csrf
                                     @method('DELETE')
-                                    <button id="{{ $judul }}" type="submit">
+                                    <button id="{{ $title }}" type="submit">
                                         Hapus
                                     </button>
 
                                 </form>
 
-                                <a href="#" @click.prevent="$('#{{ $judul }}').click();" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900">
+                                <a href="#" @click.prevent="$('#{{ $title }}').click();" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900">
                                     <i class="mr-1 text-xs fas fa-trash"></i>
                                     Hapus
                                 </a>
@@ -65,7 +65,7 @@
 
                 <div class="flex flex-col items-start pl-5">
                     <h3 class="text-xl font-semibold hover:text-blue-600">
-                        <a href="{{route('admin.course.edit', $courseId)}}">{{ $judul }}</a>
+                        <a href="{{route('admin.course.edit', $courseId)}}">{{ $title }}</a>
                     </h3>
                     <!-- kalo bisa mending get tanggal dibuat -->
                     <!-- <span class="text-sm tracking-tight text-gray-500">Dibuat pada : 12 Oktober 2020</span> -->
