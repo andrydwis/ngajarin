@@ -14,6 +14,10 @@
     <style>
         @import url("https://fonts.googleapis.com/css?family=Ubuntu&display=swap");
 
+        [x-cloak] {
+            display: none
+        }
+
         body {
             font-family: "Ubuntu";
             table-layout: auto !important;
@@ -54,6 +58,37 @@
             border: 1px solid transparent;
         }
 
+        .form-input,
+        .form-select,
+        .select2.select2-container {
+            background-color: rgb(249, 250, 251) !important;
+            --tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+        }
+
+        [readonly].form-input {
+            box-shadow: none;
+            background-color: rgb(243, 244, 246) !important;
+        }
+
+        .select2.select2-container {
+            border-color: #e2e8f0;
+            border-width: 1px;
+            border-radius: .25rem;
+            padding-top: .5rem;
+            padding-right: .75rem;
+            padding-bottom: .5rem;
+            padding-left: .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .select2-selection {
+            background-color: rgb(249, 250, 251) !important;
+            min-height: 0 !important;
+            border: none !important;
+        }
+
         .img-thumbnail {
             padding: 0.25rem;
             background-color: #fff;
@@ -61,10 +96,6 @@
             border-radius: 0.35rem;
             max-width: 100%;
             height: auto;
-        }
-
-        .form-input {
-            background-color: rgb(243, 244, 246);
         }
     </style>
     @yield('customCSS')
