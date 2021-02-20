@@ -31,9 +31,10 @@
                         <label for="thumbnail">Thumbnail</label>
                         <div class="mt-8">
                             <div id="holder" class="w-40 h-40" x-data>
+                                <!-- <span>link : {{$course->thumbnail}} </span> -->
                                 @if($course->thumbnail)
-                                <div class="grid w-56 h-40 text-gray-600 bg-gray-100 border-2 border-gray-200 border-dashed hover:bg-gray-50 place-items-center hover:text-gray-400 ">
-                                    <img src="{{$course->thumbnail}}" alt="">
+                                <div class="grid w-56 h-40 place-items-center">
+                                    <img src="{{$course->thumbnail}}" alt="missing">
                                 </div>
                                 @else
                                 <div class="grid w-56 h-40 text-gray-600 bg-gray-100 border-2 border-gray-200 border-dashed hover:bg-gray-50 place-items-center hover:text-gray-400 ">
