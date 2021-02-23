@@ -41,17 +41,17 @@
                     <!-- end item -->
 
                     <!-- item -->
-                    {{-- @role('admin')
-                    <a href="{{route('admin.course.episode', $courseId)}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
-                    <i class="mr-1 text-xs fas fa-photo-video"></i>
-                    Episode
-                    </a>
-                    @else
-                    <a href="{{route('mentor.course.episode', $courseId)}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
+                    @role('admin')
+                    <a href="{{route('admin.course.episode.index', $courseId)}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
                         <i class="mr-1 text-xs fas fa-photo-video"></i>
                         Episode
                     </a>
-                    @endrole --}}
+                    @else
+                    <a href="{{route('mentor.course.episode.index', $courseId)}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
+                        <i class="mr-1 text-xs fas fa-photo-video"></i>
+                        Episode
+                    </a>
+                    @endrole
                     <!-- end item -->
 
                     <!-- item -->
