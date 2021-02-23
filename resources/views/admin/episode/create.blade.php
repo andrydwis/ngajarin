@@ -13,7 +13,7 @@
                         <a class="inline-block px-4 py-2 font-semibold rounded-t hover:text-blue-800" :class="{ 'bg-white text-blue-700 border-l border-t border-r' : tab === 'video' }" href="#" @click.prevent="tab = 'video'">Video</a>
                     </li>
                     <li class="mr-1 -mb-px">
-                        <a class="inline-block px-4 py-2 font-semibold text-blue-500 hover:text-blue-800" :class="{ 'bg-white text-blue-700 border-l border-t border-r' : tab === 'text' }" href="#" @click.prevent="tab = 'text'">Step-by-Step</a>
+                        <a class="inline-block px-4 py-2 font-semibold text-blue-500 hover:text-blue-800" :class="{ 'bg-white text-blue-700 border-l border-t border-r' : tab === 'text' }" href="#" @click.prevent="tab = 'text'">Text</a>
                     </li>
                 </ul>
                 <!-- end of tabs -->
@@ -41,6 +41,16 @@
                                     </div>
                                     @enderror
                                 </div>
+                                <div>
+                                    <label for="deskripsi">Deskripsi</label>
+                                    <textarea name="deskripsi" id="deskripsi" class="form-textarea deskripsi @error('deskripsi') is-invalid @enderror">{!! old('deskripsi') !!}</textarea>
+                                    @error('deskripsi')
+                                    <div class="alert alert-error">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
+                                </div>
+                                <input type="hidden" name="tipe" value="video">
                             </div>
                             <div class="flex justify-end pt-5">
                                 <button type="submit" class="w-full md:w-auto btn-bs-primary">Tambahkan</button>
@@ -73,8 +83,23 @@
                                     @enderror
                                 </div>
                                 <div>
-                                    <input type="text" hidden value="deskripsi" id="tipe" name="tipe">
+                                    <label for="thumbnail">File</label>
+                                    <div class="flex items-center">
+                                        <a id="lfm" data-input="file" data-preview="holder" class="pr-2 mt-2 text-white">
+                                            <button id="btn_lfm" class="flex items-center align-middle btn-bs-primary">
+                                                <i class="pr-2 fas fa-camera"></i>
+                                                Pilih
+                                            </button>
+                                        </a>
+                                        <input id="file" class="block w-full py-2 mt-2 form-input" type="text" name="file" value="{{old('file')}}" readonly>
+                                    </div>
+                                    @error('file')
+                                    <div class="alert alert-error">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
                                 </div>
+                                <input type="hidden" name="tipe" value="text">
                             </div>
                             <div class="flex justify-end pt-5">
                                 <button type="submit" class="w-full md:w-auto btn-bs-primary">Tambahkan</button>
@@ -135,5 +160,10 @@
     };
 
     tinymce.init(editor_config);
+</script>
+<!-- upload-button -->
+<script src="{{asset('vendor/laravel-filemanager/js/stand-alone-button.js')}}"></script>
+<script>
+    $('#lfm').filemanager('file');
 </script>
 @endsection

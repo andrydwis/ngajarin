@@ -51,11 +51,20 @@ class EpisodeController extends Controller
     public function store(Course $course, Request $request)
     {
         //
-        $request->validate([
-            'judul' => ['required', 'string'],
-            'deskripsi' => ['required', 'string'],
-            'tipe' => ['required'],
-        ]);
+        if ($request->tipe == 'video') {
+            $request->validate([
+                'judul' => ['required', 'string'],
+                'link' => ['required'],
+                'deskripsi' => ['required', 'string'],
+                'tipe' => ['required'],
+            ]);
+        } elseif ($request->type == 'text') {
+            $request->validate([
+                'judul' => ['required', 'string'],
+                'deskripsi' => ['required', 'string'],
+                'tipe' => ['required'],
+            ]);
+        }
 
         $episode = new Episode();
         $episode->course_id = $course->id;
@@ -63,12 +72,16 @@ class EpisodeController extends Controller
         $episode->slug = Str::slug($request->judul);
         $episode->description = $request->deskripsi;
         $episode->type = $request->tipe;
-        $episode->link = $request->link;
+        if ($request->tipe == 'video') {
+            $episode->link = Str::after($request->link, 'https://youtu.be/');
+        } elseif ($request->type == 'text') {
+            $episode->link = $request->file;
+        }
         $episode->save();
 
         Alert::success('Episode berhasil ditambahkan');
 
-        return redirect()->route('admin.episode.index', ['course' => $course]);
+        return redirect()->route('admin.course.episode.index', ['course' => $course]);
     }
 
     /**
@@ -131,7 +144,7 @@ class EpisodeController extends Controller
 
         Alert::success('Episode berhasil diupdate');
 
-        return redirect()->route('admin.episode.index', ['course' => $course]);
+        return redirect()->route('admin.course.episode.index', ['course' => $course]);
     }
 
     /**
@@ -147,6 +160,6 @@ class EpisodeController extends Controller
 
         Alert::success('Episode berhasil dihapus');
 
-        return redirect()->route('admin.episode.index', ['course' => $course]);
+        return redirect()->route('admin.course.episode.index', ['course' => $course]);
     }
 }

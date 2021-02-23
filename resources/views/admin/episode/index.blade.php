@@ -5,10 +5,30 @@
         <div class="card">
             <div class="flex justify-between card-header">
                 <h4 class="h6">Daftar Episode Course</h4>
-                <a href="{{route('admin.course.episode.create', ['course' => $course])}}" class="btn-bs-primary">Tambah Course</a>
+                <a href="{{route('admin.course.episode.create', ['course' => $course])}}" class="btn-bs-primary">Tambah Episode</a>
             </div>
             <div class="card-body">
-                
+                @foreach($episodes as $episode)
+                @if($episode->type == 'video')
+                <div class="card">
+                    <div class="card-body">
+                        <p>Episode {{$loop->index + 1}}</p>
+                        <img src="http://img.youtube.com/vi/{{$episode->link}}/mqdefault.jpg" alt="">
+                        <p>{{$episode->title}}</p>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$episode->link}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+                @elseif($episode->type == 'text')
+                <div class="card">
+                    <div class="card-body">
+                        <p>Episode {{$loop->index + 1}}</p>
+
+                        <p>{{$episode->title}}</p>
+
+                    </div>
+                </div>
+                @endif
+                @endforeach
             </div>
         </div>
 

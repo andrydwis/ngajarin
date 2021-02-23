@@ -38,7 +38,6 @@
                             </a>
                             <input id="thumbnail" class="block w-full py-2 mt-2 form-input" type="text" name="thumbnail" value="{{old('thumbnail')}}" readonly>
                         </div>
-
                         <div class="mt-8">
                             <label>Thumbnail Preview : </label>
                             <div id="holder" class="w-40 h-40" x-data>
@@ -49,7 +48,6 @@
                                 </button>
                             </div>
                         </div>
-
                         @error('thumbnail')
                         <div class="alert alert-error">
                             {{$message}}
