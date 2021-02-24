@@ -69,6 +69,7 @@
         [readonly].form-input {
             box-shadow: none;
             background-color: rgb(243, 244, 246) !important;
+cursor: not-allowed;
         }
 
         .select2.select2-container {
