@@ -6,7 +6,7 @@
             <h6 class="h6">Tambahkan Episode Baru</h6>
         </div>
         <div class="card-body">
-            <div class="container mb-4" x-data="{ tab: 'video' }">
+            <div class="container mb-4 shadow-md" x-data="{ tab: 'video' }">
                 <!-- tabs -->
                 <ul class="flex mt-6 border-b">
                     <li class="mr-1 -mb-px">
@@ -33,13 +33,13 @@
                                     @enderror
                                 </div>
                                 <div>
-                                    <label for="link">Link</label>
-                                    <input type="text" name="link" id="link" class="form-input py-2 mt-2 block w-full @error('link') is-invalid @enderror" value="{{old('link')}}">
-                                    @error('link')
-                                    <div class="alert alert-error">
-                                        {{$message}}
-                                    </div>
-                                    @enderror
+                                    <label for="link">Link Video <span class="text-xs text-gray-600 lowercase">(ex: https://youtu.be...)</span>
+                                        <input type="text" name="link" id="link" class="form-input py-2 mt-2 block w-full @error('link') is-invalid @enderror" value="{{old('link')}}">
+                                        @error('link')
+                                        <div class="alert alert-error">
+                                            {{$message}}
+                                        </div>
+                                        @enderror
                                 </div>
                                 <div>
                                     <label for="deskripsi">Deskripsi</label>
@@ -83,11 +83,11 @@
                                     @enderror
                                 </div>
                                 <div>
-                                    <label for="thumbnail">File</label>
+                                    <label for="thumbnail">Lampiran <span class="text-xs text-gray-600">(zip, word, pdf, dll)</span></label>
                                     <div class="flex items-center">
                                         <a id="lfm" data-input="file" data-preview="holder" class="pr-2 mt-2 text-white">
                                             <button id="btn_lfm" class="flex items-center align-middle btn-bs-primary">
-                                                <i class="pr-2 fas fa-camera"></i>
+                                                <i class="pr-2 fas fa-file-alt"></i>
                                                 Pilih
                                             </button>
                                         </a>

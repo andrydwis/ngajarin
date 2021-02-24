@@ -109,7 +109,7 @@
 
                 <div class="flex items-center justify-center flex-1 gap-1 px-1 text-gray-700 border-r-2 md:-ml-6 hover:text-blue-600">
                     <!-- link masih disabled -->
-                    <a href="{{-- route('admin.course.episode', $courseId) --}}">
+                    <a href="{{ route('admin.course.episode.index', $courseId) }}">
                         <div class="mr-2 ">
                             <i class="text-4xl md:text-5xl fab fa-youtube"></i>
                         </div>
