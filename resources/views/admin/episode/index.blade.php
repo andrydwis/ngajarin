@@ -4,19 +4,15 @@
     <div>
         <div class="card">
             <div class="flex justify-between card-header">
-                <h6 class="text-base font-bold md:text-lg">
+                <h6 class="text-base font-bold md:text-xl">
                     <span class="hidden sm:inline">Daftar Episode Course -</span> {{$course->title}}
                 </h6>
                 <a href="{{route('admin.course.episode.create', $course->slug)}}" class="flex items-center ml-4 btn-bs-primary">Tambah Episode</a>
             </div>
             <div class="card-body">
                 @foreach($episodes as $episode)
-                <!-- <p>Episode {{$loop->index + 1}}</p>
-                        <img src="http://img.youtube.com/vi/{{$episode->link}}/mqdefault.jpg" alt="">
-                        <p>{{$episode->title}}</p> -->
-                <!-- <iframe class="w-20 h-20" src="https://www.youtube.com/embed/{{$episode->link}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-                
-                <x-index-episode :slug="$episode->slug" :course="$course->slug"  :title="$episode->title" :type="$episode->type" :description="$episode->description" :link="$episode->link">
+
+                <x-index-episode :slug="$episode->slug" :course="$course->slug" :title="$episode->title" :type="$episode->type" :description="$episode->description" :link="$episode->link">
 
                     <x-slot name="episode">
                         <span>{{$loop->index + 1}}</span>
