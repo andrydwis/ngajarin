@@ -16,10 +16,14 @@ class indexEpisode extends Component
     public $description;
     public $type;
     public $link;
+    public $slug;
+    public $course;
+    
 
-    public function __construct($title, $description, $type, $link)
+    public function __construct($title, $description, $type, $link, $slug, $course)
     {
-
+        $this->slug = $slug;
+        $this->course = $course;
         $this->title = $title;
         $this->description = $description;
         $this->type = $type;
