@@ -21,7 +21,7 @@
                         <div x-cloak x-show.transition.origin.top="dropdown" @click.away="dropdown = false" class="absolute z-50 w-40 py-2 mt-5 ml-10 text-left text-gray-500 bg-white border border-gray-300 rounded shadow-md">
                             <!-- item -->
                             @role('admin')
-                            <a href="{{route('admin.course.episode.show', ['course' => $course, 'episode' => $episode])}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900">
+                            <a href="{{route('admin.course.episode.show', ['course' => $course, 'episode' => $episode->slug])}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900">
                                 <i class="mr-1 text-xs fas fa-info"></i>
                                 Detail
                             </a>

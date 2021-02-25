@@ -6,6 +6,7 @@ use Illuminate\View\Component;
 
 class cardCourse extends Component
 {
+    public $slug;
     public $title;
     public $created_date;
     public $students;
@@ -14,7 +15,6 @@ class cardCourse extends Component
     public $thumbnail;
     public $episodes;
     public $level;
-    public $courseId;
 
 
     /**
@@ -23,9 +23,9 @@ class cardCourse extends Component
      * @return void
      */
     
-    public function __construct($title, $level, $tags, $thumbnail, $episodes, $courseId)
+    public function __construct($slug, $title, $level, $tags, $thumbnail, $episodes)
     {
-        $this->courseId = $courseId;
+        $this->slug = $slug;
         $this->title = $title;
         $this->level = $level;
         $this->tags = $tags;

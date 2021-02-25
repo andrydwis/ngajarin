@@ -23,6 +23,14 @@ class Course extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
+    public function episodes(){
+        return $this->hasMany(Episode::class);
+    }
+
+    public function submissions(){
+        return $this->hasMany(Submission::class);
+    }
+
     public function tags(){
         return $this->belongsToMany(Tag::class, 'course_tag');
     }
