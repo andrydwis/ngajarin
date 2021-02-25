@@ -3,7 +3,7 @@
 <div class="w-full p-5 mt-20 md:w-auto lg:w-4/6 xl:w-3/4">
     <div class="card">
         <div class="card-header">
-            <h6 class="h6">Edit Data Course</h6>
+            <h6 class="h6">Data Course {{$course->title}}</h6> 
         </div>
         <div class="card-body">
             <form action="" method="post">

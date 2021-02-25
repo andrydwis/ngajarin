@@ -143,7 +143,7 @@ class EpisodeController extends Controller
             ]);
         }
 
-        $episode = new Episode();
+       
         $episode->course_id = $course->id;
         $episode->title = $request->judul;
         $episode->slug = Str::slug($request->judul);

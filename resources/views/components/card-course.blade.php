@@ -89,7 +89,7 @@
 
                 <div class="flex flex-col items-start pl-5">
                     <h3 class="text-xl font-semibold hover:text-blue-600">
-                        <a href="{{route('admin.course.edit', $slug)}}">{{ $title }}</a>
+                        <a href="{{route('admin.course.show', $slug)}}">{{ $title }}</a>
                     </h3>
 
                     <span class="text-sm tracking-tight text-gray-500"> {{ $level }} </span>
