@@ -12,8 +12,10 @@ class cardCourse extends Component
     public $submission;
     public $tags;
     public $thumbnail;
-    public $courseId;
+    public $episodes;
     public $level;
+    public $courseId;
+
 
     /**
      * Create a new component instance.
@@ -21,13 +23,14 @@ class cardCourse extends Component
      * @return void
      */
     
-    public function __construct($title, $level, $tags, $thumbnail, $courseId)
+    public function __construct($title, $level, $tags, $thumbnail, $episodes, $courseId)
     {
+        $this->courseId = $courseId;
         $this->title = $title;
         $this->level = $level;
         $this->tags = $tags;
         $this->thumbnail = $thumbnail;
-        $this->courseId = $courseId;
+        $this->episodes = $episodes;
     }
 
     /**

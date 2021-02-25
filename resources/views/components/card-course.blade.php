@@ -115,7 +115,7 @@
                         </div>
                     </a>
                     <div class="flex flex-col items-start">
-                        <h3 class="text-xl font-bold md:text-2xl xl:text-3xl">31</h3>
+                        <h3 class="text-xl font-bold md:text-2xl xl:text-3xl">{{$episodes}}</h3>
                         <span class="text-xs tracking-tight text-gray-500 md:text-sm"><span class="hidden sm:inline">Total</span> Episode</span>
                     </div>
 
