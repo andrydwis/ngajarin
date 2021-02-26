@@ -74,7 +74,7 @@ class EpisodeController extends Controller
         $episode->type = $request->tipe;
         if ($request->tipe == 'video') {
             $episode->link = Str::after($request->link, 'https://youtu.be/');
-        } elseif ($request->type == 'text') {
+        } elseif ($request->tipe == 'text') {
             $episode->link = $request->file;
         }
         $episode->save();
@@ -143,7 +143,6 @@ class EpisodeController extends Controller
             ]);
         }
 
-       
         $episode->course_id = $course->id;
         $episode->title = $request->judul;
         $episode->slug = Str::slug($request->judul);
@@ -151,7 +150,7 @@ class EpisodeController extends Controller
         $episode->type = $request->tipe;
         if ($request->tipe == 'video') {
             $episode->link = Str::after($request->link, 'https://youtu.be/');
-        } elseif ($request->type == 'text') {
+        } elseif ($request->tipe == 'text') {
             $episode->link = $request->file;
         }
         $episode->save();

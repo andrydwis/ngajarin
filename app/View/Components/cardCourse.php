@@ -16,7 +16,6 @@ class cardCourse extends Component
     public $episodes;
     public $level;
 
-
     /**
      * Create a new component instance.
      *
@@ -40,7 +39,6 @@ class cardCourse extends Component
      */
     public function render()
     {
-
         return view('components.card-course');
     }
 }
