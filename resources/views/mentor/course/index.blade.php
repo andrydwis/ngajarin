@@ -11,7 +11,7 @@
             <div class="card-body">
                 <div class="flex flex-wrap">
                     @foreach($courses as $course)
-                    <x-cardCourse :title="$course->title" :thumbnail="$course->thumbnail" :courseId="['course' => $course]" :tags="$course->tags" :level="$course->level" />
+                    <x-cardCourse :slug="$course->slug" :title="$course->title" :thumbnail="$course->thumbnail" :tags="$course->tags" :level="$course->level" :episodes="$course->episodes->count()" />
                     @endforeach
                 </div>
             </div>

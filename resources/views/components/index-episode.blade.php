@@ -39,7 +39,10 @@
                     Detail
                 </a>
                 @else
-
+                <a href="{{route('mentor.course.episode.show', [$course, $slug])}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900">
+                    <i class="mr-1 text-xs fas fa-info"></i>
+                    Detail
+                </a>
                 @endrole
                 <!-- end item -->
 
@@ -50,7 +53,10 @@
                     Edit
                 </a>
                 @else
-
+                <a href="{{route('mentor.course.episode.edit', [$course, $slug])}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
+                    <i class="mr-1 text-xs fas fa-edit"></i>
+                    Edit
+                </a>
                 @endrole
                 <!-- end item -->
 
@@ -59,17 +65,21 @@
                 <div x-data>
                     @role('admin')
                     <form action="{{route('admin.course.episode.destroy', [$course, $slug])}}" method="post" class="hidden">
-                        @else
-
-                        @endrole
-
                         @csrf
                         @method('DELETE')
                         <button id="{{ $slug }}" type="submit">
                             Hapus
                         </button>
-
                     </form>
+                    @else
+                    <form action="{{route('mentor.course.episode.destroy', [$course, $slug])}}" method="post" class="hidden">
+                        @csrf
+                        @method('DELETE')
+                        <button id="{{ $slug }}" type="submit">
+                            Hapus
+                        </button>
+                    </form>
+                    @endrole
 
                     <a href="#" @click.prevent="$('#{{ $slug }}').click();" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900">
                         <i class="mr-1 text-xs fas fa-trash"></i>

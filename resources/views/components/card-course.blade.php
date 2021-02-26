@@ -59,21 +59,27 @@
                     <div x-data>
                         @role('admin')
                         <form action="{{route('admin.course.destroy', $slug)}}" method="post" class="hidden">
-                            @else
-                            <form action="{{route('mentor.course.destroy', $slug)}}" method="post" class="hidden">
-                                @endrole
-                                @csrf
-                                @method('DELETE')
-                                <button id="{{ $title }}" type="submit">
-                                    Hapus
-                                </button>
-
-                            </form>
-
-                            <a href="#" @click.prevent="$('#{{ $title }}').click();" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900">
-                                <i class="mr-1 text-xs fas fa-trash"></i>
+                            @csrf
+                            @method('DELETE')
+                            <button id="{{ $title }}" type="submit">
                                 Hapus
-                            </a>
+                            </button>
+                        </form>
+                        @else
+                        <form action="{{route('mentor.course.destroy', $slug)}}" method="post" class="hidden">
+                            @csrf
+                            @method('DELETE')
+                            <button id="{{ $title }}" type="submit">
+                                Hapus
+                            </button>
+                        </form>
+                        @endrole
+
+
+                        <a href="#" @click.prevent="$('#{{ $title }}').click();" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900">
+                            <i class="mr-1 text-xs fas fa-trash"></i>
+                            Hapus
+                        </a>
                     </div>
                     <!-- end item -->
                 </div>
@@ -109,11 +115,19 @@
 
                 <div class="flex items-center justify-center flex-1 gap-1 px-1 text-gray-700 border-r-2 md:-ml-6 hover:text-blue-600">
                     <!-- link masih disabled -->
+                    @role('admin')
                     <a href="{{ route('admin.course.episode.index', $slug) }}">
                         <div class="mr-2 ">
                             <i class="text-4xl md:text-5xl fab fa-youtube"></i>
                         </div>
                     </a>
+                    @else
+                    <a href="{{ route('mentor.course.episode.index', $slug) }}">
+                        <div class="mr-2 ">
+                            <i class="text-4xl md:text-5xl fab fa-youtube"></i>
+                        </div>
+                    </a>
+                    @endrole
                     <div class="flex flex-col items-start">
                         <h3 class="text-xl font-bold md:text-2xl xl:text-3xl">{{$episodes}}</h3>
                         <span class="text-xs tracking-tight text-gray-500 md:text-sm"><span class="hidden sm:inline">Total</span> Episode</span>
