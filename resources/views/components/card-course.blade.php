@@ -10,7 +10,6 @@
                         <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path>
                     </svg>
                 </button>
-
                 <div x-cloak x-show.transition.origin.top="detailOpen" @click.away="detailOpen = false" class="absolute z-50 w-40 py-2 mt-5 ml-10 text-left text-gray-500 bg-white border border-gray-300 rounded shadow-md">
                     <!-- item -->
                     @role('admin')
@@ -25,7 +24,6 @@
                     </a>
                     @endrole
                     <!-- end item -->
-
                     <!-- item -->
                     @role('admin')
                     <a href="{{route('admin.course.edit', $slug)}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
@@ -39,7 +37,6 @@
                     </a>
                     @endrole
                     <!-- end item -->
-
                     <!-- item -->
                     @role('admin')
                     <a href="{{route('admin.course.episode.index', $slug)}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
@@ -53,7 +50,6 @@
                     </a>
                     @endrole
                     <!-- end item -->
-
                     <!-- item -->
                     <!-- form di hidden -->
                     <div x-data>

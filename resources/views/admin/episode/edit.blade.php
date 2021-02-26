@@ -6,7 +6,6 @@
             <h6 class="h6">Edit Data Episode {{$episode->title}}</h6>
         </div>
         <div class="card-body">
-           
             <div class="container mb-4 shadow-md" x-data="{ tab: '{{$episode->type}}' }">
                 <!-- tabs -->
                 <ul class="flex mt-6 border-b">
@@ -35,18 +34,21 @@
                                     @enderror
                                 </div>
                                 <div>
-                                    <label for="link">Link Video <span class="text-xs text-gray-600 lowercase">(ex: https://youtu.be...)</span>
-                                        <input type="text" name="link" id="link" class="form-input py-2 mt-2 block w-full @error('link') is-invalid @enderror" value="{{old('link') ?? $episode->link }}">
-                                        @error('link')
-                                        <div class="alert alert-error">
-                                            {{$message}}
-                                        </div>
-                                        @enderror
+                                    <label for="link">Link Video <span class="text-xs text-gray-600 lowercase">(ex: https://youtu.be...)</span></label>
+                                    @if($episode->type == 'video')
+                                    <input type="text" name="link" id="link" class="form-input py-2 mt-2 block w-full @error('link') is-invalid @enderror" value="{{old('link') ?? $episode->link }}">
+                                    @else
+                                    <input type="text" name="link" id="link" class="form-input py-2 mt-2 block w-full @error('link') is-invalid @enderror" value="{{old('link')}}">
+                                    @endif
+                                    @error('link')
+                                    <div class="alert alert-error">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
                                 </div>
                                 <div>
                                     <label for="deskripsi">Deskripsi</label>
                                     <textarea name="deskripsi" id="deskripsi" class="form-textarea deskripsi @error('deskripsi') is-invalid @enderror">{!! old('deskripsi') ?? $episode->description !!}</textarea>
-                                    
                                     @error('deskripsi')
                                     <div class="alert alert-error">
                                         {{$message}}
@@ -95,7 +97,11 @@
                                                 Pilih
                                             </button>
                                         </a>
-                                        <input id="file" class="block w-full py-2 mt-2 form-input" type="text" name="file" value="{{old('file') ?? $episode->file}}" readonly>
+                                        @if($episode->type == 'text')
+                                        <input type="text" name="file" id="file" class="block w-full py-2 mt-2 form-input" value="{{old('file') ?? $episode->link}}" readonly>
+                                        @else
+                                        <input type="text" name="file" id="file" class="block w-full py-2 mt-2 form-input" value="{{old('file')}}" readonly>
+                                        @endif
                                     </div>
                                     @error('file')
                                     <div class="alert alert-error">
@@ -112,7 +118,6 @@
                     </div>
                     <!-- end of text form -->
                 </div>
-
             </div>
         </div>
     </div>

@@ -27,7 +27,7 @@
                     @else
                     <div>
                         <h6 class="mb-2 text-sm font-semibold md:text-lg">
-                            Petunjuk :
+                            Deskripsi :
                         </h6>
                         <p>
                             {!! $episode->description !!}
@@ -39,22 +39,30 @@
                             Lampiran :
                         </h6>
                         <button>
+                            @if($episode->link)
+                            <a href="{{$episode->link}}">
+                                <div class="grid w-56 h-40 text-gray-600 bg-gray-100 border-2 border-gray-200 hover:bg-gray-50 place-items-center hover:text-gray-400 ">
+                                    <div class="grid gap-1">
+                                        <i class="text-4xl fas fa-file"></i>
+                                        <span class="text-sm text-gray-400">Klik untuk mengunduh</span>
+                                    </div>
+                                </div>
+                            </a>
+                            @else
                             <div class="grid w-56 h-40 text-gray-600 bg-gray-100 border-2 border-gray-200 hover:bg-gray-50 place-items-center hover:text-gray-400 ">
                                 <div class="grid gap-1">
                                     <i class="text-4xl fas fa-file"></i>
-                                    <span class="text-sm text-gray-400">Klik untuk mengunduh</span>
+                                    <span class="text-sm text-gray-400">Tidak ada berkas lampiran</span>
                                 </div>
                             </div>
+                            @endif
                         </button>
                     </div>
                     @endif
-
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>
 @endsection
 
