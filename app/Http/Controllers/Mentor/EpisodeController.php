@@ -68,7 +68,7 @@ class EpisodeController extends Controller
 
         Alert::success('Episode berhasil ditambahkan');
 
-        return redirect()->route('mentor.episode.index', ['course' => $course]);
+        return redirect()->route('mentor.course.episode.index', ['course' => $course]);
     }
 
     /**
@@ -131,7 +131,7 @@ class EpisodeController extends Controller
 
         Alert::success('Episode berhasil diupdate');
 
-        return redirect()->route('mentor.episode.index', ['course' => $course]);
+        return redirect()->route('mentor.course.episode.index', ['course' => $course]);
     }
 
     /**
@@ -147,6 +147,6 @@ class EpisodeController extends Controller
 
         Alert::success('Episode berhasil dihapus');
 
-        return redirect()->route('mentor.episode.index', ['course' => $course]);
+        return redirect()->route('mentor.course.episode.index', ['course' => $course]);
     }
 }

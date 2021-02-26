@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{config('app.name')}}</title>
-        <link rel="stylesheet" href="{{asset('vendor/fontawesome-free/css/all.css')}}">
+    <link rel="stylesheet" href="{{asset('vendor/fontawesome-free/css/all.css')}}">
 
     <link href="{{ asset('css/new-admin.css') }}" rel="stylesheet">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
@@ -69,7 +69,7 @@
         [readonly].form-input {
             box-shadow: none;
             background-color: rgb(243, 244, 246) !important;
-cursor: not-allowed;
+            cursor: not-allowed;
         }
 
         .select2.select2-container {
@@ -98,7 +98,7 @@ cursor: not-allowed;
             max-width: 100%;
             height: auto;
         }
-    </style>>
+    </style>
     @yield('customCSS')
 </head>
 
@@ -106,7 +106,7 @@ cursor: not-allowed;
 
     @include('layouts.mentor.navbar')
 
-    <div class="flex flex-row flex-wrap h-screen bg-gray-50">
+    <div class="flex flex-row flex-wrap h-screen bg-gray-100">
 
         @include('layouts.mentor.sidebar')
 
