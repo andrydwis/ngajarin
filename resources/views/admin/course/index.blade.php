@@ -10,7 +10,8 @@
             <div class="card-body">
                 <div class="flex flex-wrap">
                     @foreach($courses as $course)
-                    <x-cardCourse :slug="$course->slug"  :title="$course->title" :thumbnail="$course->thumbnail" :tags="$course->tags" :level="$course->level" :episodes="$course->episodes->count()" />
+                    <x-cardCourse :slug="$course->slug"  :title="$course->title" :thumbnail="$course->thumbnail" :tags="$course->tags" :level="$course->level" :episodes="$course->episodes->count()"  />
+                    <!-- :submission="$course->submission->count()" -->
                     @endforeach
                 </div>
             </div>

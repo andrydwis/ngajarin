@@ -53,14 +53,13 @@ class SubmissionController extends Controller
         //
         $request->validate([
             'tugas' => ['required', 'string'],
-            'deadline' => ['required', 'after:' . Carbon::now()]
         ]);
 
         $submission = new Submission();
         $submission->course_id = $course->id;
         $submission->task = $submission->tugas;
         $submission->file = $request->berkas;
-        $submission->deadline = $request->deadline;
+
         $submission->save();
 
         Alert::success('Submission berhasil dibuat');
@@ -114,13 +113,12 @@ class SubmissionController extends Controller
         //
         $request->validate([
             'tugas' => ['required', 'string'],
-            'deadline' => ['required']
         ]);
 
         $submission->course_id = $course->id;
         $submission->task = $submission->tugas;
         $submission->file = $request->berkas;
-        $submission->deadline = $request->deadline;
+
         $submission->save();
 
         Alert::success('Submission berhasil diupdate');
