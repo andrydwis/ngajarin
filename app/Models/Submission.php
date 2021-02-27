@@ -11,6 +11,8 @@ class Submission extends Model
 
     protected $fillable = [
         'course_id',
+        'title',
+        'slug',
         'task',
         'file',
         'deadline'

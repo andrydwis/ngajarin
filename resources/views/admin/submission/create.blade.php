@@ -6,55 +6,63 @@
             <h6 class="h6">Tambahkan Submission Baru</h6>
         </div>
         <div class="card-body">
-            <div class="container mb-4 shadow-md"">
-              
-                <div class="px-4 py-4 pt-4 bg-white border-b border-l border-r  content">
+            <div class="container mb-4">
 
-                <!-- text form -->
-                <div>
-                    <form action="{{route('admin.course.submission.store', ['course' => $course->slug])}}" method="post">
-                        @csrf
-                        <div class="grid gap-6 pt-5">
-                            <div>
-                                <div class="mb-2">
-                                    <label for="task">Deskripsi Tugas</label>
+                <div class=" px-4 py-4 pt-4 bg-white">
+                    <!-- text form -->
+                    <div>
+                        <form action="{{route('admin.course.submission.store', ['course' => $course->slug])}}" method="post">
+                            @csrf
+                            <div class="grid gap-6 pt-5">
+                                <div>
+                                    <label for="judul">Judul</label>
+                                    <input type="text" name="judul" id="judul" class="form-input py-2 mt-2 block w-full @error('judul') is-invalid @enderror" value="{{old('judul')}}">
+                                    @error('judul')
+                                    <div class="alert alert-error">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
                                 </div>
-                                <textarea name="task" id="task" class="form-textarea task @error('task') is-invalid @enderror">{!! old('task') !!}</textarea>
-                                @error('task')
-                                <div class="alert alert-error">
-                                    {{$message}}
+                                <div>
+                                    <div class="mb-2">
+                                        <label for="tugas">Deskripsi Tugas</label>
+                                    </div>
+                                    <textarea name="tugas" id="tugas" class="form-textarea task @error('tugas') is-invalid @enderror">{!! old('tugas') !!}</textarea>
+                                    @error('tugas')
+                                    <div class="alert alert-error">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
                                 </div>
-                                @enderror
+                                <div>
+                                    <label for="file">Lampiran <span class="text-xs text-gray-600">(zip, word, pdf, dll)</span></label>
+                                    <div class="flex items-center">
+                                        <a id="lfm" data-input="file" data-preview="holder" class="pr-2 mt-2 text-white">
+                                            <button id="btn_lfm" class="flex items-center align-middle btn-bs-primary">
+                                                <i class="pr-2 fas fa-file-alt"></i>
+                                                Pilih
+                                            </button>
+                                        </a>
+                                        <input id="file" class="block w-full py-2 mt-2 form-input" type="text" name="file" value="{{old('file')}}" readonly>
+                                    </div>
+                                    @error('file')
+                                    <div class="alert alert-error">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
+                                </div>
                             </div>
-                            <div>
-                                <label for="file">Lampiran <span class="text-xs text-gray-600">(zip, word, pdf, dll)</span></label>
-                                <div class="flex items-center">
-                                    <a id="lfm" data-input="file" data-preview="holder" class="pr-2 mt-2 text-white">
-                                        <button id="btn_lfm" class="flex items-center align-middle btn-bs-primary">
-                                            <i class="pr-2 fas fa-file-alt"></i>
-                                            Pilih
-                                        </button>
-                                    </a>
-                                    <input id="file" class="block w-full py-2 mt-2 form-input" type="text" name="file" value="{{old('file')}}" readonly>
-                                </div>
-                                @error('file')
-                                <div class="alert alert-error">
-                                    {{$message}}
-                                </div>
-                                @enderror
+                            <div class="flex justify-end pt-5">
+                                <button type="submit" class="w-full md:w-auto btn-bs-primary">Tambahkan</button>
                             </div>
-                        </div>
-                        <div class="flex justify-end pt-5">
-                            <button type="submit" class="w-full md:w-auto btn-bs-primary">Tambahkan</button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+                    <!-- end of text form -->
                 </div>
-                <!-- end of text form -->
-            </div>
 
+            </div>
         </div>
     </div>
-</div>
 </div>
 </div>
 @endsection

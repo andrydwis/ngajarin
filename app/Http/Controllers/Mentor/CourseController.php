@@ -8,6 +8,7 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class CourseController extends Controller
@@ -52,7 +53,7 @@ class CourseController extends Controller
     {
         //
         $request->validate([
-            'judul' => ['required', 'string'],
+            'judul' => ['required', 'string', Rule::unique('courses', 'title')],
             'deskripsi' => ['required', 'string'],
             'level' => ['required'],
         ]);
@@ -120,7 +121,7 @@ class CourseController extends Controller
     {
         //
         $request->validate([
-            'judul' => ['required', 'string'],
+            'judul' => ['required', 'string', Rule::unique('courses', 'title')],
             'deskripsi' => ['required', 'string'],
             'level' => ['required'],
         ]);

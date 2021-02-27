@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\Episode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class EpisodeController extends Controller
@@ -51,11 +52,20 @@ class EpisodeController extends Controller
     public function store(Course $course, Request $request)
     {
         //
-        $request->validate([
-            'judul' => ['required', 'string'],
-            'deskripsi' => ['required', 'string'],
-            'tipe' => ['required'],
-        ]);
+        if ($request->tipe == 'video') {
+            $request->validate([
+                'judul' => ['required', 'string', Rule::unique('episodes', 'title')],
+                'link' => ['required'],
+                'deskripsi' => ['required', 'string'],
+                'tipe' => ['required'],
+            ]);
+        } elseif ($request->type == 'text') {
+            $request->validate([
+                'judul' => ['required', 'string', Rule::unique('episodes', 'title')],
+                'deskripsi' => ['required', 'string'],
+                'tipe' => ['required'],
+            ]);
+        }
 
         $episode = new Episode();
         $episode->course_id = $course->id;
@@ -63,7 +73,11 @@ class EpisodeController extends Controller
         $episode->slug = Str::slug($request->judul);
         $episode->description = $request->deskripsi;
         $episode->type = $request->tipe;
-        $episode->link = $request->link;
+        if ($request->tipe == 'video') {
+            $episode->link = Str::after($request->link, 'https://youtu.be/');
+        } elseif ($request->tipe == 'text') {
+            $episode->link = $request->file;
+        }
         $episode->save();
 
         Alert::success('Episode berhasil ditambahkan');
@@ -115,18 +129,31 @@ class EpisodeController extends Controller
     public function update(Request $request, Course $course, Episode $episode)
     {
         //
-        $request->validate([
-            'judul' => ['required', 'string'],
-            'deskripsi' => ['required', 'string'],
-            'tipe' => ['required'],
-        ]);
+        if ($request->tipe == 'video') {
+            $request->validate([
+                'judul' => ['required', 'string', Rule::unique('episodes', 'title')],
+                'link' => ['required'],
+                'deskripsi' => ['required', 'string'],
+                'tipe' => ['required'],
+            ]);
+        } elseif ($request->type == 'text') {
+            $request->validate([
+                'judul' => ['required', 'string', Rule::unique('episodes', 'title')],
+                'deskripsi' => ['required', 'string'],
+                'tipe' => ['required'],
+            ]);
+        }
 
         $episode->course_id = $course->id;
         $episode->title = $request->judul;
         $episode->slug = Str::slug($request->judul);
         $episode->description = $request->deskripsi;
         $episode->type = $request->tipe;
-        $episode->link = $request->link;
+        if ($request->tipe == 'video') {
+            $episode->link = Str::after($request->link, 'https://youtu.be/');
+        } elseif ($request->tipe == 'text') {
+            $episode->link = $request->file;
+        }
         $episode->save();
 
         Alert::success('Episode berhasil diupdate');

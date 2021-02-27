@@ -10,12 +10,8 @@
                 <a href="{{route('admin.course.submission.create', $course->slug)}}" class="flex items-center ml-4 btn-bs-primary">Tambah Submission</a>
             </div>
             <div class="card-body">
-                @foreach($submission as $submission)
-               {{!! <x-index-episode :slug="$episode->slug" :course="$course->slug" :title="$episode->title" :type="$episode->type" :description="$episode->description" :link="$episode->link">
-                    <x-slot name="episode">
-                        <span>{{$loop->index + 1}}</span>
-                    </x-slot>
-                </x-index-episode> !!}}
+                @foreach($submissions as $submission)
+                <!-- durung mbok benakno komponen e ndul -->
                 <span> submission ke-{{$loop->index + 1}}</span>
                 @endforeach
             </div>

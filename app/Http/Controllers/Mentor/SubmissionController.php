@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\Submission;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class SubmissionController extends Controller
@@ -52,15 +53,19 @@ class SubmissionController extends Controller
     {
         //
         $request->validate([
+            'judul' => ['required', 'string'],
             'tugas' => ['required', 'string'],
-            'deadline' => ['required', 'after:' . Carbon::now()]
+            'deadline' => ['required']
         ]);
 
         $submission = new Submission();
         $submission->course_id = $course->id;
-        $submission->task = $submission->tugas;
+        $submission->title = $request->judul;
+        $submission->slug = Str::slug($request->judul);
+        $submission->task = $request->tugas;
         $submission->file = $request->berkas;
         $submission->deadline = $request->deadline;
+
         $submission->save();
 
         Alert::success('Submission berhasil dibuat');
@@ -113,14 +118,17 @@ class SubmissionController extends Controller
     {
         //
         $request->validate([
+            'judul' => ['required', 'string'],
             'tugas' => ['required', 'string'],
             'deadline' => ['required']
         ]);
 
         $submission->course_id = $course->id;
-        $submission->task = $submission->tugas;
+        $submission->title = $request->judul;
+        $submission->slug = Str::slug($request->judul);
+        $submission->task = $request->tugas;
         $submission->file = $request->berkas;
-        $submission->deadline = $request->deadline;
+
         $submission->save();
 
         Alert::success('Submission berhasil diupdate');

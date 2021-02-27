@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\Episode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class EpisodeController extends Controller
@@ -53,14 +54,14 @@ class EpisodeController extends Controller
         //
         if ($request->tipe == 'video') {
             $request->validate([
-                'judul' => ['required', 'string'],
+                'judul' => ['required', 'string', Rule::unique('episodes', 'title')],
                 'link' => ['required'],
                 'deskripsi' => ['required', 'string'],
                 'tipe' => ['required'],
             ]);
         } elseif ($request->type == 'text') {
             $request->validate([
-                'judul' => ['required', 'string'],
+                'judul' => ['required', 'string', Rule::unique('episodes', 'title')],
                 'deskripsi' => ['required', 'string'],
                 'tipe' => ['required'],
             ]);
@@ -130,14 +131,14 @@ class EpisodeController extends Controller
         //
         if ($request->tipe == 'video') {
             $request->validate([
-                'judul' => ['required', 'string'],
+                'judul' => ['required', 'string', Rule::unique('episodes', 'title')],
                 'link' => ['required'],
                 'deskripsi' => ['required', 'string'],
                 'tipe' => ['required'],
             ]);
         } elseif ($request->type == 'text') {
             $request->validate([
-                'judul' => ['required', 'string'],
+                'judul' => ['required', 'string', Rule::unique('episodes', 'title')],
                 'deskripsi' => ['required', 'string'],
                 'tipe' => ['required'],
             ]);

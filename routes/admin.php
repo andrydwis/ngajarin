@@ -28,27 +28,27 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::patch('/admin/course/edit/{course:slug}', [CourseController::class, 'update'])->name('admin.course.update');
     Route::delete('/admin/course/destroy/{course:slug}', [CourseController::class, 'destroy'])->name('admin.course.destroy');
 
-    Route::get('/admin/course/episode/{course:slug}', [EpisodeController::class, 'index'])->name('admin.course.episode.index');
-    Route::get('/admin/course/episode/create/{course:slug}', [EpisodeController::class, 'create'])->name('admin.course.episode.create');
-    Route::post('/admin/course/episode/create/{course:slug}', [EpisodeController::class, 'store'])->name('admin.course.episode.store');
-    Route::get('/admin/course/episode/show/{course:slug}/{episode:slug}', [EpisodeController::class, 'show'])->name('admin.course.episode.show');
-    Route::get('/admin/course/episode/edit/{course:slug}/{episode:slug}', [EpisodeController::class, 'edit'])->name('admin.course.episode.edit');
-    Route::patch('/admin/course/episode/edit/{course:slug}/{episode:slug}', [EpisodeController::class, 'update'])->name('admin.course.episode.update');
-    Route::delete('/admin/course/episode/destroy/{course:slug}/{episode:slug}', [EpisodeController::class, 'destroy'])->name('admin.course.episode.destroy');
+    Route::get('/admin/course/{course:slug}/episode', [EpisodeController::class, 'index'])->name('admin.course.episode.index');
+    Route::get('/admin/course/{course:slug}/episode/create', [EpisodeController::class, 'create'])->name('admin.course.episode.create');
+    Route::post('/admin/course/{course:slug}/episode/create', [EpisodeController::class, 'store'])->name('admin.course.episode.store');
+    Route::get('/admin/course/{course:slug}/episode/show/{episode:slug}', [EpisodeController::class, 'show'])->name('admin.course.episode.show');
+    Route::get('/admin/course/{course:slug}/episode/edit/{episode:slug}', [EpisodeController::class, 'edit'])->name('admin.course.episode.edit');
+    Route::patch('/admin/course/{course:slug}/episode/edit/{episode:slug}', [EpisodeController::class, 'update'])->name('admin.course.episode.update');
+    Route::delete('/admin/course/{course:slug}/episode/destroy/{episode:slug}', [EpisodeController::class, 'destroy'])->name('admin.course.episode.destroy');
 
-    Route::get('/admin/course/submission/{course:slug}', [SubmissionController::class, 'index'])->name('admin.course.submission.index');
-    Route::get('/admin/course/submission/create/{course:slug}', [SubmissionController::class, 'create'])->name('admin.course.submission.create');
-    Route::post('/admin/course/submission/create/{course:slug}', [SubmissionController::class, 'store'])->name('admin.course.submission.store');
-    Route::get('/admin/course/submission/show/{course:slug}/{submission}', [SubmissionController::class, 'show'])->name('admin.course.submission.show');
-    Route::get('/admin/course/submission/edit/{course:slug}/{submission}', [SubmissionController::class, 'edit'])->name('admin.course.submission.edit');
-    Route::patch('/admin/course/submission/edit/{course:slug}/{submission}', [SubmissionController::class, 'update'])->name('admin.course.submission.update');
-    Route::delete('/admin/course/submission/destroy/{course:slug}/{submission}', [SubmissionController::class, 'destroy'])->name('admin.course.submission.destroy');
+    Route::get('/admin/course/{course:slug}/submission', [SubmissionController::class, 'index'])->name('admin.course.submission.index');
+    Route::get('/admin/course/{course:slug}/submission/create', [SubmissionController::class, 'create'])->name('admin.course.submission.create');
+    Route::post('/admin/course/{course:slug}/submission/create', [SubmissionController::class, 'store'])->name('admin.course.submission.store');
+    Route::get('/admin/course/{course:slug}/submission/show/{submission:slug}', [SubmissionController::class, 'show'])->name('admin.course.submission.show');
+    Route::get('/admin/course/{course:slug}/submission/edit/{submission:slug}', [SubmissionController::class, 'edit'])->name('admin.course.submission.edit');
+    Route::patch('/admin/course/{course:slug}/submission/edit/{submission:slug}', [SubmissionController::class, 'update'])->name('admin.course.submission.update');
+    Route::delete('/admin/course/{course:slug}/submission/destroy/{submission:slug}', [SubmissionController::class, 'destroy'])->name('admin.course.submission.destroy');
 
-    Route::get('/admin/course/certificate/{course:slug}', [CertificateController::class, 'index'])->name('admin.course.certificate.index');
-    Route::get('/admin/course/certificate/create/{course:slug}', [CertificateController::class, 'create'])->name('admin.course.certificate.create');
-    Route::post('/admin/course/certificate/create/{course:slug}', [CertificateController::class, 'store'])->name('admin.course.certificate.store');
-    Route::get('/admin/course/certificate/show/{course:slug}/{certificate}', [CertificateController::class, 'show'])->name('admin.course.certificate.show');
-    Route::get('/admin/course/certificate/edit/{course:slug}/{certificate}', [CertificateController::class, 'edit'])->name('admin.course.certificate.edit');
-    Route::patch('/admin/course/certificate/edit/{course:slug}/{certificate}', [CertificateController::class, 'update'])->name('admin.course.certificate.update');
-    Route::delete('/admin/course/certificate/destroy/{course:slug}/{certificate}', [CertificateController::class, 'destroy'])->name('admin.course.certificate.destroy');
+    Route::get('/admin/course/{course:slug}/certificate', [CertificateController::class, 'index'])->name('admin.course.certificate.index');
+    Route::get('/admin/course/{course:slug}/certificate/create', [CertificateController::class, 'create'])->name('admin.course.certificate.create');
+    Route::post('/admin/course/{course:slug}/certificate/create', [CertificateController::class, 'store'])->name('admin.course.certificate.store');
+    Route::get('/admin/course/{course:slug}/certificate/show/{certificate}', [CertificateController::class, 'show'])->name('admin.course.certificate.show');
+    Route::get('/admin/course/{course:slug}/certificate/edit/{certificate}', [CertificateController::class, 'edit'])->name('admin.course.certificate.edit');
+    Route::patch('/admin/course/{course:slug}/certificate/edit/{certificate}', [CertificateController::class, 'update'])->name('admin.course.certificate.update');
+    Route::delete('/admin/course/{course:slug}/certificate/destroy/{certificate}', [CertificateController::class, 'destroy'])->name('admin.course.certificate.destroy');
 });

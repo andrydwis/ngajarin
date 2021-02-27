@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Submission;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class SubmissionController extends Controller
@@ -21,7 +22,7 @@ class SubmissionController extends Controller
         //
         $data = [
             'course' => $course,
-            'submission' => Submission::where('course_id', $course->id)->get(),
+            'submissions' => Submission::where('course_id', $course->id)->get(),
         ];
 
         return view('admin.submission.index', $data);
@@ -52,19 +53,22 @@ class SubmissionController extends Controller
     {
         //
         $request->validate([
+            'judul' => ['required', 'string', Rule::unique('submissions', 'title')],
             'tugas' => ['required', 'string'],
         ]);
 
         $submission = new Submission();
         $submission->course_id = $course->id;
-        $submission->task = $submission->tugas;
+        $submission->title = $request->judul;
+        $submission->slug = Str::slug($request->judul);
+        $submission->task = $request->tugas;
         $submission->file = $request->berkas;
 
         $submission->save();
 
         Alert::success('Submission berhasil dibuat');
 
-        return redirect()->route('admin.submission.index', ['course' => $course]);
+        return redirect()->route('admin.course.submission.index', ['course' => $course]);
     }
 
     /**
@@ -112,18 +116,21 @@ class SubmissionController extends Controller
     {
         //
         $request->validate([
+            'judul' => ['required', 'string', Rule::unique('submissions', 'title')],
             'tugas' => ['required', 'string'],
         ]);
 
         $submission->course_id = $course->id;
-        $submission->task = $submission->tugas;
+        $submission->title = $request->judul;
+        $submission->slug = Str::slug($request->judul);
+        $submission->task = $request->tugas;
         $submission->file = $request->berkas;
 
         $submission->save();
 
         Alert::success('Submission berhasil diupdate');
 
-        return redirect()->route('admin.submission.index', ['course' => $course]);
+        return redirect()->route('admin.course.submission.index', ['course' => $course]);
     }
 
     /**
@@ -139,6 +146,6 @@ class SubmissionController extends Controller
 
         Alert::success('Submission berhasil dihapus');
 
-        return redirect()->route('admin.submission.index', ['course' => $course]);
+        return redirect()->route('admin.course.submission.index', ['course' => $course]);
     }
 }
