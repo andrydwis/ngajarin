@@ -52,16 +52,17 @@
                     </a>
                     @endrole
                     <!-- end item -->
-                    
+
                     <!-- item -->
                     @role('admin')
                     <a href="{{route('admin.course.submission.index', $slug)}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
-                        <i class="mr-1 text-xs fas fa-clipboard"></i>
+                        <i class="mr-1 text-sm fas fa-clipboard"></i>
                         Submission
                     </a>
+                    <hr>
                     @else
                     <a href="{{route('mentor.course.submission.index', $slug)}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
-                        <i class="mr-1 text-xs fas fa-clipboard"></i>
+                        <i class="mr-1 text-sm fas fa-clipboard"></i>
                         Submission
                     </a>
                     @endrole
@@ -150,12 +151,22 @@
 
 
                 <!-- kanan -->
-                <div class="flex items-center justify-center flex-1 gap-1 px-1 text-gray-700">
-                    <div class="mr-2 ">
-                        <i class="text-4xl md:text-5xl fas fa-clipboard"></i>
-                    </div>
+                <div class="flex items-center justify-center flex-1 gap-1 px-1 text-gray-700 hover:text-blue-600">
+                    @role('admin')
+                    <a href="{{ route('admin.course.submission.index', $slug) }}">
+                        <div class="mr-2 ">
+                            <i class="text-4xl md:text-5xl fas fa-clipboard"></i>
+                        </div>
+                    </a>
+                    @else
+                    <a href="{{ route('mentor.course.submission.index', $slug) }}">
+                        <div class="mr-2 ">
+                            <i class="text-4xl md:text-5xl fas fa-clipboard"></i>
+                        </div>
+                    </a>
+                    @endrole
                     <div class="flex flex-col items-start">
-                        <h3 class="text-xl font-bold md:text-2xl xl:text-3xl">11</h3>
+                        <h3 class="text-xl font-bold md:text-2xl xl:text-3xl"> {{$submission}} </h3>
                         <span class="text-xs tracking-tight text-gray-500 md:text-sm"> Submission</span>
                     </div>
                 </div>

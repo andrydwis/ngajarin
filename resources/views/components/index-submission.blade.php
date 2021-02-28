@@ -1,14 +1,21 @@
 <div class="pb-2">
     <div id="wrapper_dropdown" class="flex w-full p-3 bg-gray-200 rounded-full hover:bg-gray-300">
         <div class="flex items-center gap-4">
-            <a href="{{route('admin.course.submission.show', [$course, $slug])}}" class="">
-
+            @role('admin')
+            <a href="{{route('admin.course.submission.show', [$course, $slug])}}">
                 <div class="grid w-8 h-8 bg-gray-500 rounded-full md:w-12 md:h-12 place-items-center">
                     <i class="text-xs text-gray-200 hover:text-gray-400 md:text-xl fas fa-clipboard-list"></i>
                 </div>
-
             </a>
+            @else
+            <a href="{{route('mentor.course.submission.show', [$course, $slug])}}">
+                <div class="grid w-8 h-8 bg-gray-500 rounded-full md:w-12 md:h-12 place-items-center">
+                    <i class="text-xs text-gray-200 hover:text-gray-400 md:text-xl fas fa-clipboard-list"></i>
+                </div>
+            </a>
+            @endrole
             <div class="flex flex-col">
+                @role('admin')
                 <a href="{{route('admin.course.submission.show', [$course, $slug])}}">
                     <span class="inline text-xs font-semibold text-gray-800 sm:hidden md:font-bold md:text-base">
                         {{ Str::limit($title, $limit = 14) }}
@@ -17,6 +24,16 @@
                         {{ $title }}
                     </span>
                 </a>
+                @else
+                <a href="{{route('mentor.course.submission.show', [$course, $slug])}}">
+                    <span class="inline text-xs font-semibold text-gray-800 sm:hidden md:font-bold md:text-base">
+                        {{ Str::limit($title, $limit = 14) }}
+                    </span>
+                    <span class="hidden text-sm font-semibold text-gray-800 sm:inline md:font-bold md:text-base">
+                        {{ $title }}
+                    </span>
+                </a>
+                @endrole
                 <span class="text-xs text-gray-600 md:text-sm">Submission {{ $submission }} </span>
             </div>
         </div>

@@ -22,7 +22,7 @@ class cardCourse extends Component
      * @return void
      */
     
-    public function __construct($slug, $title, $level, $tags, $thumbnail, $episodes)
+    public function __construct($slug, $title, $level, $tags, $thumbnail, $episodes, $submission)
     {
         $this->slug = $slug;
         $this->title = $title;
@@ -30,6 +30,7 @@ class cardCourse extends Component
         $this->tags = $tags;
         $this->thumbnail = $thumbnail;
         $this->episodes = $episodes;
+        $this->submission = $submission;
     }
 
     /**
