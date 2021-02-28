@@ -11,8 +11,11 @@
             </div>
             <div class="card-body">
                 @foreach($submissions as $submission)
-                <!-- durung mbok benakno komponen e ndul -->
-                <span> submission ke-{{$loop->index + 1}}</span>
+                <x-index-submission :slug="$submission->slug" :course="$course->slug" :title="$submission->title" :task="$submission->task" :file="$submission->file">
+                    <x-slot name="submission">
+                        {{$loop->index + 1}}
+                    </x-slot>
+                </x-index-submission>
                 @endforeach
             </div>
         </div>
