@@ -18,7 +18,7 @@
                                 <div>
                                     <label for="judul">Judul</label>
                                     <input type="text" name="judul" id="judul" class="form-input py-2 mt-2 block w-full @error('judul') is-invalid @enderror" value="{{old('title') ?? $submission->title }}">
-                                    @error('title')
+                                    @error('judul')
                                     <div class="alert alert-error">
                                         {{$message}}
                                     </div>
@@ -29,7 +29,7 @@
                                         <label for="tugas">Deskripsi Tugas</label>
                                     </div>
                                     <textarea name="tugas" id="tugas" class="form-textarea task @error('task') is-invalid @enderror">{!! old('task') ?? $submission->task !!}</textarea>
-                                    @error('task')
+                                    @error('tugas')
                                     <div class="alert alert-error">
                                         {{$message}}
                                     </div>
@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                             <div class="flex justify-end pt-5">
-                                <button type="submit" class="w-full md:w-auto btn-bs-primary">Tambahkan</button>
+                                <button type="submit" class="w-full md:w-auto btn-bs-primary">Update</button>
                             </div>
                         </form>
                     </div>

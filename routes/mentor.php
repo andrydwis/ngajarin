@@ -28,10 +28,10 @@ Route::middleware(['auth', 'verified', 'role:mentor'])->group(function () {
     Route::get('/mentor/course/{course:slug}/submission', [SubmissionController::class, 'index'])->name('mentor.course.submission.index');
     Route::get('/mentor/course/{course:slug}/submission/create', [SubmissionController::class, 'create'])->name('mentor.course.submission.create');
     Route::post('/mentor/course/{course:slug}/submission/create', [SubmissionController::class, 'store'])->name('mentor.course.submission.store');
-    Route::get('/mentor/course/{course:slug}/submission/show/{submission}', [SubmissionController::class, 'show'])->name('mentor.course.submission.show');
-    Route::get('/mentor/course/{course:slug}/submission/edit/{submission}', [SubmissionController::class, 'edit'])->name('mentor.course.submission.edit');
-    Route::patch('/mentor/course/{course:slug}/submission/edit/{submission}', [SubmissionController::class, 'update'])->name('mentor.course.submission.update');
-    Route::delete('/mentor/course/{course:slug}/submission/destroy/{submission}', [SubmissionController::class, 'destroy'])->name('mentor.course.submission.destroy');
+    Route::get('/mentor/course/{course:slug}/submission/show/{submission:slug}', [SubmissionController::class, 'show'])->name('mentor.course.submission.show');
+    Route::get('/mentor/course/{course:slug}/submission/edit/{submission:slug}', [SubmissionController::class, 'edit'])->name('mentor.course.submission.edit');
+    Route::patch('/mentor/course/{course:slug}/submission/edit/{submission:slug}', [SubmissionController::class, 'update'])->name('mentor.course.submission.update');
+    Route::delete('/mentor/course/{course:slug}/submission/destroy/{submission:slug}', [SubmissionController::class, 'destroy'])->name('mentor.course.submission.destroy');
 
     Route::get('/mentor/classroom', [ClassroomController::class, 'index'])->name('mentor.classroom.index');
     Route::get('/mentor/classroom/create', [ClassroomController::class, 'create'])->name('mentor.classroom.create');

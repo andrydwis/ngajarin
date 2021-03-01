@@ -62,7 +62,7 @@ class SubmissionController extends Controller
         $submission->title = $request->judul;
         $submission->slug = Str::slug($request->judul);
         $submission->task = $request->tugas;
-        $submission->file = $request->berkas;
+        $submission->file = $request->file;
 
         $submission->save();
 
@@ -116,7 +116,7 @@ class SubmissionController extends Controller
     {
         //
         $request->validate([
-            'judul' => ['required', 'string', Rule::unique('submissions', 'title')],
+            'judul' => ['required', 'string', Rule::unique('submissions', 'title')->ignore($submission)],
             'tugas' => ['required', 'string'],
         ]);
 
@@ -124,7 +124,7 @@ class SubmissionController extends Controller
         $submission->title = $request->judul;
         $submission->slug = Str::slug($request->judul);
         $submission->task = $request->tugas;
-        $submission->file = $request->berkas;
+        $submission->file = $request->file;
 
         $submission->save();
 
