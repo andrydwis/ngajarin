@@ -1,0 +1,7 @@
+.input-text-icon {
+    @apply w-full px-3 py-3 text-gray-700 placeholder-gray-400 rounded-lg outline-none focus:outline-none pl-11;
+}
+
+.input-text {
+    @apply block w-full px-3 py-2 placeholder-gray-400 bg-white border-2 border-gray-300 rounded-lg shadow-md focus:bg-white focus:outline-none focus:border-gray-600 focus:placeholder-gray-500;
+}

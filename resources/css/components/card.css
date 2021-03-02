@@ -1,0 +1,25 @@
+.card {
+    @apply bg-white border border-gray-300 rounded;
+    .card-header {
+        @apply p-6 border-b;
+    }
+    .card-body {
+        @apply p-6;
+    }
+    .card-footer {
+        @apply p-6 border-t;
+    }
+}
+
+.report-card {
+    .card:hover {
+        @apply transform scale-105 border-white shadow-lg;
+    }
+    .footer {
+        @apply p-0 border-0;
+    }
+    .footer,
+    .card {
+        @apply transition-all duration-300 ease-in-out;
+    }
+}

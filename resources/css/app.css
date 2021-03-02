@@ -1,18 +1,45 @@
+/* tailwind */
 @import "tailwindcss/base";
 @import "tailwindcss/components";
+
+
+/* fonts */
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&family=Nunito&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Ubuntu&display=swap");
+
+
+/* custom components */
+@import "components/input.css";
+@import "components/alert.css";
+@import "components/button.css";
+@import "components/card.css";
+@import "components/code.css";
+@import "components/typography.css";
+@import "components/badge.css";
+@import "components/select2_custom.css";
+@import "components/datatables_custom.css";
+
+
+/* plugin */
+@import "@tailwindcss/custom-forms/dist/custom-forms.min.css";
+@import "../../node_modules/@tailwindcss/typography/dist/typography.css";
+
+
+/* tailwind utilities, di pasang di akhir biar bisa override lewat component & template*/
 @import "tailwindcss/utilities";
 
-@import "button.css";
-@import "input.css";
-@import "alert";
 
-@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&family=Nunito&display=swap");
 
-code {
-    @apply border-l-8 border-blue-500 py-5 text-sm md:text-lg  !important;
-    font-family: "Fira Code", monospace !important;
+
+/* global styling */
+body {
+    font-family: "Ubuntu";
+    table-layout: auto !important;
 }
 
+[x-cloak] {
+    display: none;
+}
 
 
 
