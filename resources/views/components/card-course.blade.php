@@ -105,6 +105,7 @@
                 <img src=" {{$thumbnail}} " alt="missing img" class="object-cover w-20 h-20 rounded-full" />
                 @else
                 <img src="https://i.stack.imgur.com/y9DpT.jpg" alt="missing img" class="object-cover w-20 h-20 border rounded-full" />
+                <img src=" {{ asset('img/missing-course.jpg') }} " alt="missing img" class="object-cover w-20 h-20 border rounded-full" />
                 @endif
 
                 <div class="flex flex-col items-start pl-5">

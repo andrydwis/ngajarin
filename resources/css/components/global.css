@@ -1,0 +1,9 @@
+/* global styling */
+body {
+    font-family: "Ubuntu";
+    table-layout: auto !important;
+}
+
+[x-cloak] {
+    display: none;
+}

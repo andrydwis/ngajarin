@@ -8,11 +8,7 @@
     <title>{{config('app.name')}}</title>
     <link rel="stylesheet" href="{{asset('vendor/fontawesome-free/css/all.css')}}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="https://unpkg.com/@tailwindcss/typography@0.2.x/dist/typography.min.css"> -->
 
-    <style>
-        
-    </style>
     @yield('customCSS')
 </head>
 
