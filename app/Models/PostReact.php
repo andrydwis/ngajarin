@@ -5,17 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class PostReact extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'content',
-        'created_by'
+        'post_id',
+        'user_id',
+        'type',
     ];
-
-    public function post()
-    {
-        return $this->belongsTo(Post::class);
-    }
 }
