@@ -1,7 +1,15 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-    purge: ['./storage/framework/views/*.php', './resources/views/**/*.blade.php', './resources/views/**/**/*.blade.php'],
+    purge: {
+        content: ['./storage/framework/views/*.php', './resources/views/**/*.blade.php', './resources/views/**/**/*.blade.php'],
+        options: {
+            safelist: ['bg-red-500', 'px-4'],
+            blocklist: [/^debug-/],
+            keyframes: true,
+            fontFace: true,
+        },
+    },
 
     theme: {
         extend: {

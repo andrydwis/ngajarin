@@ -17,59 +17,67 @@
                 </div>
                 <!-- end sidebar toggle -->
 
-                <p class="mb-3 text-sm tracking-wider text-gray-600 uppercase">Beranda</p>
 
+                <!-- pembatas -->
+                <p class="mb-3 ml-2 text-sm tracking-wider text-gray-600 uppercase">Beranda</p>
 
-                <a href="/dashboard" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
-                {{ Route::currentRouteNamed('dashboard') ? 'text-green-600' : '' }}
+                <a href="/admin/dashboard" class="sidebar-item 
+                {{ Route::currentRouteNamed('dashboard.admin') ? 'sidebar-item-active ' : '' }}
                 ">
-                    <i class="mr-2 text-sm fas fa-chart-pie"></i>
+                    <i class="ml-4 mr-2 text-sm fas fa-chart-pie"></i>
                     Dashboard
                 </a>
+                <!-- pembatas -->
 
-                <!-- pembatas link -->
-                <p class="mt-4 mb-3 text-sm tracking-wider text-gray-600 uppercase">Mentor</p>
 
-                <a href="/admin/mentor-list" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
-                {{ Route::currentRouteNamed('admin.mentor-list.index') ? 'text-green-600' : '' }}
+                <!-- pembatas -->
+                <p class="mt-4 mb-3 ml-2 text-sm tracking-wider text-gray-600 uppercase">Mentor</p>
+
+                <a href="/admin/mentor-list" class="sidebar-item 
+                {{ Route::currentRouteNamed('admin.mentor-list.index') ? 'sidebar-item-active ' : '' }}
                 ">
-                    <i class="mr-2 text-sm fas fa-user-friends"></i>
+                    <i class="ml-4 mr-2 text-sm fas fa-user-friends"></i>
                     Mentor List
                 </a>
 
-                <a href="/admin/mentor-list/create" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
-                {{ Route::currentRouteNamed('admin.mentor-list.create') ? 'text-green-600' : '' }}
+                <a href="/admin/mentor-list/create" class="sidebar-item 
+                {{ Route::currentRouteNamed('admin.mentor-list.create') ? 'sidebar-item-active ' : '' }}
                 ">
-                    <i class="mr-2 text-sm fas fa-user-plus"></i>
+                    <i class="ml-4 mr-2 text-sm fas fa-user-plus"></i>
                     Tambahkan Mentor
                 </a>
+                <!-- pembatas -->
 
-                <!-- pembatas link -->
-                <p class="mt-4 mb-3 text-sm tracking-wider text-gray-600 uppercase">Course</p>
+                <!-- pembatas -->
+                <p class="mt-4 mb-3 ml-2 text-sm tracking-wider text-gray-600 uppercase">Course</p>
 
-                <a href="/admin/tag" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
-                {{ Route::currentRouteNamed('admin.tag.index') ||
-                     Route::currentRouteNamed('admin.tag.create') ||
-                     Route::currentRouteNamed('admin.tag.edit')
-                     ? 'text-green-600' : '' }}
+                <a href="/admin/tag" class="sidebar-item 
+                {{ (request()->is('admin/tag*')) ? 'sidebar-item-active ' : '' }}
                 ">
-                    <i class="mr-2 text-sm fas fa-tags"></i>
+                    <i class="ml-4 mr-2 text-sm fas fa-tags"></i>
                     Tag List
                 </a>
 
-                <a href="/admin/course" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
-                {{ Route::currentRouteNamed('admin.course.index') ? 'text-green-600' : '' }}
+                <a href="/admin/course" class="sidebar-item 
+                {{ (request()->is('admin/course*')) ? 'sidebar-item-active ' : '' }}
                 ">
-                    <i class="mr-2 text-sm fas fa-folder"></i>
+                    <i class="ml-4 mr-2 text-sm fas fa-folder"></i>
                     Course List
                 </a>
 
-                <a href="/admin/course/create" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
-                {{ Route::currentRouteNamed('admin.course.create') ? 'text-green-600' : '' }}
+                {{--
+                <!-- <a href="/admin/course/create" class="sidebar-item 
+                {{ Route::currentRouteNamed('admin.course.create') &&
+                    (request()->segment(2) != 'episode')
+                    ? 'sidebar-item-active ' : '' }}
                 ">
-                    <i class="mr-2 text-base fas fa-folder-plus"></i>
-                    Tambahkan Course
-                </a>
+                <i class="ml-4 mr-2 text-sm fas fa-folder-plus"></i>
+                Tambahkan Course
+                </a> -->
+                --}}
+                
+                <!-- pembatas -->
+
 
             </div>
             <!-- end sidebar content -->
