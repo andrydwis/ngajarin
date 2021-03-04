@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CertificateUser extends Model
+class PostReact extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'certificate_id',
+        'post_id',
         'user_id',
+        'type',
     ];
 }

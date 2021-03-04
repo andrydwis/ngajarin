@@ -11,7 +11,7 @@
             </div>
             <div class="card-body">
                 <div class="container grid gap-6">
-                    
+
                     <div>
                         <h6 class="mb-2 text-sm font-semibold md:text-lg">
                             Petunjuk :
@@ -26,7 +26,8 @@
                             Lampiran :
                         </h6>
                         <button>
-                            <a href="{{ $submission->file }}">
+                            @if($submission->file)
+                            <a href="{{$submission->file}}">
                                 <div class="grid w-56 h-40 text-gray-600 bg-gray-100 border-2 border-gray-200 hover:bg-gray-50 place-items-center hover:text-gray-400 ">
                                     <div class="grid gap-1">
                                         <i class="text-4xl fas fa-file"></i>
@@ -34,6 +35,14 @@
                                     </div>
                                 </div>
                             </a>
+                            @else
+                            <div class="grid w-56 h-40 text-gray-600 bg-gray-100 border-2 border-gray-200 hover:bg-gray-50 place-items-center hover:text-gray-400 ">
+                                <div class="grid gap-1">
+                                    <i class="text-4xl fas fa-file"></i>
+                                    <span class="text-sm text-gray-400">Tidak ada berkas lampiran</span>
+                                </div>
+                            </div>
+                            @endif
                         </button>
                     </div>
                 </div>

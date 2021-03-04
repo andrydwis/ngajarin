@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCertificateUsersTable extends Migration
+class CreateCommentReactsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateCertificateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('certificate_users', function (Blueprint $table) {
+        Schema::create('comment_reacts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('certificate_id')->constrained('certificates')->onDelete('cascade');
+            $table->foreignId('comment_id')->constrained('comments')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->enum('type', ['like', 'dislike']);
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateCertificateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('certificate_users');
+        Schema::dropIfExists('comment_react');
     }
 }

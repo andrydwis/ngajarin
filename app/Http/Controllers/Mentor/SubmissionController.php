@@ -63,14 +63,13 @@ class SubmissionController extends Controller
         $submission->title = $request->judul;
         $submission->slug = Str::slug($request->judul);
         $submission->task = $request->tugas;
-        $submission->file = $request->berkas;
+        $submission->file = $request->file;
         $submission->deadline = $request->deadline;
-
         $submission->save();
 
         Alert::success('Submission berhasil dibuat');
 
-        return redirect()->route('mentor.submission.index', ['course' => $course]);
+        return redirect()->route('mentor.course.submission.index', ['course' => $course]);
     }
 
     /**
@@ -127,13 +126,13 @@ class SubmissionController extends Controller
         $submission->title = $request->judul;
         $submission->slug = Str::slug($request->judul);
         $submission->task = $request->tugas;
-        $submission->file = $request->berkas;
-
+        $submission->file = $request->file;
+        $submission->deadline = $request->deadline;
         $submission->save();
 
         Alert::success('Submission berhasil diupdate');
 
-        return redirect()->route('mentor.submission.index', ['course' => $course]);
+        return redirect()->route('mentor.course.submission.index', ['course' => $course]);
     }
 
     /**
@@ -149,6 +148,6 @@ class SubmissionController extends Controller
 
         Alert::success('Submission berhasil dihapus');
 
-        return redirect()->route('mentor.submission.index', ['course' => $course]);
+        return redirect()->route('mentor.course.submission.index', ['course' => $course]);
     }
 }

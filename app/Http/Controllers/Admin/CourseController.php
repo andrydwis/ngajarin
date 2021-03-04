@@ -58,7 +58,6 @@ class CourseController extends Controller
             'level' => ['required'],
         ]);
 
-
         $course = new Course();
         $course->title = $request->judul;
         $course->slug = Str::slug($request->judul);
@@ -68,7 +67,7 @@ class CourseController extends Controller
         $course->created_by = Auth::user()->id;
         $course->save();
 
-        if (!$request->tags) {
+        if ($request->tag) {
             $course->tags()->sync($request->tag);
         }
 
@@ -122,7 +121,7 @@ class CourseController extends Controller
     {
         //
         $request->validate([
-            'judul' => ['required', 'string', Rule::unique('courses', 'title')],
+            'judul' => ['required', 'string', Rule::unique('courses', 'title')->ignore($course)],
             'deskripsi' => ['required', 'string'],
             'level' => ['required'],
         ]);
@@ -134,7 +133,7 @@ class CourseController extends Controller
         $course->level = $request->level;
         $course->save();
 
-        if (!$request->tags) {
+        if ($request->tag) {
             $course->tags()->sync($request->tag);
         } else {
             $course->tags()->detach();

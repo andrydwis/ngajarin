@@ -51,7 +51,7 @@
                     </div>
                     <div>
                         <label for="level" class="block mb-2">Level</label>
-                        <select name="level" id="level" class="block w-full md:w-1/3 form-multiselect @error('level') is-invalid @enderror" disabled>
+                        <select name="level" id="level" class="py-2 mt-2 block w-full md:w-1/3 form-select @error('level') is-invalid @enderror" disabled> 
                             <option value="" @if(old('level')==null) selected @endif disabled>Pilih Level</option>
                             <option value="pemula" @if(old('level')=='pemula' ) selected @elseif($course->level=='pemula') selected @endif>Pemula</option>
                             <option value="menengah" @if(old('level')=='menengah' ) selected @elseif($course->level=='menengah') selected @endif>Menengah</option>

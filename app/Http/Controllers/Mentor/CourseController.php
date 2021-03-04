@@ -67,7 +67,7 @@ class CourseController extends Controller
         $course->created_by = Auth::user()->id;
         $course->save();
 
-        if (!$request->tags) {
+        if ($request->tag) {
             $course->tags()->sync($request->tag);
         }
 
@@ -133,7 +133,7 @@ class CourseController extends Controller
         $course->level = $request->level;
         $course->save();
 
-        if (!$request->tags) {
+        if ($request->tag) {
             $course->tags()->sync($request->tag);
         } else {
             $course->tags()->detach();

@@ -109,9 +109,15 @@
                 @endif
 
                 <div class="flex flex-col items-start pl-5">
+                    @role('admin')
                     <h3 class="text-xl font-semibold hover:text-blue-600">
                         <a href="{{route('admin.course.show', $slug)}}">{{ $title }}</a>
                     </h3>
+                    @else
+                    <h3 class="text-xl font-semibold hover:text-blue-600">
+                        <a href="{{route('mentor.course.show', $slug)}}">{{ $title }}</a>
+                    </h3>
+                    @endrole
 
                     <span class="text-sm tracking-tight text-gray-500"> {{ $level }} </span>
                     <div class="flex flex-wrap gap-1 mt-1">

@@ -53,7 +53,7 @@
                                 </div>
                                 <div>
                                     <label for="deadline">deadline</label>
-                                    <input type="date" name="deadline" id="deadline" class="form-input py-2 mt-2 block w-full @error('deadline') is-invalid @enderror" value="{{old('deadline')}}">
+                                    <input type="datetime-local" name="deadline" id="deadline" class="form-input py-2 mt-2 block w-full @error('deadline') is-invalid @enderror" value="{{old('deadline')}}">
                                     @error('deadline')
                                     <div class="alert alert-error">
                                         {{$message}}
