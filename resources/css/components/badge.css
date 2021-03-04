@@ -1,5 +1,5 @@
 .badge {
-    padding: 2px 0 @apply px-2;
+    @apply px-2;
 }
 
 .badge-primary {

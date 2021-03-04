@@ -16,18 +16,18 @@
 
                     <!-- top -->
                     <div class="flex flex-row items-center justify-between">
-                        <div class="text-indigo-700 h6 fas fa-shopping-cart"></div>
+                        <div class="text-primary h6 fas fa-clipboard-list"></div>
                         <span class="text-xs text-white bg-green-400 rounded-full badge">
                             12%
-                            <i class="ml-1 fal fa-chevron-up"></i>
+                            <i class="ml-1 fas fa-chevron-up"></i>
                         </span>
                     </div>
                     <!-- end top -->
 
                     <!-- bottom -->
                     <div class="mt-8">
-                        <h1 class="h5 num-4">2000</h1>
-                        <p>items sales</p>
+                        <h1 class="h5 ">21</h1>
+                        <p>Submission Dikumpulkan</p>
                     </div>
                     <!-- end bottom -->
 
@@ -45,18 +45,18 @@
 
                     <!-- top -->
                     <div class="flex flex-row items-center justify-between">
-                        <div class="text-red-700 h6 fas fa-store"></div>
+                        <div class="text-warning-darker h6 fas fa-comments"></div>
                         <span class="text-xs text-white bg-red-400 rounded-full badge">
                             6%
-                            <i class="ml-1 fal fa-chevron-down"></i>
+                            <i class="ml-1 fas fa-chevron-down"></i>
                         </span>
                     </div>
                     <!-- end top -->
 
                     <!-- bottom -->
                     <div class="mt-8">
-                        <h1 class="h5 num-4">2000</h1>
-                        <p>new orders</p>
+                        <h1 class="h5 ">182</h1>
+                        <p>Thread Diskusi</p>
                     </div>
                     <!-- end bottom -->
 
@@ -74,18 +74,18 @@
 
                     <!-- top -->
                     <div class="flex flex-row items-center justify-between">
-                        <div class="text-yellow-600 h6 fas fa-sitemap"></div>
+                        <div class="text-primary-lighter h6 fas fa-users"></div>
                         <span class="text-xs text-white bg-green-400 rounded-full badge">
                             72%
-                            <i class="ml-1 fal fa-chevron-up"></i>
+                            <i class="ml-1 fas fa-chevron-up"></i>
                         </span>
                     </div>
                     <!-- end top -->
 
                     <!-- bottom -->
                     <div class="mt-8">
-                        <h1 class="h5 num-4">2000</h1>
-                        <p>total Products</p>
+                        <h1 class="h5 ">25</h1>
+                        <p>Dosen Terdaftar</p>
                     </div>
                     <!-- end bottom -->
 
@@ -103,18 +103,18 @@
 
                     <!-- top -->
                     <div class="flex flex-row items-center justify-between">
-                        <div class="text-green-700 h6 fas fa-users"></div>
+                        <div class="text-success-lighter h6 fas fa-users"></div>
                         <span class="text-xs text-white bg-green-400 rounded-full badge">
                             150%
-                            <i class="ml-1 fal fa-chevron-up"></i>
+                            <i class="ml-1 fas fa-chevron-up"></i>
                         </span>
                     </div>
                     <!-- end top -->
 
                     <!-- bottom -->
                     <div class="mt-8">
-                        <h1 class="h5 num-4">2000</h1>
-                        <p>new Visitor</p>
+                        <h1 class="h5 ">124</h1>
+                        <p>Mahasiswa Terdaftar</p>
                     </div>
                     <!-- end bottom -->
 
@@ -129,22 +129,22 @@
     <!-- End General Report -->
 
     <!-- strat Analytics -->
-    <div class="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2">
+    <div class="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2 ">
 
         <!-- update section -->
-        <div class="text-white bg-green-400 border-green-400 shadow-md card">
+        <div class="text-white duration-300 border-green-400 shadow-md bg-success-lighter hover:bg-success card">
             <div class="grid md:flex md:flex-row card-body">
 
                 <!-- image -->
                 <div class="items-center justify-center hidden w-40 h-40 md:flex img-wrapper">
-                    <img src="./img/happy.svg" alt="img title">
+                    <img src="{{url('/img/happy.svg')}}" alt="img title">
                 </div>
                 <!-- end image -->
 
                 <!-- info -->
                 <div class="py-2 ml-0 md:ml-10">
                     <h1 class="h6">Good Job, User!</h1>
-                    <p class="text-xs text-white">You've finished all of your tasks for this week.</p>
+                    <p class="text-xs text-white">Semua Submission telah anda koreksi dalam minggu ini!</p>
 
                     <ul class="mt-4">
                         <li class="text-xs font-light md:text-sm"><i class="mb-2 mr-2 fas fa-check-double"></i> Finish Dashboard Design</li>
@@ -163,8 +163,7 @@
 
             <!-- alert -->
             <div class="mb-6 alert alert-dark">
-                Hi! Wait A Minute . . . . . . Follow Me On Twitter
-                <a class="ml-2" target="_blank" href="https://twitter.com/MohamedSaid__">@moesaid</a>
+                masih kosong
             </div>
             <!-- end alert -->
 
@@ -174,8 +173,8 @@
                 <div class="card">
                     <div class="flex flex-row justify-between px-4 py-3">
                         <h1 class="h6">
-                            <span class="num-4"></span>k
-                            <p>page view</p>
+                            <span >328</span>
+                            <p>Kunjungan Situs</p>
                         </h1>
 
                         <div class="flex items-center justify-center w-10 h-10 text-green-700 bg-green-200 border border-green-300 rounded-full">
@@ -188,12 +187,12 @@
                 <div class="card">
                     <div class="flex flex-row justify-between px-4 py-3">
                         <h1 class="h6">
-                            <span class="num-2"></span>k
-                            <p>Unique Users</p>
+                            <span >210</span>
+                            <p>Aktivitas Diskusi</p>
                         </h1>
 
                         <div class="flex items-center justify-center w-10 h-10 text-indigo-700 bg-indigo-200 border border-indigo-300 rounded-full">
-                            <i class="fas fa-users-crown"></i>
+                            <i class="fas fa-comments"></i>
                         </div>
                     </div>
                     <div class="analytics_1"></div>
@@ -229,21 +228,21 @@
                     <div class="px-3 py-1 mr-3 text-green-900 bg-green-200 rounded">
                         <i class="fa fa-caret-up"></i>
                     </div>
-                    <p class="text-black"><span class="text-green-400 num-2"></span><span class="text-green-400">% more sales</span> in comparison to last month.</p>
+                    <p class="text-black"><span class="text-green-400 "></span><span class="text-green-400">% more sales</span> in comparison to last month.</p>
                 </div>
 
                 <div class="flex items-center">
                     <div class="px-3 py-1 mr-3 text-red-900 bg-red-200 rounded">
                         <i class="fa fa-caret-down"></i>
                     </div>
-                    <p class="text-black"><span class="text-red-400 num-2"></span><span class="text-red-400">% revenue per sale</span> in comparison to last month.</p>
+                    <p class="text-black"><span class="text-red-400 "></span><span class="text-red-400">% revenue per sale</span> in comparison to last month.</p>
                 </div>
 
                 <a href="#" class="mt-6 bg-green-500 btn-shadow">view details</a>
 
             </div>
 
-            <div class="">
+            <div >
                 <div id="sealsOverview"></div>
             </div>
 
@@ -265,8 +264,8 @@
                 </div>
 
                 <div class="flex flex-col">
-                    <h1 class="font-semibold"><span class="num-2"></span> Sales</h1>
-                    <p class="text-xs"><span class="num-2"></span> payments</p>
+                    <h1 class="font-semibold"><span ></span> Sales</h1>
+                    <p class="text-xs"><span ></span> payments</p>
                 </div>
 
             </div>
@@ -282,8 +281,8 @@
                 </div>
 
                 <div class="flex flex-col">
-                    <h1 class="font-semibold"><span class="num-2"></span> Orders</h1>
-                    <p class="text-xs"><span class="num-2"></span> items</p>
+                    <h1 class="font-semibold"><span ></span> Orders</h1>
+                    <p class="text-xs"><span ></span> items</p>
                 </div>
 
             </div>
@@ -299,8 +298,8 @@
                 </div>
 
                 <div class="flex flex-col">
-                    <h1 class="font-semibold"><span class="num-2"></span> posts</h1>
-                    <p class="text-xs"><span class="num-2"></span> active</p>
+                    <h1 class="font-semibold"><span ></span> posts</h1>
+                    <p class="text-xs"><span ></span> active</p>
                 </div>
 
             </div>
@@ -316,8 +315,8 @@
                 </div>
 
                 <div class="flex flex-col">
-                    <h1 class="font-semibold"><span class="num-2"></span> comments</h1>
-                    <p class="text-xs"><span class="num-2"></span> approved</p>
+                    <h1 class="font-semibold"><span ></span> comments</h1>
+                    <p class="text-xs"><span ></span> approved</p>
                 </div>
 
             </div>
@@ -333,8 +332,8 @@
                 </div>
 
                 <div class="flex flex-col">
-                    <h1 class="font-semibold"><span class="num-2"></span> memebrs</h1>
-                    <p class="text-xs"><span class="num-2"></span> online</p>
+                    <h1 class="font-semibold"><span ></span> memebrs</h1>
+                    <p class="text-xs"><span ></span> online</p>
                 </div>
 
             </div>
@@ -359,7 +358,7 @@
                     <h1>google chrome</h1>
                 </div>
                 <div>
-                    <span class="num-2"></span>%
+                    <span ></span>%
                 </div>
             </div>
             <!-- end brawser -->
@@ -371,7 +370,7 @@
                     <h1>firefox</h1>
                 </div>
                 <div>
-                    <span class="num-2"></span>%
+                    <span ></span>%
                 </div>
             </div>
             <!-- end brawser -->
@@ -383,7 +382,7 @@
                     <h1>internet explorer</h1>
                 </div>
                 <div>
-                    <span class="num-2"></span>%
+                    <span ></span>%
                 </div>
             </div>
             <!-- end brawser -->
@@ -395,7 +394,7 @@
                     <h1>safari</h1>
                 </div>
                 <div>
-                    <span class="num-2"></span>%
+                    <span ></span>%
                 </div>
             </div>
             <!-- end brawser -->
@@ -421,20 +420,20 @@
                     <tr>
                         <td class="px-1 py-2 text-xs text-center text-green-500 border border-l-0 md:text-base md:px-4"><i class="fas fa-circle"></i></td>
                         <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">Lightning to USB-C Adapter Lightning.</td>
-                        <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">$<span class="num-2"></span></td>
-                        <td class="px-1 py-2 text-sm text-center border border-l-0 border-r-0 md:text-left md:text-base md:px-4"><span class="num-2"></span> minutes ago</td>
+                        <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">$<span ></span></td>
+                        <td class="px-1 py-2 text-sm text-center border border-l-0 border-r-0 md:text-left md:text-base md:px-4"><span ></span> minutes ago</td>
                     </tr>
                     <tr>
                         <td class="px-1 py-2 text-xs text-center text-yellow-500 border border-l-0 md:text-base md:px-4"><i class="fas fa-circle"></i></td>
                         <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">Apple iPhone 8.</td>
-                        <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">$<span class="num-2"></span></td>
-                        <td class="px-1 py-2 text-sm text-center border border-l-0 border-r-0 md:text-left md:text-base md:px-4"><span class="num-2"></span> minutes ago</td>
+                        <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">$<span ></span></td>
+                        <td class="px-1 py-2 text-sm text-center border border-l-0 border-r-0 md:text-left md:text-base md:px-4"><span ></span> minutes ago</td>
                     </tr>
                     <tr>
                         <td class="px-1 py-2 text-xs text-center text-green-500 border border-l-0 md:text-base md:px-4"><i class="fas fa-circle"></i></td>
                         <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">Apple MacBook Pro.</td>
-                        <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">$<span class="num-2"></span></td>
-                        <td class="px-1 py-2 text-sm text-center border border-l-0 border-r-0 md:text-left md:text-base md:px-4"><span class="num-2"></span> minutes ago</td>
+                        <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">$<span ></span></td>
+                        <td class="px-1 py-2 text-sm text-center border border-l-0 border-r-0 md:text-left md:text-base md:px-4"><span ></span> minutes ago</td>
                     </tr>
                 </tbody>
             </table>

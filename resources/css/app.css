@@ -1,15 +1,19 @@
-/* tailwind */
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-
-
 /* fonts */
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&family=Nunito&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Ubuntu&display=swap");
 
 
-/* custom components */
+/* global */
 @import "components/global.css";
+
+
+/* tailwind */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+
+
+/* custom components */
+@import "components/sidebar.css";
 @import "components/input.css";
 @import "components/alert.css";
 @import "components/button.css";
