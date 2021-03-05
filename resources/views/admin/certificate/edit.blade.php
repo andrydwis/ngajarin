@@ -3,15 +3,16 @@
 <div class="w-full p-5 mt-20 md:w-auto lg:w-4/6 xl:w-3/4">
     <div class="card">
         <div class="card-header">
-            <h6 class="h6">Tambahkan Sertifikat Baru</h6>
+            <h6 class="h6">Update Sertifikat</h6>
         </div>
         <div class="card-body">
             <div class="container mb-4">
                 <div class="px-4 py-4 pt-4 bg-white ">
                     <!-- text form -->
                     <div>
-                        <form action="{{route('admin.course.certificate.store', ['course' => $course->slug])}}" method="post">
+                        <form action="{{route('admin.course.certificate.update', ['course' => $course->slug, 'certificate' => $course->certificate])}}" method="post">
                             @csrf
+                            @method('PATCH')
                             <div class="grid gap-6 pt-5">
                                 <div>
                                     <label for="file">Template Sertifikat</label>
@@ -22,7 +23,7 @@
                                                 Pilih
                                             </button>
                                         </a>
-                                        <input id="file" class="block w-full py-2 mt-2 form-input" type="text" name="template" value="{{old('template')}}" readonly>
+                                        <input id="file" class="block w-full py-2 mt-2 form-input" type="text" name="template" value="{{old('template') ?? $course->certificate->template}}" readonly>
                                     </div>
                                     @error('template')
                                     <div class="alert alert-error">
@@ -32,7 +33,7 @@
                                 </div>
                             </div>
                             <div class="flex justify-end pt-5">
-                                <button type="submit" class="w-full md:w-auto btn-bs-primary">Tambahkan</button>
+                                <button type="submit" class="w-full md:w-auto btn-bs-primary">Update</button>
                             </div>
                         </form>
                     </div>

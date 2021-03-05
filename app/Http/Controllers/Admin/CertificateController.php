@@ -19,10 +19,10 @@ class CertificateController extends Controller
     {
         //
         $data = [
-            'course' => $course->with('certificate')->certificate,
+            'course' => $course->with('certificate')->first(),
         ];
 
-        return view('admin.course.certificate.index', $data);
+        return view('admin.certificate.index', $data);
     }
 
     /**
@@ -33,11 +33,18 @@ class CertificateController extends Controller
     public function create(Course $course)
     {
         //
+        $check = $course->with('certificate')->first();
+        if ($check) {
+            Alert::error('Template sertifikat sudah ada');
+
+            return redirect()->route('admin.course.certificate.index', ['course' => $course]);
+        }
+
         $data = [
-            'course' => $course->with('certificate')->certificate,
+            'course' => $course->with('certificate')->first(),
         ];
 
-        return view('admin.course.certificate.create', $data);
+        return view('admin.certificate.create', $data);
     }
 
     /**
@@ -60,7 +67,7 @@ class CertificateController extends Controller
 
         Alert::success('Sertifikat berhasil ditambahkan');
 
-        return redirect()->route('admin.sertifikat.index', ['course' => $course]);
+        return redirect()->route('admin.course.certificate.index', ['course' => $course]);
     }
 
     /**
@@ -104,7 +111,7 @@ class CertificateController extends Controller
      * @param  \App\Models\Certificate  $certificate
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Course $course, Certificate $certificate)
+    public function update(Request $request, Course $course, Certificate $certificate)
     {
         //
         $request->validate([
@@ -117,7 +124,7 @@ class CertificateController extends Controller
 
         Alert::success('Sertifikat berhasil diupdate');
 
-        return redirect()->route('admin.sertifikat.index', ['course' => $course]);
+        return redirect()->route('admin.course.certificate.index', ['course' => $course]);
     }
 
     /**
