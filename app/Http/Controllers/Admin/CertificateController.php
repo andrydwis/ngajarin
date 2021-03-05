@@ -34,7 +34,7 @@ class CertificateController extends Controller
     {
         //
         $check = $course->with('certificate')->first();
-        if ($check) {
+        if ($check->certificate) {
             Alert::error('Template sertifikat sudah ada');
 
             return redirect()->route('admin.course.certificate.index', ['course' => $course]);
@@ -140,6 +140,6 @@ class CertificateController extends Controller
 
         Alert::success('Sertifikat berhasil dihapus');
 
-        return redirect()->route('admin.sertifikat.index', ['course' => $course]);
+        return redirect()->route('admin.course.certificate.index', ['course' => $course]);
     }
 }
