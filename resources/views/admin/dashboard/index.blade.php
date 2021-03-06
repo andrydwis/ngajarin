@@ -2,7 +2,7 @@
 @section('content')
 
 <!-- strat content -->
-<div class="flex-1 p-6 bg-gray-100 md:mt-16">
+<div class="flex-1 p-6 mt-20 bg-gray-100">
 
 
     <!-- General Report -->
