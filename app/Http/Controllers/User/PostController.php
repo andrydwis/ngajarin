@@ -22,7 +22,7 @@ class PostController extends Controller
     {
         //
         $data = [
-            'posts' => Post::paginate(10),
+            'posts' => Post::with('tags', 'comments', 'reacts')->orderBy('created_at', 'desc')->paginate(10),
         ];
 
         return view('user.post.index', $data);
@@ -83,10 +83,10 @@ class PostController extends Controller
     {
         //
         $data = [
-            'post' => $post->with('comments', 'creator')->first(),
+            'post' => $post->where('id', $post->id)->with('comments', 'creator')->first(),
             'tags' => Tag::get(),
-            'likes' => $post->with('reacts')->first()->reacts()->where('post_id', $post->id)->where('type', 'like')->get()->pluck('user_id')->toArray(),
-            'dislikes' => $post->with('reacts')->first()->reacts()->where('post_id', $post->id)->where('type', 'dislike')->get()->pluck('user_id')->toArray(),
+            'likes' => $post->where('id', $post->id)->with('reacts')->first()->reacts()->where('type', 'like')->get()->pluck('user_id')->toArray(),
+            'dislikes' => $post->where('id', $post->id)->with('reacts')->first()->reacts()->where('type', 'dislike')->get()->pluck('user_id')->toArray(),
         ];
 
         return view('user.post.show', $data);

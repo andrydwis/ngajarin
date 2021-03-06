@@ -9,14 +9,15 @@
 </head>
 
 <body>
+    
     {{$post->title}} <br>
 
     {{$post->content}} <br>
 
     creator = {{$post->creator->name}} <br>
 
-    dibuat pada : {{$post->created_at->diffForHumans()}} <br>
-    diedit pada : {{$post->updated_at->diffForHumans()}} <br>
+    dibuat tanggal: {{\Carbon\Carbon::parse($post->created_at)->isoFormat('dddd, D MMMM Y')}}, {{$post->created_at->diffForHumans()}} <br>
+    diedit pada : {{\Carbon\Carbon::parse($post->updated_at)->isoFormat('dddd, D MMMM Y')}}. {{$post->updated_at->diffForHumans()}} <br>
 
     total like = {{count($likes)}} <br>
     total dislike = {{count($dislikes)}} <br>
@@ -42,6 +43,7 @@
     ini komen
     @foreach($post->comments as $comment)
     <br>
+    <hr>
     {{$comment->content}}
     @endforeach
 </body>
