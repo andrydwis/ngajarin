@@ -31,7 +31,6 @@
                         <label for="thumbnail">Thumbnail</label>
                         <div class="mt-8">
                             <div id="holder" class="w-40 h-40" x-data>
-                                <!-- <span>link : {{$course->thumbnail}} </span> -->
                                 @if($course->thumbnail)
                                 <div class="grid w-56 h-40 place-items-center">
                                     <img src="{{$course->thumbnail}}" alt="missing">
@@ -51,12 +50,7 @@
                     </div>
                     <div>
                         <label for="level" class="block mb-2">Level</label>
-                        <select name="level" id="level" class="block w-full md:w-1/3 form-multiselect @error('level') is-invalid @enderror" disabled>
-                            <option value="" @if(old('level')==null) selected @endif disabled>Pilih Level</option>
-                            <option value="pemula" @if(old('level')=='pemula' ) selected @elseif($course->level=='pemula') selected @endif>Pemula</option>
-                            <option value="menengah" @if(old('level')=='menengah' ) selected @elseif($course->level=='menengah') selected @endif>Menengah</option>
-                            <option value="expert" @if(old('level')=='expert' ) selected @elseif($course->level=='expert') selected @endif>Expert</option>
-                        </select>
+                        <input type="text" class="block w-full py-2 mt-2 text-gray-500 capitalize cursor-not-allowed md:w-1/3 form-input" value="{{$course->level}}" disabled>
                         @error('level')
                         <div class="alert alert-error">
                             {{$message}}
