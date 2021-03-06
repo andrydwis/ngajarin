@@ -19,10 +19,10 @@
 
                 <p class="mb-3 text-sm tracking-wider text-gray-600 uppercase">Beranda</p>
 
-                <a href="/mentor/dashboard" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
-                {{ Route::currentRouteNamed('mentor/dashboard') ? 'text-green-600' : '' }}
+                <a href="/mentor/dashboard" class="sidebar-item
+                {{ Route::currentRouteNamed('dashboard.mentor') ? 'sidebar-item-active' : '' }}
                 ">
-                    <i class="mr-2 text-sm fas fa-chart-pie"></i>
+                    <i class="ml-4 mr-2 text-sm fas fa-chart-pie"></i>
                     Dashboard
                 </a>
 
@@ -30,36 +30,46 @@
                 <!-- pembatas link -->
                 <p class="mt-4 mb-3 text-sm tracking-wider text-gray-600 uppercase">Course</p>
 
-                
-                <a href="/mentor/course" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
-                {{ Route::currentRouteNamed('mentor.course.index') ? 'text-green-600' : '' }}
+
+                <a href="/mentor/course" class="sidebar-item
+                {{ Route::currentRouteNamed('mentor.course.index') ||
+                    Route::currentRouteNamed('mentor.course.show') ||
+                    Route::currentRouteNamed('mentor.course.edit') ||
+                    Route::currentRouteNamed('mentor.course.episode.*') ||
+                    Route::currentRouteNamed('mentor.course.submission.*')
+
+                    ? 'sidebar-item-active' : '' }}
                 ">
-                    <i class="mr-2 text-sm fas fa-folder"></i>
+                    <i class="ml-4 mr-2 text-sm fas fa-folder"></i>
                     Course List
                 </a>
 
-                <a href="/mentor/course/create" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
-                {{ Route::currentRouteNamed('mentor.course.create') ? 'text-green-600' : '' }}
+                <a href="/mentor/course/create" class="sidebar-item
+                {{ Route::currentRouteNamed('mentor.course.create') ? 'sidebar-item-active' : '' }}
                 ">
-                    <i class="mr-2 text-base fas fa-folder-plus"></i>
+                    <i class="ml-4 mr-2 text-base fas fa-folder-plus"></i>
                     Tambahkan Course
                 </a>
 
                 <!-- pembatas link -->
                 <p class="mt-4 mb-3 text-sm tracking-wider text-gray-600 uppercase">Classroom</p>
 
-                
-                <a href="/mentor/classroom" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
-                {{ Route::currentRouteNamed('mentor.classroom.index') ? 'text-green-600' : '' }}
+
+                <a href="/mentor/classroom" class="sidebar-item
+                {{ Route::currentRouteNamed('mentor.classroom.index') ||
+                    Route::currentRouteNamed('mentor.classroom.edit') ||
+                    Route::currentRouteNamed('mentor.classroom-member.*') ||
+                    Route::currentRouteNamed('mentor.classroom-course.*')
+                    ? 'sidebar-item-active' : '' }}
                 ">
-                    <i class="mr-2 text-sm fas fa-folder"></i>
+                    <i class="ml-4 mr-2 text-sm fas fa-folder"></i>
                     Classroom List
                 </a>
 
-                <a href="/mentor/classroom/create" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
-                {{ Route::currentRouteNamed('mentor.classroom.create') ? 'text-green-600' : '' }}
+                <a href="/mentor/classroom/create" class="sidebar-item
+                {{ Route::currentRouteNamed('mentor.classroom.create') ? 'sidebar-item-active' : '' }}
                 ">
-                    <i class="mr-2 text-base fas fa-folder-plus"></i>
+                    <i class="ml-4 mr-2 text-base fas fa-folder-plus"></i>
                     Tambahkan Classroom
                 </a>
 
