@@ -52,30 +52,42 @@
                 <p class="mt-4 mb-3 ml-2 text-sm tracking-wider text-gray-600 uppercase">Course</p>
 
                 <a href="/admin/tag" class="sidebar-item 
-                {{ (request()->is('admin/tag*')) ? 'sidebar-item-active ' : '' }}
+                {{ Route::currentRouteNamed('admin.tag.index') ||
+                    Route::currentRouteNamed('admin.tag.edit')
+                     ? 'sidebar-item-active ' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-sm fas fa-tags"></i>
                     Tag List
                 </a>
 
+                <a href="/admin/tag" class="sidebar-item 
+                {{ Route::currentRouteNamed('admin.tag.create') ? 'sidebar-item-active ' : '' }}
+                ">
+                    <i class="ml-4 mr-2 text-sm fas fa-tag"></i>
+                    Tambahkan Tag
+                </a>
+
                 <a href="/admin/course" class="sidebar-item 
-                {{ (request()->is('admin/course*')) ? 'sidebar-item-active ' : '' }}
+                {{ Route::currentRouteNamed('admin.course.index') ||
+                    Route::currentRouteNamed('admin.course.edit') ||
+                    Route::currentRouteNamed('admin.course.episode.*') ||
+                    Route::currentRouteNamed('admin.course.submission.*') ||
+                    Route::currentRouteNamed('admin.course.certificate.*')
+                     ? 'sidebar-item-active ' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-sm fas fa-folder"></i>
                     Course List
                 </a>
 
-                {{--
-                <!-- <a href="/admin/course/create" class="sidebar-item 
-                {{ Route::currentRouteNamed('admin.course.create') &&
-                    (request()->segment(2) != 'episode')
-                    ? 'sidebar-item-active ' : '' }}
+
+                <a href="/admin/course/create" class="sidebar-item 
+                {{ Route::currentRouteNamed('admin.course.create') ? 'sidebar-item-active ' : '' }}
                 ">
-                <i class="ml-4 mr-2 text-sm fas fa-folder-plus"></i>
-                Tambahkan Course
-                </a> -->
-                --}}
-                
+                    <i class="ml-4 mr-2 text-sm fas fa-folder-plus"></i>
+                    Tambahkan Course
+                </a>
+
+
                 <!-- pembatas -->
 
 
