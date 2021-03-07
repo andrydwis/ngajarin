@@ -6,14 +6,14 @@
             <h6 class="h6">Edit Data Episode {{$episode->title}}</h6>
         </div>
         <div class="card-body">
-            <div class="container mb-4 shadow-md" x-data="{ tab: '{{$episode->type}}' }">
+            <div class="container mb-4" x-data="{ tab: '{{$episode->type}}' }">
                 <!-- tabs -->
                 <ul class="flex mt-6 border-b">
                     <li class="mr-1 -mb-px">
-                        <a class="inline-block px-4 py-2 font-semibold rounded-t hover:text-blue-800" :class="{ 'bg-white text-blue-700 border-l border-t border-r' : tab === 'video' }" href="#" @click.prevent="tab = 'video'">Video</a>
+                        <a class="inline-block px-4 py-2 font-semibold rounded-t hover:text-blue-800" :class="{ 'bg-white text-blue-700 border-l border-t-4 border-r' : tab === 'video' }" href="#" @click.prevent="tab = 'video'">Video</a>
                     </li>
                     <li class="mr-1 -mb-px">
-                        <a class="inline-block px-4 py-2 font-semibold text-blue-500 hover:text-blue-800" :class="{ 'bg-white text-blue-700 border-l border-t border-r' : tab === 'text' }" href="#" @click.prevent="tab = 'text'">Text</a>
+                        <a class="inline-block px-4 py-2 font-semibold text-blue-500 hover:text-blue-800" :class="{ 'bg-white text-blue-700 border-l border-t-4 border-r' : tab === 'text' }" href="#" @click.prevent="tab = 'text'">Text</a>
                     </li>
                 </ul>
                 <!-- end of tabs -->

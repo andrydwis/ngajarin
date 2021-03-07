@@ -3,7 +3,7 @@
 <div class="w-full p-5 mt-20 md:w-auto lg:w-4/6 xl:w-3/4">
     <div class="card">
         <div class="card-header">
-            <h6 class="h6">Data Course {{$course->title}}</h6> 
+            <h6 class="h6">Data Course {{$course->title}}</h6>
         </div>
         <div class="card-body">
             <form action="" method="post">
@@ -51,17 +51,7 @@
                     </div>
                     <div>
                         <label for="level" class="block mb-2">Level</label>
-                        <select name="level" id="level" class="py-2 mt-2 block w-full md:w-1/3 form-select @error('level') is-invalid @enderror" disabled> 
-                            <option value="" @if(old('level')==null) selected @endif disabled>Pilih Level</option>
-                            <option value="pemula" @if(old('level')=='pemula' ) selected @elseif($course->level=='pemula') selected @endif>Pemula</option>
-                            <option value="menengah" @if(old('level')=='menengah' ) selected @elseif($course->level=='menengah') selected @endif>Menengah</option>
-                            <option value="expert" @if(old('level')=='expert' ) selected @elseif($course->level=='expert') selected @endif>Expert</option>
-                        </select>
-                        @error('level')
-                        <div class="alert alert-error">
-                            {{$message}}
-                        </div>
-                        @enderror
+                        <input type="text" class="block w-full py-2 mt-2 text-gray-500 capitalize cursor-not-allowed md:w-1/3 form-input" value="{{$course->level}}" disabled>
                     </div>
                     <div>
                         <label for="tag" class="block mb-2">Tag</label>
