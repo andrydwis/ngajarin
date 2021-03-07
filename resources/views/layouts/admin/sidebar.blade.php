@@ -60,7 +60,7 @@
                     Tag List
                 </a>
 
-                <a href="/admin/tag" class="sidebar-item 
+                <a href="/admin/tag/create" class="sidebar-item 
                 {{ Route::currentRouteNamed('admin.tag.create') ? 'sidebar-item-active ' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-sm fas fa-tag"></i>

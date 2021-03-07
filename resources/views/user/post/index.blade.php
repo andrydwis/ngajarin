@@ -1,4 +1,17 @@
+<h1>Tambah post</h1>
+<a href="{{route('user.post.create')}}">tambah baru</a>
+<hr>
+
 @foreach($posts as $post)
+@if($post->creator->id == auth()->user()->id)
+<a href="{{route('user.post.edit', ['post' => $post->slug])}}">Edit postingan</a>
+<form action="{{route('user.post.destroy', ['post' => $post->slug])}}" method="post">
+@csrf
+@method('DELETE')
+<button type="submit">Hapus post</button>
+</form>
+@endif
+<br>
 tag :
 @foreach($post->tags as $tag)
 {{$tag->name}}

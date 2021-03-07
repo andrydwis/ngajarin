@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    
+
     {{$post->title}} <br>
 
     {{$post->content}} <br>
@@ -30,7 +30,6 @@
         <button type="submit">Like</button>
         @endif
     </form>
-
     <form action="{{route('user.post.dislike', ['post' => $post->slug])}}" method="post">
         @csrf
         @if(in_array(auth()->user()->id, $dislikes))
@@ -39,11 +38,23 @@
         <button type="submit">Dislike</button>
         @endif
     </form>
-
+    <hr>
+    buat komen baru <br>
+    <form action="{{route('user.post.comment.store', ['post' => $post->slug])}}" method="post">
+        @csrf
+        <textarea name="komentar" id="komentar" cols="30" rows="10">{{old('komentar')}}</textarea>
+        @error('komentar')
+        {{$message}}
+        @enderror
+        <button type="submit">Kirim</button>
+    </form>
+    <hr>
     ini komen
-    @foreach($post->comments as $comment)
+    @foreach($comments as $comment)
     <br>
     <hr>
+    komen dari : {{$comment->creator->name}} <br>
+    dibuat tanggal: {{\Carbon\Carbon::parse($comment->created_at)->isoFormat('dddd, D MMMM Y')}}, {{$comment->created_at->diffForHumans()}} <br>
     {{$comment->content}}
     @endforeach
 </body>
