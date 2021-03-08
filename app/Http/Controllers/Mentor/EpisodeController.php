@@ -38,6 +38,7 @@ class EpisodeController extends Controller
         //
         $data = [
             'course' => $course,
+            'submissions' => $course->submissions
         ];
 
         return view('mentor.episode.create', $data);
@@ -59,7 +60,7 @@ class EpisodeController extends Controller
                 'deskripsi' => ['required', 'string'],
                 'tipe' => ['required'],
             ]);
-        } elseif ($request->type == 'text') {
+        } elseif ($request->tipe == 'text') {
             $request->validate([
                 'judul' => ['required', 'string', Rule::unique('episodes', 'title')],
                 'deskripsi' => ['required', 'string'],
@@ -136,7 +137,7 @@ class EpisodeController extends Controller
                 'deskripsi' => ['required', 'string'],
                 'tipe' => ['required'],
             ]);
-        } elseif ($request->type == 'text') {
+        } elseif ($request->tipe == 'text') {
             $request->validate([
                 'judul' => ['required', 'string', Rule::unique('episodes', 'title')],
                 'deskripsi' => ['required', 'string'],

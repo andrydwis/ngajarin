@@ -45,26 +45,6 @@
                             @endif
                         </button>
                     </div>
-                    <div>
-                        <h6 class="mb-2 text-sm font-semibold md:text-lg">
-                            Deadline :
-                        </h6>
-                        <p>
-                            @php
-                            $deadline = \Carbon\Carbon::parse($submission->deadline);
-                            @endphp
-                            {{$deadline->isoFormat('dddd, D MMMM Y')}}
-                            @if($deadline->isFuture())
-                            <div class="bg-indigo-500">
-                            {{$deadline->diffForHumans()}}
-                            </div>
-                            @else
-                            <div class="bg-red-500">
-                            {{$deadline->diffForHumans()}}
-                            </div>
-                            @endif
-                        </p>
-                    </div>
                 </div>
             </div>
         </div>

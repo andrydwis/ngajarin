@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Submission extends Model
 {
@@ -17,4 +18,17 @@ class Submission extends Model
         'file',
         'deadline'
     ];
+
+    public function unlocked(){
+        $check = SubmissionUser::where('submission_id', $this->id)->where('user_id', Auth::user()->id)->latest()->first();
+        if($check){
+            if($check->status == 'diterima'){
+                return 'diterima';
+            }else{
+                return 'ditolak';
+            }
+        }else{
+            return 'belum mengumpulkan';
+        }
+    }
 }

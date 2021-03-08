@@ -20,7 +20,6 @@ class CreateSubmissionsTable extends Migration
             $table->string('slug')->unique();
             $table->text('task');
             $table->string('file')->nullable();
-            $table->dateTime('deadline')->nullable();
             $table->timestamps();
         });
     }

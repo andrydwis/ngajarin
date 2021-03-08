@@ -83,6 +83,20 @@
                                     @enderror
                                 </div>
                                 <div>
+                                    <label for="syarat" class="block mb-2">Syarat</label>
+                                    <select name="syarat" id="syarat" class="block w-full md:w-1/3 form-multiselect @error('tag') is-invalid @enderror">
+                                        <option value="" disabled>Pilih Submission</option>
+                                        @foreach($submissions as $submission)
+                                        <option value="{{$submission->id}}">{{$submission->title}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('syarat')
+                                    <div class="alert alert-error">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div>
                                     <label for="thumbnail">Lampiran <span class="text-xs text-gray-600">(zip, word, pdf, dll)</span></label>
                                     <div class="flex items-center">
                                         <a id="lfm" data-input="file" data-preview="holder" class="pr-2 mt-2 text-white">
@@ -117,9 +131,18 @@
 @endsection
 
 @section('customCSS')
+<!-- select2 -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection
 
 @section('customJS')
+<!-- select2 -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#syarat').select2();
+    });
+</script>
 <!-- tinymce -->
 <script src="https://cdn.tiny.cloud/1/qvfv9oh941rjqa0ca5i42hrvtg9175w7gg7vl0krwllauc26/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>

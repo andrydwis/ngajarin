@@ -21,6 +21,7 @@ class CreateEpisodesTable extends Migration
             $table->text('description');
             $table->enum('type', ['video', 'text']);
             $table->string('link')->nullable();
+            $table->foreignId('unlock_submission')->nullable()->constrained('submissions')->onDelete('cascade');
             $table->timestamps();
         });
     }

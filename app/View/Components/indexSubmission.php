@@ -18,7 +18,6 @@ class indexSubmission extends Component
     public $course;
     public $slug;
 
-
     public function __construct($title, $task, $file, $course, $slug)
     {
         $this->title=$title;

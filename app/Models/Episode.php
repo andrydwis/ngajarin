@@ -16,5 +16,11 @@ class Episode extends Model
         'description',
         'type',
         'link',
+        'unlock_submission'
     ];
+
+    public function submission()
+    {
+        return $this->belongsTo(Submission::class, 'unlock_submission');
+    }
 }

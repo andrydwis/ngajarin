@@ -55,7 +55,6 @@ class SubmissionController extends Controller
         $request->validate([
             'judul' => ['required', 'string'],
             'tugas' => ['required', 'string'],
-            'deadline' => ['required']
         ]);
 
         $submission = new Submission();
@@ -64,7 +63,6 @@ class SubmissionController extends Controller
         $submission->slug = Str::slug($request->judul);
         $submission->task = $request->tugas;
         $submission->file = $request->file;
-        $submission->deadline = $request->deadline;
         $submission->save();
 
         Alert::success('Submission berhasil dibuat');
@@ -119,7 +117,6 @@ class SubmissionController extends Controller
         $request->validate([
             'judul' => ['required', 'string'],
             'tugas' => ['required', 'string'],
-            'deadline' => ['required']
         ]);
 
         $submission->course_id = $course->id;
@@ -127,7 +124,6 @@ class SubmissionController extends Controller
         $submission->slug = Str::slug($request->judul);
         $submission->task = $request->tugas;
         $submission->file = $request->file;
-        $submission->deadline = $request->deadline;
         $submission->save();
 
         Alert::success('Submission berhasil diupdate');

@@ -38,6 +38,7 @@ class EpisodeController extends Controller
         //
         $data = [
             'course' => $course,
+            'submissions' => $course->submissions
         ];
 
         return view('admin.episode.create', $data);
@@ -59,7 +60,7 @@ class EpisodeController extends Controller
                 'deskripsi' => ['required', 'string'],
                 'tipe' => ['required'],
             ]);
-        } elseif ($request->type == 'text') {
+        } elseif ($request->tipe == 'text') {
             $request->validate([
                 'judul' => ['required', 'string', Rule::unique('episodes', 'title')],
                 'deskripsi' => ['required', 'string'],
@@ -78,6 +79,7 @@ class EpisodeController extends Controller
         } elseif ($request->tipe == 'text') {
             $episode->link = $request->file;
         }
+        $episode->unlock_submission = $request->syarat;
         $episode->save();
 
         Alert::success('Episode berhasil ditambahkan');
@@ -136,7 +138,7 @@ class EpisodeController extends Controller
                 'deskripsi' => ['required', 'string'],
                 'tipe' => ['required'],
             ]);
-        } elseif ($request->type == 'text') {
+        } elseif ($request->tipe == 'text') {
             $request->validate([
                 'judul' => ['required', 'string', Rule::unique('episodes', 'title')],
                 'deskripsi' => ['required', 'string'],
@@ -154,6 +156,7 @@ class EpisodeController extends Controller
         } elseif ($request->tipe == 'text') {
             $episode->link = $request->file;
         }
+        $episode->unlock_submission = $request->syarat;
         $episode->save();
 
         Alert::success('Episode berhasil diupdate');

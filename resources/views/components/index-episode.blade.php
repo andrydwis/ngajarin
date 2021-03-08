@@ -2,7 +2,6 @@
     <div id="wrapper_dropdown" class="flex w-full p-3 bg-gray-200 rounded-full hover:bg-gray-300">
         <div class="flex items-center gap-4">
             <a href="{{route('admin.course.episode.show', [$course, $slug])}}" class="">
-
                 <div class="grid w-8 h-8 bg-gray-500 rounded-full md:w-12 md:h-12 place-items-center">
                     @if($type == 'video')
                     <i class="ml-1 text-xs text-gray-200 hover:text-gray-400 md:text-xl fas fa-play"></i>
@@ -10,7 +9,13 @@
                     <i class="text-xs text-gray-200 hover:text-gray-400 md:text-xl fas fa-list-ul"></i>
                     @endif
                 </div>
-
+                <!-- kaet iki ki -->
+                @if($submission)
+                <h5>Harus mengerjakan submission {{$submission->title}} terlebih dahulu</h5>
+                {{$submission->unlocked()}}
+                @else
+                <h5>Tidak usah mengerjakan submission</h5>
+                @endif
             </a>
             <div class="flex flex-col">
                 <a href="{{route('admin.course.episode.show', [$course, $slug])}}">

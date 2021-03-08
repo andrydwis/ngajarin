@@ -11,16 +11,16 @@ class indexEpisode extends Component
      *
      * @return void
      */
-
     public $title;
     public $description;
     public $type;
     public $link;
     public $slug;
     public $course;
+    public $submission;
     
 
-    public function __construct($title, $description, $type, $link, $slug, $course)
+    public function __construct($title, $description, $type, $link, $slug, $course, $submission)
     {
         $this->slug = $slug;
         $this->course = $course;
@@ -28,6 +28,7 @@ class indexEpisode extends Component
         $this->description = $description;
         $this->type = $type;
         $this->link = $link;
+        $this->submission = $submission;
     }
 
     /**

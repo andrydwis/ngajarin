@@ -19,7 +19,7 @@ class CreateSubmissionUsersTable extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('file');
             $table->integer('score')->nullable();
-            $table->string('note')->nullable();
+            $table->string('feedback')->nullable();
             $table->enum('status', ['diterima', 'ditolak'])->nullable();
             $table->timestamps();
         });
