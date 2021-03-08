@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\PostReact;
 use App\Models\Tag;
@@ -22,7 +23,7 @@ class PostController extends Controller
     {
         //
         $data = [
-            'posts' => Post::paginate(10),
+            'posts' => Post::with('tags', 'comments', 'reacts')->orderBy('created_at', 'desc')->paginate(10),
         ];
 
         return view('user.post.index', $data);
@@ -60,7 +61,7 @@ class PostController extends Controller
         $post = new Post();
         $post->title = $request->judul;
         $post->slug = Str::slug($request->judul);
-        $post->content = $request->kontent;
+        $post->content = $request->konten;
         $post->created_by = Auth::user()->id;
         $post->save();
 
@@ -83,10 +84,11 @@ class PostController extends Controller
     {
         //
         $data = [
-            'post' => $post->with('comments', 'creator')->first(),
+            'post' => $post->where('id', $post->id)->with('creator')->first(),
+            'comments' => Comment::where('post_id', $post->id)->with('creator')->orderBy('created_at', 'desc')->get(),
             'tags' => Tag::get(),
-            'likes' => $post->with('reacts')->first()->reacts()->where('post_id', $post->id)->where('type', 'like')->get()->pluck('user_id')->toArray(),
-            'dislikes' => $post->with('reacts')->first()->reacts()->where('post_id', $post->id)->where('type', 'dislike')->get()->pluck('user_id')->toArray(),
+            'likes' => $post->where('id', $post->id)->with('reacts')->first()->reacts()->where('type', 'like')->get()->pluck('user_id')->toArray(),
+            'dislikes' => $post->where('id', $post->id)->with('reacts')->first()->reacts()->where('type', 'dislike')->get()->pluck('user_id')->toArray(),
         ];
 
         return view('user.post.show', $data);
@@ -101,6 +103,12 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         //
+        $check = $post->creator->id == Auth::user()->id;
+        if(!$check){
+            Alert::error('Anda tidak memiliki izin untuk mengedit post ini');
+
+            return redirect()->route('user.post.index');
+        }
         $data = [
             'post' => $post,
             'tags' => Tag::get(),
@@ -124,10 +132,9 @@ class PostController extends Controller
             'konten' => ['required', 'string'],
         ]);
 
-        $post = new Post();
         $post->title = $request->judul;
         $post->slug = Str::slug($request->judul);
-        $post->content = $request->kontent;
+        $post->content = $request->konten;
         $post->created_by = Auth::user()->id;
         $post->save();
 
