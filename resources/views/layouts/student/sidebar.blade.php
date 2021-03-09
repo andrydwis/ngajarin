@@ -31,20 +31,27 @@
 
 
                 <!-- pembatas -->
-                <p class="mt-4 mb-3 ml-2 text-sm tracking-wider text-gray-600 uppercase">Mentor</p>
+                <!-- <p class="mt-4 mb-3 ml-2 text-sm tracking-wider text-gray-600 uppercase">Mentor</p> -->
 
-                <a href="/student/classroom" class="sidebar-item 
+                <a href="/student/classroom" class="sidebar-item mt-2 
                 {{ Route::currentRouteNamed('student.classroom*') ? 'sidebar-item-active ' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-sm fas fa-user-friends"></i>
                     Classroom
                 </a>
 
-                <a href="/admin/mentor-list/create" class="sidebar-item 
-                {{ Route::currentRouteNamed('admin.mentor-list.create') ? 'sidebar-item-active ' : '' }}
+                <a href="/student/course-list" class="sidebar-item my-2
+                {{ Route::currentRouteNamed('student.course-list*') ? 'sidebar-item-active ' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-sm fas fa-folder"></i>
                     Course
+                </a>
+
+                <a href="/student/course" class="sidebar-item 
+                {{ Route::currentRouteNamed('student.course.index') ? 'sidebar-item-active ' : '' }}
+                ">
+                    <i class="ml-4 mr-2 text-sm fas fa-folder-plus"></i>
+                    Browse Course
                 </a>
                 <!-- pembatas -->
 

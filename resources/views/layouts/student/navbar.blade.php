@@ -1,7 +1,7 @@
 <!-- start navbar -->
 <div class="fixed top-0 z-40 flex flex-row flex-wrap justify-between w-full p-5 bg-white border-b border-gray-200 shadow-sm">
     <div class="flex flex-none text-gray-900">
-        <i class="inline-block text-2xl fas fa-book-open"></i>
+        <i class="hidden text-2xl xs:inline-block fas fa-book-open"></i>
         <strong class="flex-1 mx-2 capitalize">ngajar.in</strong>
     </div>
 

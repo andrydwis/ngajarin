@@ -1,7 +1,7 @@
 <!-- start navbar -->
 <div class="fixed top-0 z-40 flex flex-row flex-wrap justify-between w-full p-5 bg-white border-b border-gray-200 shadow-sm">
     <div class="flex flex-none text-gray-900">
-        <i class="inline-block text-2xl fas fa-book-open"></i>
+        <i class="hidden text-2xl xs:inline-block fas fa-book-open"></i>
         <strong class="flex-1 mx-2 capitalize">ngajar.in</strong>
     </div>
 
@@ -69,14 +69,7 @@
 
                     @auth
                     <!-- Modal-->
-                    <div @click.away="modalLogout = !modalLogout" x-cloak x-show="modalLogout"
-                    x-transition:enter="transition duration-300"
-                    x-transition:enter-start="opacity-0"
-                    x-transition:enter-end="opacity-100"
-                    x-transition:leave="transition duration-300"
-                    x-transition:leave-start="opacity-100"
-                    x-transition:leave-end="opacity-0"
-                    class="fixed top-0 left-0 flex items-center justify-center w-full h-full">
+                    <div @click.away="modalLogout = !modalLogout" x-cloak x-show="modalLogout" x-transition:enter="transition duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed top-0 left-0 flex items-center justify-center w-full h-full">
 
                         <!-- overlay -->
                         <div class="absolute z-10 w-full h-full bg-gray-900 opacity-50">
