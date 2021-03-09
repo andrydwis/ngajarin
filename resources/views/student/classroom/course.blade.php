@@ -1,27 +1,40 @@
 @extends('layouts.student.app')
 @section('content')
-<div class="row">
+<div class="w-full p-5 mt-20 md:w-auto lg:w-4/6 xl:w-3/4">
     <div class="col">
         <div class="card">
             <div class="card-header">
-                <h4>Daftar Course Kelas {{$classroom->name}}</h4>
+                <h6 class="h6">Daftar Course Kelas {{$classroom->name}}</h6>
             </div>
             <div class="card-body">
-                <table id="datatables" class="display" style="width:100%">
-                    <thead>
+                <table id="datatables" class="w-auto py-10 text-left">
+                    <thead class="pt-10 text-white bg-gray-600 shadow-md">
                         <tr>
                             <th>No</th>
                             <th>Nama Course</th>
                             <th>Menu</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="shadow-md">
                         @foreach($classroom->courses as $course)
-                        <tr>
+                        <tr class="hover:bg-gray-100">
                             <td>{{$loop->index+1}}</td>
                             <td>{{$course->title}}</td>
                             <td>
-                               
+                                <!-- button -->
+                                <div x-data="{ tooltip: false }" class="flex-1">
+                                    <a href="#" @mouseover="tooltip = true" @mouseleave="tooltip = false" class="button btn-bs-success">
+                                        <i class="mr-2 text-sm fas fa-folder"></i>
+                                        <span class="hidden md:inline">Lihat Course</span>
+                                    </a>
+                                    <div class="relative" x-cloak x-show.transition.origin.top="tooltip">
+                                        <div class="absolute z-50 flex items-center p-2 text-sm leading-tight text-white rounded-lg shadow-lg w-44 btn-bs-success top-2">
+                                            <i class="mr-2 text-lg fas fa-info-circle"></i>
+                                            Lihat detail course
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end of button -->
                             </td>
                         </tr>
                         @endforeach
@@ -34,14 +47,15 @@
 @endsection
 
 @section('customCSS')
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.23/r-2.2.7/datatables.min.css" />
 @endsection
 
 @section('customJS')
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.23/r-2.2.7/datatables.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#datatables').DataTable({
+            responsive: true,
             "language": {
                 "url": "https://cdn.datatables.net/plug-ins/1.10.22/i18n/Indonesian.json"
             }
