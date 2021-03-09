@@ -25,7 +25,6 @@
                             <th class="px-6 pt-6 pb-4 text-sm font-bold uppercase border border-gray-600">Email</th>
                             <th class="px-6 pt-6 pb-4 text-sm font-bold uppercase border border-gray-600">Telepon</th>
                             <th class="px-6 pt-6 pb-4 text-sm font-bold uppercase border border-gray-600">Role</th>
-                            <th class="px-6 pt-6 pb-4 text-sm font-bold uppercase border border-gray-600">Menu</th>
                         </tr>
                     </thead>
                     <tbody class="shadow-md">
@@ -36,9 +35,6 @@
                             <td class="px-6 py-4">{{$user->email}}</td>
                             <td class="px-6 py-4">{{$user->phone}}</td>
                             <td class="px-6 py-4">{{$user->getRoleNames()->first()}}</td>
-                            <td class="px-6 py-4">
-
-                            </td>
                         </tr>
                         @endforeach
                     </tbody>
