@@ -10,6 +10,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     @yield('customCSS')
+    @livewireStyles
 </head>
 
 <body class="bg-gray-50">
@@ -31,6 +32,7 @@
     <script src="{{ asset('js/new-admin.js') }}"></script>
     @yield('customJS')
     @include('sweetalert::alert')
+    @livewireScripts
 </body>
 
 </html>

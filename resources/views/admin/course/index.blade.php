@@ -17,7 +17,12 @@
                     :thumbnail="$course->thumbnail"
                     :episodes="$course->episodes->count()" 
                     :submission="$course->submissions->count()" />
-                    
+
+                    {{-- <livewire:test-card> 
+
+                        <x-skeleton.card-course/> --}}
+
+
                     @endforeach
                 </div>
             </div>

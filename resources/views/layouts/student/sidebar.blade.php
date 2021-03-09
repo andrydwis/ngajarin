@@ -4,7 +4,7 @@
             <i class="text-white fas fa-chevron-right"></i>
         </button>
 
-        <div :class="{'hidden' : isOpen4}" @click.away="isOpen4 = !isOpen4" id="sideBar" class="fixed top-0 left-0 z-40 flex-col flex-wrap flex-none w-64 min-h-full p-6 mt-0 bg-white border-r border-gray-200 lg:relative md:pt-4 md:top-12 lg:flex">
+        <div :class="{'hidden' : isOpen4}" @click.away="isOpen4 = !isOpen4" id="sideBar" class="fixed top-0 left-0 z-50 flex-col flex-wrap flex-none w-64 min-h-full p-6 mt-0 bg-white border-r border-gray-200 md:z-20 lg:relative md:pt-4 md:top-12 lg:flex">
 
             <!-- sidebar content -->
             <div class="flex flex-col pt-7">
@@ -17,27 +17,36 @@
                 </div>
                 <!-- end sidebar toggle -->
 
-                <p class="mb-3 text-sm tracking-wider text-gray-600 uppercase">Beranda</p>
 
+                <!-- pembatas -->
+                <p class="mb-3 ml-2 text-sm tracking-wider text-gray-600 uppercase">Beranda</p>
 
-                <a href="/dashboard" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
-                {{ Route::currentRouteNamed('dashboard') ? 'text-green-600' : '' }}
+                <a href="/student/dashboard" class="sidebar-item 
+                {{ Route::currentRouteNamed('dashboard.student') ? 'sidebar-item-active ' : '' }}
                 ">
-                    <i class="mr-2 text-sm fas fa-chart-pie"></i>
+                    <i class="ml-4 mr-2 text-sm fas fa-chart-pie"></i>
                     Dashboard
                 </a>
+                <!-- pembatas -->
 
-                <!-- pembatas link -->
-                <!-- <p class="mt-4 mb-3 text-sm tracking-wider text-gray-600 uppercase">Mentor</p>
 
-                <a href="/admin/mentor-list" class="mb-3 text-sm font-medium capitalize transition duration-200 ease-in-out hover:text-green-600
-                {{ Route::currentRouteNamed('admin.mentor-list.index') ? 'text-green-600' : '' }}
+                <!-- pembatas -->
+                <p class="mt-4 mb-3 ml-2 text-sm tracking-wider text-gray-600 uppercase">Mentor</p>
+
+                <a href="/student/classroom" class="sidebar-item 
+                {{ Route::currentRouteNamed('student.classroom*') ? 'sidebar-item-active ' : '' }}
                 ">
-                    <i class="mr-2 text-sm fas fa-user-friends"></i>
-                    Mentor List
-                </a> -->
+                    <i class="ml-4 mr-2 text-sm fas fa-user-friends"></i>
+                    Classroom
+                </a>
 
-                
+                <a href="/admin/mentor-list/create" class="sidebar-item 
+                {{ Route::currentRouteNamed('admin.mentor-list.create') ? 'sidebar-item-active ' : '' }}
+                ">
+                    <i class="ml-4 mr-2 text-sm fas fa-folder"></i>
+                    Course
+                </a>
+                <!-- pembatas -->
 
             </div>
             <!-- end sidebar content -->

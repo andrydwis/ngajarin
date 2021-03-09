@@ -10,13 +10,14 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     @yield('customCSS')
+    @livewireStyles
 </head>
 
 <body class="bg-gray-50">
 
     @include('layouts.student.navbar')
 
-    <div class="flex flex-row flex-wrap h-screen bg-gray-50">
+    <div class="flex flex-row flex-wrap h-screen bg-gray-100">
 
         @include('layouts.student.sidebar')
 
@@ -28,9 +29,10 @@
     <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/new-admin.js') }}"></script>
+    <script src="{{ asset('js/new-student.js') }}"></script>
     @yield('customJS')
     @include('sweetalert::alert')
+    @livewireScripts
 </body>
 
 </html>
