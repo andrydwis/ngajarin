@@ -5,12 +5,7 @@
         <div>
             <div class="card">
                 <div class="flex justify-between card-header">
-                    <h4 class="h6">Daftar Kelas</h4>
-                    <div>
-                        <a href="#">
-                            <button type="submit" class="btn-bs-primary">Join Kelas</button>
-                        </a>
-                    </div>
+                    <h4 class="h6">Daftar Course Anda</h4>
                 </div>
                 <div class="card-body">
                     <table id="datatables" class="w-auto py-10 text-left">

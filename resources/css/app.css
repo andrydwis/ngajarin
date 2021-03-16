@@ -3,16 +3,13 @@
 @import url("https://fonts.googleapis.com/css?family=Ubuntu&display=swap");
 
 
-/* global */
-@import "components/global.css";
-
-
 /* tailwind */
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 
 
 /* custom components */
+
 @import "components/sidebar.css";
 @import "components/input.css";
 @import "components/alert.css";
@@ -28,3 +25,5 @@
 
 /* tailwind utilities, di pasang di akhir biar bisa override lewat component & template*/
 @import "tailwindcss/utilities";
+
+@import "components/global.css";

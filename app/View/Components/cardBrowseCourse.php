@@ -28,8 +28,6 @@ class cardBrowseCourse extends Component
         $this->level = $level;
         $this->tags = $tags;
         $this->thumbnail = $thumbnail;
-        $this->episodes = $episodes;
-        $this->submission = $submission;
     }
 
     /**
