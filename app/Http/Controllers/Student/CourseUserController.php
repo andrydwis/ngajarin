@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CourseUserController extends Controller
 {
@@ -40,12 +42,15 @@ class CourseUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(User $user, Request $request)
+    public function store(Course $course, Request $request)
     {
         //
-        $user->courses()->syncWithoutDetaching($request->course);
+        $user = User::find(Auth::user()->id);
+        $user->courses()->syncWithoutDetaching($course);
 
-        return back();
+        Alert::success('Anda berhasil bergabung dengan course ini !');
+
+        return redirect()->route('student.course-list.index');
     }
 
     /**

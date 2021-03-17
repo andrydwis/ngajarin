@@ -5,12 +5,7 @@
         <div>
             <div class="card">
                 <div class="flex justify-between card-header">
-                    <h4 class="h6">Daftar Kelas</h4>
-                    <div>
-                        <a href="#">
-                            <button type="submit" class="btn-bs-primary">Join Kelas</button>
-                        </a>
-                    </div>
+                    <h4 class="h6">Daftar Course Anda</h4>
                 </div>
                 <div class="card-body">
                     <table id="datatables" class="w-auto py-10 text-left">
@@ -31,45 +26,6 @@
                                 <td>{{$course->level}}</td>
                                 <td>{{$course->description}}</td>
                                 <td class="flex flex-wrap gap-1 px-6 py-4">
-
-                                    <!-- hidden form -->
-                                    <form class="hidden" action="" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <div class="form-group">
-                                            <button id="btn_delete_{{$classroom->classroom->name}}" type="submit">Hapus</button>
-                                        </div>
-                                    </form>
-                                    <!-- hidden form -->
-
-                                    <!-- button -->
-                                    <div x-data="{ tooltip: false }" class="flex-1">
-                                        <a @click.prevent="$('#btn_delete_{{$course->title}}').click()" @mouseover="tooltip = true" @mouseleave="tooltip = false" href="#" class="my-1 md:my-0 button btn-bs-danger">
-                                            <i class="text-sm fas fa-trash-alt"></i>
-                                        </a>
-                                        <div class="relative" x-cloak x-show.transition.origin.top="tooltip">
-                                            <div class="absolute z-50 flex items-center w-32 p-2 text-sm leading-tight text-white rounded-lg shadow-lg btn-bs-danger top-2">
-                                                <i class="mr-2 text-lg fas fa-info"></i>
-                                                Keluar Kelas
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- end of button -->
-
-                                    <!-- button -->
-                                    <div x-data="{ tooltip: false }" class="flex-1">
-                                        <a href="" @mouseover="tooltip = true" @mouseleave="tooltip = false" class="button btn-bs-primary">
-                                            <i class="text-sm fas fa-folder"></i>
-                                        </a>
-                                        <div class="relative" x-cloak x-show.transition.origin.top="tooltip">
-                                            <div class="absolute z-50 flex items-center w-40 p-2 text-sm leading-tight text-white rounded-lg shadow-lg btn-bs-primary top-2">
-                                                <i class="mr-2 text-lg fas fa-info"></i>
-                                                Lihat Detail
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- end of button -->
-
                                 </td>
                             </tr>
                             @endforeach

@@ -37,21 +37,21 @@
                 {{ Route::currentRouteNamed('student.classroom*') ? 'sidebar-item-active ' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-sm fas fa-user-friends"></i>
-                    Classroom
+                    Kelas
                 </a>
 
                 <a href="/student/course-list" class="sidebar-item my-2
                 {{ Route::currentRouteNamed('student.course-list*') ? 'sidebar-item-active ' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-sm fas fa-folder"></i>
-                    Course
+                    Course Saya
                 </a>
 
                 <a href="/student/course" class="sidebar-item 
                 {{ Route::currentRouteNamed('student.course.index') ? 'sidebar-item-active ' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-sm fas fa-folder-plus"></i>
-                    Browse Course
+                    Daftar Course
                 </a>
                 <!-- pembatas -->
 

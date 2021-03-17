@@ -14,7 +14,7 @@
                         <!-- end modal trigger -->
 
                         <!-- Modal-->
-                        <div @click.away="modal_join = !modal_join" x-cloak x-show="modal_join" x-transition:enter="transition duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full">
+                        <div x-cloak x-show="modal_join" x-transition:enter="transition duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click.away="modal_join = !modal_join" class="fixed inset-0 z-50 flex items-center justify-center w-full h-full">
 
                             <!-- overlay -->
                             <div class="absolute z-10 w-full h-full bg-gray-900 opacity-50">
@@ -159,4 +159,12 @@
         });
     });
 </script>
+@endsection
+
+@section('customCSS')
+<style>
+    [x-cloak] {
+        display: none;
+    }
+</style>
 @endsection

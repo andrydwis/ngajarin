@@ -34,7 +34,10 @@
                     </a>
                 </div>
                 <div class="flex-1">
-                    <button class="w-full btn-bs-primary">Join Course</button>
+                    <form action="{{route('student.course-list.store', $slug)}}" method="post">
+                        @csrf
+                        <button type="submit" class="w-full btn-bs-primary">Join Course</button>
+                    </form>
                 </div>
             </div>
             <!-- end of bagian bawah -->

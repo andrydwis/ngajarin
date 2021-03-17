@@ -20,5 +20,5 @@ Route::middleware(['auth', 'verified', 'role:student'])->group(function () {
     Route::get('/student/course/show/{course:slug}', [CourseController::class, 'show'])->name('student.course.show');
 
     Route::get('/student/course-list', [CourseUserController::class, 'index'])->name('student.course-list.index');
-    Route::post('/student/course-list/create/{course:slug}', [CourseUserController::class, 'store'])->name('student.course.store');
+    Route::post('/student/course-list/create/{course:slug}', [CourseUserController::class, 'store'])->name('student.course-list.store');
 });

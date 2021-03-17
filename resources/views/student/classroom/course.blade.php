@@ -23,7 +23,7 @@
                             <td>
                                 <!-- button -->
                                 <div x-data="{ tooltip: false }" class="flex-1">
-                                    <a href="#" @mouseover="tooltip = true" @mouseleave="tooltip = false" class="button btn-bs-success">
+                                    <a href="{{route('student.course.show', ['course' => $course->slug])}}" @mouseover="tooltip = true" @mouseleave="tooltip = false" class="button btn-bs-success">
                                         <i class="mr-2 text-sm fas fa-folder"></i>
                                         <span class="hidden md:inline">Lihat Course</span>
                                     </a>

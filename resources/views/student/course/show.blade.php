@@ -9,7 +9,7 @@
             <form action="" method="post">
                 @csrf
                 <div class="grid gap-6">
-                    <div>
+                    <div>       
                         <label for="judul">Judul</label>
                         <input type="text" name="judul" id="judul" class="form-input py-2 mt-2 block w-full @error('judul') is-invalid @enderror" value="{{old('judul') ?? $course->title}}" readonly>
                         @error('judul')
@@ -57,7 +57,7 @@
                         <label for="tag" class="block mb-2">Tag</label>
                         <select name="tag[]" id="tag" class="block w-full md:w-1/3 form-multiselect @error('tag') is-invalid @enderror" multiple disabled>
                             <option value="" disabled>Pilih Tag</option>
-                            @foreach($tags as $tag)
+                            @foreach($course->tags as $tag)
                             @if(in_array($tag->id, $course->tags->pluck('id')->toArray()))
                             <option value="{{$tag->id}}" selected>{{$tag->name}}</option>
                             @else
@@ -93,52 +93,5 @@
         $('#tag').select2();
         $('#level').select2();
     });
-</script>
-<!-- tinymce -->
-<script src="https://cdn.tiny.cloud/1/qvfv9oh941rjqa0ca5i42hrvtg9175w7gg7vl0krwllauc26/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-<script>
-    var editor_config = {
-        readonly: 1,
-        path_absolute: "/",
-        selector: 'textarea.deskripsi',
-        relative_urls: false,
-        plugins: [
-            "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-            "searchreplace wordcount visualblocks visualchars code fullscreen",
-            "insertdatetime media nonbreaking save table directionality",
-            "emoticons template paste textpattern"
-        ],
-        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
-        file_picker_callback: function(callback, value, meta) {
-            var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
-            var y = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight;
-
-            var cmsURL = editor_config.path_absolute + 'laravel-filemanager?editor=' + meta.fieldname;
-            if (meta.filetype == 'image') {
-                cmsURL = cmsURL + "&type=Images";
-            } else {
-                cmsURL = cmsURL + "&type=Files";
-            }
-
-            tinyMCE.activeEditor.windowManager.openUrl({
-                url: cmsURL,
-                title: 'Filemanager',
-                width: x * 0.8,
-                height: y * 0.8,
-                resizable: "yes",
-                close_previous: "no",
-                onMessage: (api, message) => {
-                    callback(message.content);
-                }
-            });
-        }
-    };
-
-    tinymce.init(editor_config);
-</script>
-<!-- upload-button -->
-<script src="{{asset('vendor/laravel-filemanager/js/stand-alone-button.js')}}"></script>
-<script>
-    $('#lfm').filemanager('image');
 </script>
 @endsection

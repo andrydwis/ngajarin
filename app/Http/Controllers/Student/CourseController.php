@@ -55,8 +55,8 @@ class CourseController extends Controller
     {
         //
         $data = [
-            'course' => $course->with('users')->get()
-        ];
+            'course' => $course->with(['users', 'tags'])->first(),
+        ]; 
 
         return view('student.course.show', $data);
     }
