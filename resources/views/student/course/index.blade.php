@@ -16,6 +16,8 @@
                     :level="$course->level"
                     :tags="$course->tags" 
                     :thumbnail="$course->thumbnail"
+                    :episodes="$course->episodes"
+                    :submissions="$course->submissions"
                      />
 
                     {{-- <livewire:test-card> 
