@@ -17,6 +17,8 @@
     tidak ada file <br>
     @endif
     <hr>
+
+    @if(!in_array('diterima',$submission_users->pluck('status')->toArray()))
     kirim submission <br>
     <form action="{{route('student.course.submission.store', ['course' => $course, 'submission' => $submission])}}" method="post">
         @csrf
@@ -25,6 +27,10 @@
         <button type="submit">submit</button>
     </form>
     <hr>
+    @else
+    submission anda sudah diterima kok ! <br>
+    @endif
+   
     submissionku <br>
     @forelse($submission_users as $submission_user)
     {{$submission_user->score}} <br>
