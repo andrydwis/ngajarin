@@ -19,12 +19,12 @@
     dibuat tanggal: {{\Carbon\Carbon::parse($post->created_at)->isoFormat('dddd, D MMMM Y')}}, {{$post->created_at->diffForHumans()}} <br>
     diedit pada : {{\Carbon\Carbon::parse($post->updated_at)->isoFormat('dddd, D MMMM Y')}}. {{$post->updated_at->diffForHumans()}} <br>
 
-    total like = {{count($likes)}} <br>
-    total dislike = {{count($dislikes)}} <br>
+    total like = {{count($post->likes())}} <br>
+    total dislike = {{count($post->dislikes())}} <br>
 
     <form action="{{route('user.post.like', ['post' => $post->slug])}}" method="post">
         @csrf
-        @if(in_array(auth()->user()->id, $likes))
+        @if(in_array(auth()->user()->id, $post->likes()))
         <button type="submit">Unlike</button>
         @else
         <button type="submit">Like</button>
@@ -32,7 +32,7 @@
     </form>
     <form action="{{route('user.post.dislike', ['post' => $post->slug])}}" method="post">
         @csrf
-        @if(in_array(auth()->user()->id, $dislikes))
+        @if(in_array(auth()->user()->id, $post->dislikes()))
         <button type="submit">Undislike</button>
         @else
         <button type="submit">Dislike</button>
@@ -55,7 +55,25 @@
     <hr>
     komen dari : {{$comment->creator->name}} <br>
     dibuat tanggal: {{\Carbon\Carbon::parse($comment->created_at)->isoFormat('dddd, D MMMM Y')}}, {{$comment->created_at->diffForHumans()}} <br>
-    {{$comment->content}}
+    {{$comment->content}}<br>
+    Jumlah like = {{count($comment->likes())}}<br>
+    Jumlah dislike = {{count($comment->dislikes())}}<br>
+    <form action="{{route('user.post.comment.like', ['comment' => $comment])}}" method="post">
+        @csrf
+        @if(in_array(auth()->user()->id, $comment->likes()))
+        <button type="submit">Unlike</button>
+        @else
+        <button type="submit">like</button>
+        @endif
+    </form>
+    <form action="{{route('user.post.comment.dislike', ['comment' => $comment])}}" method="post">
+        @csrf
+        @if(in_array(auth()->user()->id, $comment->dislikes()))
+        <button type="submit">Undislike</button>
+        @else
+        <button type="submit">Dislike</button>
+        @endif
+    </form>
     @endforeach
 </body>
 

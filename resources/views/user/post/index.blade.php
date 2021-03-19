@@ -1,4 +1,4 @@
-<h1>Tambah post</h1>
+<h1> post</h1>
 <a href="{{route('user.post.create')}}">tambah baru</a>
 <hr>
 

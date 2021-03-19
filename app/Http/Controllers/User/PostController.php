@@ -87,8 +87,6 @@ class PostController extends Controller
             'post' => $post->where('id', $post->id)->with('creator')->first(),
             'comments' => Comment::where('post_id', $post->id)->with('creator')->orderBy('created_at', 'desc')->get(),
             'tags' => Tag::get(),
-            'likes' => $post->where('id', $post->id)->with('reacts')->first()->reacts()->where('type', 'like')->get()->pluck('user_id')->toArray(),
-            'dislikes' => $post->where('id', $post->id)->with('reacts')->first()->reacts()->where('type', 'dislike')->get()->pluck('user_id')->toArray(),
         ];
 
         return view('user.post.show', $data);

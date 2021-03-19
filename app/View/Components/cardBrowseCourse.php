@@ -11,6 +11,7 @@ class cardBrowseCourse extends Component
      *
      * @return void
      */
+    public $course;
     public $slug;
     public $title;
     public $created_date;
@@ -21,13 +22,16 @@ class cardBrowseCourse extends Component
     public $episodes;
     public $level;
 
-    public function __construct($slug, $title, $level, $tags, $thumbnail, $episodes, $submissions)
+    public function __construct($course, $slug, $title, $level, $tags, $thumbnail, $episodes, $submissions)
     {
+        $this->course = $course;
         $this->slug = $slug;
         $this->title = $title;
         $this->level = $level;
         $this->tags = $tags;
         $this->thumbnail = $thumbnail;
+        $this->episodes = $episodes;
+        $this->submissions = $submissions;
     }
 
     /**

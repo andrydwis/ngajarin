@@ -35,4 +35,14 @@ class Post extends Model
     {
         return $this->hasMany(PostReact::class);
     }
+
+    public function likes()
+    {
+        return $this->where('id', $this->id)->with('reacts')->first()->reacts()->where('type', 'like')->get()->pluck('user_id')->toArray();
+    }
+
+    public function dislikes()
+    {
+        return $this->where('id', $this->id)->with('reacts')->first()->reacts()->where('type', 'dislike')->get()->pluck('user_id')->toArray();
+    }
 }

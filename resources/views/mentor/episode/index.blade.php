@@ -11,13 +11,10 @@
             </div>
             <div class="card-body">
                 @foreach($episodes as $episode)
-
-                <x-index-episode :slug="$episode->slug" :course="$course->slug" :title="$episode->title" :type="$episode->type" :description="$episode->description" :link="$episode->link">
-
+                <x-index-episode :slug="$episode->slug" :course="$course->slug" :title="$episode->title" :type="$episode->type" :description="$episode->description" :link="$episode->link" :submission="$episode->submission" >
                     <x-slot name="episode">
                         <span>{{$loop->index + 1}}</span>
                     </x-slot>
-
                 </x-index-episode>
                 @endforeach
             </div>

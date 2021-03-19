@@ -22,11 +22,7 @@ class Submission extends Model
     public function unlocked(){
         $check = SubmissionUser::where('submission_id', $this->id)->where('user_id', Auth::user()->id)->latest()->first();
         if($check){
-            if($check->status == 'diterima'){
-                return 'diterima';
-            }else{
-                return 'ditolak';
-            }
+            return $check->status;
         }else{
             return 'belum mengumpulkan';
         }

@@ -79,6 +79,7 @@ class EpisodeController extends Controller
         } elseif ($request->tipe == 'text') {
             $episode->link = $request->file;
         }
+        $episode->unlock_submission = $request->syarat;
         $episode->save();
 
         Alert::success('Episode berhasil ditambahkan');

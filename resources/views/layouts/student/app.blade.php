@@ -24,15 +24,15 @@
         @yield('content')
     </div>
 
-    @livewireScripts
+    
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+    @livewireScripts
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/new-admin.js') }}"></script>
     @yield('customJS')
     @include('sweetalert::alert')
-    
 </body>
 
 </html>

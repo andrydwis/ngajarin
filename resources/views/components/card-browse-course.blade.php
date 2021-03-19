@@ -13,6 +13,8 @@
                 @endif
 
                 <div class="flex flex-col items-start pl-5">
+                    jumlah episode = {{count($episodes)}}
+                    jumlah submission = {{count($submissions)}}
                     <h3 class="text-xl font-semibold hover:text-blue-600">
                         <a href="{{route('student.course.show', $slug)}}">{{ $title }}</a>
                     </h3>
@@ -30,14 +32,18 @@
             <div class="flex gap-2 pt-5">
                 <div class="flex-1">
                     <a href="{{route('student.course.show', $slug)}}">
-                        <button class="w-full btn-bs-success">Detail Course</button>
+                        <button class="w-full btn-bs-success">Lihat Course</button>
                     </a>
                 </div>
                 <div class="flex-1">
+                    @if(in_array(auth()->user()->id, $course->users->pluck('id')->toArray()))              
+                        <button class="w-full btn-bs-secondary">Sudah Bergabung</button>
+                    @else
                     <form action="{{route('student.course-list.store', $slug)}}" method="post">
                         @csrf
                         <button type="submit" class="w-full btn-bs-primary">Join Course</button>
                     </form>
+                    @endif
                 </div>
             </div>
             <!-- end of bagian bawah -->

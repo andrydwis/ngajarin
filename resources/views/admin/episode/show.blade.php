@@ -24,6 +24,20 @@
                             {!! $episode->description !!}
                         </p>
                     </div>
+                    <div>
+                        <h6 class="mb-2 text-sm font-semibold md:text-lg">
+                            Syarat :
+                        </h6>
+                        @if($episode->unlock_submission)
+                        <p>
+                            Tidak ada syarat submission
+                        </p>
+                        @else
+                        <p>
+                            {$episode->submission->title}
+                        </p>
+                        @endif
+                    </div>
                     @else
                     <div>
                         <h6 class="mb-2 text-sm font-semibold md:text-lg">
@@ -33,7 +47,6 @@
                             {!! $episode->description !!}
                         </p>
                     </div>
-
                     <div>
                         <h6 class="pb-2 text-sm font-semibold md:text-lg">
                             Lampiran :
@@ -57,6 +70,20 @@
                             </div>
                             @endif
                         </button>
+                    </div>
+                    <div>
+                        <h6 class="mb-2 text-sm font-semibold md:text-lg">
+                            Syarat :
+                        </h6>
+                        @if($episode->unlock_submission)
+                        <p>
+                            Tidak ada syarat submission
+                        </p>
+                        @else
+                        <p>
+                            {$episode->submission->title}
+                        </p>
+                        @endif
                     </div>
                     @endif
                 </div>

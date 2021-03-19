@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\CommentReact;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -95,5 +96,73 @@ class CommentController extends Controller
     public function destroy(Comment $comment)
     {
         //
+    }
+
+    public function like(Request $request, Comment $comment)
+    {
+        $likes = $comment->with('reacts')->first()->reacts()->where('comment_id', $comment->id)->where('type', 'like')->get()->pluck('user_id')->toArray();
+        $dislikes = $comment->with('reacts')->first()->reacts()->where('comment_id', $comment->id)->where('type', 'dislike')->get()->pluck('user_id')->toArray();
+        $isAlreadyLikes = in_array(Auth::user()->id, $likes);
+        $isAlreadyDislikes = in_array(Auth::user()->id, $dislikes);
+
+        if ($isAlreadyLikes) {
+            $react = CommentReact::where('comment_id', $comment->id)->where('user_id', Auth::user()->id)->first();
+            $react->delete();
+
+            return back();
+        } elseif ($isAlreadyDislikes) {
+            $react = CommentReact::where('comment_id', $comment->id)->where('user_id', Auth::user()->id)->first();
+            $react->delete();
+
+            $react = new CommentReact();
+            $react->comment_id = $comment->id;
+            $react->user_id = Auth::user()->id;
+            $react->type = 'like';
+            $react->save();
+
+            return back();
+        } else {
+            $react = new CommentReact();
+            $react->comment_id = $comment->id;
+            $react->user_id = Auth::user()->id;
+            $react->type = 'like';
+            $react->save();
+
+            return back();
+        }
+    }
+
+    public function dislike(Request $request, Comment $comment)
+    {
+        $likes = $comment->with('reacts')->first()->reacts()->where('comment_id', $comment->id)->where('type', 'like')->get()->pluck('user_id')->toArray();
+        $dislikes = $comment->with('reacts')->first()->reacts()->where('comment_id', $comment->id)->where('type', 'dislike')->get()->pluck('user_id')->toArray();
+        $isAlreadyLikes = in_array(Auth::user()->id, $likes);
+        $isAlreadyDislikes = in_array(Auth::user()->id, $dislikes);
+
+        if ($isAlreadyDislikes) {
+            $react = CommentReact::where('comment_id', $comment->id)->where('user_id', Auth::user()->id)->first();
+            $react->delete();
+
+            return back();
+        } elseif ($isAlreadyLikes) {
+            $react = CommentReact::where('comment_id', $comment->id)->where('user_id', Auth::user()->id)->first();
+            $react->delete();
+
+            $react = new CommentReact();
+            $react->comment_id = $comment->id;
+            $react->user_id = Auth::user()->id;
+            $react->type = 'dislike';
+            $react->save();
+
+            return back();
+        } else {
+            $react = new CommentReact();
+            $react->comment_id = $comment->id;
+            $react->user_id = Auth::user()->id;
+            $react->type = 'dislike';
+            $react->save();
+
+            return back();
+        }
     }
 }

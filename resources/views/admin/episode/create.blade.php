@@ -50,6 +50,20 @@
                                     </div>
                                     @enderror
                                 </div>
+                                <div>
+                                    <label for="syarat" class="block mb-2">Syarat</label>
+                                    <select name="syarat" id="syarat" class="block w-full md:w-1/3 form-multiselect @error('syarat') is-invalid @enderror">
+                                        <option value="" disabled selected>Pilih Submission</option>
+                                        @foreach($submissions as $submission)
+                                        <option value="{{$submission->id}}">{{$submission->title}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('syarat')
+                                    <div class="alert alert-error">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
+                                </div>
                                 <input type="hidden" name="tipe" value="video">
                             </div>
                             <div class="flex justify-end pt-5">
@@ -84,8 +98,8 @@
                                 </div>
                                 <div>
                                     <label for="syarat" class="block mb-2">Syarat</label>
-                                    <select name="syarat" id="syarat" class="block w-full md:w-1/3 form-multiselect @error('tag') is-invalid @enderror">
-                                        <option value="" disabled>Pilih Submission</option>
+                                    <select name="syarat" id="syarat" class="block w-full md:w-1/3 form-multiselect @error('syarat') is-invalid @enderror">
+                                        <option value="" disabled selected>Pilih Submission</option>
                                         @foreach($submissions as $submission)
                                         <option value="{{$submission->id}}">{{$submission->title}}</option>
                                         @endforeach

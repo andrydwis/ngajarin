@@ -9,8 +9,8 @@
             <div class="card-body">
                 <div class="flex flex-wrap">
                     @foreach($courses as $course)
-
                     <x-card-browse-course 
+                    :course="$course"
                     :slug="$course->slug" 
                     :title="$course->title" 
                     :level="$course->level"
@@ -19,12 +19,6 @@
                     :episodes="$course->episodes"
                     :submissions="$course->submissions"
                      />
-
-                    {{-- <livewire:test-card> 
-
-                        <x-skeleton.card-course/> --}}
-
-
                     @endforeach
                 </div>
             </div>

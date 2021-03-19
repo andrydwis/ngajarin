@@ -20,7 +20,7 @@ class CreateSubmissionUsersTable extends Migration
             $table->string('file');
             $table->integer('score')->nullable();
             $table->string('feedback')->nullable();
-            $table->enum('status', ['diterima', 'ditolak'])->nullable();
+            $table->enum('status', ['diterima', 'ditolak', 'dalam review']);
             $table->timestamps();
         });
     }

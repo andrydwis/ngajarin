@@ -23,4 +23,19 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class, 'created_by');
     }
+
+    public function reacts()
+    {
+        return $this->hasMany(CommentReact::class);
+    }
+
+    public function likes()
+    {
+        return $this->where('id', $this->id)->with('reacts')->first()->reacts()->where('type', 'like')->get()->pluck('user_id')->toArray();
+    }
+
+    public function dislikes()
+    {
+        return $this->where('id', $this->id)->with('reacts')->first()->reacts()->where('type', 'dislike')->get()->pluck('user_id')->toArray();
+    }
 }

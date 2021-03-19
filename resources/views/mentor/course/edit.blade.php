@@ -86,8 +86,8 @@
                         </select>
                     </div>
                 </div>
-                <div class="flex justify-center pt-5">
-                    <button type="submit" class="w-full md:w-auto btn-bs-primary">Tambahkan</button>
+                <div class="flex justify-end pt-5">
+                    <button type="submit" class="w-full md:w-auto btn-bs-primary">Update</button>
                 </div>
             </form>
         </div>
