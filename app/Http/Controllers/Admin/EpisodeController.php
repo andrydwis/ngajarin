@@ -115,7 +115,8 @@ class EpisodeController extends Controller
         //
         $data = [
             'course' => $course,
-            'episode' => $episode
+            'episode' => $episode,
+            'submissions' => $course->submissions
         ];
 
         return view('admin.episode.edit', $data);
@@ -133,14 +134,14 @@ class EpisodeController extends Controller
         //
         if ($request->tipe == 'video') {
             $request->validate([
-                'judul' => ['required', 'string', Rule::unique('episodes', 'title')],
+                'judul' => ['required', 'string', Rule::unique('episodes', 'title')->ignore($episode)],
                 'link' => ['required'],
                 'deskripsi' => ['required', 'string'],
                 'tipe' => ['required'],
             ]);
         } elseif ($request->tipe == 'text') {
             $request->validate([
-                'judul' => ['required', 'string', Rule::unique('episodes', 'title')],
+                'judul' => ['required', 'string', Rule::unique('episodes', 'title')->ignore($episode)],
                 'deskripsi' => ['required', 'string'],
                 'tipe' => ['required'],
             ]);

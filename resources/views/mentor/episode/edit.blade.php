@@ -6,7 +6,7 @@
             <h6 class="h6">Edit Data Episode {{$episode->title}}</h6>
         </div>
         <div class="card-body">
-           
+
             <div class="container mb-4 " x-data="{ tab: '{{$episode->type}}' }">
                 <!-- tabs -->
                 <ul class="flex mt-6 border-b">
@@ -46,8 +46,23 @@
                                 <div>
                                     <label for="deskripsi">Deskripsi</label>
                                     <textarea name="deskripsi" id="deskripsi" class="form-textarea deskripsi @error('deskripsi') is-invalid @enderror">{!! old('deskripsi') ?? $episode->description !!}</textarea>
-                                    
+
                                     @error('deskripsi')
+                                    <div class="alert alert-error">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div>
+                                    <label for="syarat" class="block mb-2">Syarat</label>
+                                    <select name="syarat" id="syarat" class="block w-full md:w-1/3 form-multiselect @error('syarat') is-invalid @enderror">
+                                        <option value="" disabled selected>Pilih Submission</option>
+                                        <option value="">Tanpa Submission</option>
+                                        @foreach($submissions as $submission)
+                                        <option value="{{$submission->id}}">{{$submission->title}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('syarat')
                                     <div class="alert alert-error">
                                         {{$message}}
                                     </div>
@@ -98,6 +113,21 @@
                                         <input id="file" class="block w-full py-2 mt-2 form-input" type="text" name="file" value="{{old('file') ?? $episode->file}}" readonly>
                                     </div>
                                     @error('file')
+                                    <div class="alert alert-error">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div>
+                                    <label for="syarat" class="block mb-2">Syarat</label>
+                                    <select name="syarat" id="syarat" class="block w-full md:w-1/3 form-multiselect @error('syarat') is-invalid @enderror">
+                                        <option value="" disabled selected>Pilih Submission</option>
+                                        <option value="">Tanpa Submission</option>
+                                        @foreach($submissions as $submission)
+                                        <option value="{{$submission->id}}">{{$submission->title}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('syarat')
                                     <div class="alert alert-error">
                                         {{$message}}
                                     </div>

@@ -54,6 +54,7 @@
                                     <label for="syarat" class="block mb-2">Syarat</label>
                                     <select name="syarat" id="syarat" class="block w-full md:w-1/3 form-multiselect @error('syarat') is-invalid @enderror">
                                         <option value="" disabled selected>Pilih Submission</option>
+                                        <option value="">Tanpa Submission</option>
                                         @foreach($submissions as $submission)
                                         <option value="{{$submission->id}}">{{$submission->title}}</option>
                                         @endforeach
@@ -100,6 +101,7 @@
                                     <label for="syarat" class="block mb-2">Syarat</label>
                                     <select name="syarat" id="syarat" class="block w-full md:w-1/3 form-multiselect @error('syarat') is-invalid @enderror">
                                         <option value="" disabled selected>Pilih Submission</option>
+                                        <option value="">Tanpa Submission</option>
                                         @foreach($submissions as $submission)
                                         <option value="{{$submission->id}}">{{$submission->title}}</option>
                                         @endforeach
