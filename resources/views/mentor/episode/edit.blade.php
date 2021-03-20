@@ -6,7 +6,7 @@
             <h6 class="h6">Edit Data Episode {{$episode->title}}</h6>
         </div>
         <div class="card-body">
-           
+
             <div class="container mb-4 " x-data="{ tab: '{{$episode->type}}' }">
                 <!-- tabs -->
                 <ul class="flex mt-6 border-b">
@@ -46,8 +46,22 @@
                                 <div>
                                     <label for="deskripsi">Deskripsi</label>
                                     <textarea name="deskripsi" id="deskripsi" class="form-textarea deskripsi @error('deskripsi') is-invalid @enderror">{!! old('deskripsi') ?? $episode->description !!}</textarea>
-                                    
+
                                     @error('deskripsi')
+                                    <div class="alert alert-error">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div>
+                                    <label for="syarat1" class="block mb-2">Syarat</label>
+                                    <select name="syarat" id="syarat1" class="block w-full md:w-1/3 form-multiselect @error('syarat') is-invalid @enderror">
+                                        <option value="" disabled selected>Pilih Submission</option>
+                                        @foreach($submissions as $submission)
+                                        <option value="{{$submission->id}}">{{$submission->title}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('syarat')
                                     <div class="alert alert-error">
                                         {{$message}}
                                     </div>
@@ -103,6 +117,20 @@
                                     </div>
                                     @enderror
                                 </div>
+                                <div>
+                                    <label for="syarat2" class="block mb-2">Syarat</label>
+                                    <select name="syarat" id="syarat2" class="block w-full md:w-1/3 form-multiselect @error('syarat') is-invalid @enderror">
+                                        <option value="" disabled selected>Pilih Submission</option>
+                                        @foreach($submissions as $submission)
+                                        <option value="{{$submission->id}}">{{$submission->title}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('syarat')
+                                    <div class="alert alert-error">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
+                                </div>
                                 <input type="hidden" name="tipe" value="text">
                             </div>
                             <div class="flex justify-end pt-5">
@@ -121,9 +149,20 @@
 @endsection
 
 @section('customCSS')
+<!-- select2 -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection
 
 @section('customJS')
+<!-- select2 -->
+<!-- select2 -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#syarat1').select2();
+        $('#syarat2').select2();
+    });
+</script>
 <!-- tinymce -->
 <script src="https://cdn.tiny.cloud/1/qvfv9oh941rjqa0ca5i42hrvtg9175w7gg7vl0krwllauc26/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
