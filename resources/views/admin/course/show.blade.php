@@ -15,6 +15,8 @@
                 </a>
             </div>
         </div>
+
+        <!-- card body -->
         <div class="py-4">
             <!-- item -->
             <div class="grid px-6 pb-4 border-b md:grid-cols-3 md:gap-6">
@@ -45,11 +47,13 @@
                 </div>
                 <div class="flex flex-wrap col-span-2 mt-2 -ml-2 md:mt-0">
                     @foreach($tags as $tag)
+                    @if(in_array($tag->id, $course->tags->pluck('id')->toArray()))
                     <div class="py-2 mx-1 md:py-0">
                         <span class="px-2 py-2 tracking-tight bg-gray-200 rounded-md">
                             {{ $tag->name }}
                         </span>
                     </div>
+                    @endif
                     @endforeach
                 </div>
             </div>
@@ -77,20 +81,21 @@
             <!-- end of item -->
 
             <!-- item -->
-            <div class="grid px-6 py-4 border-b md:grid-cols-3 md:gap-6">
+            <div class="grid px-6 py-4 md:grid-cols-3 md:gap-6">
                 <div class="col-span-1">
                     <span class="text-gray-600">Deskripsi</span>
                 </div>
                 <div class="col-span-2 mt-2 md:mt-0">
-                    <div class="flex flex-wrap prose">
+                    <div class="break-all">
                         {!! $course->description !!}
                     </div>
                 </div>
             </div>
             <!-- end of item -->
 
-
         </div>
+        <!-- end of card body -->
+
     </div>
 </div>
 @endsection
