@@ -51,8 +51,8 @@
                                     @enderror
                                 </div>
                                 <div>
-                                    <label for="syarat" class="block mb-2">Syarat</label>
-                                    <select name="syarat" id="syarat" class="block w-full md:w-1/3 form-multiselect @error('syarat') is-invalid @enderror">
+                                    <label for="syarat1" class="block mb-2">Syarat</label>
+                                    <select name="syarat" id="syarat1" class="block w-full md:w-1/3 form-multiselect @error('syarat') is-invalid @enderror">
                                         <option value="" disabled selected>Pilih Submission</option>
                                         <option value="">Tanpa Submission</option>
                                         @foreach($submissions as $submission)
@@ -98,8 +98,8 @@
                                     @enderror
                                 </div>
                                 <div>
-                                    <label for="syarat" class="block mb-2">Syarat</label>
-                                    <select name="syarat" id="syarat" class="block w-full md:w-1/3 form-multiselect @error('syarat') is-invalid @enderror">
+                                    <label for="syarat2" class="block mb-2">Syarat</label>
+                                    <select name="syarat" id="syarat2" class="block w-full md:w-1/3 form-multiselect @error('syarat') is-invalid @enderror">
                                         <option value="" disabled selected>Pilih Submission</option>
                                         <option value="">Tanpa Submission</option>
                                         @foreach($submissions as $submission)
@@ -156,7 +156,8 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#syarat').select2();
+        $('#syarat1').select2();
+        $('#syarat2').select2();
     });
 </script>
 <!-- tinymce -->

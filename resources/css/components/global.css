@@ -7,3 +7,19 @@ body {
 [x-cloak] {
     display: none;
 }
+
+::-webkit-scrollbar {
+    width: 7px;
+    height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-primary-lighter rounded-2xl;
+    &:hover{
+        @apply bg-primary;
+    }
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}

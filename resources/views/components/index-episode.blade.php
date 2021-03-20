@@ -9,24 +9,32 @@
                     <i class="text-xs text-gray-200 hover:text-gray-400 md:text-xl fas fa-list-ul"></i>
                     @endif
                 </div>
-                <!-- kaet iki ki -->
-                @if($submission)
-                <h5>Harus mengerjakan submission {{$submission->title}} terlebih dahulu</h5>
-                {{$submission->unlocked()}}
-                @else
-                <h5>Tidak usah mengerjakan submission</h5>
-                @endif
             </a>
             <div class="flex flex-col">
                 <a href="{{route('admin.course.episode.show', [$course, $slug])}}">
-                    <span class="inline text-xs font-semibold text-gray-800 sm:hidden md:font-bold md:text-base">
+                    <span class="inline text-xs font-semibold text-gray-800 sm:hidden">
                         {{ Str::limit($title, $limit = 14) }}
                     </span>
-                    <span class="hidden text-sm font-semibold text-gray-800 sm:inline md:font-bold md:text-base">
+                    <span class="hidden text-base font-bold text-gray-800 sm:inline">
                         {{ $title }}
                     </span>
                 </a>
-                <span class="text-xs text-gray-600 md:text-sm">Episode {{ $episode }} </span>
+                <div class="flex text-xs text-gray-600 md:text-sm">
+                    <span class="inline pr-2 mr-2 border-r border-gray-600 xs:hidden">Eps {{ $episode }} </span>
+                    <span class="hidden pr-2 mr-2 border-r border-gray-600 xs:inline">Episode {{ $episode }} </span>
+
+                    <!-- fungsi buat cek status pengumpulan -->
+                    {{-- $submission->unlocked() --}}
+                    <!-- end of fungsi buat cek status pengumpulan -->
+
+                    @if($submission)
+                    <span class="inline sm:hidden">{{ Str::limit($submission->title, $limit = 10) }}</span>
+                    <span class="hidden sm:inline"> Syarat : Submission {{ $submission->title }}</span>
+                    @else
+                    <span class="inline xs:hidden"> - </span>
+                    <span class="hidden xs:inline"> Tidak ada Syarat </span>
+                    @endif
+                </div>
             </div>
         </div>
 
