@@ -13,8 +13,8 @@
                 @endif
 
                 <div class="flex flex-col items-start pl-5">
-                    jumlah episode = {{count($episodes)}}
-                    jumlah submission = {{count($submissions)}}
+                   {{-- jumlah episode = {{count($episodes)}}
+                    jumlah submission = {{count($submissions)}} --}}
                     <h3 class="text-xl font-semibold hover:text-blue-600">
                         <a href="{{route('student.course.show', $slug)}}">{{ $title }}</a>
                     </h3>
