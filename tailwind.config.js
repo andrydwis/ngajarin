@@ -3,7 +3,10 @@ const colors = require('tailwindcss/colors');
 
 module.exports = {
     purge: {
-        content: ['./storage/framework/views/*.php', './resources/views/**/*.blade.php', './resources/views/**/**/*.blade.php'],
+        content: [
+            './storage/framework/views/*.php',
+            './resources/views/**/*.blade.php',
+            './resources/views/**/**/*.blade.php'],
         options: {
             safelist: ['py-2', 'pl-2', 'text-sm', 'font-medium', 'capitalize', 'transition', 'duration-200', 'ease-in-out', 'rounded-full'],
             blocklist: [/^debug-/],
@@ -42,7 +45,7 @@ module.exports = {
             },
             screens: {
                 'xs': '375px',
-              },
+            },
         },
     },
 
