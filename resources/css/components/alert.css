@@ -7,11 +7,11 @@
 }
 
 .alert-danger {
-    @apply text-red-100 bg-red-500;
+    @apply text-red-500 bg-red-200;
 }
 
 .alert {
-    @apply px-6 py-4 text-sm bg-white border rounded;
+    @apply px-6 py-4 mt-5 text-sm font-semibold rounded;
     a {
         @apply text-base font-extrabold text-black transition duration-300 ease-in-out hover:opacity-75;
     }

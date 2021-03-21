@@ -1,7 +1,13 @@
 <div class="pb-2">
     <div id="wrapper_dropdown" class="flex w-full p-3 bg-gray-200 rounded-full hover:bg-gray-300">
         <div class="flex items-center gap-4">
-            <a href="{{route('admin.course.episode.show', [$course, $slug])}}" class="">
+            <a href="
+            @role('admin')
+            {{route('admin.course.episode.show', [$course, $slug])}}
+            @else
+            {{route('mentor.course.episode.show', [$course, $slug])}}
+            @endrole
+            ">
                 <div class="grid w-8 h-8 bg-gray-500 rounded-full md:w-12 md:h-12 place-items-center">
                     @if($type == 'video')
                     <i class="ml-1 text-xs text-gray-200 hover:text-gray-400 md:text-xl fas fa-play"></i>
@@ -11,7 +17,13 @@
                 </div>
             </a>
             <div class="flex flex-col">
-                <a href="{{route('admin.course.episode.show', [$course, $slug])}}">
+                <a href="
+                @role('admin')
+                {{route('admin.course.episode.show', [$course, $slug])}}
+                @else
+                {{route('mentor.course.episode.show', [$course, $slug])}}
+                @endrole
+                ">
                     <span class="inline text-xs font-semibold text-gray-800 sm:hidden">
                         {{ Str::limit($title, $limit = 14) }}
                     </span>

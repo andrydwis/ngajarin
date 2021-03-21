@@ -4,14 +4,22 @@
     <div>
         <div class="card">
             <div class="flex justify-between card-header">
-                <h6 class="text-base font-bold md:text-xl">
-                    <span class="hidden sm:inline">Daftar Episode Course -</span> {{$course->title}}
-                </h6>
-                <a href="{{route('mentor.course.episode.create', $course->slug)}}" class="flex items-center ml-4 btn-bs-primary">Tambah Episode</a>
+                <div>
+                    <h6 class="text-base font-bold md:text-xl">
+                        <span class="hidden sm:inline">Daftar Episode -</span> {{$course->title}}
+                    </h6>
+                </div>
+                <div class="flex-grow-0 ml-1">
+                    <a href="{{route('mentor.course.episode.create', $course->slug)}}">
+                        <button class="btn-bs-primary">
+                            Tambah <span class="hidden sm:inline">Episode</span>
+                        </button>
+                    </a>
+                </div>
             </div>
             <div class="card-body">
                 @foreach($episodes as $episode)
-                <x-index-episode :slug="$episode->slug" :course="$course->slug" :title="$episode->title" :type="$episode->type" :description="$episode->description" :link="$episode->link" :submission="$episode->submission" >
+                <x-index-episode :slug="$episode->slug" :course="$course->slug" :title="$episode->title" :type="$episode->type" :description="$episode->description" :link="$episode->link" :submission="$episode->submission">
                     <x-slot name="episode">
                         <span>{{$loop->index + 1}}</span>
                     </x-slot>
