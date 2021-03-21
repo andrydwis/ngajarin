@@ -1,81 +1,78 @@
 @extends('layouts.user.app')
 @section('content')
 
-<div class="container max-w-full px-0 py-24 mx-auto md:px-6">
-    <div class="max-w-md px-3 py-10 mx-auto bg-gray-100 rounded-lg md:px-8">
-        <div class="relative flex flex-wrap">
-            <div class="relative w-full font-bold">
-                <div class="md:mt-6">
-                    <div class="flex-col flex-wrap text-4xl font-semibold text-center text-gray-600">
-                        <svg class="w-20 h-20 mx-auto my-3" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-book-half" viewBox="0 0 16 16">
-                            <path d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
-                        </svg>
-                        <span>Login</span>
 
-                    </div>
+<!-- Section 1 -->
+<section class="w-full min-h-screen px-8 py-10 bg-gray-100 md:py-16 xl:px-8">
+    <div class="max-w-5xl mx-auto md:mt-10">
+        <div class="flex flex-col items-center md:flex-row ">
+
+            <div class="w-full space-y-5 md:w-3/5 md:pr-16">
+                <!-- <p class="font-semibold text-blue-500 uppercase">Building Businesses</p> -->
+                <!-- <h2 class="text-2xl font-extrabold leading-none text-black sm:text-3xl md:text-5xl">
+                    Changing The Way People Do Business.
+                </h2> -->
+                <img
+                src="http://api.elements.buildwithangga.com/storage/files/2/assets/Empty%20State/EmptyState3/Empty-3-5.png"
+                alt="missing img" 
+                class="hidden transform translate-y-10 md:inline">
+                <!-- <p class="text-xl text-gray-600 md:pr-16">Learn how to engage with your visitors and teach them about your mission. We're revolutionizing the way customers and businesses interact.</p> -->
+            </div>
+
+            <div class="w-full mt-16 md:mt-0 md:w-2/5">
+                <div class="relative z-10 h-auto p-8 py-10 overflow-hidden bg-white border-b-2 border-gray-300 rounded-lg shadow-2xl px-7">
+                    <h3 class="mb-6 text-2xl font-semibold text-center">Masuk ke akun Ngajar.in anda</h3>
+
                     @if(session()->has('status'))
                     <p class="alert alert-danger">{{session()->get('status')}}</p>
                     @endif
                     <form action="{{route('login')}}" method="post" class="mt-8">
                         @csrf
-                        <div class="max-w-lg mx-auto text-sm md:text-base ">
-
-                            <div class="py-1">
-
-                                <label for="email" class="px-1 text-gray-600">Email</label>
-                                <div>
-                                    <span class="absolute z-10 pt-3 pl-3 text-gray-600">
-                                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
-                                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
-                                        </svg>
-                                    </span>
-                                    <input type="text" name="email" id="email" placeholder="Masukan Email" type="email" value="{{old('email')}}" class="input-text-icon @error('email') input-is-invalid @enderror" />
-                                </div>
-
-                                @error('email')
-                                <div class="alert alert-danger">
-                                    {{$message}}
-                                </div>
-                                @enderror
+                        <div class="py-1">
+                            <label for="email" class="px-1 text-sm text-gray-600 md:text-base">Email</label>
+                            <div>
+                                <span class="absolute z-10 pt-4 pl-3 text-gray-600 md:pt-3">
+                                    <svg class="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                                    </svg>
+                                </span>
+                                <input type="text" name="email" id="email" placeholder="Masukan Email" type="email" value="{{old('email')}}" class="input-text-icon @error('email') input-is-invalid @enderror" />
                             </div>
 
-                            <div class="py-1">
-                                <label for="password" class="px-1 text-gray-600">Password</label>
-                                <div>
-                                    <span class="absolute z-10 pt-3 pl-3 text-gray-600">
-                                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </span>
-                                    <input name="password" id="password" placeholder="Masukan Password" type="password" class="input-text-icon @error('password') input-is-invalid @enderror" />
-                                </div>
-                                @error('password')
-                                <div class="alert alert-danger">
-                                    {{$message}}
-                                </div>
-                                @enderror
+                            @error('email')
+                            <div class="mt-2 alert alert-danger">
+                                {{$message}}
                             </div>
-                            <div class="my-5 text-right">
-                                <a href="{{route('password.request')}}" class="text-blue-500 border-b-2 border-blue-500 hover:text-blue-700 hover:border-blue-700">
-                                    Lupa Password?</a>
+                            @enderror
+                        </div>
+
+                        <div class="py-1">
+                            <label for="password" class="px-1 text-sm text-gray-600 md:text-base">Password</label>
+                            <div>
+                                <span class="absolute z-10 pt-4 pl-3 text-gray-600 md:pt-3">
+                                    <svg class="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </span>
+                                <input name="password" id="password" placeholder="Masukan Password" type="password" class="input-text-icon @error('password') input-is-invalid @enderror" />
                             </div>
-                            <div class="flex flex-wrap">
-                                <button type="submit" class="w-full btn btn-primary">
-                                    Login
-                                </button>
+                            @error('password')
+                            <div class="alert alert-danger">
+                                {{$message}}
                             </div>
-                            <div class="my-5 text-center">
-                                <p>Belum punya akun Ngajar.in?
-                                    <a href="{{route('register')}}" class="font-bold text-blue-500 border-b-2 border-blue-500 hover:text-blue-700 hover:border-blue-700">
-                                        Daftar disini</a>
-                                </p>
-                            </div>
+                            @enderror
+                        </div>
+
+                        <div class="block pt-4">
+                            <button type="submit" class="w-full btn-bs-primary">Masuk</button>
                         </div>
                     </form>
+                    <p class="w-full mt-4 text-sm text-center text-gray-500 md:text-base">Belum Punya Akun Ngajar.In? <a href="#_" class="text-blue-500 underline">Daftar Disini</a></p>
                 </div>
             </div>
+
         </div>
     </div>
-</div>
+</section>
 @endsection
