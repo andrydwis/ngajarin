@@ -14,7 +14,7 @@
                                 <th>No</th>
                                 <th>thumbnail</th>
                                 <th>level</th>
-                                <th>description</th>
+                                <!-- <th>description</th> -->
                                 <th>Menu</th>
                             </tr>
                         </thead>
@@ -24,8 +24,12 @@
                                 <td>{{$loop->index+1}}</td>
                                 <td>{{$course->thumbnail}}</td>
                                 <td>{{$course->level}}</td>
-                                <td>{{$course->description}}</td>
+                                <!-- <td>{{$course->description}}</td> -->
                                 <td class="flex flex-wrap gap-1 px-6 py-4">
+                                    <a href="{{route('student.course.show', ['course' => $course->slug])}}" @mouseover="tooltip = true" @mouseleave="tooltip = false" class="button btn-bs-success">
+                                        <i class="mr-2 text-sm fas fa-folder"></i>
+                                        <span class="hidden md:inline">Lihat Course</span>
+                                    </a>
                                 </td>
                             </tr>
                             @endforeach

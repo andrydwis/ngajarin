@@ -1,76 +1,94 @@
-@extends('layouts.student.app')
+@extends('layouts.student.app-new')
 @section('content')
-<div class="w-full p-5 mt-20 md:w-auto lg:w-4/6 xl:w-3/4">
-    <div class="card">
-        <div class="card-header">
-            <h6 class="h6">Detail Course {{$course->title}}</h6>
-        </div>
-        <div class="card-body">
-            <form action="" method="post">
-                @csrf
-                <div class="grid gap-6">
-                    <div>       
-                        <label for="judul">Judul</label>
-                        <input type="text" name="judul" id="judul" class="form-input py-2 mt-2 block w-full @error('judul') is-invalid @enderror" value="{{old('judul') ?? $course->title}}" readonly>
-                        @error('judul')
-                        <div class="alert alert-error">
-                            {{$message}}
-                        </div>
-                        @enderror
+<section class="bg-gray-100">
+
+    <div class="w-full bg-gradient-to-b from-primary to-primary-lighter ">
+        <div class="container flex flex-col items-center px-5 pt-10 mx-auto pb-14 md:flex-row">
+            <div class="flex flex-col items-center mb-16 text-center text-white lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 md:items-start md:text-left md:mb-0">
+                <div class="flex flex-wrap my-5">
+                    @foreach($course->tags as $tag)
+                    @if(in_array($tag->id, $course->tags->pluck('id')->toArray()))
+                    <div class="py-2 mx-1 md:py-0">
+                        <button class="px-2 py-2 tracking-tight text-white capitalize bg-indigo-800 rounded-lg shadow-xl hover:bg-primary-darker">
+                            {{ $tag->name }}
+                        </button>
                     </div>
-                    <div>
-                        <label for="deskripsi">Deskripsi</label>
-                        <textarea name="deskripsi" id="deskripsi" class="form-textarea deskripsi @error('deskripsi') is-invalid @enderror" readonly>{!! old('deskripsi') ?? $course->description !!}</textarea>
-                        @error('deskripsi')
-                        <div class="alert alert-error">
-                            {{$message}}
-                        </div>
-                        @enderror
-                    </div>
-                    <div>
-                        <label for="thumbnail">Thumbnail</label>
-                        <div class="mb-4">
-                            <div id="holder" class="w-40 h-40" x-data>
-                                <!-- <span>link : {{$course->thumbnail}} </span> -->
-                                @if($course->thumbnail)
-                                <div class="grid w-56 h-40 place-items-center">
-                                    <img src="{{$course->thumbnail}}" alt="missing">
-                                </div>
-                                @else
-                                <div class="grid w-56 h-40 text-gray-600 bg-gray-100 border-2 border-gray-200 border-dashed hover:bg-gray-50 place-items-center hover:text-gray-400 ">
-                                    <i class="text-4xl fas fa-camera"></i>
-                                </div>
-                                @endif
-                            </div>
-                        </div>
-                        @error('thumbnail')
-                        <div class="alert alert-error">
-                            {{$message}}
-                        </div>
-                        @enderror
-                    </div>
-                    <div>
-                        <label for="level" class="block mb-2">Level</label>
-                        <input type="text" class="block w-full py-2 mt-2 text-gray-500 capitalize cursor-not-allowed md:w-1/3 form-input" value="{{$course->level}}" disabled>
-                    </div>
-                    <div>
-                        <label for="tag" class="block mb-2">Tag</label>
-                        <select name="tag[]" id="tag" class="block w-full md:w-1/3 form-multiselect @error('tag') is-invalid @enderror" multiple disabled>
-                            <option value="" disabled>Pilih Tag</option>
-                            @foreach($course->tags as $tag)
-                            @if(in_array($tag->id, $course->tags->pluck('id')->toArray()))
-                            <option value="{{$tag->id}}" selected>{{$tag->name}}</option>
-                            @else
-                            <option value="{{$tag->id}}">{{$tag->name}}</option>
-                            @endif
-                            @endforeach
-                        </select>
-                    </div>
+                    @endif
+                    @endforeach
                 </div>
-            </form>
+                <h1 class="mb-2 text-3xl font-semibold sm:text-5xl">
+                    {{ $course->title }}
+                </h1>
+                <h4 class="mb-4 text-xl font-semibold sm:text-xl">
+                    Level : {{$course->level}}
+                </h4>
+                <div class="mb-8">
+                    <p class="leading-relaxed prose text-white break-all">
+
+                        <!-- ini pake escape string -->
+                        {-- !! $course->description !! --}
+
+                        <!-- yang ini bukan escape string, tapi lebih rapi dan mudah diatur styling nya -->
+                        {{ $course->description }}
+                    </p>
+                </div>
+                <div class="flex justify-center">
+                    <button class="inline-flex px-6 py-2 text-lg bg-gray-100 border-0 rounded text-primary focus:outline-none hover:bg-gray-200">
+                        Mulai Course
+                    </button>
+                </div>
+            </div>
+            <div class="w-5/6 lg:max-w-lg lg:w-full md:w-1/2">
+                <img class="object-cover object-center w-full h-full rounded-lg shadow-xl" alt="hero" src="{{$course->thumbnail}}">
+            </div>
         </div>
     </div>
-</div>
+
+    <div class="grid grid-cols-1 gap-10 px-5 pt-10 pb-20 md:px-20 md:grid-cols-3">
+
+        <div class="md:col-span-2">
+            <div class="shadow-xl card">
+                <div class="card-header">
+                    <h6 class="h6">List episode {{$course->title}}</h6>
+                </div>
+                <div class="prose card-body">
+                    otw index episode & submission
+                    <br>
+                    <ul>
+                        <li>1</li>
+                        <li>1</li>
+                        <li>1</li>
+                        <li>1</li>
+                        <li>1</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="md:col-span-1">
+            <div class="shadow-xl card">
+                <div class="card-header">
+                    <h6 class="h6">Course serupa</h6>
+                </div>
+                <div class="prose card-body">
+                    otw list course dengan tag yang sama
+                    <br>
+                    <ul>
+                        <li>1</li>
+                        <li>1</li>
+                        <li>1</li>
+                        <li>1</li>
+                        <li>1</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+
+
 @endsection
 
 @section('customCSS')
@@ -86,12 +104,5 @@
 @endsection
 
 @section('customJS')
-<!-- select2 -->
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#tag').select2();
-        $('#level').select2();
-    });
-</script>
+
 @endsection

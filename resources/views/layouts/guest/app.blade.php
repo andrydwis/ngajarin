@@ -28,6 +28,7 @@
         @yield('content')
     </main>
 
+    @include('layouts.student.footer')
 
     @livewireScripts
     <script src="{{ asset('js/app.js') }}" defer></script>
