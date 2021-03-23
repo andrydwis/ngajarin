@@ -17,4 +17,9 @@ class SubmissionUser extends Model
         'note',
         'status',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

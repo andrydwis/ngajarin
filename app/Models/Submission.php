@@ -27,4 +27,9 @@ class Submission extends Model
             return 'belum mengumpulkan';
         }
     }
+
+    public function submissionUsers()
+    {
+        return $this->hasMany(SubmissionUser::class);
+    }
 }

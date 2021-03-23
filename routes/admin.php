@@ -44,6 +44,11 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::patch('/admin/course/{course:slug}/submission/edit/{submission:slug}', [SubmissionController::class, 'update'])->name('admin.course.submission.update');
     Route::delete('/admin/course/{course:slug}/submission/destroy/{submission:slug}', [SubmissionController::class, 'destroy'])->name('admin.course.submission.destroy');
 
+    Route::get('/admin/course/{course:slug}/submission/review/{submission:slug}', [SubmissionController::class, 'review'])->name('admin.course.submission.review');
+    Route::get('/admin/course/{course:slug}/submission/review-pending/{submission:slug}', [SubmissionController::class, 'reviewPending'])->name('admin.course.submission.review-pending');
+    Route::get('/admin/course/{course:slug}/submission/review-accepted/{submission:slug}', [SubmissionController::class, 'reviewAccepted'])->name('admin.course.submission.review-accepted');
+    Route::get('/admin/course/{course:slug}/submission/review-rejected/{submission:slug}', [SubmissionController::class, 'reviewRejected'])->name('admin.course.submission.review-rejected');
+
     Route::get('/admin/course/{course:slug}/certificate', [CertificateController::class, 'index'])->name('admin.course.certificate.index');
     Route::get('/admin/course/{course:slug}/certificate/create', [CertificateController::class, 'create'])->name('admin.course.certificate.create');
     Route::post('/admin/course/{course:slug}/certificate/create', [CertificateController::class, 'store'])->name('admin.course.certificate.store');

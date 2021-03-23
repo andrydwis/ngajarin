@@ -148,4 +148,54 @@ class SubmissionController extends Controller
 
         return redirect()->route('admin.course.submission.index', ['course' => $course]);
     }
+
+    public function review(Course $course, Submission $submission)
+    {
+        //
+        $data = [
+            'course' => $course,
+            'submission' => $submission,
+            'submissionUsersPending' => $submission->submissionUsers()->where('status', 'dalam review')->with('user')->orderBy('created_at', 'desc')->get(),
+            'submissionUsersAccepted' => $submission->submissionUsers()->where('status', 'diterima')->with('user')->orderBy('created_at', 'desc')->get(),
+            'submissionUsersRejected' => $submission->submissionUsers()->where('status', 'ditolak')->with('user')->orderBy('created_at', 'desc')->get(),
+        ];
+
+        return view('admin.submission.review', $data);
+    }
+
+    public function reviewPending(Course $course, Submission $submission)
+    {
+        //
+        $data = [
+            'course' => $course,
+            'submission' => $submission,
+            'submissionUsersPending' => $submission->submissionUsers()->where('status', 'dalam review')->with('user')->orderBy('created_at', 'desc')->get(),
+        ];
+
+        return view('admin.submission.review-pending', $data);
+    }
+
+    public function reviewAccepted(Course $course, Submission $submission)
+    {
+        //
+        $data = [
+            'course' => $course,
+            'submission' => $submission,
+            'submissionUsersAccepted' => $submission->submissionUsers()->where('status', 'diterima')->with('user')->orderBy('created_at', 'desc')->get(),
+        ];
+
+        return view('admin.submission.review-accepted', $data);
+    }
+
+    public function reviewRejected(Course $course, Submission $submission)
+    {
+        //
+        $data = [
+            'course' => $course,
+            'submission' => $submission,
+            'submissionUsersRejected' => $submission->submissionUsers()->where('status', 'ditolak')->with('user')->orderBy('created_at', 'desc')->get(),
+        ];
+
+        return view('admin.submission.review-rejected', $data);
+    }
 }
