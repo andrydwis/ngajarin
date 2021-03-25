@@ -7,13 +7,11 @@
             <div class="flex flex-col items-center mb-16 text-center text-white lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 md:items-start md:text-left md:mb-0">
                 <div class="flex flex-wrap my-5">
                     @foreach($course->tags as $tag)
-                    @if(in_array($tag->id, $course->tags->pluck('id')->toArray()))
                     <div class="py-2 mx-1 md:py-0">
                         <button class="px-2 py-2 tracking-tight text-white capitalize bg-indigo-800 rounded-lg shadow-xl hover:bg-primary-darker">
                             {{ $tag->name }}
                         </button>
                     </div>
-                    @endif
                     @endforeach
                 </div>
                 <h1 class="mb-2 text-3xl font-semibold sm:text-5xl">
@@ -33,9 +31,19 @@
                     </p>
                 </div>
                 <div class="flex justify-center">
+                    @if(in_array(auth()->user()->id, $course->users->pluck('id')->toArray()))
                     <button class="inline-flex px-6 py-2 text-lg bg-gray-100 border-0 rounded text-primary focus:outline-none hover:bg-gray-200">
-                        Mulai Course
+                        Sudah Bergabung
                     </button>
+                    @else
+                    <form action="{{route('student.course-list.store', $course->slug)}}" method="post">
+                        @csrf
+                        <button class="inline-flex px-6 py-2 text-lg bg-gray-100 border-0 rounded text-primary focus:outline-none hover:bg-gray-200">
+                            Mulai Course
+                        </button>
+                    </form>
+                    @endif
+
                 </div>
             </div>
             <div class="w-5/6 lg:max-w-lg lg:w-full md:w-1/2">
@@ -46,6 +54,7 @@
 
     <div class="grid grid-cols-1 gap-10 px-5 pt-10 pb-20 md:px-20 md:grid-cols-3">
 
+        @if(in_array(auth()->user()->id, $course->users->pluck('id')->toArray()))
         <div class="md:col-span-2">
             <div class="shadow-xl card">
                 <div class="card-header">
@@ -54,16 +63,25 @@
                 <div class="prose card-body">
                     otw index episode & submission
                     <br>
+                    <p>episode</p>
+                    @foreach($course->episodes as $episode)
                     <ul>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
+                        {{$course->title}}
                     </ul>
+                    @endforeach
+                    <p>submission</p>
+                    @foreach($course->submissions as $submission)
+                    <ul>
+                        {{$submission->title}}
+                    </ul>
+                    @endforeach
                 </div>
             </div>
         </div>
+        @else
+        <h1>kamu belum join course ini</h1>
+        @endif
+
 
         <div class="md:col-span-1">
             <div class="shadow-xl card">
@@ -71,15 +89,11 @@
                     <h6 class="h6">Course serupa</h6>
                 </div>
                 <div class="prose card-body">
-                    otw list course dengan tag yang sama
+                    statisitik
                     <br>
-                    <ul>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>1</li>
-                    </ul>
+                    <p>Jumlah mahasiswa yang ikut course ini: {{$course->users->count()}}</p>
+                    <p>Jumlah episode: {{$course->episodes->count()}}</p>
+                    <p>Jumlah submission: {{$course->submissions->count()}}</p>
                 </div>
             </div>
         </div>

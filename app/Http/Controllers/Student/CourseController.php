@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -54,8 +55,10 @@ class CourseController extends Controller
     public function show(Course $course)
     {
         //
+        
+
         $data = [
-            'course' => $course->with(['users', 'tags'])->first(),
+            'course' => $course,
         ]; 
 
         return view('student.course.show', $data);
