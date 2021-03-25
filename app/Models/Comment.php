@@ -31,11 +31,11 @@ class Comment extends Model
 
     public function likes()
     {
-        return $this->where('id', $this->id)->with('reacts')->first()->reacts()->where('type', 'like')->get()->pluck('user_id')->toArray();
+        return CommentReact::where('comment_id', $this->id)->where('type', 'like')->get()->pluck('user_id')->toArray();
     }
 
     public function dislikes()
     {
-        return $this->where('id', $this->id)->with('reacts')->first()->reacts()->where('type', 'dislike')->get()->pluck('user_id')->toArray();
+        return CommentReact::where('comment_id', $this->id)->where('type', 'dislike')->get()->pluck('user_id')->toArray();
     }
 }

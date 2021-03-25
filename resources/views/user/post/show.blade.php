@@ -53,7 +53,7 @@
     @foreach($comments as $comment)
     <br>
     <hr>
-    komen dari : {{$comment->creator->name}} <br>
+    
     dibuat tanggal: {{\Carbon\Carbon::parse($comment->created_at)->isoFormat('dddd, D MMMM Y')}}, {{$comment->created_at->diffForHumans()}} <br>
     {{$comment->content}}<br>
     Jumlah like = {{count($comment->likes())}}<br>

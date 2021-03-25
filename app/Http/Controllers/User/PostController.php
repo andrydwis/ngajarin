@@ -10,6 +10,7 @@ use App\Models\Tag;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PostController extends Controller
@@ -84,9 +85,8 @@ class PostController extends Controller
     {
         //
         $data = [
-            'post' => $post->where('id', $post->id)->with('creator')->first(),
-            'comments' => Comment::where('post_id', $post->id)->with('creator')->orderBy('created_at', 'desc')->get(),
-            'tags' => Tag::get(),
+            'post' => $post,
+            'comments' => Comment::where('post_id', $post->id)->orderBy('created_at', 'desc')->get(),
         ];
 
         return view('user.post.show', $data);
@@ -102,7 +102,7 @@ class PostController extends Controller
     {
         //
         $check = $post->creator->id == Auth::user()->id;
-        if(!$check){
+        if (!$check) {
             Alert::error('Anda tidak memiliki izin untuk mengedit post ini');
 
             return redirect()->route('user.post.index');
