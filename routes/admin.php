@@ -48,6 +48,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('/admin/course/{course:slug}/submission/review-pending/{submission:slug}', [SubmissionController::class, 'reviewPending'])->name('admin.course.submission.review-pending');
     Route::get('/admin/course/{course:slug}/submission/review-accepted/{submission:slug}', [SubmissionController::class, 'reviewAccepted'])->name('admin.course.submission.review-accepted');
     Route::get('/admin/course/{course:slug}/submission/review-rejected/{submission:slug}', [SubmissionController::class, 'reviewRejected'])->name('admin.course.submission.review-rejected');
+    Route::post('/admin/course/{course:slug}/submission/review-process/{submission:slug}/{submissionUser}', [SubmissionController::class, 'reviewProcess'])->name('admin.course.submission.review-process');
 
     Route::get('/admin/course/{course:slug}/certificate', [CertificateController::class, 'index'])->name('admin.course.certificate.index');
     Route::get('/admin/course/{course:slug}/certificate/create', [CertificateController::class, 'create'])->name('admin.course.certificate.create');

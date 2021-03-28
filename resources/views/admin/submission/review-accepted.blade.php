@@ -12,6 +12,26 @@
     @foreach($submissionUsersAccepted as $submissionUserAccepted)
     <p>sub dari {{$submissionUserAccepted->user->name}}</p>
     <p>status ; {{$submissionUserAccepted->status}}</p>
+    <form action="{{route('admin.course.submission.review-process', ['course' => $course->slug, 'submission' => $submission->slug, 'submissionUser' => $submissionUserAccepted])}}" method="post">
+        @csrf
+        <input type="number" name="score">
+        @error('score')
+        {{$message}}
+        @enderror
+        <textarea name="feedback" id="" cols="30" rows="10"></textarea>
+        @error('feedback')
+        {{$message}}
+        @enderror
+        <select name="status" id="">
+            <option value="" selected disabled>pilih status</option>
+            <option value="diterima">Diterima</option>
+            <option value="ditolak">Ditolak</option>
+        </select>
+        @error('status')
+        {{$message}}
+        @enderror
+        <button type="submit">Review</button>
+    </form>
     @endforeach
 </body>
 </html>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Submission;
+use App\Models\SubmissionUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -169,7 +170,7 @@ class SubmissionController extends Controller
         $data = [
             'course' => $course,
             'submission' => $submission,
-            'submissionUsersPending' => $submission->submissionUsers()->where('status', 'dalam review')->with('user')->orderBy('created_at', 'desc')->get(),
+            'submissionUsersPending' => $submission->submissionUsers()->where('status', 'dalam review')->orderBy('created_at', 'desc')->get(),
         ];
 
         return view('admin.submission.review-pending', $data);
@@ -197,5 +198,27 @@ class SubmissionController extends Controller
         ];
 
         return view('admin.submission.review-rejected', $data);
+    }
+
+    public function reviewProcess(Course $course, Submission $submission, SubmissionUser $submissionUser, Request $request)
+    {
+        $request->validate([
+            'score' => ['required', 'numeric', 'min:0'],
+            'feedback' => ['required'],
+            'status' => ['required']
+        ]);
+
+        $submissionUser->score = $request->score;
+        $submissionUser->feedback = $request->feedback;
+        $submissionUser->status = $request->status;
+        $submissionUser->save();
+
+        Alert::success('Submission berhasil direview');
+
+        if ($request->status == 'diterima') {
+            return redirect()->route('admin.course.submission.review-accepted', ['course' => $course->slug, 'submission' => $submission->slug]);
+        } elseif ($request->status == 'ditolak') {
+            return redirect()->route('admin.course.submission.review-rejected', ['course' => $course->slug, 'submission' => $submission->slug]);
+        }
     }
 }
