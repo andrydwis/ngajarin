@@ -33,6 +33,12 @@ Route::middleware(['auth', 'verified', 'role:mentor'])->group(function () {
     Route::patch('/mentor/course/{course:slug}/submission/edit/{submission:slug}', [SubmissionController::class, 'update'])->name('mentor.course.submission.update');
     Route::delete('/mentor/course/{course:slug}/submission/destroy/{submission:slug}', [SubmissionController::class, 'destroy'])->name('mentor.course.submission.destroy');
 
+    Route::get('/mentor/course/{course:slug}/submission/review/{submission:slug}', [SubmissionController::class, 'review'])->name('mentor.course.submission.review');
+    Route::get('/mentor/course/{course:slug}/submission/review-pending/{submission:slug}', [SubmissionController::class, 'reviewPending'])->name('mentor.course.submission.review-pending');
+    Route::get('/mentor/course/{course:slug}/submission/review-accepted/{submission:slug}', [SubmissionController::class, 'reviewAccepted'])->name('mentor.course.submission.review-accepted');
+    Route::get('/mentor/course/{course:slug}/submission/review-rejected/{submission:slug}', [SubmissionController::class, 'reviewRejected'])->name('mentor.course.submission.review-rejected');
+    Route::post('/mentor/course/{course:slug}/submission/review-process/{submission:slug}/{submissionUser}', [SubmissionController::class, 'reviewProcess'])->name('mentor.course.submission.review-process');
+
     Route::get('/mentor/classroom', [ClassroomController::class, 'index'])->name('mentor.classroom.index');
     Route::get('/mentor/classroom/create', [ClassroomController::class, 'create'])->name('mentor.classroom.create');
     Route::post('/mentor/classroom/create', [ClassroomController::class, 'store'])->name('mentor.classroom.store');

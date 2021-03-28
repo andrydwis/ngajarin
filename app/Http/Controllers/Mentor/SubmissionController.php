@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Mentor;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Submission;
+use App\Models\SubmissionUser;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -145,5 +146,77 @@ class SubmissionController extends Controller
         Alert::success('Submission berhasil dihapus');
 
         return redirect()->route('mentor.course.submission.index', ['course' => $course]);
+    }
+
+    public function review(Course $course, Submission $submission)
+    {
+        //
+        $data = [
+            'course' => $course,
+            'submission' => $submission,
+            'submissionUsersPending' => $submission->submissionUsers()->where('status', 'dalam review')->with('user')->orderBy('created_at', 'desc')->get(),
+            'submissionUsersAccepted' => $submission->submissionUsers()->where('status', 'diterima')->with('user')->orderBy('created_at', 'desc')->get(),
+            'submissionUsersRejected' => $submission->submissionUsers()->where('status', 'ditolak')->with('user')->orderBy('created_at', 'desc')->get(),
+        ];
+
+        return view('mentor.submission.review', $data);
+    }
+
+    public function reviewPending(Course $course, Submission $submission)
+    {
+        //
+        $data = [
+            'course' => $course,
+            'submission' => $submission,
+            'submissionUsersPending' => $submission->submissionUsers()->where('status', 'dalam review')->orderBy('created_at', 'desc')->get(),
+        ];
+
+        return view('mentor.submission.review-pending', $data);
+    }
+
+    public function reviewAccepted(Course $course, Submission $submission)
+    {
+        //
+        $data = [
+            'course' => $course,
+            'submission' => $submission,
+            'submissionUsersAccepted' => $submission->submissionUsers()->where('status', 'diterima')->with('user')->orderBy('created_at', 'desc')->get(),
+        ];
+
+        return view('mentor.submission.review-accepted', $data);
+    }
+
+    public function reviewRejected(Course $course, Submission $submission)
+    {
+        //
+        $data = [
+            'course' => $course,
+            'submission' => $submission,
+            'submissionUsersRejected' => $submission->submissionUsers()->where('status', 'ditolak')->with('user')->orderBy('created_at', 'desc')->get(),
+        ];
+
+        return view('mentor.submission.review-rejected', $data);
+    }
+
+    public function reviewProcess(Course $course, Submission $submission, SubmissionUser $submissionUser, Request $request)
+    {
+        $request->validate([
+            'score' => ['required', 'numeric', 'min:0'],
+            'feedback' => ['required'],
+            'status' => ['required']
+        ]);
+
+        $submissionUser->score = $request->score;
+        $submissionUser->feedback = $request->feedback;
+        $submissionUser->status = $request->status;
+        $submissionUser->save();
+
+        Alert::success('Submission berhasil direview');
+
+        if ($request->status == 'diterima') {
+            return redirect()->route('mentor.course.submission.review-accepted', ['course' => $course->slug, 'submission' => $submission->slug]);
+        } elseif ($request->status == 'ditolak') {
+            return redirect()->route('mentor.course.submission.review-rejected', ['course' => $course->slug, 'submission' => $submission->slug]);
+        }
     }
 }
