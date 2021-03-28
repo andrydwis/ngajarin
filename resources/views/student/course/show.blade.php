@@ -52,28 +52,22 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 gap-10 px-5 pt-10 pb-20 md:px-20 md:grid-cols-3">
+    <div class="grid grid-cols-1 gap-5 px-5 pt-10 pb-20 space lg:gap-10 lg:px-20 md:grid-cols-3">
 
         @if(in_array(auth()->user()->id, $course->users->pluck('id')->toArray()))
-        <div class="md:col-span-2">
+        <div class="mb-5 md:col-span-2">
             <div class="shadow-xl card">
                 <div class="card-header">
                     <h6 class="h6">List episode {{$course->title}}</h6>
                 </div>
-                <div class="prose card-body">
-                    otw index episode & submission
-                    <br>
-                    <p>episode</p>
+                <div class="">
                     @foreach($course->episodes as $episode)
-                    <ul>
-                        {{$course->title}}
-                    </ul>
-                    @endforeach
-                    <p>submission</p>
-                    @foreach($course->submissions as $submission)
-                    <ul>
-                        {{$submission->title}}
-                    </ul>
+                    <x-student.index-episode  
+                    :slug="$episode->slug" :course="$course->slug" :title="$episode->title" :type="$episode->type" :description="$episode->description" :link="$episode->link" :submission="$episode->submission">
+                        <x-slot name="episode">
+                            <span>{{$loop->index + 1}}</span>
+                        </x-slot>
+                    </x-student.index-episode>
                     @endforeach
                 </div>
             </div>
@@ -86,14 +80,29 @@
         <div class="md:col-span-1">
             <div class="shadow-xl card">
                 <div class="card-header">
-                    <h6 class="h6">Course serupa</h6>
+                    <h6 class="h6">List Submission</h6>
+                </div>
+                <div>
+                    @foreach($course->submissions as $submission)
+                    <x-student.index-submission :slug="$submission->slug" :course="$course->slug" :title="$submission->title" :task="$submission->task" :file="$submission->file">
+                        <x-slot name="submission">
+                            {{$loop->index + 1}}
+                        </x-slot>
+                    </x-student.index-submission>
+                    @endforeach
+                </div>
+            </div>
+
+            <div class="mt-10 shadow-xl card">
+                <div class="card-header">
+                    <h6 class="h6">Course Serupa / Statistik</h6>
                 </div>
                 <div class="prose card-body">
-                    statisitik
-                    <br>
+
                     <p>Jumlah mahasiswa yang ikut course ini: {{$course->users->count()}}</p>
                     <p>Jumlah episode: {{$course->episodes->count()}}</p>
                     <p>Jumlah submission: {{$course->submissions->count()}}</p>
+
                 </div>
             </div>
         </div>
@@ -106,17 +115,7 @@
 @endsection
 
 @section('customCSS')
-<!-- select2 -->
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<!-- styling image holder -->
-<style>
-    div#holder img {
-        height: 10rem !important;
-        margin-top: 1rem;
-    }
-</style>
 @endsection
 
 @section('customJS')
-
 @endsection
