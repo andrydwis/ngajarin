@@ -63,7 +63,7 @@
                 @if(in_array(auth()->user()->id, $course->users->pluck('id')->toArray()))
                 <div class="">
                     @foreach($course->episodes as $episode)
-                    <x-student.index-episode :slug="$episode->slug" :course="$course->slug" :title="$episode->title" :type="$episode->type" :description="$episode->description" :link="$episode->link" :submission="$episode->submission">
+                    <x-student.index-episode :slug="$episode->slug" :course="$course->slug" :title="$episode->title" :type="$episode->type" :description="$episode->description" :link="$episode->link" :course="$course" :submission="$episode->submission">
                         <x-slot name="episode">
                             <span>{{$loop->index + 1}}</span>
                         </x-slot>

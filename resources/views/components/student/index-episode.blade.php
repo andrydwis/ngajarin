@@ -4,10 +4,9 @@
             <div>
                 <div class="grid w-8 h-8 border border-gray-500 rounded-full md:w-10 md:h-10 place-items-center">
 
-                    <!-- 
-                        {{-- $submission->unlocked()
-                <i class="ml-1 text-xs text-gray-500 md:text-base fas fa-lock"></i> --}} 
-                -->
+                    @if($submission !=null && $submission->unlocked() != 'diterima')
+                    <i class="ml-1 text-xs text-gray-500 md:text-base fas fa-lock"></i>
+                    @endif
 
                     @if($type == 'video')
                     <i class="ml-1 text-xs text-gray-500 md:text-base fas fa-play"></i>
@@ -17,14 +16,24 @@
                 </div>
             </div>
             <div class="flex flex-col">
-                <a href="{{--route('student.course.episode.show', [$course, $slug])--}}">
-                    <!-- <span class="inline text-xs font-semibold text-gray-800 sm:hidden">
-                        {{ Str::limit($title, $limit = 14) }}
-                    </span> -->
+                @if($submission == null)
+                <a href="{{route('student.course.episode.show', ['course' => $course->slug, 'episode' => $slug])}}">
                     <span class="text-xs font-bold text-gray-800 md:text-base">
                         {{ $title }}
                     </span>
                 </a>
+                @elseif($submission !=null && $submission->unlocked() == 'diterima')
+                <a href="{{route('student.course.episode.show', ['course' => $course->slug, 'episode' => $slug])}}">
+                    <span class="text-xs font-bold text-gray-800 md:text-base">
+                        {{ $title }}
+                    </span>
+                </a>
+                @elseif($submission !=null && $submission->unlocked() != 'diterima')
+                <span class="text-xs font-bold text-gray-800 md:text-base">
+                    {{ $title }}
+                </span>
+                @endif
+
                 <div class="flex text-xs text-gray-600 md:text-sm">
                     <span class="inline mr-2 xs:hidden">
                         Eps {{ $episode }}
@@ -33,15 +42,9 @@
                         Episode {{ $episode }}
                     </span>
 
-                    <!-- fungsi buat cek status pengumpulan -->
-                    {{-- $submission->unlocked() --}}
-                    <!-- end of fungsi buat cek status pengumpulan -->
-
-                    @if($submission)
+                    @if($submission != null && $submission->unlocked() != 'diterima')
                     <span class="inline pl-2 border-l border-gray-600 sm:hidden">{{ Str::limit($submission->title, $limit = 16) }}</span>
                     <span class="hidden pl-2 border-l border-gray-600 sm:inline"> Syarat : Submission {{ $submission->title }}</span>
-                    @else
-
                     @endif
                 </div>
             </div>
