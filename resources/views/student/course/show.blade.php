@@ -54,27 +54,31 @@
 
     <div class="grid grid-cols-1 gap-5 px-5 pt-10 pb-20 space lg:gap-10 lg:px-20 md:grid-cols-3">
 
-        @if(in_array(auth()->user()->id, $course->users->pluck('id')->toArray()))
+
         <div class="mb-5 md:col-span-2">
             <div class="shadow-xl card">
                 <div class="card-header">
                     <h6 class="h6">List episode {{$course->title}}</h6>
                 </div>
+                @if(in_array(auth()->user()->id, $course->users->pluck('id')->toArray()))
                 <div class="">
                     @foreach($course->episodes as $episode)
-                    <x-student.index-episode  
-                    :slug="$episode->slug" :course="$course->slug" :title="$episode->title" :type="$episode->type" :description="$episode->description" :link="$episode->link" :submission="$episode->submission">
+                    <x-student.index-episode :slug="$episode->slug" :course="$course->slug" :title="$episode->title" :type="$episode->type" :description="$episode->description" :link="$episode->link" :submission="$episode->submission">
                         <x-slot name="episode">
                             <span>{{$loop->index + 1}}</span>
                         </x-slot>
                     </x-student.index-episode>
                     @endforeach
                 </div>
+                @else
+                <div class="grid h-56 duration-100 bg-indigo-400 hover:bg-indigo-300 card-body place-items-center">
+                    <i class="text-3xl text-white md:text-5xl fas fa-lock"></i>
+                    <span class="-mt-16 text-lg text-center text-white md:text-xl">Anda belum tergabung pada course ini</span>
+                </div>
+                @endif
             </div>
         </div>
-        @else
-        <h1>kamu belum join course ini</h1>
-        @endif
+
 
 
         <div class="md:col-span-1">
@@ -82,6 +86,7 @@
                 <div class="card-header">
                     <h6 class="h6">List Submission</h6>
                 </div>
+                @if(in_array(auth()->user()->id, $course->users->pluck('id')->toArray()))
                 <div>
                     @foreach($course->submissions as $submission)
                     <x-student.index-submission :slug="$submission->slug" :course="$course->slug" :title="$submission->title" :task="$submission->task" :file="$submission->file">
@@ -91,6 +96,12 @@
                     </x-student.index-submission>
                     @endforeach
                 </div>
+                @else
+                <div class="grid h-56 duration-100 bg-indigo-400 hover:bg-indigo-300 card-body place-items-center">
+                    <i class="text-3xl text-white md:text-5xl fas fa-lock"></i>
+                    <span class="-mt-16 text-lg text-center text-white">Anda belum tergabung pada course ini</span>
+                </div>
+                @endif
             </div>
 
             <div class="mt-10 shadow-xl card">
