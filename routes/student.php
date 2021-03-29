@@ -24,6 +24,12 @@ Route::middleware(['auth', 'verified', 'role:student'])->group(function () {
     Route::patch('/student/course/{course:slug}/submission/{submission:slug}/submission-user/edit/{submissionUser}', [SubmissionUserController::class, 'update'])->name('student.course.submission.update');
     Route::delete('/student/course/{course:slug}/submission/{submission:slug}/submission-user/destroy/{submissionUser}', [SubmissionUserController::class, 'destroy'])->name('student.course.submission.destroy');
 
+    // Delete me later
+    Route::get('/student/course/episode/show', function () {
+        return view('student/episode/show');
+    });
+    // Delete me later
+
     Route::get('/student/course-list', [CourseUserController::class, 'index'])->name('student.course-list.index');
     Route::post('/student/course-list/create/{course:slug}', [CourseUserController::class, 'store'])->name('student.course-list.store');
 });
