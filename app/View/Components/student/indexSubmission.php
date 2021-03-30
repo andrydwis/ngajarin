@@ -2,6 +2,7 @@
 
 namespace App\View\Components\student;
 
+use App\Models\Submission;
 use Illuminate\View\Component;
 
 class indexSubmission extends Component
@@ -16,14 +17,16 @@ class indexSubmission extends Component
     public $file;
     public $course;
     public $slug;
+    public $sub;
 
-    public function __construct($title, $task, $file, $course, $slug)
+    public function __construct($title, $task, $file, $course, $slug, $sub)
     {
         $this->title = $title;
         $this->task = $task;
         $this->file = $file;
         $this->course = $course;
         $this->slug = $slug;
+        $this->sub = $sub;
     }
 
     /**

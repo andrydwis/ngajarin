@@ -11,20 +11,22 @@ class indexSubmission extends Component
      *
      * @return void
      */
-    
+
     public $title;
     public $task;
     public $file;
     public $course;
     public $slug;
+    public $submission;
 
-    public function __construct($title, $task, $file, $course, $slug)
+    public function __construct($title, $task, $file, $course, $slug, $submission)
     {
-        $this->title=$title;
-        $this->task=$task;
-        $this->file=$file;
-        $this->course=$course;
-        $this->slug=$slug;
+        $this->title = $title;
+        $this->task = $task;
+        $this->file = $file;
+        $this->course = $course;
+        $this->slug = $slug;
+        $this->submission = $submission;
     }
 
     /**
