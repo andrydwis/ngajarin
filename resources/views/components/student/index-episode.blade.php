@@ -5,14 +5,15 @@
                 <div class="grid w-8 h-8 border border-gray-500 rounded-full md:w-10 md:h-10 place-items-center">
 
                     @if($submission !=null && $submission->unlocked() != 'diterima')
-                    <i class="ml-1 text-xs text-gray-500 md:text-base fas fa-lock"></i>
+                        <i class="text-xs text-gray-500 md:text-base fas fa-lock"></i>
+                    @else
+                        @if($type == 'video')
+                        <i class="ml-1 text-xs text-gray-500 md:text-base fas fa-play"></i>
+                        @elseif($type == 'text')
+                        <i class="text-xs text-gray-500 md:text-base fas fa-list-ul"></i>
+                        @endif
                     @endif
 
-                    @if($type == 'video')
-                    <i class="ml-1 text-xs text-gray-500 md:text-base fas fa-play"></i>
-                    @elseif($type == 'text')
-                    <i class="text-xs text-gray-500 md:text-base fas fa-list-ul"></i>
-                    @endif
                 </div>
             </div>
             <div class="flex flex-col">

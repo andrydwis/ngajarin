@@ -3,7 +3,11 @@
         <div class="flex items-center gap-4">
             <a href="{{route('mentor.course.submission.show', [$course, $slug])}}">
                 <div class="grid border border-gray-500 rounded-full w-9 h-9 md:w-12 md:h-12 place-items-center">
+                    @if($submission !=null && $submission->unlocked() != 'diterima')
+                    <i class="text-xs text-gray-500 md:text-base fas fa-lock"></i>
+                    @else
                     <i class="text-xs text-gray-500 md:text-2xl fas fa-clipboard-list"></i>
+                    @endif
                 </div>
             </a>
             <div class="flex flex-col">
