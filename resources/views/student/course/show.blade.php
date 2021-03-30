@@ -89,9 +89,7 @@
                 @if(in_array(auth()->user()->id, $course->users->pluck('id')->toArray()))
                 <div>
                     @foreach($course->submissions as $submission)
-                    <x-student.index-submission :slug="$submission->slug" :course="$course->slug" :title="$submission->title" :task="$submission->task" :file="$submission->file"
-                    :submission="$submission"
-                    >
+                    <x-student.index-submission :slug="$submission->slug" :course="$course->slug" :title="$submission->title" :task="$submission->task" :file="$submission->file" :sub="$submission">
                         <x-slot name="submission">
                             {{$loop->index + 1}}
                         </x-slot>

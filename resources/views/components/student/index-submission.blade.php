@@ -11,8 +11,10 @@
                 </div>
             </a>
             <div class="flex flex-col">
-
-                <a href="{{route('student.course.submission.show', [$course, $slug])}}">
+                <!-- //iki ki -->
+                {{$sub->unlocked()}}
+                <!-- iki ki -->
+                <a href="{{route('mentor.course.submission.show', [$course, $slug])}}">
                     <span class="inline text-xs font-semibold text-gray-800 sm:hidden md:font-bold md:text-base">
                         {{ Str::limit($title, $limit = 16) }}
                     </span>
