@@ -48,10 +48,10 @@
     @apply font-semibold border text-primary border-primary hover:bg-primary focus:bg-primary-lighter focus:text-white hover:text-white;
 }
 .btn-outline-success {
-    @apply font-semibold border text-success border-success hover:bg-success-lighter focus:bg-success focus:text-white;
+    @apply font-semibold border text-success border-success hover:bg-success-lighter focus:bg-success focus:text-white hover:text-white;
 }
 .btn-outline-warning {
-    @apply font-semibold border text-warning-darker border-warning-darker hover:bg-warning focus:bg-warning-darker focus:text-white;
+    @apply font-semibold border text-warning-darker border-warning-darker hover:bg-warning focus:bg-warning-darker focus:text-white hover:text-white;
 }
 .btn-outline-danger {
     @apply font-semibold border text-danger-lighter border-danger-lighter hover:bg-danger focus:bg-danger-lighter focus:text-white hover:text-white;

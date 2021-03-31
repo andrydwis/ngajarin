@@ -63,7 +63,22 @@
                     @forelse($submission_users as $submission_user)
                     <div class="mb-5">
                         <div>
-                            Status : <span class="font-bold"> {{$submission_user->status}} </span>
+                            Status :
+
+                            @if($submission_user->status == 'diterima')
+                            <span class="px-3 py-1 ml-1 text-sm font-semibold rounded-full alert-success">
+                                {{$submission_user->status}}
+                            </span>
+                            @elseif($submission_user->status == 'ditolak')
+                            <span class="px-3 py-1 ml-1 text-sm font-semibold rounded-full alert-danger">
+                                {{$submission_user->status}}
+                            </span>
+                            @else
+                            <span class="font-semibold">
+                                {{$submission_user->status}}
+                            </span>
+                            @endif
+                            
                         </div>
                         <div>
                             Score : <span class="font-bold"> {{$submission_user->score}} </span>
@@ -96,6 +111,7 @@
                                 <form action="{{route('student.course.submission.update', ['course' => $course, 'submission' => $submission, 'submissionUser' => $submission_user])}}" method="post">
                                     @csrf
                                     @method('PATCH')
+
                                     <div class="flex flex-wrap gap-2">
                                         <label for="file" class="font-semibold">Upload ulang submission :</label>
 
@@ -104,19 +120,22 @@
                                         -->
 
                                         <div class="flex items-center w-full">
-                                            <a id="lfm" data-input="file" data-preview="holder" class="pr-2 mt-2 text-white" style="text-decoration: none">
+                                            <a id="lfm" data-input="file" data-preview="holder" class="mt-2 text-white " style="text-decoration: none">
                                                 <button id="btn_lfm" class="flex items-center text-base align-middle btn btn-outline-primary">
                                                     <i class="pr-2 fas fa-file-alt"></i>
                                                     File
                                                 </button>
                                             </a>
-                                            <input id="file" class="block w-full py-2 mt-2 form-input" type="text" name="file" value="{{old('file')}}" readonly>
+                                            <input id="file" class="block w-full py-2 mt-2 form-input" type="text" name="file" value="{{old('file')}}" readonly required>
                                         </div>
-
-
+                                        @error('file')
+                                        <div class="w-full alert alert-error">
+                                            {{$message}}
+                                        </div>
+                                        @enderror
                                         <div class="w-full">
                                             <button type="submit" class="w-full text-base btn btn-outline-primary">
-                                                <i class="mr-1 text-sm fas fa-download"></i> Update submission
+                                                <i class="mr-1 text-sm fas fa-upload"></i> Update submission
                                             </button>
                                         </div>
                                     </div>
@@ -132,12 +151,30 @@
                                     </button>
                                 </form>
                             </div>
+                            <div class="w-full p-1 ml-2 rounded-lg">
+                                <p class="text-xs font-semibold">
+                                    *mohon tidak menghapus submission agar feedback tidak hilang, silahkan menggunakan fitur update submission
+                                </p>
+                            </div>
 
                         </div>
                         @else
-                        <span class="font-semibold">
-                            anda telah menyelesaikan submission ini
-                        </span>
+                        <div>
+                            <span class="font-semibold">Submission Anda : </span>
+                            <div class="mb-5">
+                                <a href="{{$submission_user->file}}" style="text-decoration: none">
+                                    <button class="w-full text-base btn btn-outline-success">
+                                        <i class="mr-1 text-sm fas fa-download"></i>
+                                        Lihat Submission
+                                    </button>
+                                </a>
+                                <div class="w-full p-1 ml-2 text-center rounded-lg alert-success">
+                                    <span class="text-sm font-semibold ">
+                                        anda telah menyelesaikan submission ini
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                         @endif
                     </div>
                     @empty
@@ -160,6 +197,11 @@
                                     </a>
                                     <input id="file" class="block w-full py-2 mt-2 form-input" type="text" name="file" value="{{old('file')}}" readonly>
                                 </div>
+                                @error('file')
+                                <div class="w-full alert alert-error">
+                                    {{$message}}
+                                </div>
+                                @enderror
                                 <button type="submit" class="w-full text-base btn btn-primary">
                                     <i class="mr-1 text-sm fas fa-upload"></i> Kirim
                                 </button>
