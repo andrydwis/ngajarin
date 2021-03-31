@@ -2,12 +2,12 @@
 @section('content')
 <section>
     <div class="flex px-5 pt-10 lg:px-20">
-        <a href="{{route('student.course.show', ['course' => $course->slug])}}" class="btn-bs-primary">
+        <a href="{{route('student.course.show', ['course' => $course->slug])}}" class="text-base btn btn-outline-primary ">
             <i class="mr-1 text-sm fas fa-chevron-left"></i> Kembali
         </a>
     </div>
 
-    <div class="grid grid-cols-1 gap-5 px-5 pt-10 pb-20 lg:gap-10 lg:px-20 md:grid-cols-3">
+    <div class="grid grid-cols-1 gap-5 px-5 pt-5 pb-20 lg:gap-10 lg:px-20 md:grid-cols-3">
 
         <div class="mb-5 md:col-span-2">
             <div class="shadow-xl card">
@@ -70,9 +70,13 @@
                         </div>
                         <div>
                             Feedback : <br>
+                            @if($submission_user->feedback != null)
                             <div class="w-full h-full text-gray-500 border border-gray-200 form-textarea">
                                 {{$submission_user->feedback}}
                             </div>
+                            @else
+
+                            @endif
                         </div>
                     </div>
 
@@ -82,21 +86,36 @@
                             <span class="font-semibold">Submission Anda : </span>
                             <div class="mb-5">
                                 <a href="{{$submission_user->file}}" style="text-decoration: none">
-                                    <button class="w-full btn-bs-success">
+                                    <button class="w-full text-base btn btn-primary">
                                         <i class="mr-1 text-sm fas fa-download"></i>
                                         Lihat Submission
                                     </button>
                                 </a>
                             </div>
-                            <div class="mb-2">
+                            <div>
                                 <form action="{{route('student.course.submission.update', ['course' => $course, 'submission' => $submission, 'submissionUser' => $submission_user])}}" method="post">
                                     @csrf
                                     @method('PATCH')
                                     <div class="flex flex-wrap gap-2">
                                         <label for="file" class="font-semibold">Upload ulang submission :</label>
-                                        <input type="file" name="file" placeholder="{{$submission_user->file}}" class="form-input">
+
+                                        <!-- alternatif biar nggak mengorbankan ux                                        
+                                        <input type="file" name="file" placeholder="{{$submission_user->file}}" class="form-input"> 
+                                        -->
+
+                                        <div class="flex items-center w-full">
+                                            <a id="lfm" data-input="file" data-preview="holder" class="pr-2 mt-2 text-white" style="text-decoration: none">
+                                                <button id="btn_lfm" class="flex items-center text-base align-middle btn btn-outline-primary">
+                                                    <i class="pr-2 fas fa-file-alt"></i>
+                                                    File
+                                                </button>
+                                            </a>
+                                            <input id="file" class="block w-full py-2 mt-2 form-input" type="text" name="file" value="{{old('file')}}" readonly>
+                                        </div>
+
+
                                         <div class="w-full">
-                                            <button type="submit" class="w-full btn-bs-success">
+                                            <button type="submit" class="w-full text-base btn btn-outline-primary">
                                                 <i class="mr-1 text-sm fas fa-download"></i> Update submission
                                             </button>
                                         </div>
@@ -108,7 +127,7 @@
                                 <form action="{{route('student.course.submission.destroy', ['course' => $course, 'submission' => $submission, 'submissionUser' => $submission_user])}}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="w-full btn-bs-danger">
+                                    <button type="submit" class="w-full text-base btn btn-outline-danger">
                                         <i class="mr-1 text-sm fas fa-trash"></i> hapus
                                     </button>
                                 </form>
@@ -131,8 +150,17 @@
                             @csrf
                             <div class="flex flex-wrap gap-2 my-5">
                                 <label for="file" class="font-semibold">File submission : </label>
-                                <input type="file" name="file" class="form-input">
-                                <button type="submit" class="w-full btn-bs-success">
+                                <!-- <input type="file" name="file" class="form-input"> -->
+                                <div class="flex items-center w-full">
+                                    <a id="lfm" data-input="file" data-preview="holder" class="pr-2 mt-2 text-white" style="text-decoration: none">
+                                        <button id="btn_lfm" class="flex items-center text-base align-middle btn btn-outline-primary">
+                                            <i class="pr-2 fas fa-file-alt"></i>
+                                            File
+                                        </button>
+                                    </a>
+                                    <input id="file" class="block w-full py-2 mt-2 form-input" type="text" name="file" value="{{old('file')}}" readonly>
+                                </div>
+                                <button type="submit" class="w-full text-base btn btn-primary">
                                     <i class="mr-1 text-sm fas fa-upload"></i> Kirim
                                 </button>
                             </div>
@@ -167,4 +195,16 @@
 
 
 </section>
+@endsection
+
+@section('customJS')
+<!-- upload-button -->
+<script src="{{asset('vendor/laravel-filemanager/js/stand-alone-button.js')}}"></script>
+<script>
+    // var btn_upload = document.getElementById('lfm');
+    // btn_upload.filemanager('file');
+    // laravel file manager WAJIB pake jquery
+
+    $('#lfm').filemanager('file');
+</script>
 @endsection
