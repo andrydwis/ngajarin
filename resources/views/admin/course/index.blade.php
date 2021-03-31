@@ -1,35 +1,31 @@
 @extends('layouts.admin.app')
 @section('content')
 <div class="w-full p-5 mt-20 md:w-auto lg:w-4/6 xl:w-3/4">
-    <div>
-        <div class="card">
-            <div class="flex justify-between card-header">
-                <h4 class="h6">Daftar Course</h4>
-                <a href="{{route('admin.course.create')}}" class="btn-bs-primary">Tambah Course</a>
-            </div>
-            <div class="card-body">
-                <div class="flex flex-wrap">
-                    @foreach($courses as $course)
-                    <x-card-course :slug="$course->slug" 
-                    :title="$course->title" 
-                    :level="$course->level"
-                    :tags="$course->tags" 
-                    :thumbnail="$course->thumbnail"
-                    :episodes="$course->episodes->count()" 
-                    :submission="$course->submissions->count()" />
-
-                    {{-- <livewire:test-card> 
-
-                        <x-skeleton.card-course/> --}}
-
-
-                    @endforeach
-                </div>
+    <div class="mb-5 card">
+        <div class="prose card-body prose-indigo">
+            <div class="flex flex-wrap items-center flex-shrink-0 gap-3 md:gap-5">
+                <a class="breadcrumbs-item" href="{{route('dashboard.index')}}">
+                    <span class="mr-4">Dashboard</span>
+                </a>
+                <a class="breadcrumbs-item" href="#">
+                    <span class="mr-4">Course List</span>
+                </a>
             </div>
         </div>
-
     </div>
-
+    <div class="card">
+        <div class="flex justify-between card-header">
+            <h4 class="h6">Daftar Course</h4>
+            <a href="{{route('admin.course.create')}}" class="btn-bs-primary">Tambah Course</a>
+        </div>
+        <div class="card-body">
+            <div class="flex flex-wrap">
+                @foreach($courses as $course)
+                <x-card-course :slug="$course->slug" :title="$course->title" :level="$course->level" :tags="$course->tags" :thumbnail="$course->thumbnail" :episodes="$course->episodes->count()" :submission="$course->submissions->count()" />
+                @endforeach
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 

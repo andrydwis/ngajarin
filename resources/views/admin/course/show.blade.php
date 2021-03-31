@@ -1,6 +1,22 @@
 @extends('layouts.admin.app')
 @section('content')
 <div class="w-full p-5 mt-20 md:w-full lg:w-4/6 xl:w-3/4">
+    <div class="mb-5 card">
+        <div class="prose card-body prose-indigo">
+            <div class="flex flex-wrap items-center flex-shrink-0 gap-3 md:gap-5">
+                <a class="breadcrumbs-item" href="{{route('dashboard.index')}}">
+                    <span class="mr-4">Dashboard</span>
+                </a>
+                <a class="breadcrumbs-item" href="{{route('admin.course.index')}}">
+                    <span class="mr-4">Course List</span>
+                </a>
+                <a class="breadcrumbs-item" href="#">
+                    <span class="mr-4">Detail Course</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
     <div class="card">
         <div class="flex justify-between card-header">
             <div>
@@ -95,7 +111,6 @@
 
         </div>
         <!-- end of card body -->
-
     </div>
 </div>
 @endsection

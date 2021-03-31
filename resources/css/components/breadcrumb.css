@@ -1,0 +1,7 @@
+a.breadcrumbs-item {
+    text-decoration: none !important;
+}
+
+a.breadcrumbs-item:not(:last-child)::after {
+    content: "/";
+}

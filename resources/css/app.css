@@ -20,6 +20,7 @@
 @import "components/select2_custom.css";
 @import "components/datatables_custom.css";
 @import "@tailwindcss/custom-forms/dist/custom-forms.min.css";
+@import "components/breadcrumb.css";
 
 
 /* tailwind utilities, di pasang di akhir biar bisa override lewat component & template*/
