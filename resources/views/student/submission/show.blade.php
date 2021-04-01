@@ -24,12 +24,9 @@
                             {!! $submission->task !!}
                         </div>
                     </div>
-
                     <hr class="my-5">
-
                     <div>
                         <h6 class="mb-5 text-xl font-semibold">Lampiran : </h6>
-
                         @if($submission->file)
                         <a href="{{$submission->file}}">
                             <button>
@@ -49,7 +46,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
         <div class="md:col-span-1">
@@ -57,14 +53,11 @@
                 <div class="card-header">
                     <h6 class="h6">Pengumpulan</h6>
                 </div>
-
                 <div class="prose card-body">
-
-                    @forelse($submission_users as $submission_user)
+                    @if($submission_user)
                     <div class="mb-5">
                         <div>
                             Status :
-
                             @if($submission_user->status == 'diterima')
                             <span class="px-3 py-1 ml-1 text-sm font-semibold rounded-full alert-success">
                                 {{$submission_user->status}}
@@ -74,11 +67,10 @@
                                 {{$submission_user->status}}
                             </span>
                             @else
-                            <span class="font-semibold">
+                            <span class="px-3 py-1 ml-1 text-sm font-semibold rounded-full alert-warning">
                                 {{$submission_user->status}}
                             </span>
-                            @endif
-                            
+                            @endif      
                         </div>
                         <div>
                             Score : <span class="font-bold"> {{$submission_user->score}} </span>
@@ -90,11 +82,12 @@
                                 {{$submission_user->feedback}}
                             </div>
                             @else
-
+                            <div class="w-full h-full text-gray-500 border border-gray-200 form-textarea">
+                                Tidak ada feedback
+                            </div>
                             @endif
                         </div>
                     </div>
-
                     <div>
                         @if($submission_user->status != 'diterima')
                         <div>
@@ -111,14 +104,8 @@
                                 <form action="{{route('student.course.submission.update', ['course' => $course, 'submission' => $submission, 'submissionUser' => $submission_user])}}" method="post">
                                     @csrf
                                     @method('PATCH')
-
                                     <div class="flex flex-wrap gap-2">
                                         <label for="file" class="font-semibold">Upload ulang submission :</label>
-
-                                        <!-- alternatif biar nggak mengorbankan ux                                        
-                                        <input type="file" name="file" placeholder="{{$submission_user->file}}" class="form-input"> 
-                                        -->
-
                                         <div class="flex items-center w-full">
                                             <a id="lfm" data-input="file" data-preview="holder" class="mt-2 text-white " style="text-decoration: none">
                                                 <button id="btn_lfm" class="flex items-center text-base align-middle btn btn-outline-primary">
@@ -141,7 +128,6 @@
                                     </div>
                                 </form>
                             </div>
-
                             <div>
                                 <form action="{{route('student.course.submission.destroy', ['course' => $course, 'submission' => $submission, 'submissionUser' => $submission_user])}}" method="post">
                                     @csrf
@@ -156,7 +142,6 @@
                                     *mohon tidak menghapus submission agar feedback tidak hilang, silahkan menggunakan fitur update submission
                                 </p>
                             </div>
-
                         </div>
                         @else
                         <div>
@@ -177,17 +162,15 @@
                         </div>
                         @endif
                     </div>
-                    @empty
+                    @else
                     <div>
                         <span class="text-gray-700">
                             Kumpulkan submission untuk di review
-                        </span>
-                        @if(!in_array('diterima',$submission_users->pluck('status')->toArray()))
+                        </span>                    
                         <form action="{{route('student.course.submission.store', ['course' => $course, 'submission' => $submission])}}" method="post">
                             @csrf
                             <div class="flex flex-wrap gap-2 my-5">
                                 <label for="file" class="font-semibold">File submission : </label>
-                                <!-- <input type="file" name="file" class="form-input"> -->
                                 <div class="flex items-center w-full">
                                     <a id="lfm" data-input="file" data-preview="holder" class="pr-2 mt-2 text-white" style="text-decoration: none">
                                         <button id="btn_lfm" class="flex items-center text-base align-middle btn btn-outline-primary">
@@ -207,16 +190,10 @@
                                 </button>
                             </div>
                         </form>
-                        @else
-                        submission anda sudah diterima kok ! <br>
-                        @endif
                     </div>
-                    @endforelse
-
+                    @endif
                 </div>
-
             </div>
-
 
             <div class="mt-10 shadow-xl card">
                 <div class="card-header">
