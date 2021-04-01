@@ -220,10 +220,6 @@
 <!-- upload-button -->
 <script src="{{asset('vendor/laravel-filemanager/js/stand-alone-button.js')}}"></script>
 <script>
-    // var btn_upload = document.getElementById('lfm');
-    // btn_upload.filemanager('file');
-    // laravel file manager WAJIB pake jquery
-
     $('#lfm').filemanager('file');
 </script>
 @endsection
