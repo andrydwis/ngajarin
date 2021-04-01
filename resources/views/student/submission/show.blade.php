@@ -148,7 +148,7 @@
                             <span class="font-semibold">Submission Anda : </span>
                             <div class="mb-5">
                                 <a href="{{$submission_user->file}}" style="text-decoration: none">
-                                    <button class="w-full text-base btn btn-outline-success">
+                                    <button class="w-full text-base btn btn-outline-success hover:text-white">
                                         <i class="mr-1 text-sm fas fa-download"></i>
                                         Lihat Submission
                                     </button>
