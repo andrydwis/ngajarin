@@ -102,8 +102,8 @@
                     <span class="text-gray-600">Deskripsi</span>
                 </div>
                 <div class="col-span-2 mt-2 md:mt-0">
-                    <div class="break-all">
-                        {!! $course->description !!}
+                    <div class="">
+                        {{ $course->description }}
                     </div>
                 </div>
             </div>

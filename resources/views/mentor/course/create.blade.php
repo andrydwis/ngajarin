@@ -11,7 +11,7 @@
                 <div class="grid gap-6">
                     <div>
                         <label for="judul">Judul</label>
-                        <input type="text" name="judul" id="judul" class="form-input py-2 mt-2 block w-full @error('judul') is-invalid @enderror" value="{{old('judul')}}">
+                        <input type="text" name="judul" id="judul" placeholder="Judul Course" class="form-input py-2 mt-2 block w-full @error('judul') is-invalid @enderror" value="{{old('judul')}}">
                         @error('judul')
                         <div class="alert alert-error">
                             {{$message}}
@@ -20,7 +20,9 @@
                     </div>
                     <div>
                         <label for="deskripsi">Deskripsi</label>
-                        <textarea name="deskripsi" id="deskripsi" class="form-textarea deskripsi @error('deskripsi') is-invalid @enderror">{!! old('deskripsi') !!}</textarea>
+                        <textarea name="deskripsi" id="deskripsi" rows="5" 
+                        placeholder="Course ini mempelajari tentang..."
+                        class="form-textarea py-2 mt-2 block w-full @error('deskripsi') is-invalid @enderror">{!! old('deskripsi') !!}</textarea>
                         @error('deskripsi')
                         <div class="alert alert-error">
                             {{$message}}

@@ -21,12 +21,7 @@
                     Level : {{$course->level}}
                 </h4>
                 <div class="mb-8">
-                    <p class="leading-relaxed prose text-white break-all">
-
-                        <!-- ini pake escape string -->
-                        {-- !! $course->description !! --}
-
-                        <!-- yang ini bukan escape string, tapi lebih rapi dan mudah diatur styling nya -->
+                    <p class="leading-relaxed prose text-white">
                         {{ $course->description }}
                     </p>
                 </div>

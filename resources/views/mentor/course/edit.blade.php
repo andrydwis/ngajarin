@@ -21,7 +21,9 @@
                     </div>
                     <div>
                         <label for="deskripsi">Deskripsi</label>
-                        <textarea name="deskripsi" id="deskripsi" class="form-textarea deskripsi @error('deskripsi') is-invalid @enderror">{!! old('deskripsi') ?? $course->description !!}</textarea>
+                        <textarea name="deskripsi" id="deskripsi" rows="5" 
+                        placeholder="Course ini mempelajari tentang..."
+                        class="form-textarea py-2 mt-2 block w-full @error('deskripsi') is-invalid @enderror">{!! old('deskripsi') ?? $course->description !!}</textarea>
                         @error('deskripsi')
                         <div class="alert alert-error">
                             {{$message}}
@@ -73,7 +75,7 @@
                         @enderror
                     </div>
                     <div class="py-1">
-                    <label for="tag" class="block mb-2">Tag</label>
+                        <label for="tag" class="block mb-2">Tag</label>
                         <select name="tag[]" id="tag" class="block w-full md:w-1/3 form-multiselect @error('tag') is-invalid @enderror" multiple>
                             <option value="" disabled>Pilih Tag</option>
                             @foreach($tags as $tag)
@@ -114,47 +116,6 @@
     $(document).ready(function() {
         $('#tag').select2();
     });
-</script>
-<!-- tinymce -->
-<script src="https://cdn.tiny.cloud/1/qvfv9oh941rjqa0ca5i42hrvtg9175w7gg7vl0krwllauc26/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-<script>
-    var editor_config = {
-        path_absolute: "/",
-        selector: 'textarea.deskripsi',
-        relative_urls: false,
-        plugins: [
-            "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-            "searchreplace wordcount visualblocks visualchars code fullscreen",
-            "insertdatetime media nonbreaking save table directionality",
-            "emoticons template paste textpattern"
-        ],
-        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
-        file_picker_callback: function(callback, value, meta) {
-            var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
-            var y = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight;
-
-            var cmsURL = editor_config.path_absolute + 'laravel-filemanager?editor=' + meta.fieldname;
-            if (meta.filetype == 'image') {
-                cmsURL = cmsURL + "&type=Images";
-            } else {
-                cmsURL = cmsURL + "&type=Files";
-            }
-
-            tinyMCE.activeEditor.windowManager.openUrl({
-                url: cmsURL,
-                title: 'Filemanager',
-                width: x * 0.8,
-                height: y * 0.8,
-                resizable: "yes",
-                close_previous: "no",
-                onMessage: (api, message) => {
-                    callback(message.content);
-                }
-            });
-        }
-    };
-
-    tinymce.init(editor_config);
 </script>
 <!-- upload-button -->
 <script src="{{asset('vendor/laravel-filemanager/js/stand-alone-button.js')}}"></script>
