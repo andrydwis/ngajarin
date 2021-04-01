@@ -27,13 +27,13 @@
                 </div>
                 <div class="flex justify-center">
                     @if(in_array(auth()->user()->id, $course->users->pluck('id')->toArray()))
-                    <button class="inline-flex px-6 py-2 text-lg bg-gray-100 border-0 rounded text-primary focus:outline-none hover:bg-gray-200">
+                    <button class="inline-flex px-6 py-2 text-lg bg-white border-0 rounded text-primary focus:outline-none hover:bg-gray-200">
                         Sudah Bergabung
                     </button>
                     @else
                     <form action="{{route('student.course-list.store', $course->slug)}}" method="post">
                         @csrf
-                        <button class="inline-flex px-6 py-2 text-lg bg-gray-100 border-0 rounded text-primary focus:outline-none hover:bg-gray-200">
+                        <button class="inline-flex px-6 py-2 text-lg bg-white border-0 rounded text-primary focus:outline-none hover:bg-gray-200">
                             Mulai Course
                         </button>
                     </form>

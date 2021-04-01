@@ -70,7 +70,7 @@ class SubmissionUserController extends Controller
         $data = [
             'course' => $course,
             'submission' => $submission,
-            'submission_users' => SubmissionUser::where('submission_id', $submission->id)->latest()->get()
+            'submission_user' => SubmissionUser::where('submission_id', $submission->id)->first()
         ];
 
         return view('student.submission.show', $data);
@@ -102,6 +102,7 @@ class SubmissionUserController extends Controller
         ]);
 
         $submissionUser->file = $request->file;
+        $submissionUser->status = 'dalam review';
         $submissionUser->save();
 
         Alert::success('Submission berhasil diupdate');
