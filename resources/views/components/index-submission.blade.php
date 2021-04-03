@@ -72,6 +72,20 @@
                 </a>
                 @endrole
                 <!-- end item -->
+                
+                <!-- item -->
+                @role('admin')
+                <a href="{{route('admin.course.submission.review', [$course, $slug])}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
+                    <i class="mr-1 text-sm fas fa-clipboard"></i>
+                    Review
+                </a>
+                @else
+                <a href="{{route('mentor.course.submission.review', [$course, $slug])}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
+                    <i class="mr-1 text-sm fas fa-clipboard"></i>
+                    Review
+                </a>
+                @endrole
+                <!-- end item -->
 
                 <!-- item -->
                 <!-- form di hidden -->
