@@ -2,37 +2,63 @@
     width: 100% !important;
 }
 
+/* bagian atas tabel */
+table.dataTable thead th{
+    border-bottom: none !important;
+}
+
+/* bagian bawah tabel */
+table.dataTable.no-footer {
+    border-bottom: none !important;
+}
+
 .dataTables_wrapper th {
     font-weight: 500 !important;
 }
 
+/* dropdown tampilkan entri */
+.dataTables_wrapper .dataTables_length select {
+    @apply pr-7 md:mb-7 !important;
+}
+
+.dataTables_wrapper .dataTables_filter input{
+    @apply mb-7 !important;
+}
+
 /* Pagination Buttons*/
 .dataTables_wrapper .dataTables_paginate .paginate_button {
-    font-weight: 700;
-    border-radius: 0.25rem;
-    border: 1px solid transparent;
+    @apply font-normal rounded-md border !important;
 }
 
 /*Pagination Buttons - Current selected */
 .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-    color: #fff !important;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    font-weight: 700;
-    border-radius: 0.25rem;
-    background: #4f46e5 !important;
-    border: 1px solid transparent;
+    @apply mt-5 rounded-md border font-normal !important;
+    background: rgb(248, 250, 252) !important;
+    
 }
+
+/* info tulisan menampilan x sampai x dari x entri */
+.dataTables_info {
+    @apply mt-5;
+}
+
+
+/* WARNING JANGAN DIHAPUS*/
+/* WARNING JANGAN DIHAPUS*/
+/* WARNING JANGAN DIHAPUS*/
+/* YOU'VE BEEN TOLD*/
 
 /*Pagination Buttons - Hover */
-.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-    color: #fff !important;
+/* div.dataTables_wrapper div.dataTables_paginate .paginate_button:hover {
+    color: white !important;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     font-weight: 700;
     border-radius: 0.25rem;
     background: #4f46e5 !important;
     border: 1px solid transparent;
-}
+} */
+/* a.paginate_button.current {
+    color: white !important;
+} */
 
-.dataTables_wrapper .dataTables_length select{
-    @apply pr-7 !important;
-}
+/* WARNING JANGAN DIHAPUS*/

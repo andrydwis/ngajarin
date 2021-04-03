@@ -8,7 +8,7 @@
                     <h4 class="h6">Daftar Course Anda</h4>
                 </div>
                 <div class="card-body">
-                    <table id="datatables" class="w-auto py-10 text-left">
+                    <table id="datatables" class="w-auto text-left">
                         <thead class="pt-10 text-white bg-gray-600 shadow-md">
                             <tr>
                                 <th>No</th>

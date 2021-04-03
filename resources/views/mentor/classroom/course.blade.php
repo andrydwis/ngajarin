@@ -41,7 +41,7 @@
                     <h4 class="h6">Daftar Course Kelas {{$classroom->name}}</h4>
                 </div>
                 <div class="card-body">
-                    <table id="datatables" class="w-auto py-10 text-left">
+                    <table id="datatables" class="w-auto text-left">
                         <thead class="pt-10 text-white bg-gray-600 shadow-md">
                             <tr>
                                 <th class="px-6 pt-6 pb-4 text-sm font-bold uppercase border border-gray-600">No</th>
