@@ -14,7 +14,7 @@
     @endif
 
     <div class="flex px-5 pt-10 lg:px-20">
-        <a href="{{route('student.course.show', ['course' => $course->slug])}}" class="text-base btn btn-outline-primary ">
+        <a href="{{route('student.course.show', ['course' => $course->slug])}}" class="text-base border-none btn btn-outline-primary ">
             <i class="mr-1 text-sm fas fa-chevron-left"></i> Kembali
         </a>
     </div>

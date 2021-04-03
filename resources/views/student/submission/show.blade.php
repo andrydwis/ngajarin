@@ -2,7 +2,7 @@
 @section('content')
 <section>
     <div class="flex px-5 pt-10 lg:px-20">
-        <a href="{{route('student.course.show', ['course' => $course->slug])}}" class="text-base btn btn-outline-primary ">
+        <a href="{{route('student.course.show', ['course' => $course->slug])}}" class="text-base border-none btn btn-outline-primary">
             <i class="mr-1 text-sm fas fa-chevron-left"></i> Kembali
         </a>
     </div>
@@ -67,10 +67,10 @@
                                 {{$submission_user->status}}
                             </span>
                             @else
-                            <span class="px-3 py-1 ml-1 text-sm font-semibold rounded-full alert-warning">
+                            <span class="px-3 py-1 ml-1 text-sm font-semibold text-gray-100 bg-gray-500 rounded-full">
                                 {{$submission_user->status}}
                             </span>
-                            @endif      
+                            @endif
                         </div>
                         <div>
                             Score : <span class="font-bold"> {{$submission_user->score}} </span>
@@ -166,13 +166,13 @@
                     <div>
                         <span class="text-gray-700">
                             Kumpulkan submission untuk di review
-                        </span>                    
+                        </span>
                         <form action="{{route('student.course.submission.store', ['course' => $course, 'submission' => $submission])}}" method="post">
                             @csrf
                             <div class="flex flex-wrap gap-2 my-5">
                                 <label for="file" class="font-semibold">File submission : </label>
                                 <div class="flex items-center w-full">
-                                    <a id="lfm" data-input="file" data-preview="holder" class="pr-2 mt-2 text-white" style="text-decoration: none">
+                                    <a id="lfm" data-input="file" data-preview="holder" class="mt-2 text-white" style="text-decoration: none">
                                         <button id="btn_lfm" class="flex items-center text-base align-middle btn btn-outline-primary">
                                             <i class="pr-2 fas fa-file-alt"></i>
                                             File

@@ -1,7 +1,6 @@
 <!-- start navbar -->
 <div class="fixed top-0 z-40 flex flex-row flex-wrap justify-between w-full p-5 bg-white border-b border-gray-200 shadow-sm">
-    <div class="flex flex-none text-gray-900">
-        <i class="hidden text-2xl xs:inline-block fas fa-book-open"></i>
+    <div class="flex flex-none text-primary-lighter">
         <strong class="flex-1 mx-2 capitalize">ngajar.in</strong>
     </div>
 
@@ -14,7 +13,7 @@
             <button class="flex flex-wrap items-center menu-btn focus:outline-none focus:shadow-outline" @click="isOpen = true">
                 <div class="w-8 h-8 overflow-hidden rounded-full">
                     <!-- <img class="object-cover w-full h-full" src="img/user.svg"> -->
-                    <i class="text-2xl fas fa-user-circle"></i>
+                    <i class="text-2xl fas fa-user-circle text-primary-lighter"></i>
                 </div>
 
                 <div class="flex ml-2 capitalize ">
