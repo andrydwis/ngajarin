@@ -8,7 +8,7 @@
         <!-- card -->
         <div class="report-card hover:text-primary-lighter">
             <div class="card">
-                <a href="{{route('admin.course.submission.review-pending', ['course' => $course, 'submission' => $submission])}}" class="flex items-center gap-5 card-body">
+                <a href="{{route('mentor.course.submission.review-pending', ['course' => $course, 'submission' => $submission])}}" class="flex items-center gap-5 card-body">
 
                     <div class="flex items-center justify-center w-12 h-12 p-4 bg-indigo-100 rounded-full">
                         <i class="text-xl text-primary fas fa-clipboard"></i>
@@ -35,7 +35,7 @@
         <!-- card -->
         <div class="report-card hover:text-primary-lighter">
             <div class="card">
-                <a href="{{route('admin.course.submission.review-rejected', ['course' => $course, 'submission' => $submission])}}" class="flex items-center gap-5 card-body">
+                <a href="{{route('mentor.course.submission.review-rejected', ['course' => $course, 'submission' => $submission])}}" class="flex items-center gap-5 card-body">
 
                     <div class="flex items-center justify-center w-12 h-12 p-4 bg-red-100 rounded-full">
                         <i class="text-xl text-danger fas fa-times"></i>
@@ -59,7 +59,7 @@
         <!-- card -->
         <div class="report-card hover:text-primary-lighter">
             <div class="card">
-                <a href="{{route('admin.course.submission.review-accepted', ['course' => $course, 'submission' => $submission])}}" class="flex items-center gap-5 card-body">
+                <a href="{{route('mentor.course.submission.review-accepted', ['course' => $course, 'submission' => $submission])}}" class="flex items-center gap-5 card-body">
 
                     <div class="flex items-center justify-center w-12 h-12 p-4 bg-green-100 rounded-full">
                         <i class="text-xl text-success fas fa-check"></i>
@@ -133,18 +133,23 @@
                                     <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">
                                         2-10-2021
                                     </td>
-                                    <td class="px-1 py-2 text-sm text-center border border-l-0 border-r-0 md:text-left md:text-base md:px-4">
-                                        <a href="{{$submissionUserPending->file}}">
+                                    <td class="px-1 py-2 text-sm text-center border-b md:text-left md:text-base md:px-4" x-data="{ isOpen : false }">
+                                        <a href="{{$submissionUserPending->file}}" target="_blank">
                                             <button class="text-sm btn btn-outline-success md:text-base">Download</button>
                                         </a>
-                                        <button class="text-sm btn btn-primary md:text-base">Review</button>
+
+                                        <button @click="isOpen = !isOpen" class="text-sm btn btn-primary md:text-base">Review</button>
+
+                                        <!-- Modal-->
+                                        <x-modal-review-submission :action="route('mentor.course.submission.review-process', ['course' => $course->slug, 'submission' => $submission->slug, 'submissionUser' => $submissionUserPending])" />
+
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
                         <div class="flex justify-center my-2">
-                            <a href="{{route('admin.course.submission.review-pending', ['course' => $course, 'submission' => $submission])}}">
+                            <a href="{{route('mentor.course.submission.review-pending', ['course' => $course, 'submission' => $submission])}}">
                                 <button class="text-sm btn text-primary-lighter hover:bg-primary-lighter hover:text-white md:text-base">Lihat selengkapnya ({{$submissionUsersPending->count()}})</button>
                             </a>
 
@@ -172,18 +177,22 @@
                                     <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">
                                         2-10-2021
                                     </td>
-                                    <td class="px-1 py-2 text-sm text-center border border-l-0 border-r-0 md:text-left md:text-base md:px-4">
-                                        <a href="{{$submissionUserRejected->file}}">
+                                    <td x-data="{ isOpen : false }" class="px-1 py-2 text-sm text-center border border-l-0 border-r-0 md:text-left md:text-base md:px-4">
+                                        <a href="{{$submissionUserRejected->file}}" target="_blank">
                                             <button class="text-sm btn btn-outline-success md:text-base">Download</button>
                                         </a>
-                                        <button class="text-sm btn btn-primary md:text-base">Review</button>
+
+                                        <button @click="isOpen = !isOpen" class="text-sm btn btn-primary md:text-base">Review</button>
+
+                                        <!-- Modal-->
+                                        <x-modal-review-submission :action="route('mentor.course.submission.review-process', ['course' => $course->slug, 'submission' => $submission->slug, 'submissionUser' => $submissionUserRejected])" />
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
                         <div class="flex justify-center my-2">
-                            <a href="{{route('admin.course.submission.review-rejected', ['course' => $course, 'submission' => $submission])}}">
+                            <a href="{{route('mentor.course.submission.review-rejected', ['course' => $course, 'submission' => $submission])}}">
                                 <button class="text-sm btn text-primary-lighter hover:bg-primary-lighter hover:text-white md:text-base">Lihat selengkapnya ({{$submissionUsersRejected->count()}})</button>
                             </a>
 
@@ -211,18 +220,22 @@
                                     <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">
                                         2-10-2021
                                     </td>
-                                    <td class="px-1 py-2 text-sm text-center border border-l-0 border-r-0 md:text-left md:text-base md:px-4">
-                                        <a href="{{$submissionUserAccepted->file}}">
+                                    <td x-data="{ isOpen : false }" class="px-1 py-2 text-sm text-center border border-l-0 border-r-0 md:text-left md:text-base md:px-4">
+                                        <a href="{{$submissionUserAccepted->file}}" target="_blank">
                                             <button class="text-sm btn btn-outline-success md:text-base">Download</button>
                                         </a>
-                                        <button class="text-sm btn btn-primary md:text-base">Review</button>
+                                        <button @click="isOpen = !isOpen" class="text-sm btn btn-primary md:text-base">Review</button>
+
+                                        <!-- Modal-->
+                                        <x-modal-review-submission :action="route('mentor.course.submission.review-process', ['course' => $course->slug, 'submission' => $submission->slug, 'submissionUser' => $submissionUserAccepted])" />
+
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
                         <div class="flex justify-center my-2">
-                            <a href="{{route('admin.course.submission.review-accepted', ['course' => $course, 'submission' => $submission])}}">
+                            <a href="{{route('mentor.course.submission.review-accepted', ['course' => $course, 'submission' => $submission])}}">
                                 <button class="text-sm btn text-primary-lighter hover:bg-primary-lighter hover:text-white md:text-base">Lihat selengkapnya ({{$submissionUsersAccepted->count()}})</button>
                             </a>
 
