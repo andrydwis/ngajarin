@@ -1,37 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>JUmlah submission yang diterima</h1>
-    <p>{{$submissionUsersAccepted->count()}}</p>
-    @foreach($submissionUsersAccepted as $submissionUserAccepted)
-    <p>sub dari {{$submissionUserAccepted->user->name}}</p>
-    <p>status ; {{$submissionUserAccepted->status}}</p>
-    <form action="{{route('admin.course.submission.review-process', ['course' => $course->slug, 'submission' => $submission->slug, 'submissionUser' => $submissionUserAccepted])}}" method="post">
-        @csrf
-        <input type="number" name="score">
-        @error('score')
-        {{$message}}
-        @enderror
-        <textarea name="feedback" id="" cols="30" rows="10"></textarea>
-        @error('feedback')
-        {{$message}}
-        @enderror
-        <select name="status" id="">
-            <option value="" selected disabled>pilih status</option>
-            <option value="diterima">Diterima</option>
-            <option value="ditolak">Ditolak</option>
-        </select>
-        @error('status')
-        {{$message}}
-        @enderror
-        <button type="submit">Review</button>
-    </form>
-    @endforeach
-</body>
-</html>
+@extends('layouts.admin.app')
+@section('content')
+<div class="w-full p-5 mx-auto mt-20 lg:mx-0 md:w-auto lg:w-4/6 xl:w-3/4">
+
+    <div class="card">
+        <div class="card-header">
+            <h6 class="h6">Submission {{$submission->title}} yang Diterima</h6>
+        </div>
+        <div class="card-body">
+
+            <div class="container mb-4">
+                <table class="w-auto text-left border" id="datatables">
+                    <thead class="pt-10 text-gray-600 bg-gray-100 ">
+                        <tr>
+                            <th class="text-sm font-semibold text-center md:text-left md:text-base md:px-4">Nama</th>
+                            <th class="text-sm font-semibold text-center md:text-base md:px-4 md:text-left">tanggal submit</th>
+                            <th class="text-sm font-semibold text-center md:text-base md:px-4 md:text-left">action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+
+                        @foreach($submissionUsersAccepted as $submissionUserAccepted)
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-1 py-2 text-sm text-center border-b md:text-left md:text-base md:px-4">
+                                {{$submissionUserAccepted->user->name}}
+                            </td>
+                            <td class="px-1 py-2 text-sm text-center border-b md:text-left md:text-base md:px-4">
+                                2-10-2021
+                            </td>
+                            <td class="px-1 py-2 text-sm text-center border-b md:text-left md:text-base md:px-4" x-data="{ isOpen : false }">
+                                <a href="{{$submissionUserAccepted->file}}" target="_blank">
+                                    <button class="text-sm btn btn-outline-success md:text-base">Download</button>
+                                </a>
+
+                                <button @click="isOpen = !isOpen" class="text-sm btn btn-primary md:text-base">Review</button>
+
+                                <!-- Modal-->
+                                <x-modal-review-submission :action="route('admin.course.submission.review-process', ['course' => $course->slug, 'submission' => $submission->slug, 'submissionUser' => $submissionUserAccepted])" />
+
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    @endsection
+
+    @section('customCSS')
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.23/r-2.2.7/datatables.min.css" />
+    <style>
+        .btn {
+            margin-right: 0px;
+            margin-left: 5px;
+        }
+    </style>
+    @endsection
+
+
+    @section('customJS')
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.23/r-2.2.7/datatables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#datatables').DataTable({
+                responsive: true,
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.22/i18n/Indonesian.json"
+                }
+            });
+        });
+    </script>
+    @endsection
