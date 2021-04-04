@@ -2,7 +2,7 @@
 <nav class="sticky top-0 z-30 flex items-center w-full h-16 duration-200 select-none md:h-24 bg-primary md:relative">
     <div class="relative flex flex-wrap items-center justify-between w-full h-24 mx-auto font-medium" x-data="{ openMenu : false }">
 
-        <a href="#_" class="py-4 pl-6 pr-4 md:pl-4 md:py-0">
+        <a href="/" class="py-4 pl-6 pr-4 md:pl-4 md:py-0">
             <span class="p-1 text-xl font-black leading-none text-white select-none">
                 Ngajar<span class="text-gray-100">.in</span>
             </span>
@@ -15,9 +15,9 @@
 
                 <div class="flex flex-row justify-center w-2/3 text-indigo-100">
 
-                    <a href="#" class="inline-block px-4 py-2 mx-2 font-semibold hover:text-white lg:mx-3">Home</a>
+                    <a href="/" class="inline-block px-4 py-2 mx-2 font-semibold hover:text-white lg:mx-3">Home</a>
 
-                    <a href="#" class="inline-block px-4 py-2 mx-2 font-semibold hover:text-white lg:mx-3">Course</a>
+                    <a href=" {{ route('student.course.index') }} " class="inline-block px-4 py-2 mx-2 font-semibold hover:text-white lg:mx-3">Course</a>
 
                     <a href="#" class="inline-block px-4 py-2 mx-2 font-semibold hover:text-white lg:mx-3">Forum</a>
 
@@ -25,19 +25,29 @@
                 </div>
 
 
-                <div class="flex items-center justify-end w-1/3">
+                <div class="flex items-center justify-end w-1/3 ">
                     @if (Route::has('login'))
 
                     @auth
-                    <a href="{{ url('/dashboard') }}" class="inline-flex px-4 py-2 ml-4 mr-1 text-base font-medium leading-6 text-indigo-600 whitespace-no-wrap duration-150 bg-white border rounded-full hover:border-white hover:text-white hover:bg-primary focus:outline-none">
+                    <a href="{{ url('/dashboard') }}" class="inline-flex mt-0 text-base text-white border border-white rounded-full btn hover:bg-white hover:text-primary">
                         Dashboard
                     </a>
+
+                    <form action="{{route('logout')}}" method="post">
+                        <div class="flex gap-2">
+                            @csrf
+                            <button type="submit" class="inline-flex mt-0 text-base text-gray-200 border-white rounded-full hover:text-white hover:underline btn">Keluar</button>
+                        </div>
+                    </form>
+
                     @else
-                    <a href="{{ route('login') }}" class="w-full pl-0 mr-3 text-indigo-200 hover:text-white lg:mr-5 md:w-auto">Login</a>
+                    
 
                     @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="inline-flex px-4 py-2 ml-4 mr-1 text-base font-medium leading-6 text-indigo-600 whitespace-no-wrap duration-150 bg-white border rounded-full hover:border-white hover:text-white hover:bg-primary focus:outline-none">Register</a>
+                    <a href="{{ route('register') }}" class="inline-flex mt-0 mr-0 text-base bg-white border border-white rounded-full text-primary btn hover:bg-primary hover:text-white">Daftar Sekarang</a>
                     @endif
+
+                    <a href="{{ route('login') }}" class="inline-flex mt-0 text-base text-white border-white rounded-full btn hover:underline">Masuk</a>
 
                     @endauth
                     @endif
@@ -73,10 +83,26 @@
 
                     @if (Route::has('login'))
 
+                    <a href="#" class="inline-block px-4 py-2 mx-2 font-medium hover:text-indigo-300">Home</a>
+
+                    <a href="#" class="inline-block px-4 py-2 mx-2 font-medium hover:text-indigo-300">Course</a>
+
+                    <a href="#" class="inline-block px-4 py-2 mx-2 font-medium hover:text-indigo-300">Forum</a>
+
+                    <a href="#" class="inline-block px-4 py-2 mx-2 font-medium hover:text-indigo-300">Tutoring</a>
+
                     @auth
                     <a href="{{ url('/dashboard') }}" class="inline-block px-4 py-2 mx-2 font-medium hover:text-indigo-300">
                         Dashboard
                     </a>
+
+                    <form action="{{route('logout')}}" method="post">
+                        <div class="flex gap-2">
+                            @csrf
+                            <button type="submit" class="inline-block px-4 py-2 mx-2 font-medium hover:text-indigo-300">Logout</button>
+                        </div>
+                    </form>
+
                     @else
                     <a href="{{ route('login') }}" class="inline-block px-4 py-2 mx-2 font-medium hover:text-indigo-300">Login</a>
 
@@ -87,13 +113,7 @@
                     @endauth
                     @endif
 
-                    <a href="#" class="inline-block px-4 py-2 mx-2 font-medium hover:text-indigo-300">Home</a>
 
-                    <a href="#" class="inline-block px-4 py-2 mx-2 font-medium hover:text-indigo-300">Course</a>
-
-                    <a href="#" class="inline-block px-4 py-2 mx-2 font-medium hover:text-indigo-300">Forum</a>
-
-                    <a href="#" class="inline-block px-4 py-2 mx-2 font-medium hover:text-indigo-300">Tutoring</a>
 
                 </div>
 

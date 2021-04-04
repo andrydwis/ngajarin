@@ -45,30 +45,30 @@
             </div>
         </div>
     </div>
+</div>
+@endsection
 
-    @endsection
-
-    @section('customCSS')
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.23/r-2.2.7/datatables.min.css" />
-    <style>
-        .btn {
-            margin-right: 0px;
-            margin-left: 5px;
-        }
-    </style>
-    @endsection
+@section('customCSS')
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.23/r-2.2.7/datatables.min.css" />
+<style>
+    .btn {
+        margin-right: 0px;
+        margin-left: 5px;
+    }
+</style>
+@endsection
 
 
-    @section('customJS')
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.23/r-2.2.7/datatables.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#datatables').DataTable({
-                responsive: true,
-                "language": {
-                    "url": "https://cdn.datatables.net/plug-ins/1.10.22/i18n/Indonesian.json"
-                }
-            });
+@section('customJS')
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.23/r-2.2.7/datatables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#datatables').DataTable({
+            responsive: true,
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.22/i18n/Indonesian.json"
+            }
         });
-    </script>
-    @endsection
+    });
+</script>
+@endsection
