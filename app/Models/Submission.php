@@ -19,12 +19,23 @@ class Submission extends Model
         'deadline'
     ];
 
-    public function unlocked(){
+    public function unlocked()
+    {
         $check = SubmissionUser::where('submission_id', $this->id)->where('user_id', Auth::user()->id)->latest()->first();
-        if($check){
+        if ($check) {
             return $check->status;
-        }else{
+        } else {
             return 'belum mengumpulkan';
+        }
+    }
+
+    public function score(User $user)
+    {
+        $check = SubmissionUser::where('submission_id', $this->id)->where('user_id', $user->id)->latest()->first();
+        if ($check) {
+            return $check->score;
+        } else {
+            return 0;
         }
     }
 

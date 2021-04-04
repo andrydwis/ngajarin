@@ -5,6 +5,7 @@ use App\Http\Controllers\Mentor\ClassroomCourseController;
 use App\Http\Controllers\Mentor\ClassroomMemberController;
 use App\Http\Controllers\Mentor\CourseController;
 use App\Http\Controllers\Mentor\EpisodeController;
+use App\Http\Controllers\Mentor\ScoreController;
 use App\Http\Controllers\Mentor\SubmissionController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,4 +53,7 @@ Route::middleware(['auth', 'verified', 'role:mentor'])->group(function () {
     Route::get('/mentor/classroom/{classroom}/courses', [ClassroomCourseController::class, 'index'])->middleware(['verify_class'])->name('mentor.classroom-course.index');
     Route::post('/mentor/classroom/{classroom}/courses/create', [ClassroomCourseController::class, 'store'])->middleware(['verify_class'])->name('mentor.classroom-course.store');
     Route::delete('/mentor/classroom/{classroom}/courses/destroy', [ClassroomCourseController::class, 'destroy'])->middleware(['verify_class'])->name('mentor.classroom-course.destroy');
+
+    Route::get('/mentor/course/{course:slug}/score', [ScoreController::class, 'index'])->name('mentor.course.score.index');
+    Route::get('/mentor/course/{course:slug}/score/user/{user}', [ScoreController::class, 'show'])->name('mentor.course.score.index');
 });

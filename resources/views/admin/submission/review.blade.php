@@ -238,13 +238,13 @@
                                 @foreach($submissionUsersRejected->take(3) as $submissionUserRejected)
                                 <tr>
                                     <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">
-                                        {{$submissionUsersRejected->user->name}}
+                                        {{$submissionUserRejected->user->name}}
                                     </td>
                                     <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">
                                         2-10-2021
                                     </td>
                                     <td class="px-1 py-2 text-sm text-center border border-l-0 border-r-0 md:text-left md:text-base md:px-4">
-                                        <a href="{{$submissionUsersRejected->file}}">
+                                        <a href="{{$submissionUserRejected->file}}">
                                             <button class="text-sm btn btn-outline-success md:text-base">Download</button>
                                         </a>
                                         <button class="text-sm btn btn-primary md:text-base">Review</button>
@@ -277,13 +277,13 @@
                                 @foreach($submissionUsersAccepted->take(3) as $submissionUserAccepted)
                                 <tr>
                                     <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">
-                                        {{$submissionUsersAccepted->user->name}}
+                                        {{$submissionUserAccepted->user->name}}
                                     </td>
                                     <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">
                                         2-10-2021
                                     </td>
                                     <td class="px-1 py-2 text-sm text-center border border-l-0 border-r-0 md:text-left md:text-base md:px-4">
-                                        <a href="{{$submissionUsersAccepted->file}}">
+                                        <a href="{{$submissionUserAccepted->file}}">
                                             <button class="text-sm btn btn-outline-success md:text-base">Download</button>
                                         </a>
                                         <button class="text-sm btn btn-primary md:text-base">Review</button>
