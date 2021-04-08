@@ -15,7 +15,7 @@
         @foreach($course->users as $user)
         <li>
             {{$user->name}}
-            <a href="">lihat nilai</a>
+            <a href="{{route('mentor.course.score.show', [ 'course' => $course->slug, 'user' => $user ])}}">lihat nilai</a>
         </li>
         @endforeach
     </ul>

@@ -55,5 +55,5 @@ Route::middleware(['auth', 'verified', 'role:mentor'])->group(function () {
     Route::delete('/mentor/classroom/{classroom}/courses/destroy', [ClassroomCourseController::class, 'destroy'])->middleware(['verify_class'])->name('mentor.classroom-course.destroy');
 
     Route::get('/mentor/course/{course:slug}/score', [ScoreController::class, 'index'])->name('mentor.course.score.index');
-    Route::get('/mentor/course/{course:slug}/score/user/{user}', [ScoreController::class, 'show'])->name('mentor.course.score.index');
+    Route::get('/mentor/course/{course:slug}/score/user/{user}', [ScoreController::class, 'show'])->name('mentor.course.score.show');
 });

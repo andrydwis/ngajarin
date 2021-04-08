@@ -133,7 +133,7 @@
                                     <td class="px-1 py-2 text-sm text-center border border-l-0 md:text-left md:text-base md:px-4">
                                         2-10-2021
                                     </td>
-                                    <td class="px-1 py-2 text-sm text-center border-b md:text-left md:text-base md:px-4" x-data="{ isOpen : false }">
+                                    <td class="px-1 py-2 text-sm text-center border border-b md:text-left md:text-base md:px-4" x-data="{ isOpen : false }">
                                         <a href="{{$submissionUserPending->file}}" target="_blank">
                                             <button class="text-sm btn btn-outline-success md:text-base">Download</button>
                                         </a>
@@ -249,4 +249,13 @@
     </div>
 
 </div>
+@endsection
+
+@section('customCSS')
+<style>
+    .btn {
+        margin-right: 0px;
+        margin-left: 5px;
+    }
+</style>
 @endsection
