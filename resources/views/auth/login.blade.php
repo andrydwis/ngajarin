@@ -68,7 +68,7 @@
                             <button type="submit" class="w-full btn-bs-primary">Masuk</button>
                         </div>
                     </form>
-                    <p class="w-full mt-4 text-sm text-center text-gray-500 md:text-base">Belum Punya Akun Ngajar.In? <a href="#_" class="text-blue-500 underline">Daftar Disini</a></p>
+                    <p class="w-full mt-4 text-sm text-center text-gray-500 md:text-base">Belum Punya Akun Ngajar.In? <a href="{{ route('register') }}" class="text-blue-500 underline">Daftar Disini</a></p>
                 </div>
             </div>
 

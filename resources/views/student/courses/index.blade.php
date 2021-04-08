@@ -12,7 +12,7 @@
                         <thead class="pt-10 text-white bg-gray-600 shadow-md">
                             <tr>
                                 <th>No</th>
-                                <th>thumbnail</th>
+                                <th>title</th>
                                 <th>level</th>
                                 <!-- <th>description</th> -->
                                 <th>Menu</th>
@@ -22,7 +22,7 @@
                             @foreach($courses as $course)
                             <tr class="hover:bg-gray-100">
                                 <td>{{$loop->index+1}}</td>
-                                <td>{{$course->thumbnail}}</td>
+                                <td>{{$course->title}}</td>
                                 <td>{{$course->level}}</td>
                                 <!-- <td>{{$course->description}}</td> -->
                                 <td class="flex flex-wrap gap-1 px-6 py-4">

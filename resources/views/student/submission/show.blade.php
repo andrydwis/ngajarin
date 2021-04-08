@@ -1,6 +1,6 @@
 @extends('layouts.student.app-new')
 @section('content')
-<section>
+<section class="bg-gray-100">
     <div class="flex px-5 pt-10 lg:px-20">
         <a href="{{route('student.course.show', ['course' => $course->slug])}}" class="text-base border-none btn btn-outline-primary">
             <i class="mr-1 text-sm fas fa-chevron-left"></i> Kembali
