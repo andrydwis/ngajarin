@@ -7,6 +7,7 @@ use App\Http\Controllers\Student\ClassroomController;
 use App\Http\Controllers\Student\ClassroomCourseController;
 use App\Http\Controllers\Student\ClassroomMemberController;
 use App\Http\Controllers\Student\CourseController;
+use App\Http\Controllers\Student\TutoringController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified', 'role:student'])->group(function () {
@@ -28,4 +29,8 @@ Route::middleware(['auth', 'verified', 'role:student'])->group(function () {
 
     Route::get('/student/course-list', [CourseUserController::class, 'index'])->name('student.course-list.index');
     Route::post('/student/course-list/create/{course:slug}', [CourseUserController::class, 'store'])->name('student.course-list.store');
+
+    Route::get('/student/tutoring', [TutoringController::class, 'index'])->name('student.tutoring.index');
+    Route::get('/student/tutoring/create/{user}', [TutoringController::class, 'create'])->name('student.tutoring.create');
+    Route::post('/student/tutoring/create/{user}', [TutoringController::class, 'store'])->name('student.tutoring.store');
 });
