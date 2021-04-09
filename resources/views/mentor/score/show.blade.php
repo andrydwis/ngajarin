@@ -5,93 +5,67 @@
         <div class="card">
             <div class="flex justify-between card-header">
                 <h6 class="text-base font-bold md:text-xl">
-                    <span class="hidden sm:inline">Daftar Mahasiswa Course </span> {{$course->title}}
+                    <span class="hidden sm:inline">Nilai mahasiswa </span> {{$user->name}}
                 </h6>
             </div>
             <div class="card-body">
-                <div class="container mb-4">
-                    <div class="">
-                        <div id="nilaiOverview"></div>
-                    </div>
-                  
-                    <h3>Nilai mahasiswa <span class="font-bold"> {{$user->name}} </span> </h3>
 
-                    <h1>List Submission</h1>
-                    @php
-                    $sum = 0;
-                    @endphp
-
-                    @foreach($course->submissions as $submission)
-
-                    {{$submission->title}} - {{$submission->score($user)}}<br>
-
-                    @php
-                    $sum += $submission->score($user);
-                    @endphp
-
-                    @endforeach
-
-                    <h1>Rata-rata nilai : {{round(($sum/$submissionUser), 2)}}</h1>
+                <div class="mt-2 mb-5 border-b">
+                    <div id="nilaiOverview"></div>
                 </div>
+
+                @php
+                $sum = 0;
+                @endphp
+
+                @foreach($course->submissions as $submission)
+
+                @php
+                $sum += $submission->score($user);
+                @endphp
+
+                @endforeach
+
+                <!-- kirim data ke bentuk json -->
+                @php
+                foreach ($course->submissions as $submission) {
+                $json_decoded = json_decode($submission);
+                $arrayNilai[] = array('Nilai' => $submission->score($user));
+                $arraySubmission[] = array('Submission' => $submission->title);
+                }
+                @endphp
+
+                <h6 class="my-5 text-lg font-bold">Rata-rata nilai : {{round(($sum/$submissionUser), 2)}}</h6>
+
             </div>
         </div>
     </div>
 </div>
 @endsection
 
-<?php
-foreach ($course->submissions as $submission) {
-    $json_decoded = json_decode($submission);
-    // iki Nilai iso tak hapus ben gak dadi objek
-    $arrayNilai[] = array('Nilai' => $submission->score($user));
-}
-echo $submission->score($user);
-?>
-
 @section('customCSS')
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.css" />
+<style>
+    .apexcharts-toolbar {
+        transform: scale(1.5);
+        margin-top: -18px;
+    }
+</style>
 @endsection
 
 @section('customJS')
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#datatables').DataTable({
-            "language": {
-                "url": "https://cdn.datatables.net/plug-ins/1.10.22/i18n/Indonesian.json"
-            }
-        });
-    });
-
-    // APEX Charts
-    var options = function(type, height, numbers, color) {
+    // APEX Charts setting
+    var apexOptions = function(type, height, numbers, numbers2, color) {
         return {
             chart: {
                 height: height,
                 width: '100%',
                 type: type,
-                sparkline: {
-                    enabled: true
-                },
                 toolbar: {
                     show: true,
                 },
             },
-            grid: {
-                show: true,
-                padding: {
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0
-                }
-            },
-            dataLabels: {
-                enabled: true
-            },
-            legend: {
-                show: true,
-            },
+
             series: [{
                 name: "Nilai ",
                 data: numbers
@@ -103,32 +77,20 @@ echo $submission->score($user);
                 colors: [color],
                 width: 3
             },
-            yaxis: {
-                show: false,
-            },
+
             xaxis: {
-                show: false,
-                labels: {
-                    show: false,
-                },
-                axisBorder: {
-                    show: false,
-                },
-                tooltip: {
-                    enabled: false,
-                }
+                categories: numbers2,
             },
 
         };
     }
 
     //  Nilai Overview
-    let isiArrayTest = <?php echo json_encode($arrayNilai) ?>.map(nilai => nilai.Nilai);
-
-    console.log(isiArrayTest);
+    let nilai = <?php echo json_encode($arrayNilai) ?>.map(nilai => nilai.Nilai);
+    let submission = <?php echo json_encode($arraySubmission) ?>.map(submission => submission.Submission);
 
     var nilaiOverview = document.getElementById('nilaiOverview');
-    var nilaiOverviewChart = new ApexCharts(nilaiOverview, options('bar', '50%', isiArrayTest, '#6366F1'));
+    var nilaiOverviewChart = new ApexCharts(nilaiOverview, apexOptions('bar', '150%', nilai, submission, '#6366F1'));
     nilaiOverviewChart.render();
     // end Nilai Overview
 </script>

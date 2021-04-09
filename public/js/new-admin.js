@@ -17,11 +17,11 @@ var options = function (type, height, numbers, color) {
         enabled: true
       },
       toolbar: {
-        show: true,
+        show: false,
       },
     },
     grid: {
-      show: true,
+      show: false,
       padding: {
         top: 0,
         right: 0,
@@ -30,13 +30,13 @@ var options = function (type, height, numbers, color) {
       }
     },
     dataLabels: {
-      enabled: true
+      enabled: false
     },
     legend: {
-      show: true,
+      show: false,
     },
     series: [{
-      name: "Nilai ",
+      name: "Series ",
       data: numbers
     }],
     fill: {
