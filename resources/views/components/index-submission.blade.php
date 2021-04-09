@@ -72,7 +72,7 @@
                 </a>
                 @endrole
                 <!-- end item -->
-                
+
                 <!-- item -->
                 @role('admin')
                 <a href="{{route('admin.course.submission.review', [$course, $slug])}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
@@ -87,6 +87,7 @@
                 @endrole
                 <!-- end item -->
 
+                <hr>
                 <!-- item -->
                 <!-- form di hidden -->
                 <div x-data>

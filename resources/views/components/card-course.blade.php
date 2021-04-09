@@ -78,7 +78,15 @@
 
                     @endrole
                     <!-- end item -->
-
+                    
+                    <!-- item -->
+                    @role('mentor')
+                    <a href="{{route('mentor.course.score.index', [$slug])}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
+                        <i class="mr-1 text-sm fas fa-chart-bar"></i>
+                        score
+                    </a>
+                    @endrole
+                    <!-- end item -->
                     <hr>
 
                     <!-- item -->
