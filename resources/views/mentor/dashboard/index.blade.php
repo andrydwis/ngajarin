@@ -450,3 +450,24 @@
 <!-- end content -->
 
 @endsection
+
+@section('customJS')
+<script>
+    // page view & Unique Users
+    var analytics_1 = document.getElementsByClassName("analytics_1");
+
+    if (analytics_1 != null && typeof(analytics_1) != 'undefined') {
+        var chart = new ApexCharts(analytics_1[0], options("area", '51px', numArr(10, 99), '#4fd1c5'));
+        var chart_1 = new ApexCharts(analytics_1[1], options("area", '51px', numArr(10, 99), '#4c51bf'));
+        chart.render();
+        chart_1.render();
+    }
+    // end page view & Unique Users
+    
+    // Sales Overview
+    var sealsOverview = document.getElementById('sealsOverview');
+    var sealsOverviewChart = new ApexCharts(sealsOverview, options('bar', '100%', numArr(20, 999), '#6366F1'));
+    sealsOverviewChart.render();
+    // endSales Overview
+</script>
+@endsection
