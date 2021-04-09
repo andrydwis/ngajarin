@@ -14,35 +14,15 @@
                         <thead class="pt-10 text-gray-600 bg-gray-100 ">
                             <tr>
                                 <th class="text-sm font-semibold text-center md:text-left md:text-base md:px-4">Nama Mahasiswa</th>
-                                <th class="text-sm font-semibold text-center md:text-base md:px-4 md:text-left">Rata-rata</th>
-                                <th class="text-sm font-semibold text-center md:text-base md:px-4 md:text-left">action</th>
+                                <th class="text-sm font-semibold text-center md:text-base md:px-4 md:text-left">Menu</th>
                             </tr>
                         </thead>
                         <tbody class="text-gray-700">
-                            @php
-                            $sum = 0;
-                            $total = $course->submissions->count();
-                            @endphp
-
                             @foreach($course->users as $user)
                             <tr class="hover:bg-gray-50">
                                 <td class="px-1 py-2 text-sm text-center border-b md:text-left md:text-base md:px-4">
                                     {{$user->name}}
                                 </td>
-                                <!-- rumus hitung rata2 -->
-                                @foreach($course->submissions as $submission)
-
-                                @php
-                                $sum += $submission->score($user);
-                                @endphp
-
-                                @endforeach
-                                <!-- end of rumus hitung rata2 -->
-
-                                <td class="px-1 py-2 text-sm text-center border-b md:text-left md:text-base md:px-4">
-                                    {{ Str::limit($sum/$total, $limit = 4, '') }}
-                                </td>
-
                                 <td class="px-1 py-2 text-sm text-center border-b md:text-left md:text-base md:px-4">
                                     <a href="{{route('mentor.course.score.show', [ 'course' => $course->slug, 'user' => $user ])}}" target="_blank">
                                         <button class="text-sm btn btn-outline-primary md:text-base">Lihat Detail</button>

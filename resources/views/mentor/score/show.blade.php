@@ -19,7 +19,6 @@
                     <h1>List Submission</h1>
                     @php
                     $sum = 0;
-                    $total = $course->submissions->count();
                     @endphp
 
                     @foreach($course->submissions as $submission)
@@ -32,7 +31,7 @@
 
                     @endforeach
 
-                    <h1>Rata-rata nilai : {{$sum/$total}}</h1>
+                    <h1>Rata-rata nilai : {{round(($sum/$submissionUser), 2)}}</h1>
                 </div>
             </div>
         </div>
