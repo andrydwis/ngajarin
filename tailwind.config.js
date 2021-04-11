@@ -59,5 +59,6 @@ module.exports = {
         require('@tailwindcss/forms'),
         require('@tailwindcss/custom-forms'),
         require('@tailwindcss/typography'),
+        require('@tailwindcss/line-clamp'),
     ],
 };
