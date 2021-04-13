@@ -21,13 +21,13 @@
                     <hr class="my-4 ml-2">
 
                     <a href="{{route('user.post.index')}}">
-                        <div class="pl-6 my-1 text-base text-left border border-white sidebar-item hover:border-primary sidebar-item-active">
+                        <div class="pl-6 my-1 text-base text-left border border-white sidebar-item hover:border-primary">
                             <i class="mr-1 text-sm fill-current fas fa-bars"></i> Postingan Terbaru
                         </div>
                     </a>
 
-                    <a href="{{route('user.post.my-post')}}">
-                        <div class="pl-6 my-1 text-base text-left border border-white sidebar-item hover:border-primary">
+                    <a href="{{('user.post.my-post')}}">
+                        <div class="pl-6 my-1 text-base text-left border border-white sidebar-item hover:border-primary sidebar-item-active">
                             <i class="mx-1 text-sm fill-current fas fa-history"></i> Postingan Saya
                         </div>
                     </a>

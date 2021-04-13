@@ -19,6 +19,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/user/post/edit/{post:slug}', [PostController::class, 'edit'])->name('user.post.edit');
     Route::patch('/user/post/edit/{post:slug}', [PostController::class, 'update'])->name('user.post.update');
     Route::delete('/user/post/destroy/{post:slug}', [PostController::class, 'destroy'])->name('user.post.destroy');
+    Route::get('/user/post/my-post', [PostController::class, 'myPost'])->name('user.post.my-post');
+    Route::get('/user/post/bookmark/', [PostController::class, 'bookmark'])->name('user.post.bookmark');
+    Route::post('/user/post/bookmark/{post}', [PostController::class, 'bookmarkProcess'])->name('user.post.bookmark-process');
 
     Route::post('/user/post/like/{post:slug}', [PostController::class, 'like'])->name('user.post.like');
     Route::post('/user/post/dislike/{post:slug}', [PostController::class, 'dislike'])->name('user.post.dislike');
