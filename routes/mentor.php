@@ -7,6 +7,7 @@ use App\Http\Controllers\Mentor\CourseController;
 use App\Http\Controllers\Mentor\EpisodeController;
 use App\Http\Controllers\Mentor\ScoreController;
 use App\Http\Controllers\Mentor\SubmissionController;
+use App\Http\Controllers\Mentor\TutoringController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified', 'role:mentor'])->group(function () {
@@ -56,4 +57,7 @@ Route::middleware(['auth', 'verified', 'role:mentor'])->group(function () {
 
     Route::get('/mentor/course/{course:slug}/score', [ScoreController::class, 'index'])->name('mentor.course.score.index');
     Route::get('/mentor/course/{course:slug}/score/user/{user}', [ScoreController::class, 'show'])->name('mentor.course.score.show');
+
+    Route::get('/mentor/tutoring', [TutoringController::class, 'index'])->name('mentor.tutoring.index');
+    Route::get('/mentor/tutoring/show/{tutoring}', [TutoringController::class, 'show'])->name('mentor.tutoring.show');
 });

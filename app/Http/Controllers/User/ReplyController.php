@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Student;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\Review;
-use App\Models\User;
+use App\Models\Conversation;
+use App\Models\Reply;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
 
-class ReviewController extends Controller
+class ReplyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,14 +25,9 @@ class ReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(User $user)
+    public function create()
     {
         //
-        $data = [
-            'user'
-        ];
-
-        return view('student.review.create', $data);
     }
 
     /**
@@ -41,30 +36,29 @@ class ReviewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, User $user)
+    public function store(Request $request, Conversation $conversation)
     {
         //
         $request->validate([
-            'rate' => ['required'],
             'pesan' => ['required']
         ]);
 
-        $review = new Review();
-        $review->user_id = $user->id;
-        $review->rate = $request->rate;
-        $review->message = $request->pesan;
-        $review->save();
+        $reply = new Reply();
+        $reply->conversation_id = $conversation->id;
+        $reply->user_id = Auth::user()->id;
+        $reply->message = $request->pesan;
+        $reply->save();
 
-        Alert::success('Terima kasih telah melakukan review');
+        return redirect()->route('user.chat.show', ['conversation' => $conversation]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Review  $review
+     * @param  \App\Models\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function show(Review $review)
+    public function show(Reply $reply)
     {
         //
     }
@@ -72,10 +66,10 @@ class ReviewController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Review  $review
+     * @param  \App\Models\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function edit(Review $review)
+    public function edit(Reply $reply)
     {
         //
     }
@@ -84,10 +78,10 @@ class ReviewController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Review  $review
+     * @param  \App\Models\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Review $review)
+    public function update(Request $request, Reply $reply)
     {
         //
     }
@@ -95,10 +89,10 @@ class ReviewController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Review  $review
+     * @param  \App\Models\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Review $review)
+    public function destroy(Reply $reply)
     {
         //
     }

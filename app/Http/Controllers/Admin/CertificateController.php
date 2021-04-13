@@ -19,7 +19,7 @@ class CertificateController extends Controller
     {
         //
         $data = [
-            'course' => $course->with('certificate')->first(),
+            'course' => $course,
         ];
 
         return view('admin.certificate.index', $data);
@@ -33,7 +33,7 @@ class CertificateController extends Controller
     public function create(Course $course)
     {
         //
-        $check = $course->with('certificate')->first();
+        $check = $course;
         if ($check->certificate) {
             Alert::error('Template sertifikat sudah ada');
 
@@ -41,7 +41,7 @@ class CertificateController extends Controller
         }
 
         $data = [
-            'course' => $course->with('certificate')->first(),
+            'course' => $course,
         ];
 
         return view('admin.certificate.create', $data);

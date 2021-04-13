@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Models\Certificate;
 use App\Models\Course;
-use App\Models\Tag;
+use App\Models\SubmissionUser;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
@@ -55,8 +57,21 @@ class CourseController extends Controller
     public function show(Course $course)
     {
         //
+        $listSubmission = $course->submissions->pluck('id');
+        
+        $finishedSubmission = SubmissionUser::where('user_id', Auth::user()->id)->whereIn('submission_id', $listSubmission->toArray())->where('status', 'diterima')->get();
+
+        if($listSubmission->count() == $finishedSubmission->count())
+        {
+            $isFinished = true;
+        }else{
+            $isFinished = false;
+        }
+
         $data = [
             'course' => $course,
+            'certificate' => Certificate::where('course_id', $course->id)->first(),
+            'isFinished' => $isFinished,
         ]; 
 
         return view('student.course.show', $data);

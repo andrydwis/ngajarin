@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Student\CertificateUserController;
 use App\Http\Controllers\Student\EpisodeController;
 use App\Http\Controllers\Student\SubmissionUserController;
 use App\Http\Controllers\Student\CourseUserController;
@@ -29,6 +30,8 @@ Route::middleware(['auth', 'verified', 'role:student'])->group(function () {
 
     Route::get('/student/course-list', [CourseUserController::class, 'index'])->name('student.course-list.index');
     Route::post('/student/course-list/create/{course:slug}', [CourseUserController::class, 'store'])->name('student.course-list.store');
+
+    Route::post('/student/export-certificate/{certificate}', [CertificateUserController::class, 'store'])->name('student.export-certicate');
 
     Route::get('/student/tutoring', [TutoringController::class, 'index'])->name('student.tutoring.index');
     Route::get('/student/tutoring/create/{user}', [TutoringController::class, 'create'])->name('student.tutoring.create');

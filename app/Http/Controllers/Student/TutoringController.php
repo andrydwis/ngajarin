@@ -90,7 +90,7 @@ class TutoringController extends Controller
     public function show(Tutoring $tutoring)
     {
         //
-        if($tutoring->student_id == Auth::user()->id){
+        if($tutoring->student_id != Auth::user()->id){
             return abort(403, 'Unauthorized action.');
         }
         
@@ -98,7 +98,7 @@ class TutoringController extends Controller
             'tutoring' => $tutoring
         ];
 
-        return view('student.mentoring.show', $data);
+        return view('student.tutoring.show', $data);
     }
 
     /**

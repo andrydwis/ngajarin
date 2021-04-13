@@ -5,17 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CertificateUser extends Model
+class Reply extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'certificate_id',
+        'conversation_id',
         'user_id',
+        'message'
     ];
 
-    public function certificate()
+    public function user()
     {
-        return $this->belongsTo(Certificate::class);
+        return $this->belongsTo(User::class);
     }
 }

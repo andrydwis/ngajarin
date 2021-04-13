@@ -203,12 +203,10 @@ class SubmissionController extends Controller
     public function reviewProcess(Course $course, Submission $submission, SubmissionUser $submissionUser, Request $request)
     {
         $request->validate([
-            'score' => ['required', 'numeric', 'min:0'],
             'feedback' => ['required'],
             'status' => ['required']
         ]);
 
-        $submissionUser->score = $request->score;
         $submissionUser->feedback = $request->feedback;
         $submissionUser->status = $request->status;
         $submissionUser->save();

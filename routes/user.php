@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\User\ReplyController;
 use App\Http\Controllers\User\CommentController;
+use App\Http\Controllers\User\ConversationController;
 use App\Http\Controllers\User\PostController;
 use App\Http\Controllers\User\UserDetailController;
 use Illuminate\Support\Facades\Route;
@@ -24,4 +26,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/user/post/comment/store/{post:slug}', [CommentController::class, 'store'])->name('user.post.comment.store');
     Route::post('/user/post/comment/like/{comment}', [CommentController::class, 'like'])->name('user.post.comment.like');
     Route::post('/user/post/comment/dislike/{comment}', [CommentController::class, 'dislike'])->name('user.post.comment.dislike');
+
+    Route::get('/user/chat', [ConversationController::class, 'index'])->name('user.chat.index');
+    Route::get('/user/chat/{conversation}', [ConversationController::class, 'show'])->name('user.chat.show');
+    Route::post('/user/chat/{conversation}', [ReplyController::class, 'store'])->name('user.chat.store');
 });
