@@ -23,7 +23,7 @@ class PostController extends Controller
     {
         //
         $data = [
-            'posts' => Post::with('tags', 'comments', 'reacts', 'creator.detail')->orderBy('created_at', 'desc')->simplePaginate(1),
+            'posts' => Post::with('tags', 'comments', 'reacts', 'creator.detail')->orderBy('created_at', 'desc')->simplePaginate(7),
             'tags' => Tag::get(),
         ];
 

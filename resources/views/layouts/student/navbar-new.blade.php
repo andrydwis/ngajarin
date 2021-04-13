@@ -9,7 +9,7 @@
         </a>
 
         <!-- navigation menu -->
-        <div class="relative items-center hidden w-3/4 h-full p-0 text-sm lg:text-base md:flex">
+        <div class="relative items-center hidden w-3/4 h-full p-0 text-sm lg:text-base lg:flex">
 
             <div class="flex items-center w-full h-full">
 
@@ -75,7 +75,7 @@
         <!-- end of navigation menu -->
 
         <!-- modal trigger -->
-        <div x-show="!openMenu" @click="openMenu = !openMenu" class="absolute right-0 flex flex-col items-end w-10 h-10 p-2 mr-4 text-gray-100 rounded-full cursor-pointer md:hidden hover:bg-gray-900 hover:bg-opacity-10">
+        <div x-show="!openMenu" @click="openMenu = !openMenu" class="absolute right-0 flex flex-col items-end w-10 h-10 p-2 mr-4 text-gray-100 rounded-full cursor-pointer lg:hidden hover:bg-gray-900 hover:bg-opacity-10">
 
             <svg class="w-6 h-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                 <path d="M4 6h16M4 12h16M4 18h16"></path>
@@ -86,7 +86,7 @@
         <!-- end of modal trigger -->
 
         <!-- mobile menu -->
-        <div x-cloak x-show.transition.duration.300ms.opacity="openMenu" class="fixed inset-0 z-40 flex items-center w-full h-full p-3 text-xl bg-gray-900 bg-opacity-50 md:hidden">
+        <div x-cloak x-show.transition.duration.300ms.opacity="openMenu" class="fixed inset-0 z-40 flex items-center w-full h-full p-3 text-xl bg-gray-900 bg-opacity-50 lg:hidden">
 
             <div class="flex-col w-full h-auto py-10 overflow-hidden bg-white rounded-lg select-none text-primary-lighter">
                 <div class="flex justify-end w-full px-4">
