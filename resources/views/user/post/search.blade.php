@@ -3,12 +3,6 @@
 
 <div class="flex justify-center">
 
-    <a href="{{route('user.post.create')}}" class="fixed z-20 inline lg:hidden right-4 bottom-4">
-        <button class="w-16 h-16 text-white duration-300 rounded-full focus:outline-none bg-primary-lighter hover:bg-primary">
-            <i class="text-xl fill-current fas fa-plus"></i>
-        </button>
-    </a>
-
     <div class="flex flex-col items-start max-w-5xl py-5 md:flex-row md:mx-5 ">
 
         <div class="flex-none hidden mr-9 lg:block lg:sticky lg:self-start top-10 w-52">
@@ -26,19 +20,19 @@
 
                     <hr class="my-4 ml-2">
 
-                    <a href="{{route('user.post.index')}}">
+                    <a href="">
                         <div class="pl-6 my-1 text-base text-left border border-white sidebar-item hover:border-primary sidebar-item-active">
                             <i class="mr-1 text-sm fill-current fas fa-bars"></i> Postingan Terbaru
                         </div>
                     </a>
 
-                    <a href="{{route('user.post.my-post')}}">
+                    <a href="">
                         <div class="pl-6 my-1 text-base text-left border border-white sidebar-item hover:border-primary">
                             <i class="mx-1 text-sm fill-current fas fa-history"></i> Postingan Saya
                         </div>
                     </a>
 
-                    <a href="{{route('user.post.bookmark')}}">
+                    <a href="">
                         <div class="pl-6 my-1 text-base text-left border border-white sidebar-item hover:border-primary">
                             <i class="ml-1 mr-2 text-sm fill-current fas fa-bookmark"></i> Disimpan
                         </div>
@@ -52,7 +46,7 @@
 
         </div>
 
-        <div class="flex-1 min-h-[100vh]">
+        <<div class="flex-1 min-h-[100vh]">
 
             <!-- search section -->
             <form action="#" autocomplete="off" class="flex justify-end px-6 mb-8 pt-11">
@@ -78,6 +72,12 @@
 
             <!-- postingan list -->
             <div class="py-3">
+
+                <p class="px-6 mb-5 text-lg text-gray-600 break-all line-clamp-1">
+                    Hasil Pencarian
+                    <span class="font-semibold">Controller not found Controller not found Controller not found Controller not found Controller not found Controller not found</span>
+                </p>
+                
                 @foreach($posts as $post)
                 <div class="flex flex-col h-auto px-6 py-4 mx-4 mb-4 transition-all bg-gray-100 border border-gray-100 cursor-pointer lg:h-36 md:flex-row bg-opacity-30 md:hover:bg-gray-100 rounded-xl">
 
@@ -221,43 +221,9 @@
             <div class="px-6">
                 {{$posts->links()}}
             </div>
-        </div>
     </div>
 </div>
 
-<!-- WARNING : OJO DIHAPUS!! -->
-<!-- <div>
-                <h1> post</h1>
-                <a href="{{route('user.post.create')}}">tambah baru</a>
-                <hr>
-
-                @foreach($posts as $post)
-
-                @if($post->creator->id == auth()->user()->id)
-                <a href="{{route('user.post.edit', ['post' => $post->slug])}}">Edit postingan</a>
-                <form action="{{route('user.post.destroy', ['post' => $post->slug])}}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit">Hapus post</button>
-                </form>
-                @endif
-
-                <br>
-                tag :
-                @foreach($post->tags as $tag)
-                {{$tag->name}}
-                @endforeach <br>
-                judul : {{$post->title}} <br>
-                konten : {{Str::words($post->content, 5, '...')}} <br>
-                dibuat oleh : {{$post->creator->name}} <br>
-                dibuat tanggal: {{\Carbon\Carbon::parse($post->created_at)->isoFormat('dddd, D MMMM Y')}}, {{$post->created_at->diffForHumans()}} <br>
-                Jumlah komen : {{$post->comments->count()}} <br>
-                Jumlah like : {{$post->reacts->where('type', 'like')->count()}} <br>
-                Jumlah dislike : {{$post->reacts->where('type', 'dislike')->count()}} <br>
-                link : <a href="{{route('user.post.show', ['post' => $post])}}">lihat</a>
-                <hr>
-                @endforeach
-            </div> -->
-<!-- WARNING : OJO DIHAPUS!! -->
+</div>
 
 @endsection
