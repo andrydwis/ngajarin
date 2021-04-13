@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\PostBookmark;
 use App\Models\PostReact;
 use App\Models\Tag;
 use Illuminate\Support\Str;
@@ -229,5 +230,47 @@ class PostController extends Controller
 
             return back();
         }
+    }
+
+    public function bookmark()
+    {
+        $bookmark = PostBookmark::where('user_id', Auth::user()->id)->get()->pluck('post_id')->toArray();
+        
+        $data = [
+            'posts' => Post::where('id', $bookmark)->with('tags', 'comments', 'reacts', 'creator.detail')->orderBy('created_at', 'desc')->simplePaginate(1),
+            'tags' => Tag::get(),
+        ];
+
+        return view('user.post.bookmark', $data);
+    }
+
+    public function bookmarkProcess(Request $request, Post $post)
+    {
+        $check = PostBookmark::where('user_id', Auth::user()->id)->where('post_id', $post->id)->first();
+
+        if (!$check) {
+            $bookmark = new PostBookmark();
+            $bookmark->user_id = Auth::user()->id;
+            $bookmark->post_id = $post->id;
+            $bookmark->save();
+
+            Alert::success('Post berhasil disimpan');
+        } else {
+            $check->delete();
+
+            Alert::success('Post telah dihapus dari daftar penyimpanan anda');
+        }
+
+        return back();
+    }
+
+    public function myPost()
+    {
+        $data = [
+            'posts' => Post::where('created_by', Auth::user()->id)->with('tags', 'comments', 'reacts', 'creator.detail')->orderBy('created_at', 'desc')->simplePaginate(1),
+            'tags' => Tag::get(),
+        ];
+
+        return view('user.post.my-post', $data);
     }
 }

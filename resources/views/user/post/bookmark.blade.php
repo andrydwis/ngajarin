@@ -3,12 +3,6 @@
 
 <div class="flex justify-center">
 
-    <a href="{{route('user.post.create')}}" class="fixed z-20 inline lg:hidden right-4 bottom-4">
-        <button class="w-16 h-16 text-white duration-300 rounded-full focus:outline-none bg-primary-lighter hover:bg-primary">
-            <i class="text-xl fill-current fas fa-plus"></i>
-        </button>
-    </a>
-
     <div class="flex flex-col items-start max-w-5xl py-5 md:flex-row md:mx-5 ">
 
         <div class="flex-none hidden mr-9 lg:block lg:sticky lg:self-start top-10 w-52">
@@ -27,7 +21,7 @@
                     <hr class="my-4 ml-2">
 
                     <a href="{{route('user.post.index')}}">
-                        <div class="pl-6 my-1 text-base text-left border border-white sidebar-item hover:border-primary sidebar-item-active">
+                        <div class="pl-6 my-1 text-base text-left border border-white sidebar-item hover:border-primary">
                             <i class="mr-1 text-sm fill-current fas fa-bars"></i> Postingan Terbaru
                         </div>
                     </a>
@@ -39,7 +33,7 @@
                     </a>
 
                     <a href="{{route('user.post.bookmark')}}">
-                        <div class="pl-6 my-1 text-base text-left border border-white sidebar-item hover:border-primary">
+                        <div class="pl-6 my-1 text-base text-left border border-white sidebar-item hover:border-primary sidebar-item-active">
                             <i class="ml-1 mr-2 text-sm fill-current fas fa-bookmark"></i> Disimpan
                         </div>
                     </a>
@@ -52,7 +46,7 @@
 
         </div>
 
-        <div class="flex-1 min-h-[100vh]">
+        <div class="flex-1">
 
             <!-- search section -->
             <form action="#" autocomplete="off" class="flex justify-end px-6 mb-8 pt-11">
@@ -79,14 +73,15 @@
             <!-- postingan list -->
             <div class="py-3">
                 @foreach($posts as $post)
-                <div class="flex flex-col h-auto px-6 py-4 mx-4 mb-4 transition-all bg-gray-100 border border-gray-100 cursor-pointer lg:h-36 md:flex-row bg-opacity-30 md:hover:bg-gray-100 rounded-xl">
+
+                <div class="flex flex-col h-auto px-6 py-4 mx-4 mb-4 transition-all bg-gray-100 border border-gray-100 lg:h-36 md:flex-row bg-opacity-30 md:hover:bg-gray-100 rounded-xl">
 
                     <div class="flex items-center self-start w-full mb-4 md:w-auto md:mr-5 md:block md:mb-0">
 
                         <!-- user info -->
                         <div class="flex items-center">
                             <a href="" class="flex mb-2 mr-3 md:mr-0">
-                                <img loading="lazy" alt="eludic" class="relative object-cover bg-white rounded h-14 w-14" src="{{$post->creator->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name='.$post->creator->name}}" />
+                                <img loading="lazy" alt="eludic" class="relative object-cover bg-white rounded-full h-14 w-14" src="{{$post->creator->detail->photo ?? 'https://ui-avatars.com/api/?name='.$post->creator->name}}" />
                             </a>
                             <strong class="text-xs uppercase md:text-base md:hidden">
                                 {{$post->creator->name}}
@@ -108,7 +103,7 @@
 
                             @foreach($post->tags as $tag)
                             <div class="md:hidden">
-                                <a href="" class="block py-1 text-xs text-center rounded-full btn btn-outline-primary">{{$tag->name}}</a>
+                                <a href="" class="block py-1 text-xs text-center rounded-full btn btn-outline-danger">{{$tag->name}}</a>
                             </div>
                             @endforeach
 
@@ -134,7 +129,7 @@
                                     <div class="flex ml-5">
                                         <div>
                                             @foreach($post->tags as $tag)
-                                            <a href="#" class="block py-1 mx-0 my-0 ml-1 text-center rounded-full btn btn-outline-primary"> {{$tag->name}}
+                                            <a href="#" class="block py-1 mx-0 my-0 ml-1 text-center rounded-full btn btn-outline-danger"> {{$tag->name}}
                                             </a>
                                             @endforeach
                                         </div>
@@ -157,7 +152,7 @@
                                         <button type="submit">
                                             <div class="flex items-center justify-center ml-4">
                                                 <i class="mr-1 text-sm text-black fas fa-bookmark"></i>
-                                                <span class="relative text-xs font-semibold leading-none text-left text-black">
+                                                <span class="relative text-xs text-black font-semibold leading-none text-left">
                                                     Hapus
                                                 </span>
                                             </div>
@@ -182,7 +177,7 @@
                             <!-- potongan konten -->
                             <div class="mt-2 mb-6 text-gray-800 lg:mb-0 lg:pr-8">
                                 <a href="{{route('user.post.show', ['post' => $post])}}">
-                                    <span class="normal-case break-words line-clamp-4 lg:line-clamp-2 ">
+                                    <span class="normal-case break-words line-clamp-none lg:line-clamp-2 ">
                                         {{$post->content}}
                                     </span>
                                 </a>
@@ -216,46 +211,8 @@
                 @endforeach
             </div>
             <!-- end of postingan list -->
-            <div class="px-6">
-                {{$posts->links()}}
-            </div>
+            {{$posts->links()}}
         </div>
     </div>
 </div>
-
-<!-- WARNING : OJO DIHAPUS!! -->
-<!-- <div>
-                <h1> post</h1>
-                <a href="{{route('user.post.create')}}">tambah baru</a>
-                <hr>
-
-                @foreach($posts as $post)
-
-                @if($post->creator->id == auth()->user()->id)
-                <a href="{{route('user.post.edit', ['post' => $post->slug])}}">Edit postingan</a>
-                <form action="{{route('user.post.destroy', ['post' => $post->slug])}}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit">Hapus post</button>
-                </form>
-                @endif
-
-                <br>
-                tag :
-                @foreach($post->tags as $tag)
-                {{$tag->name}}
-                @endforeach <br>
-                judul : {{$post->title}} <br>
-                konten : {{Str::words($post->content, 5, '...')}} <br>
-                dibuat oleh : {{$post->creator->name}} <br>
-                dibuat tanggal: {{\Carbon\Carbon::parse($post->created_at)->isoFormat('dddd, D MMMM Y')}}, {{$post->created_at->diffForHumans()}} <br>
-                Jumlah komen : {{$post->comments->count()}} <br>
-                Jumlah like : {{$post->reacts->where('type', 'like')->count()}} <br>
-                Jumlah dislike : {{$post->reacts->where('type', 'dislike')->count()}} <br>
-                link : <a href="{{route('user.post.show', ['post' => $post])}}">lihat</a>
-                <hr>
-                @endforeach
-            </div> -->
-<!-- WARNING : OJO DIHAPUS!! -->
-
 @endsection

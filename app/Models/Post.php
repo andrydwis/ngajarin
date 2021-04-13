@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Post extends Model
 {
@@ -44,5 +45,16 @@ class Post extends Model
     public function dislikes()
     {
         return PostReact::where('post_id', $this->id)->where('type', 'dislike')->get()->pluck('user_id')->toArray();
+    }
+
+    public function bookmarked()
+    {
+        $check = PostBookmark::where('user_id', Auth::user()->id)->where('post_id', $this->id)->first();
+
+        if ($check) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
