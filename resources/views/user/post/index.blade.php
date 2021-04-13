@@ -28,18 +28,6 @@
 
                     <a href="">
                         <div class="pl-6 my-1 text-base text-left border border-white sidebar-item hover:border-primary">
-                            <i class="mr-1 text-sm fill-current fas fa-star"></i> Upvote Tertinggi
-                        </div>
-                    </a>
-
-                    <a href="">
-                        <div class="pl-6 my-1 text-base text-left border border-white sidebar-item hover:border-primary">
-                            <i class="mx-1 text-sm fill-current fas fa-question"></i> Belum terpecahkan
-                        </div>
-                    </a>
-
-                    <a href="">
-                        <div class="pl-6 my-1 text-base text-left border border-white sidebar-item hover:border-primary">
                             <i class="mx-1 text-sm fill-current fas fa-history"></i> Postingan Saya
                         </div>
                     </a>
@@ -65,12 +53,9 @@
 
                 <select class="pl-5 mr-3 text-sm text-gray-500 rounded-full cursor-pointer pr-9 form-select">
                     <option value="all" selected>Semua Topik</option>
-                    <option value="kuliah">Kuliah</option>
-                    <option value="javascript">JavaScript</option>
-                    <option value="laravel">Laravel</option>
-                    <option value="livewire">Livewire</option>
-                    <option value="tailwind">Tailwind</option>
-                    <option value="alpine">Alpine.js</option>
+                    @foreach($tags as $tag)
+                    <option value="{{$tag->id}}">{{$tag->name}}</option>
+                    @endforeach
                 </select>
 
 
@@ -83,7 +68,7 @@
 
             </form>
             <!-- end of search section -->
-
+            
 
             <!-- postingan list -->
             <div class="py-3">
@@ -95,8 +80,8 @@
 
                         <!-- user info -->
                         <div class="flex items-center">
-                            <a href="/@eludic" class="flex mb-2 mr-3 md:mr-0">
-                                <img loading="lazy" alt="eludic" class="relative object-cover bg-white rounded-lg h-14 w-14" src="{{url('/img/user1.jpg')}}" />
+                            <a href="" class="flex mb-2 mr-3 md:mr-0">
+                                <img loading="lazy" alt="eludic" class="relative object-cover bg-white rounded-full h-14 w-14" src="{{$post->creator->detail->photo ?? 'https://ui-avatars.com/api/?name='.$post->creator->name}}"/>
                             </a>
                             <strong class="text-xs uppercase md:text-base md:hidden">
                                 {{$post->creator->name}}
@@ -116,9 +101,11 @@
                                 </div>
                             </div>
 
+                            @foreach($post->tags as $tag)
                             <div class="md:hidden">
-                                <a href="https://laracasts.com/discuss/channels/laravel" class="block py-1 text-xs text-center rounded-full btn btn-outline-danger"> Laravel </a>
+                                <a href="" class="block py-1 text-xs text-center rounded-full btn btn-outline-danger">{{$tag->name}}</a>
                             </div>
+                            @endforeach
 
                         </div>
                         <!-- end of jumlah komen & tag -->
@@ -132,7 +119,7 @@
 
                                 <!-- title -->
                                 <h4 class="mb-4 text-base break-words lg:mb-0 md:pr-6 lg:line-clamp-1">
-                                    <a href="{{route('user.post.show', ['post' => $post])}}" class="text-lg font-semibold text-black conversation-list-link hover:text-black link" title="Redirect on Session expire"> {{$post->title}} </a>
+                                    <a href="{{route('user.post.show', ['post' => $post])}}" class="text-lg font-semibold text-black conversation-list-link hover:text-black link" title="{{$post->title}}">{{$post->title}}</a>
                                 </h4>
                                 <!-- end of title -->
 
@@ -140,16 +127,12 @@
                                 <div class="relative hidden text-center text-gray-400 md:flex md:items-center md:flex-row-reverse md:ml-auto">
 
                                     <div class="flex ml-5">
-
-                                        <!-- <div>
-                                                @foreach($post->tags as $tag)
-                                                <a href="#" class="block py-1 mx-0 my-0 ml-1 text-center rounded-full btn btn-outline-danger"> {{$tag->name}}
-                                                </a>
-                                                @endforeach
-                                            </div> -->
-
-                                        <a href="#" class="block py-1 mx-0 my-0 ml-1 text-center rounded-full btn btn-outline-danger"> Laravel </a>
-
+                                        <div>
+                                            @foreach($post->tags as $tag)
+                                            <a href="#" class="block py-1 mx-0 my-0 ml-1 text-center rounded-full btn btn-outline-danger"> {{$tag->name}}
+                                            </a>
+                                            @endforeach
+                                        </div>
                                     </div>
                                     <div class="flex items-center justify-center ml-4">
                                         <i class="mr-1 text-sm fas fa-thumbs-up"></i>
@@ -165,9 +148,7 @@
                                     </div>
                                 </div>
                                 <!-- end of comment, view, tag -->
-
                             </div>
-
                             <!-- potongan konten -->
                             <div class="mt-2 mb-6 text-gray-800 lg:mb-0 lg:pr-8">
                                 <a href="{{route('user.post.show', ['post' => $post])}}">
@@ -177,24 +158,19 @@
                                 </a>
                             </div>
                             <!-- end of potongan konten -->
-
                             <!-- last reply info -->
                             <div class="flex flex-col justify-between mt-4 text-xs text-gray-700 md:flex-row">
                                 <div>
-
                                     Diposting
-
                                     <a href="#">
                                         <time class="font-bold ">
                                             {{$post->created_at->diffForHumans()}}
                                         </time>
                                     </a>
                                 </div>
-
                                 <div class="flex gap-2 mt-2 text-sm md:mt-0">
                                     @if($post->creator->id == auth()->user()->id)
                                     <a href="{{route('user.post.edit', ['post' => $post->slug])}}" class="pr-2 font-semibold border-r-2 hover:text-primary">Edit</a>
-
                                     <form action="{{route('user.post.destroy', ['post' => $post->slug])}}" method="post">
                                         @csrf
                                         @method('DELETE')
@@ -202,59 +178,16 @@
                                     </form>
                                     @endif
                                 </div>
-
                             </div>
                             <!-- end of last reply info -->
-
-
                         </div>
                     </div>
                 </div>
-
                 @endforeach
             </div>
             <!-- end of postingan list -->
-
-
-
-            <!-- WARNING : OJO DIHAPUS!! -->
-            <!-- <div>
-                <h1> post</h1>
-                <a href="{{route('user.post.create')}}">tambah baru</a>
-                <hr>
-
-                @foreach($posts as $post)
-
-                @if($post->creator->id == auth()->user()->id)
-                <a href="{{route('user.post.edit', ['post' => $post->slug])}}">Edit postingan</a>
-                <form action="{{route('user.post.destroy', ['post' => $post->slug])}}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit">Hapus post</button>
-                </form>
-                @endif
-
-                <br>
-                tag :
-                @foreach($post->tags as $tag)
-                {{$tag->name}}
-                @endforeach <br>
-                judul : {{$post->title}} <br>
-                konten : {{Str::words($post->content, 5, '...')}} <br>
-                dibuat oleh : {{$post->creator->name}} <br>
-                dibuat tanggal: {{\Carbon\Carbon::parse($post->created_at)->isoFormat('dddd, D MMMM Y')}}, {{$post->created_at->diffForHumans()}} <br>
-                Jumlah komen : {{$post->comments->count()}} <br>
-                Jumlah like : {{$post->reacts->where('type', 'like')->count()}} <br>
-                Jumlah dislike : {{$post->reacts->where('type', 'dislike')->count()}} <br>
-                link : <a href="{{route('user.post.show', ['post' => $post])}}">lihat</a>
-                <hr>
-                @endforeach
-            </div> -->
-            <!-- WARNING : OJO DIHAPUS!! -->
-
+            {{$posts->links()}}
         </div>
     </div>
-
-
-
-    @endsection
+</div>
+@endsection

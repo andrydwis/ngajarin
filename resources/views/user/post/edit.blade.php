@@ -1,6 +1,12 @@
 <form action="{{route('user.post.update', ['post' => $post->slug])}}" method="post">
 @csrf
 @method('PATCH')
+<select name="tag">
+<option value="" disabled>Pilih tag</option>
+@foreach($tags as $tag)
+<option value="{{$tag->id}}" @if($tag->id == $post->tags->first()->id){{'selected'}}@endif>{{$tag->name}}</option>
+@endforeach
+</select>
 <label for="judul">Judul</label>
 <input type="text" name="judul" id="judul" value="{{old('judul') ?? $post->title}}">
 @error('judul')

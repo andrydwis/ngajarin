@@ -10,7 +10,6 @@ use App\Models\Tag;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PostController extends Controller
@@ -24,7 +23,8 @@ class PostController extends Controller
     {
         //
         $data = [
-            'posts' => Post::with('tags', 'comments', 'reacts')->orderBy('created_at', 'desc')->paginate(10),
+            'posts' => Post::with('tags', 'comments', 'reacts', 'creator.detail')->orderBy('created_at', 'desc')->simplePaginate(1),
+            'tags' => Tag::get(),
         ];
 
         return view('user.post.index', $data);
