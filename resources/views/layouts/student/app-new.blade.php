@@ -27,7 +27,7 @@
 
     @include('layouts.student.navbar-new')
 
-    <main>
+    <main class="min-h-[75vh]">
         @yield('content')
     </main>
 

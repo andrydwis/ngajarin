@@ -27,6 +27,7 @@
     },
     "dependencies": {
         "@tailwindcss/jit": "^0.1.5",
+        "@tailwindcss/line-clamp": "^0.2.0",
         "@tailwindcss/typography": "^0.4.0"
     }
 }
