@@ -65,7 +65,7 @@
                 </select>
 
 
-                <div class="flex w-full md:w-72">
+                <div class="flex w-auto md:w-72">
                     <input name="search" placeholder="Mau cari apa?" value="" class="w-full pl-5 pr-10 text-sm placeholder-gray-500 rounded-full form-input">
                     <button type="submit" class="-ml-8 text-gray-400 focus:outline-none hover:text-primary focus:text-primary-darker">
                         <i class="text-sm fill-current fas fa-search"></i>
@@ -85,11 +85,11 @@
 
                         <!-- user info -->
                         <div class="flex items-center">
-                            <a href="" class="flex mb-2 mr-3 md:mr-0">
-                                <img loading="lazy" alt="eludic" class="relative object-cover bg-white rounded h-14 w-14" src="{{$post->creator->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name='.$post->creator->name}}" />
+                            <a href="" class="block mb-2 mr-3 md:mr-0">
+                                <img loading="lazy" alt="eludic" class="object-cover bg-white rounded h-14 w-14" src="{{$post->creator->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name='.$post->creator->name}}" />
                             </a>
-                            <strong class="text-xs uppercase md:text-base md:hidden">
-                                {{$post->creator->name}}
+                            <strong class="text-xs uppercase break-all md:text-base md:hidden line-clamp-1">
+                                {{ Str::limit($post->creator->name, $limit = 7) }}
                             </strong>
                         </div>
                         <!-- end of user info -->
@@ -184,8 +184,9 @@
                             <!-- potongan konten -->
                             <div class="mt-2 mb-6 text-gray-800 lg:mb-0 lg:pr-8">
                                 <a href="{{route('user.post.show', ['post' => $post])}}">
-                                    <span class="normal-case break-words line-clamp-4 lg:line-clamp-2 ">
-                                        {{$post->content}}
+                                    <span class="normal-case break-all line-clamp-4 lg:line-clamp-2 ">
+                                        {{ $post->content }}
+
                                     </span>
                                 </a>
                             </div>

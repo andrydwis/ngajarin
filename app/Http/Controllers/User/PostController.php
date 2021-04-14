@@ -237,7 +237,7 @@ class PostController extends Controller
         $bookmark = PostBookmark::where('user_id', Auth::user()->id)->get()->pluck('post_id')->toArray();
         
         $data = [
-            'posts' => Post::where('id', $bookmark)->with('tags', 'comments', 'reacts', 'creator.detail')->orderBy('created_at', 'desc')->simplePaginate(1),
+            'posts' => Post::where('id', $bookmark)->with('tags', 'comments', 'reacts', 'creator.detail')->orderBy('created_at', 'desc')->simplePaginate(7),
             'tags' => Tag::get(),
         ];
 
@@ -267,7 +267,7 @@ class PostController extends Controller
     public function myPost()
     {
         $data = [
-            'posts' => Post::where('created_by', Auth::user()->id)->with('tags', 'comments', 'reacts', 'creator.detail')->orderBy('created_at', 'desc')->simplePaginate(1),
+            'posts' => Post::where('created_by', Auth::user()->id)->with('tags', 'comments', 'reacts', 'creator.detail')->orderBy('created_at', 'desc')->simplePaginate(7),
             'tags' => Tag::get(),
         ];
 

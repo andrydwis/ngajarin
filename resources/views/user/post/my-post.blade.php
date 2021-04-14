@@ -3,6 +3,12 @@
 
 <div class="flex justify-center">
 
+    <a href="{{route('user.post.create')}}" class="fixed z-20 inline lg:hidden right-4 bottom-4">
+        <button class="w-16 h-16 text-white duration-300 rounded-full focus:outline-none bg-primary-lighter hover:bg-primary">
+            <i class="text-xl fill-current fas fa-plus"></i>
+        </button>
+    </a>
+
     <div class="flex flex-col items-start max-w-5xl py-5 md:flex-row md:mx-5 ">
 
         <div class="flex-none hidden mr-9 lg:block lg:sticky lg:self-start top-10 w-52">
@@ -74,17 +80,17 @@
             <div class="py-3">
                 @foreach($posts as $post)
 
-                <div class="flex flex-col h-auto px-6 py-4 mx-4 mb-4 transition-all bg-gray-100 border border-gray-100 lg:h-36 md:flex-row bg-opacity-30 md:hover:bg-gray-100 rounded-xl">
+                <div class="flex flex-col h-auto px-6 py-4 mx-4 mb-4 transition-all bg-gray-100 border border-gray-100 cursor-pointer lg:h-36 md:flex-row bg-opacity-30 md:hover:bg-gray-100 rounded-xl">
 
                     <div class="flex items-center self-start w-full mb-4 md:w-auto md:mr-5 md:block md:mb-0">
 
                         <!-- user info -->
                         <div class="flex items-center">
-                            <a href="" class="flex mb-2 mr-3 md:mr-0">
-                                <img loading="lazy" alt="eludic" class="relative object-cover bg-white rounded-full h-14 w-14" src="{{$post->creator->detail->photo ?? 'https://ui-avatars.com/api/?name='.$post->creator->name}}" />
+                            <a href="" class="block mb-2 mr-3 md:mr-0">
+                                <img loading="lazy" alt="eludic" class="object-cover bg-white rounded h-14 w-14" src="{{$post->creator->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name='.$post->creator->name}}" />
                             </a>
-                            <strong class="text-xs uppercase md:text-base md:hidden">
-                                {{$post->creator->name}}
+                            <strong class="text-xs uppercase break-all md:text-base md:hidden line-clamp-1">
+                                {{ Str::limit($post->creator->name, $limit = 7) }}
                             </strong>
                         </div>
                         <!-- end of user info -->
@@ -103,7 +109,7 @@
 
                             @foreach($post->tags as $tag)
                             <div class="md:hidden">
-                                <a href="" class="block py-1 text-xs text-center rounded-full btn btn-outline-danger">{{$tag->name}}</a>
+                                <a href="" class="block py-1 text-xs text-center rounded-full btn btn-outline-primary">{{$tag->name}}</a>
                             </div>
                             @endforeach
 
@@ -129,17 +135,18 @@
                                     <div class="flex ml-5">
                                         <div>
                                             @foreach($post->tags as $tag)
-                                            <a href="#" class="block py-1 mx-0 my-0 ml-1 text-center rounded-full btn btn-outline-danger"> {{$tag->name}}
+                                            <a href="#" class="block py-1 mx-0 my-0 ml-1 text-center rounded-full btn btn-outline-primary"> {{$tag->name}}
                                             </a>
                                             @endforeach
                                         </div>
                                     </div>
+
                                     @if(!$post->bookmarked())
                                     <form action="{{route('user.post.bookmark-process', ['post' => $post])}}" method="POST">
                                         @csrf
-                                        <button type="submit">
-                                            <div class="flex items-center justify-center ml-4">
-                                                <i class="mr-1 text-sm fas fa-bookmark"></i>
+                                        <button type="submit" class="focus:outline-none">
+                                            <div class="flex items-center justify-center ml-4 hover:text-primary-lighter">
+                                                <i class="mr-1 text-sm far fa-bookmark"></i>
                                                 <span class="relative text-xs font-semibold leading-none text-left">
                                                     Simpan
                                                 </span>
@@ -149,16 +156,17 @@
                                     @elseif($post->bookmarked())
                                     <form action="{{route('user.post.bookmark-process', ['post' => $post])}}" method="POST">
                                         @csrf
-                                        <button type="submit">
-                                            <div class="flex items-center justify-center ml-4">
-                                                <i class="mr-1 text-sm text-black fas fa-bookmark"></i>
-                                                <span class="relative text-xs text-black font-semibold leading-none text-left">
-                                                    Hapus
+                                        <button type="submit" class="focus:outline-none">
+                                            <div class="flex items-center justify-center ml-4 hover:text-primary-lighter">
+                                                <i class="mr-1 text-sm fill-current fas fa-bookmark"></i>
+                                                <span class="relative text-xs font-semibold leading-none text-left ">
+                                                    Tersimpan
                                                 </span>
                                             </div>
                                         </button>
                                     </form>
                                     @endif
+
                                     <div class="flex items-center justify-center ml-4">
                                         <i class="mr-1 text-sm fas fa-thumbs-up"></i>
                                         <span class="relative text-xs font-semibold leading-none text-left">
@@ -177,7 +185,7 @@
                             <!-- potongan konten -->
                             <div class="mt-2 mb-6 text-gray-800 lg:mb-0 lg:pr-8">
                                 <a href="{{route('user.post.show', ['post' => $post])}}">
-                                    <span class="normal-case break-words line-clamp-none lg:line-clamp-2 ">
+                                    <span class="normal-case break-all line-clamp-4 lg:line-clamp-2 ">
                                         {{$post->content}}
                                     </span>
                                 </a>
@@ -208,6 +216,7 @@
                         </div>
                     </div>
                 </div>
+
                 @endforeach
             </div>
             <!-- end of postingan list -->

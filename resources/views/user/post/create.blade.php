@@ -3,7 +3,7 @@
 
 <div class="flex justify-center">
 
-    <a href="{{route('user.post.create')}}" class="fixed z-20 inline lg:hidden left-4 bottom-4">
+    <a href="{{route('user.post.index')}}" class="fixed z-20 inline lg:hidden left-4 bottom-4">
         <button class="w-16 h-16 text-white duration-300 rounded-full focus:outline-none bg-primary-lighter hover:bg-primary">
             <i class="text-xl fill-current fas fa-chevron-left"></i>
         </button>
@@ -27,7 +27,7 @@
                     <hr class="my-4 ml-2">
 
                     <a href="">
-                        <div class="pl-6 my-1 text-base text-left border border-white sidebar-item hover:border-primary sidebar-item-active">
+                        <div class="pl-6 my-1 text-base text-left border border-white sidebar-item hover:border-primary">
                             <i class="mr-1 text-sm fill-current fas fa-bars"></i> Postingan Terbaru
                         </div>
                     </a>
