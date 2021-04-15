@@ -15,7 +15,7 @@ class ClassroomCourseController extends Controller
     public function index(Classroom $classroom)
     {
         $data = [
-            'classroom' => $classroom->with('courses')->first(),
+            'classroom' => $classroom,
             'courses' => Course::where('created_by', Auth::user()->id)->get(),
         ];
 

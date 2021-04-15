@@ -12,7 +12,7 @@ class ClassroomCourseController extends Controller
     public function index(Classroom $classroom)
     {
         $data = [
-            'classroom' => $classroom->with('courses')->first(),
+            'classroom' => $classroom,
         ];
 
         return view('student.classroom.course', $data);

@@ -166,8 +166,8 @@ class PostController extends Controller
 
     public function like(Request $request, Post $post)
     {
-        $likes = $post->with('reacts')->first()->reacts()->where('post_id', $post->id)->where('type', 'like')->get()->pluck('user_id')->toArray();
-        $dislikes = $post->with('reacts')->first()->reacts()->where('post_id', $post->id)->where('type', 'dislike')->get()->pluck('user_id')->toArray();
+        $likes = $post->reacts->where('type', 'like')->pluck('user_id')->toArray();
+        $dislikes = $post->reacts->where('type', 'dislike')->pluck('user_id')->toArray();
         $isAlreadyLikes = in_array(Auth::user()->id, $likes);
         $isAlreadyDislikes = in_array(Auth::user()->id, $dislikes);
 
@@ -200,8 +200,8 @@ class PostController extends Controller
 
     public function dislike(Request $request, Post $post)
     {
-        $likes = $post->with('reacts')->first()->reacts()->where('post_id', $post->id)->where('type', 'like')->get()->pluck('user_id')->toArray();
-        $dislikes = $post->with('reacts')->first()->reacts()->where('post_id', $post->id)->where('type', 'dislike')->get()->pluck('user_id')->toArray();
+        $likes = $post->reacts->where('type', 'like')->pluck('user_id')->toArray();
+        $dislikes = $post->reacts->where('type', 'dislike')->pluck('user_id')->toArray();
         $isAlreadyLikes = in_array(Auth::user()->id, $likes);
         $isAlreadyDislikes = in_array(Auth::user()->id, $dislikes);
 
