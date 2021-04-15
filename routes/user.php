@@ -22,6 +22,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/user/post/my-post', [PostController::class, 'myPost'])->name('user.post.my-post');
     Route::get('/user/post/bookmark/', [PostController::class, 'bookmark'])->name('user.post.bookmark');
     Route::post('/user/post/bookmark/{post}', [PostController::class, 'bookmarkProcess'])->name('user.post.bookmark-process');
+    Route::post('/user/post/search', [PostController::class, 'search'])->name('user.post.search');
 
     Route::post('/user/post/like/{post:slug}', [PostController::class, 'like'])->name('user.post.like');
     Route::post('/user/post/dislike/{post:slug}', [PostController::class, 'dislike'])->name('user.post.dislike');

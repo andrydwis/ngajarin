@@ -2,7 +2,6 @@
 @section('content')
 
 <div class="flex justify-center">
-
     <div class="flex flex-col items-start max-w-5xl py-5 md:flex-row md:mx-5 ">
 
         <div class="flex-none hidden mr-9 lg:block lg:sticky lg:self-start top-10 w-52">
@@ -20,19 +19,19 @@
 
                     <hr class="my-4 ml-2">
 
-                    <a href="">
-                        <div class="pl-6 my-1 text-base text-left border border-white sidebar-item hover:border-primary sidebar-item-active">
+                    <a href="{{route('user.post.index')}}">
+                        <div class="pl-6 my-1 text-base text-left border border-white sidebar-item hover:border-primary">
                             <i class="mr-1 text-sm fill-current fas fa-bars"></i> Postingan Terbaru
                         </div>
                     </a>
 
-                    <a href="">
+                    <a href="{{('user.post.my-post')}}">
                         <div class="pl-6 my-1 text-base text-left border border-white sidebar-item hover:border-primary">
                             <i class="mx-1 text-sm fill-current fas fa-history"></i> Postingan Saya
                         </div>
                     </a>
 
-                    <a href="">
+                    <a href="{{route('user.post.bookmark')}}">
                         <div class="pl-6 my-1 text-base text-left border border-white sidebar-item hover:border-primary">
                             <i class="ml-1 mr-2 text-sm fill-current fas fa-bookmark"></i> Disimpan
                         </div>
@@ -74,11 +73,12 @@
             <div class="py-3">
 
                 <p class="px-6 mb-5 text-lg text-gray-600 break-all line-clamp-1">
-                    Hasil Pencarian
-                    <span class="font-semibold">Controller not found Controller not found Controller not found Controller not found Controller not found Controller not found</span>
+                    Hasil Pencarian :
+                    <span class="font-semibold">{{$category}}</span>
+                    <span class="font-semibold">{{$keyword}}</span>
                 </p>
-                
-                @foreach($posts as $post)
+
+                @forelse($posts as $post)
                 <div class="flex flex-col h-auto px-6 py-4 mx-4 mb-4 transition-all bg-gray-100 border border-gray-100 cursor-pointer lg:h-36 md:flex-row bg-opacity-30 md:hover:bg-gray-100 rounded-xl">
 
                     <div class="flex items-center self-start w-full mb-4 md:w-auto md:mr-5 md:block md:mb-0">
@@ -215,7 +215,9 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
+                @empty
+                <h1>kek ono gambar 404 not found</h1>
+                @endforelse
             </div>
             <!-- end of postingan list -->
             <div class="px-6">
@@ -223,7 +225,4 @@
             </div>
     </div>
 </div>
-
-</div>
-
 @endsection

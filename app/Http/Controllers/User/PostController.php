@@ -11,6 +11,7 @@ use App\Models\Tag;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PostController extends Controller
@@ -56,7 +57,7 @@ class PostController extends Controller
     {
         //
         $request->validate([
-            'judul' => ['required', 'string'],
+            'judul' => ['required', 'string', Rule::unique(Post::class, 'title')],
             'konten' => ['required', 'string'],
         ]);
 
@@ -127,7 +128,7 @@ class PostController extends Controller
     {
         //
         $request->validate([
-            'judul' => ['required', 'string'],
+            'judul' => ['required', 'string', Rule::unique(Post::class, 'title')->ignore($post)],
             'konten' => ['required', 'string'],
         ]);
 
@@ -235,7 +236,7 @@ class PostController extends Controller
     public function bookmark()
     {
         $bookmark = PostBookmark::where('user_id', Auth::user()->id)->get()->pluck('post_id')->toArray();
-        
+
         $data = [
             'posts' => Post::where('id', $bookmark)->with('tags', 'comments', 'reacts', 'creator.detail')->orderBy('created_at', 'desc')->simplePaginate(7),
             'tags' => Tag::get(),
@@ -272,5 +273,28 @@ class PostController extends Controller
         ];
 
         return view('user.post.my-post', $data);
+    }
+
+    public function search(Request $request)
+    {
+        $request->validate([
+            'keyword' => ['required']
+        ]);
+
+        if ($request->kategori != 'semua') {
+            $category = Tag::where('id', $request->kategori)->first();
+            $result = $category->posts->where('title', 'like', '%'.$request->keyword.'%')->pluck('id')->toArray();
+        } else {
+            $result = Post::where('title', 'like', '%'.$request->keyword.'%')->get()->pluck('id')->toArray();
+        }
+
+        $data = [
+            'posts' => Post::whereIn('id', $result)->simplePaginate(1),
+            'tags' => Tag::get(),
+            'category' => $request->kategori,
+            'keyword' => $request->keyword
+        ];
+
+        return view('user.post.search', $data);
     }
 }
