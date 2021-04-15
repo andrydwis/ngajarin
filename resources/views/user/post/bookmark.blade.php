@@ -86,7 +86,7 @@
 
                         <!-- user info -->
                         <div class="flex items-center">
-                            <a href="" class="block mb-2 mr-3 md:mr-0">
+                            <a href="" class="block mb-2 mr-3 md:mr-0 h-14 w-14">
                                 <img loading="lazy" alt="eludic" class="object-cover bg-white rounded h-14 w-14" src="{{$post->creator->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name='.$post->creator->name}}" />
                             </a>
                             <strong class="text-xs uppercase break-all md:text-base md:hidden line-clamp-1">
@@ -129,7 +129,7 @@
                                 </h4>
                                 <!-- end of title -->
 
-                                <!-- comment, view, tag -->
+                                <!-- comment, like, tag -->
                                 <div class="relative hidden text-center text-gray-400 md:flex md:items-center md:flex-row-reverse md:ml-auto">
 
                                     <div class="flex ml-5">
@@ -180,7 +180,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <!-- end of comment, view, tag -->
+                                <!-- end of comment, like, tag -->
                             </div>
                             <!-- potongan konten -->
                             <div class="mt-2 mb-6 text-gray-800 lg:mb-0 lg:pr-8">

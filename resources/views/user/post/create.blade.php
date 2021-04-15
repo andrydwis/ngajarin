@@ -105,11 +105,6 @@
 
                 </div>
 
-                <!-- <div class="flex flex-col h-auto px-6 py-4 mx-4 mb-4 transition-all bg-gray-100 border border-gray-100 rounded-xl">
-
-                   
-                </div> -->
-
             </div>
             <!-- end of postingan list -->
         </div>

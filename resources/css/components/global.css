@@ -1,4 +1,9 @@
 /* global styling */
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
     /* font-family: "Ubuntu"; */
     table-layout: auto !important;
