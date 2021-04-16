@@ -265,7 +265,7 @@
                         <!-- user info -->
                         <div class="flex items-center">
                             <div class="block mb-2 mr-3 md:mr-0 h-14 w-14">
-                                <img loading="lazy" alt="eludic" class="object-cover bg-white rounded h-14 w-14" src="{{$post->creator->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name='.$post->creator->name}}" />
+                                <img loading="lazy" alt="eludic" class="object-cover bg-white rounded h-14 w-14" src="{{$comment->creator->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name='.$comment->creator->name}}" />
                             </div>
 
                             <!-- nama penulis mobile -->

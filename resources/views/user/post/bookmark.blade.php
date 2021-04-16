@@ -55,23 +55,20 @@
         <div class="flex-1">
 
             <!-- search section -->
-            <form action="#" autocomplete="off" class="flex justify-end px-6 mb-8 pt-11">
-
-                <select class="pl-5 mr-3 text-sm text-gray-500 rounded-full cursor-pointer pr-9 form-select">
-                    <option value="all" selected>Semua Topik</option>
+            <form action="{{route('user.post.search')}}" method="POST" class="flex justify-end px-6 mb-8 pt-11">
+                @csrf
+                <select name="kategori" class="pl-5 mr-3 text-sm text-gray-500 rounded-full cursor-pointer pr-9 form-select">
+                    <option value="semua" selected>Semua Topik</option>
                     @foreach($tags as $tag)
                     <option value="{{$tag->id}}">{{$tag->name}}</option>
                     @endforeach
                 </select>
-
-
-                <div class="flex w-full md:w-72">
-                    <input name="search" placeholder="Mau cari apa?" value="" class="w-full pl-5 pr-10 text-sm placeholder-gray-500 rounded-full form-input">
+                <div class="flex w-auto md:w-72">
+                    <input name="keyword" placeholder="Mau cari apa?" value="" class="w-full pl-5 pr-10 text-sm placeholder-gray-500 rounded-full form-input">
                     <button type="submit" class="-ml-8 text-gray-400 focus:outline-none hover:text-primary focus:text-primary-darker">
                         <i class="text-sm fill-current fas fa-search"></i>
                     </button>
                 </div>
-
             </form>
             <!-- end of search section -->
 

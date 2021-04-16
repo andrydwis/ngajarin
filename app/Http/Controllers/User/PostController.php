@@ -277,18 +277,26 @@ class PostController extends Controller
 
     public function search(Request $request)
     {
-
         if ($request->kategori != 'semua') {
             $category = Tag::where('id', $request->kategori)->first();
-            $result = $category->posts->where('title', 'like', '%'.$request->keyword.'%')->pluck('id')->toArray();
+            if ($request->keyword) {
+                $result = $category->posts->where('title', 'like', '%' . $request->keyword . '%')->pluck('id')->toArray();
+            } else {
+                $result = $category->posts->pluck('id')->toArray();
+            }
         } else {
-            $result = Post::where('title', 'like', '%'.$request->keyword.'%')->get()->pluck('id')->toArray();
+            if ($request->keyword) {
+                $result = Post::where('title', 'like', '%' . $request->keyword . '%')->get()->pluck('id')->toArray();
+            } else {
+                $result = Post::get()->pluck('id')->toArray();
+            }
+            
         }
 
         $data = [
-            'posts' => Post::whereIn('id', $result)->simplePaginate(1),
+            'posts' => Post::whereIn('id', $result)->simplePaginate(7),
             'tags' => Tag::get(),
-            'category' => $request->kategori,
+            'category' => Tag::find($request->kategori)->name,
             'keyword' => $request->keyword
         ];
 

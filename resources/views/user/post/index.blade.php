@@ -64,7 +64,7 @@
                     @endforeach
                 </select>
                 <div class="flex w-auto md:w-72">
-                    <input name="keyword" placeholder="Mau cari apa?" value="" class="w-full pl-5 pr-10 text-sm placeholder-gray-500 rounded-full form-input">
+                    <input name="keyword" placeholder="Mau cari apa?" class="w-full pl-5 pr-10 text-sm placeholder-gray-500 rounded-full form-input">
                     <button type="submit" class="-ml-8 text-gray-400 focus:outline-none hover:text-primary focus:text-primary-darker">
                         <i class="text-sm fill-current fas fa-search"></i>
                     </button>
