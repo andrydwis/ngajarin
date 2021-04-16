@@ -57,7 +57,7 @@
 
         </div>
 
-        <div class="flex-1 min-h-[100vh]">
+        <div class="flex-1 md:min-w-[36rem] lg:min-w-[42rem]">
 
             <!-- conversation list -->
             <div class="pt-10 pb-3">
@@ -396,17 +396,21 @@
                         <!-- user info -->
                         <div class="flex items-center">
                             <div class="block mb-2 mr-3 md:mr-0 h-14 w-14">
-                                <img loading="lazy" alt="eludic" class="object-cover bg-white rounded h-14 w-14" src="https://ui-avatars.com/api/?background=random&name=user" />
+                                <img loading="lazy" alt="eludic" class="object-cover bg-white rounded h-14 w-14" src="https://ui-avatars.com/api/?background=random&name={{Auth::user()->name}}" />
                             </div>
 
                             <!-- nama penulis mobile -->
                             <div class="flex flex-col md:hidden">
                                 <div class="flex items-center mb-1">
                                     <strong class="flex text-xs uppercase break-all md:text-base line-clamp-1">
-                                        Contoh Nama
+                                        {{Auth::user()->name}}
                                     </strong>
                                 </div>
-                                <p>tanggal membalas post</p>
+                                <p class="text-xs">
+                                    <?php
+                                    echo date("l") . ", " . date("d-m-Y");
+                                    ?>
+                                </p>
                             </div>
                             <!-- end of nama penulis mobile -->
 
@@ -423,10 +427,14 @@
                             <div class="flex-col hidden md:flex">
                                 <div class="flex items-center mb-1">
                                     <strong class="flex text-xs uppercase break-all md:text-base line-clamp-1">
-                                        Contoh Nama
+                                        {{Auth::user()->name}}
                                     </strong>
                                 </div>
-                                <p>tanggal membalas post</p>
+                                <p class="text-xs">
+                                    <?php
+                                    echo date("l") . ", " . date("d-m-Y");
+                                    ?>
+                                </p>
                             </div>
                             <!-- end of nama penulis -->
 

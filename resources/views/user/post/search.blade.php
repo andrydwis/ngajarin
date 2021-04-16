@@ -45,7 +45,7 @@
 
         </div>
 
-        <<div class="flex-1 min-h-[100vh]">
+        <<div class="flex-1 md:min-w-[36rem] lg:min-w-[42rem]">
 
             <!-- search section -->
             <form action="{{route('user.post.search')}}" method="POST" class="flex justify-end px-6 mb-8 pt-11">
@@ -76,7 +76,7 @@
                 </p>
 
                 @forelse($posts as $post)
-                <div class="flex flex-col h-auto px-6 py-4 mx-4 mb-4 transition-all bg-gray-100 border border-gray-100 cursor-pointer lg:h-36 md:flex-row bg-opacity-30 md:hover:bg-gray-100 rounded-xl">
+              <div class="flex flex-col h-auto px-6 py-4 mx-4 mb-4 transition-all bg-gray-100 border border-gray-100 cursor-pointer lg:h-36 md:flex-row bg-opacity-30 md:hover:bg-gray-100 rounded-xl">
 
                     <div class="flex items-center self-start w-full mb-4 md:w-auto md:mr-5 md:block md:mb-0">
 
@@ -94,7 +94,7 @@
                         <!-- jumlah komen & tag -->
                         <div class="flex ml-auto">
 
-                            <div class="flex items-center justify-center py-1 ml-auto md:hidden">
+                             <div class="items-center justify-center hidden py-1 ml-auto xs:flex md:hidden">
                                 <div class="flex items-center px-3 py-2 text-gray-400 bg-gray-100 rounded-full">
                                     <i class="mr-2 text-xs fas fa-comment"></i>
                                     <span class="text-xs font-semibold leading-none">
