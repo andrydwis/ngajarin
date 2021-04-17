@@ -8,6 +8,7 @@ use App\Models\CommentReact;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CommentController extends Controller
 {
@@ -93,9 +94,14 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy(Comment $comment, Post $post)
     {
         //
+        $comment->delete();
+
+        Alert::success('Komentar berhasil dihapus');
+
+        return redirect()->route('user.post.show', ['post' => $post]);
     }
 
     public function like(Request $request, Comment $comment)

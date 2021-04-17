@@ -28,6 +28,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/user/post/dislike/{post:slug}', [PostController::class, 'dislike'])->name('user.post.dislike');
 
     Route::post('/user/post/comment/store/{post:slug}', [CommentController::class, 'store'])->name('user.post.comment.store');
+    Route::delete('/user/post/comment/destroy/{comment}/{post}', [CommentController::class, 'destroy'])->name('user.post.comment.destroy');
     Route::post('/user/post/comment/like/{comment}', [CommentController::class, 'like'])->name('user.post.comment.like');
     Route::post('/user/post/comment/dislike/{comment}', [CommentController::class, 'dislike'])->name('user.post.comment.dislike');
 

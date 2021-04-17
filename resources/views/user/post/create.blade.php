@@ -83,6 +83,11 @@
                                         <option value="{{$tag->id}}">{{$tag->name}}</option>
                                         @endforeach
                                     </select>
+                                    @error('tag')
+                                    <div class="mt-2 alert alert-danger">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
                                 </div>
                             </div>
 

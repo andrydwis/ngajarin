@@ -228,9 +228,9 @@
 
                             <!-- potongan konten -->
                             <div class="flex flex-wrap mt-2 mb-6 text-gray-800 lg:mb-0 lg:pr-8">
-                                <span class="flex flex-wrap prose break-all md:break-words">
+                                <p class="flex flex-wrap prose break-all md:break-words">
                                     {!! $post->content !!}
-                                </span>
+                                </p>
                             </div>
                             <!-- end of potongan konten -->
 
@@ -258,6 +258,13 @@
                 <!-- COMMENT SECTION -->
                 @foreach($comments as $comment)
                 <div class="w-0 h-10 ml-20 border"></div>
+                @if($comment->creator->id == $user->id)
+                <form action="{{route('user.post.comment.destroy', ['comment' => $comment, 'post' => $post])}}" method="POST">
+                    @csrf
+                    @method("DELETE")
+                    <button type="submit" class="btn btn-primary">hapus</button>
+                </form>
+                @endif
                 <div class="flex flex-col px-6 py-4 mx-4 transition-all border border-gray-100 bg-gray-50 hover:bg-gray-100 bg-opacity-70 md:flex-row rounded-xl">
 
                     <div class="flex items-center self-start w-full mb-4 md:w-auto md:mr-5 md:block md:mb-0">
@@ -320,9 +327,9 @@
 
                             <!-- Comment -->
                             <div class="mt-4 mb-6 lg:mb-0 lg:pr-8">
-                                <span class="flex flex-wrap prose break-all md:break-words">
+                                <p class="flex flex-wrap prose break-all md:break-words">
                                     {!! $comment->content !!}
-                                </span>
+                                </p>
                             </div>
                             <!-- end of Comment -->
 
