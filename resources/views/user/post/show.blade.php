@@ -227,9 +227,9 @@
                             <!-- end of nama penulis -->
 
                             <!-- potongan konten -->
-                            <div class="mt-2 mb-6 text-gray-800 lg:mb-0 lg:pr-8">
-                                <span class="prose normal-case break-all md:break-word">
-                                    {{ $post->content }}
+                            <div class="flex flex-wrap mt-2 mb-6 text-gray-800 lg:mb-0 lg:pr-8">
+                                <span class="flex flex-wrap prose break-all md:break-words">
+                                    {!! $post->content !!}
                                 </span>
                             </div>
                             <!-- end of potongan konten -->
@@ -319,9 +319,9 @@
                             <!-- end of nama penulis -->
 
                             <!-- Comment -->
-                            <div class="mt-2 mb-6 text-gray-800 lg:mb-0 lg:pr-8">
-                                <span class="prose normal-case break-all md:break-word">
-                                    {{$comment->content}}
+                            <div class="mt-4 mb-6 lg:mb-0 lg:pr-8">
+                                <span class="flex flex-wrap prose break-all md:break-words">
+                                    {!! $comment->content !!}
                                 </span>
                             </div>
                             <!-- end of Comment -->
@@ -442,7 +442,7 @@
                             <div id="textbox-comment" class="mt-4 mb-6 text-gray-800 lg:mb-0 lg:pr-8">
                                 <form action="{{route('user.post.comment.store', ['post' => $post->slug])}}" method="post">
                                     @csrf
-                                    <textarea class="w-full form-textarea" name="komentar" id="komentar" rows="10">{{old('komentar')}}</textarea>
+                                    <textarea class="w-full form-textarea" name="komentar" id="komentar" rows="10" placeholder="Isi dengan jawaban atau referensi yang tidak mengandung unsur SARA">{{old('komentar')}}</textarea>
 
                                     @error('komentar')
                                     <div class="mt-2 alert alert-danger">
@@ -468,4 +468,80 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('customCSS')
+
+<style>
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    a {
+        text-transform: none !important;
+    }
+
+    .prose>p {
+        color: rgb(30, 41, 59) !important;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        word-break: break-all;
+    }
+</style>
+@endsection
+
+@section('customJS')
+<!-- tinymce -->
+<script src="https://cdn.tiny.cloud/1/qvfv9oh941rjqa0ca5i42hrvtg9175w7gg7vl0krwllauc26/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    var editor_config = {
+        path_absolute: "/",
+        selector: 'textarea',
+        menubar: false,
+        plugins: [
+            "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+            "emoticons template paste textpattern"
+        ],
+        toolbar: "bold italic strikethrough bullist numlist emoticons | link image",
+        file_picker_callback: function(callback, value, meta) {
+            var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+            var y = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight;
+
+            var cmsURL = editor_config.path_absolute + 'laravel-filemanager?editor=' + meta.fieldname;
+            if (meta.filetype == 'image') {
+                cmsURL = cmsURL + "&type=Images";
+            } else {
+                cmsURL = cmsURL + "&type=Files";
+            }
+
+            tinyMCE.activeEditor.windowManager.openUrl({
+                url: cmsURL,
+                title: 'Filemanager',
+                width: x * 0.8,
+                height: y * 0.8,
+                resizable: "yes",
+                close_previous: "no",
+                onMessage: (api, message) => {
+                    callback(message.content);
+                }
+            });
+        }
+    };
+
+    tinymce.init(editor_config);
+</script>
+
+<script>
+    document.querySelectorAll('code').forEach(function(el, i) {
+        el.id = i;
+        el.classList.add('prettyprint');
+    });
+</script>
+
+<!-- syntax highlight buat tag code -->
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=doxy"></script>
 @endsection

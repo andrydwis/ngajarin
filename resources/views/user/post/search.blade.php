@@ -2,12 +2,11 @@
 @section('content')
 
 <div class="flex justify-center">
-    <div class="flex flex-col items-start max-w-5xl py-5 md:flex-row md:mx-5 ">
+    <div class="flex flex-col items-start max-w-5xl py-5 md:flex-row md:mx-5">
 
         <div class="flex-none hidden mr-9 lg:block lg:sticky lg:self-start top-10 w-52">
 
             <div class="lg:sticky lg:text-center">
-
                 <!-- isi sidebar -->
                 <div class="flex flex-col pt-10">
 
@@ -39,13 +38,11 @@
 
                 </div>
                 <!-- end of sidebar -->
-
-
             </div>
 
         </div>
 
-        <<div class="flex-1 md:min-w-[36rem] lg:min-w-[42rem]">
+        <div class="flex-1 md:min-w-[36rem] lg:min-w-[42rem]">
 
             <!-- search section -->
             <form action="{{route('user.post.search')}}" method="POST" class="flex justify-end px-6 mb-8 pt-11">
@@ -69,14 +66,16 @@
             <!-- postingan list -->
             <div class="py-3">
 
-                <p class="px-6 mb-5 text-lg text-gray-600 break-all line-clamp-1">
+                <p class="px-6 py-2 mb-5 text-lg text-gray-600 break-all line-clamp-2">
                     Hasil Pencarian :
-                    <span class="font-semibold">{{$category}}</span>
+                    <span class="py-1 pl-3 pr-2 ml-2 mr-1 text-base text-gray-600 border border-gray-300 rounded-full">
+                        {{$category}}
+                    </span> -
                     <span class="font-semibold">{{$keyword}}</span>
                 </p>
 
                 @forelse($posts as $post)
-              <div class="flex flex-col h-auto px-6 py-4 mx-4 mb-4 transition-all bg-gray-100 border border-gray-100 cursor-pointer lg:h-36 md:flex-row bg-opacity-30 md:hover:bg-gray-100 rounded-xl">
+                <div class="flex flex-col h-auto px-6 py-4 mx-4 mb-4 transition-all bg-gray-100 border border-gray-100 cursor-pointer lg:h-36 md:flex-row bg-opacity-30 md:hover:bg-gray-100 rounded-xl">
 
                     <div class="flex items-center self-start w-full mb-4 md:w-auto md:mr-5 md:block md:mb-0">
 
@@ -94,7 +93,7 @@
                         <!-- jumlah komen & tag -->
                         <div class="flex ml-auto">
 
-                             <div class="items-center justify-center hidden py-1 ml-auto xs:flex md:hidden">
+                            <div class="items-center justify-center hidden py-1 ml-auto xs:flex md:hidden">
                                 <div class="flex items-center px-3 py-2 text-gray-400 bg-gray-100 rounded-full">
                                     <i class="mr-2 text-xs fas fa-comment"></i>
                                     <span class="text-xs font-semibold leading-none">
@@ -182,7 +181,7 @@
                             <div class="mt-2 mb-6 text-gray-800 lg:mb-0 lg:pr-8">
                                 <a href="{{route('user.post.show', ['post' => $post])}}">
                                     <span class="normal-case break-words line-clamp-4 lg:line-clamp-2 ">
-                                        {{$post->content}}
+                                        {{ strip_tags($post->content) }}
                                     </span>
                                 </a>
                             </div>
@@ -213,7 +212,9 @@
                     </div>
                 </div>
                 @empty
-                <h1>kek ono gambar 404 not found</h1>
+                <p class="px-6 mb-5 text-lg font-bold text-gray-600 break-all line-clamp-1">
+                    <span>Pencarian anda tidak ditemukan..</span>
+                </p>
                 @endforelse
             </div>
             <!-- end of postingan list -->

@@ -77,7 +77,7 @@
             <div class="py-3">
                 @foreach($posts as $post)
 
-               <div class="flex flex-col h-auto px-6 py-4 mx-4 mb-4 transition-all bg-gray-100 border border-gray-100 cursor-pointer lg:h-36 md:flex-row bg-opacity-30 md:hover:bg-gray-100 rounded-xl">
+                <div class="flex flex-col h-auto px-6 py-4 mx-4 mb-4 transition-all bg-gray-100 border border-gray-100 cursor-pointer lg:h-36 md:flex-row bg-opacity-30 md:hover:bg-gray-100 rounded-xl">
 
                     <div class="flex items-center self-start w-full mb-4 md:w-auto md:mr-5 md:block md:mb-0">
 
@@ -95,7 +95,7 @@
                         <!-- jumlah komen & tag -->
                         <div class="flex ml-auto">
 
-                             <div class="items-center justify-center hidden py-1 ml-auto xs:flex md:hidden">
+                            <div class="items-center justify-center hidden py-1 ml-auto xs:flex md:hidden">
                                 <div class="flex items-center px-3 py-2 text-gray-400 bg-gray-100 rounded-full">
                                     <i class="mr-2 text-xs fas fa-comment"></i>
                                     <span class="text-xs font-semibold leading-none">
@@ -183,7 +183,7 @@
                             <div class="mt-2 mb-6 text-gray-800 lg:mb-0 lg:pr-8">
                                 <a href="{{route('user.post.show', ['post' => $post])}}">
                                     <span class="normal-case break-all line-clamp-4 lg:line-clamp-2 ">
-                                        {{$post->content}}
+                                        {{ strip_tags($post->content) }}
                                     </span>
                                 </a>
                             </div>

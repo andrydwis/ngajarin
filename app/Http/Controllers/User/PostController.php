@@ -296,7 +296,7 @@ class PostController extends Controller
         $data = [
             'posts' => Post::whereIn('id', $result)->simplePaginate(7),
             'tags' => Tag::get(),
-            'category' => Tag::find($request->kategori)->name,
+            'category' => Tag::find($request->kategori)->name ?? 'semua',
             'keyword' => $request->keyword
         ];
 
