@@ -57,7 +57,7 @@
 
         </div>
 
-        <div class="flex-1 min-h-[100vh]">
+        <div class="flex-1 md:min-w-[36rem] lg:min-w-[42rem]">
 
             <!-- conversation list -->
             <div class="pt-10 pb-3">

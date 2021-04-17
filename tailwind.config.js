@@ -16,6 +16,10 @@ module.exports = {
     },
 
     theme: {
+        screens: {
+            'xs': '375px',
+            ...defaultTheme.screens,
+        },
         extend: {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
@@ -42,9 +46,6 @@ module.exports = {
                     darker: '#F59E0B'
                 },
                 gray: colors.blueGray,
-            },
-            screens: {
-                'xs': '375px',
             },
         },
     },
