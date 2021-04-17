@@ -396,17 +396,16 @@
                         <!-- user info -->
                         <div class="flex items-center">
                             <div class="block mb-2 mr-3 md:mr-0 h-14 w-14">
-                                <img loading="lazy" alt="eludic" class="object-cover bg-white rounded h-14 w-14" src="https://ui-avatars.com/api/?background=random&name=user" />
+                                <img loading="lazy" alt="eludic" class="object-cover bg-white rounded h-14 w-14" src="{{$user->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name='.$user->name}}" />
                             </div>
 
                             <!-- nama penulis mobile -->
                             <div class="flex flex-col md:hidden">
                                 <div class="flex items-center mb-1">
                                     <strong class="flex text-xs uppercase break-all md:text-base line-clamp-1">
-                                        Contoh Nama
+                                        {{$user->name}}
                                     </strong>
                                 </div>
-                                <p>tanggal membalas post</p>
                             </div>
                             <!-- end of nama penulis mobile -->
 
@@ -423,10 +422,9 @@
                             <div class="flex-col hidden md:flex">
                                 <div class="flex items-center mb-1">
                                     <strong class="flex text-xs uppercase break-all md:text-base line-clamp-1">
-                                        Contoh Nama
+                                        {{$user->name}}
                                     </strong>
                                 </div>
-                                <p>tanggal membalas post</p>
                             </div>
                             <!-- end of nama penulis -->
 

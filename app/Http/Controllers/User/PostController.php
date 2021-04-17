@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\PostBookmark;
 use App\Models\PostReact;
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -59,6 +60,7 @@ class PostController extends Controller
         $request->validate([
             'judul' => ['required', 'string', Rule::unique(Post::class, 'title')],
             'konten' => ['required', 'string'],
+            'tag' => ['required']
         ]);
 
         $post = new Post();
@@ -89,6 +91,7 @@ class PostController extends Controller
         $data = [
             'post' => $post,
             'comments' => Comment::where('post_id', $post->id)->orderBy('created_at', 'desc')->get(),
+            'user' => User::with('detail')->find(Auth::user()->id)
         ];
 
         return view('user.post.show', $data);
@@ -130,6 +133,7 @@ class PostController extends Controller
         $request->validate([
             'judul' => ['required', 'string', Rule::unique(Post::class, 'title')->ignore($post)],
             'konten' => ['required', 'string'],
+            'tag' => ['required']
         ]);
 
         $post->title = $request->judul;
@@ -296,7 +300,7 @@ class PostController extends Controller
         $data = [
             'posts' => Post::whereIn('id', $result)->simplePaginate(7),
             'tags' => Tag::get(),
-            'category' => Tag::find($request->kategori)->name,
+            'category' => Tag::find($request->kategori)->name ?? 'Semua',
             'keyword' => $request->keyword
         ];
 
