@@ -1,4 +1,4 @@
 code {
-    @apply border-l-8 border-blue-500 py-5 text-sm md:text-lg  !important;
+    @apply py-5 text-sm md:text-lg  !important;
     font-family: "Fira Code", monospace !important;
 }

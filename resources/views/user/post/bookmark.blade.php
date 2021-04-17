@@ -183,7 +183,7 @@
                             <div class="mt-2 mb-6 text-gray-800 lg:mb-0 lg:pr-8">
                                 <a href="{{route('user.post.show', ['post' => $post])}}">
                                     <span class="normal-case break-all line-clamp-4 lg:line-clamp-2 ">
-                                        {{$post->content}}
+                                    {{ strip_tags($post->content) }}
                                     </span>
                                 </a>
                             </div>

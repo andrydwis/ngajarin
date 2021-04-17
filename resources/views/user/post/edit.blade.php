@@ -26,19 +26,19 @@
 
                     <hr class="my-4 ml-2">
 
-                    <a href="">
+                    <a href="{{route('user.post.index')}}">
                         <div class="pl-6 my-1 text-base text-left border border-white sidebar-item hover:border-primary">
                             <i class="mr-1 text-sm fill-current fas fa-bars"></i> Postingan Terbaru
                         </div>
                     </a>
 
-                    <a href="">
+                    <a href="{{route('user.post.my-post')}}">
                         <div class="pl-6 my-1 text-base text-left border border-white sidebar-item hover:border-primary">
                             <i class="mx-1 text-sm fill-current fas fa-history"></i> Postingan Saya
                         </div>
                     </a>
 
-                    <a href="">
+                    <a href="{{route('user.post.bookmark')}}">
                         <div class="pl-6 my-1 text-base text-left border border-white sidebar-item hover:border-primary">
                             <i class="ml-1 mr-2 text-sm fill-current fas fa-bookmark"></i> Disimpan
                         </div>
@@ -87,10 +87,8 @@
                                 </div>
                             </div>
 
-                            <hr class="my-7">
-
-                            <div class="">
-                                <textarea class="w-full placeholder-gray-500 form-textarea" name="konten" id="konten" rows="10" placeholder="Isi dengan pertanyaan, bug, atau topik bahasan lain yang tidak mengandung unsur SARA">{{old('konten') ?? $post->content}}</textarea>
+                            <div class="mt-7">
+                                <textarea class="w-full placeholder-gray-500 form-textarea" name="konten" id="konten" rows="15" placeholder="Isi dengan pertanyaan, bug, atau topik bahasan lain yang tidak mengandung unsur SARA">{{old('konten') ?? $post->content}}</textarea>
 
                                 @error('konten')
                                 <div class="mt-2 alert alert-danger">
@@ -100,7 +98,7 @@
 
                             </div>
 
-                            <div class="flex justify-end">
+                            <div class="flex justify-end mt-5">
                                 <button type="submit" class="px-10 text-base rounded-full btn btn-primary bg-primary-lighter hover:bg-primary">
                                     Post
                                 </button>
@@ -123,4 +121,46 @@
     </div>
 </div>
 
+@endsection
+
+@section('customJS')
+<!-- tinymce -->
+<script src="https://cdn.tiny.cloud/1/qvfv9oh941rjqa0ca5i42hrvtg9175w7gg7vl0krwllauc26/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    var editor_config = {
+        path_absolute: "/",
+        selector: 'textarea',
+        menubar: false,
+        plugins: [
+            "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+            "emoticons template paste textpattern"
+        ],
+        toolbar: "bold italic strikethrough bullist numlist emoticons | link image",
+        file_picker_callback: function(callback, value, meta) {
+            var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+            var y = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight;
+
+            var cmsURL = editor_config.path_absolute + 'laravel-filemanager?editor=' + meta.fieldname;
+            if (meta.filetype == 'image') {
+                cmsURL = cmsURL + "&type=Images";
+            } else {
+                cmsURL = cmsURL + "&type=Files";
+            }
+
+            tinyMCE.activeEditor.windowManager.openUrl({
+                url: cmsURL,
+                title: 'Filemanager',
+                width: x * 0.8,
+                height: y * 0.8,
+                resizable: "yes",
+                close_previous: "no",
+                onMessage: (api, message) => {
+                    callback(message.content);
+                }
+            });
+        }
+    };
+
+    tinymce.init(editor_config);
+</script>
 @endsection
