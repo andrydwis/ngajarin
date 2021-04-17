@@ -227,10 +227,10 @@
                             <!-- end of nama penulis -->
 
                             <!-- potongan konten -->
-                            <div class="flex flex-wrap mt-2 mb-6 text-gray-800 lg:mb-0 lg:pr-8">
-                                <p class="flex flex-wrap prose break-all md:break-words">
+                            <div class="block mt-2 mb-6 text-gray-800 lg:mb-0 lg:pr-8">
+                                <div class="block prose break-all md:break-words">
                                     {!! $post->content !!}
-                                </p>
+                                </div>
                             </div>
                             <!-- end of potongan konten -->
 
@@ -327,9 +327,9 @@
 
                             <!-- Comment -->
                             <div class="mt-4 mb-6 lg:mb-0 lg:pr-8">
-                                <p class="flex flex-wrap prose break-all md:break-words">
+                                <div class="block prose break-all md:break-words">
                                     {!! $comment->content !!}
-                                </p>
+                                </div>
                             </div>
                             <!-- end of Comment -->
 
