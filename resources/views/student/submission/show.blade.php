@@ -72,9 +72,11 @@
                             </span>
                             @endif
                         </div>
+                        @if($submission_user->score != null)
                         <div>
                             Score : <span class="font-bold"> {{$submission_user->score}} </span>
                         </div>
+                        @endif
                         <div>
                             Feedback : <br>
                             @if($submission_user->feedback != null)
