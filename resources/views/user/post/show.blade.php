@@ -228,7 +228,7 @@
 
                             <!-- potongan konten -->
                             <div class="block mt-2 mb-6 text-gray-800 lg:mb-0 lg:pr-8">
-                                <div class="block prose break-all md:break-words">
+                                <div class="block prose break-all md:break-words max-w-[15rem] xs:max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
                                     {!! $post->content !!}
                                 </div>
                             </div>
@@ -258,13 +258,6 @@
                 <!-- COMMENT SECTION -->
                 @foreach($comments as $comment)
                 <div class="w-0 h-10 ml-20 border"></div>
-                @if($comment->creator->id == $user->id)
-                <form action="{{route('user.post.comment.destroy', ['comment' => $comment, 'post' => $post])}}" method="POST">
-                    @csrf
-                    @method("DELETE")
-                    <button type="submit" class="btn btn-primary">hapus</button>
-                </form>
-                @endif
                 <div class="flex flex-col px-6 py-4 mx-4 transition-all border border-gray-100 bg-gray-50 hover:bg-gray-100 bg-opacity-70 md:flex-row rounded-xl">
 
                     <div class="flex items-center self-start w-full mb-4 md:w-auto md:mr-5 md:block md:mb-0">
@@ -327,7 +320,7 @@
 
                             <!-- Comment -->
                             <div class="mt-4 mb-6 lg:mb-0 lg:pr-8">
-                                <div class="block prose break-all md:break-words">
+                                <div class="block prose break-all md:break-words max-w-[15rem] xs:max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
                                     {!! $comment->content !!}
                                 </div>
                             </div>
@@ -508,10 +501,9 @@
         selector: 'textarea',
         menubar: false,
         plugins: [
-            "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-            "emoticons template paste textpattern"
+            "autolink link image emoticons codesample"
         ],
-        toolbar: "bold italic strikethrough bullist numlist emoticons | link image",
+        toolbar: "bold emoticons link image codesample",
         file_picker_callback: function(callback, value, meta) {
             var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
             var y = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight;
