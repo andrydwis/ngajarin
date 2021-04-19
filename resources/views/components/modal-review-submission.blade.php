@@ -19,6 +19,7 @@
                 <form action="{{ $action }}" method="post">
                     @csrf
                     <div class="grid gap-6">
+                        @role('mentor')
                         <div>
                             <label for="score">Nilai</label>
                             <input type="number" name="score" id="score" placeholder="Nilai Submission" class="form-input py-2 mt-2 block w-full @error('score') is-invalid @enderror" value="{{old('score')}}">
@@ -28,7 +29,7 @@
                             </div>
                             @enderror
                         </div>
-
+                        @endrole
                         <div>
                             <label for="feedback">Feedback</label>
                             <textarea name="feedback" id="feedback" rows="5" placeholder="Feedback" class="form-input py-2 mt-2 block w-full @error('feedback') is-invalid @enderror" value="{{old('feedback')}}"></textarea>
