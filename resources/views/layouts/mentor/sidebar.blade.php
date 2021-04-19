@@ -26,6 +26,13 @@
                     Dashboard
                 </a>
 
+                <a href="/user/post" class="sidebar-item
+                {{ Route::currentRouteNamed('user.post.index') ? 'sidebar-item-active' : '' }}
+                ">
+                    <i class="ml-4 mr-2 text-sm fas fa-comments"></i>
+                    Forum Diskusi
+                </a>
+
 
                 <!-- pembatas link -->
                 <p class="mt-4 mb-3 text-sm tracking-wider text-gray-600 uppercase">Course</p>
@@ -52,7 +59,7 @@
                 </a>
 
                 <!-- pembatas link -->
-                <p class="mt-4 mb-3 text-sm tracking-wider text-gray-600 uppercase">Classroom</p>
+                <p class="mt-4 mb-3 text-sm tracking-wider text-gray-600 uppercase">Ruang Kelas</p>
 
 
                 <a href="/mentor/classroom" class="sidebar-item
@@ -63,14 +70,31 @@
                     ? 'sidebar-item-active' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-sm fas fa-folder"></i>
-                    Classroom List
+                    Daftar Ruang Kelas
                 </a>
 
                 <a href="/mentor/classroom/create" class="sidebar-item
                 {{ Route::currentRouteNamed('mentor.classroom.create') ? 'sidebar-item-active' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-base fas fa-folder-plus"></i>
-                    Tambahkan Classroom
+                    Tambahkan Ruang Kelas
+                </a>
+
+                <!-- pembatas link -->
+                <p class="mt-4 mb-3 text-sm tracking-wider text-gray-600 uppercase">Tutoring</p>
+
+                <a href="/mentor/schedule" class="sidebar-item
+                {{ Route::currentRouteNamed('mentor.schedule.index') ? 'sidebar-item-active' : '' }}
+                ">
+                    <i class="ml-4 mr-2 text-base fas fa-calendar-day"></i>
+                    Atur Jadwal
+                </a>
+
+                <a href="/mentor/tutoring" class="sidebar-item
+                {{ Route::currentRouteNamed('mentor.tutoring.index') ? 'sidebar-item-active' : '' }}
+                ">
+                    <i class="ml-4 mr-2 text-sm fas fa-calendar-check"></i>
+                    Permintaan Tutoring
                 </a>
 
 

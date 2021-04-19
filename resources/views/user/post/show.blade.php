@@ -337,6 +337,13 @@
                             <div class="flex justify-end gap-5 mt-4 text-sm text-gray-400">
 
                                 <div class="flex items-center justify-center">
+                                    @if($comment->creator->id == $user->id)
+                                    <form action="{{route('user.post.comment.destroy', ['comment' => $comment, 'post' => $post])}}" method="POST">
+                                        @csrf
+                                        @method("DELETE")
+                                        <button type="submit" class="pr-3 mr-4 font-semibold border-r focus:outline-none hover:text-primary">Hapus</button>
+                                    </form>
+                                    @endif
                                     <form action="{{route('user.post.comment.dislike', ['comment' => $comment])}}" method="post">
                                         @csrf
                                         @if(in_array(auth()->user()->id, $comment->dislikes()))
@@ -426,7 +433,7 @@
                         <div class="flex flex-col justify-between h-full">
 
                             <!-- nama penulis -->
-                            <div class="flex-col hidden md:flex">
+                            <div class="flex-col hidden mt-5 md:flex">
                                 <div class="flex items-center mb-1">
                                     <strong class="flex text-xs uppercase break-all md:text-base line-clamp-1">
                                         {{$user->name}}
@@ -487,6 +494,7 @@
         font-size: 1rem;
         line-height: 1.5rem;
         word-break: break-all;
+        letter-spacing: normal;
     }
 </style>
 @endsection

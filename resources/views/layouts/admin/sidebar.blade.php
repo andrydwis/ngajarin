@@ -27,6 +27,13 @@
                     <i class="ml-4 mr-2 text-sm fas fa-chart-pie"></i>
                     Dashboard
                 </a>
+
+                <a href="/user/post" class="sidebar-item
+                {{ Route::currentRouteNamed('user.post.index') ? 'sidebar-item-active' : '' }}
+                ">
+                    <i class="ml-4 mr-2 text-sm fas fa-comments"></i>
+                    Forum Diskusi
+                </a>
                 <!-- pembatas -->
 
 
