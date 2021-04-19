@@ -277,6 +277,10 @@ class PostController extends Controller
 
     public function search(Request $request)
     {
+        $request->validate([
+            'keyword' => ['required']
+        ]);
+
         if ($request->kategori != 'semua') {
             $category = Tag::where('id', $request->kategori)->first();
             if ($request->keyword) {
