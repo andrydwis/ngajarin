@@ -95,12 +95,12 @@ class TutoringController extends Controller
             'status'=> ['required']
         ]);
 
-        $tutoring->statis = $request->status;
+        $tutoring->status = $request->status;
         $tutoring->save();
 
         Alert::success('Permintaan tutoring berhasil diproses');
 
-        return redirect()->route('mentor.tutoring.index');
+        return redirect()->route('mentor.tutoring.show', ['tutoring' => $tutoring]);
     }
 
     /**

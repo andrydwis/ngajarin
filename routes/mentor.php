@@ -5,6 +5,7 @@ use App\Http\Controllers\Mentor\ClassroomCourseController;
 use App\Http\Controllers\Mentor\ClassroomMemberController;
 use App\Http\Controllers\Mentor\CourseController;
 use App\Http\Controllers\Mentor\EpisodeController;
+use App\Http\Controllers\Mentor\ScheduleController;
 use App\Http\Controllers\Mentor\ScoreController;
 use App\Http\Controllers\Mentor\SubmissionController;
 use App\Http\Controllers\Mentor\TutoringController;
@@ -58,6 +59,15 @@ Route::middleware(['auth', 'verified', 'role:mentor'])->group(function () {
     Route::get('/mentor/course/{course:slug}/score', [ScoreController::class, 'index'])->name('mentor.course.score.index');
     Route::get('/mentor/course/{course:slug}/score/user/{user}', [ScoreController::class, 'show'])->name('mentor.course.score.show');
 
+    Route::get('/mentor/schedule', [ScheduleController::class, 'index'])->name('mentor.schedule.index');
+    Route::get('/mentor/schedule/create', [ScheduleController::class, 'create'])->name('mentor.schedule.create');
+    Route::post('/mentor/schedule/create', [ScheduleController::class, 'store'])->name('mentor.schedule.store');
+    Route::get('/mentor/schedule/edit/{schedule}', [ScheduleController::class, 'edit'])->name('mentor.schedule.edit');
+    Route::patch('/mentor/schedule/edit/{schedule}', [ScheduleController::class, 'update'])->name('mentor.schedule.update');
+    Route::delete('/mentor/schedule/destroy/{schedule}', [ScheduleController::class, 'destroy'])->name('mentor.schedule.destroy');
+
+
     Route::get('/mentor/tutoring', [TutoringController::class, 'index'])->name('mentor.tutoring.index');
     Route::get('/mentor/tutoring/show/{tutoring}', [TutoringController::class, 'show'])->name('mentor.tutoring.show');
+    Route::patch('/mentor/tutoring/edit/{tutoring}', [TutoringController::class, 'update'])->name('mentor.tutoring.update');
 });

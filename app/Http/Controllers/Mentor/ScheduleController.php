@@ -23,7 +23,7 @@ class ScheduleController extends Controller
             'schedules' => Schedule::where('user_id', Auth::user()->id)->get()
         ];
 
-        return view('mentor.schedule.index');
+        return view('mentor.schedule.index', $data);
     }
 
     /**
@@ -43,13 +43,13 @@ class ScheduleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, MessageBag $messageBag)
+    public function store(Request $request)
     {
         //
         $request->validate([
             'hari' => ['required'],
             'jam_mulai' => ['required'],
-            'jam_akhir' => ['required', 'after:hour_start']
+            'jam_akhir' => ['required', 'after:jam_mulai']
         ]);
 
         $check = Schedule::where('day', $request->hari)->where('user_id', Auth::user()->id)->first();
@@ -114,7 +114,7 @@ class ScheduleController extends Controller
             'jam_akhir' => ['required', 'after:hour_start']
         ]);
 
-        $check = Schedule::where('day', $request->hari)->where('user_id', Auth::user()->id)->first();
+        $check = Schedule::where('day', $request->hari)->where('user_id', Auth::user()->id)->where('id', '!=', $schedule->id)->first();
         if (!$check) {
             $schedule->user_id = Auth::user()->id;
             $schedule->day = $request->hari;
