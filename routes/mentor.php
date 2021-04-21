@@ -66,7 +66,6 @@ Route::middleware(['auth', 'verified', 'role:mentor'])->group(function () {
     Route::patch('/mentor/schedule/edit/{schedule}', [ScheduleController::class, 'update'])->name('mentor.schedule.update');
     Route::delete('/mentor/schedule/destroy/{schedule}', [ScheduleController::class, 'destroy'])->name('mentor.schedule.destroy');
 
-
     Route::get('/mentor/tutoring', [TutoringController::class, 'index'])->name('mentor.tutoring.index');
     Route::get('/mentor/tutoring/show/{tutoring}', [TutoringController::class, 'show'])->name('mentor.tutoring.show');
     Route::patch('/mentor/tutoring/edit/{tutoring}', [TutoringController::class, 'update'])->name('mentor.tutoring.update');
