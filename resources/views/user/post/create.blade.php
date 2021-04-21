@@ -129,10 +129,9 @@
         selector: 'textarea',
         menubar: false,
         plugins: [
-            "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-            "emoticons template paste textpattern"
+            "autolink link image emoticons codesample"
         ],
-        toolbar: "bold italic strikethrough bullist numlist emoticons | link image",
+        toolbar: "bold emoticons link image codesample",
         file_picker_callback: function(callback, value, meta) {
             var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
             var y = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight;
