@@ -12,10 +12,14 @@
     @foreach($mentors as $mentor)
     @php
     $rate = $mentor->reviews->avg('rate');
+    $sum = $mentor->reviews->count();
     @endphp
-    <p>{{$mentor->name}}</p>
-    <p>rate : {{$rate}}</p>
     <img src="{{$mentor->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name='.$mentor->name}}" alt="">
+    <p>{{$mentor->name}}</p>
+
+    @if($rate)
+    <p>rate : {{$rate}} dari {{$sum}} ulasan</p>
+    @endif
     @endforeach
 </body>
 

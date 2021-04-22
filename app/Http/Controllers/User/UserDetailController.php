@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\UserDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class UserDetailController extends Controller
@@ -19,7 +21,7 @@ class UserDetailController extends Controller
     public function index()
     {
         //
-        
+
     }
 
     /**
@@ -49,7 +51,7 @@ class UserDetailController extends Controller
      * @param  \App\Models\UserDetail  $userDetail
      * @return \Illuminate\Http\Response
      */
-    public function show(UserDetail $userDetail)
+    public function show()
     {
         //
         $data = [
@@ -65,9 +67,14 @@ class UserDetailController extends Controller
      * @param  \App\Models\UserDetail  $userDetail
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserDetail $userDetail)
+    public function edit()
     {
         //
+        $data = [
+            'user' => User::with('detail')->find(Auth::user()->id),
+        ];
+
+        return view('user.profile.edit', $data);
     }
 
     /**
@@ -77,29 +84,57 @@ class UserDetailController extends Controller
      * @param  \App\Models\UserDetail  $userDetail
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserDetail $userDetail)
+    public function update(Request $request)
     {
         //
-        $check = UserDetail::where('user_id', Auth::user()->id)->first();
-        if($check){
-            $check->photo = $request->foto;
-            $check->biodata = $request->biodata;
-            $check->alamat = $request->alamat;
-            $check->facebook = $request->facebook;
-            $check->twitter = $request->twitter;
-            $check->instagram = $request->instagram;
-            $check->github = $request->github;
-            $check->linkedin = $request->linkedin;
-            $check->save();
+        $user = User::find(Auth::user()->id);
+        if ($request->password) {
+            $request->validate([
+                'nama' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user)],
+                'telepon' => ['required', 'numeric', Rule::unique('users', 'phone')->ignore($user)],
+                'password' => ['required', 'string', 'confirmed', 'min:8']
+            ]);
+
+            $user->name = $request->nama;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->phone = $request->telepon;
+            $user->save();
+        } else {
+            $request->validate([
+                'nama' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user)],
+                'telepon' => ['required', 'numeric', Rule::unique('users', 'phone')->ignore($user)],
+            ]);
+
+            $user->name = $request->nama;
+            $user->email = $request->email;
+            $user->phone = $request->telepon;
+            $user->save();
+        }
+
+        $detail = UserDetail::where('user_id', Auth::user()->id)->first();
+        if ($detail) {
+            $detail->photo = $request->foto;
+            $detail->biodata = $request->biodata;
+            $detail->address = $request->alamat;
+            $detail->facebook = $request->facebook;
+            $detail->twitter = $request->twitter;
+            $detail->instagram = $request->instagram;
+            $detail->github = $request->github;
+            $detail->linkedin = $request->linkedin;
+            $detail->save();
 
             Alert::success('Profile berhasil diupdate');
 
             return redirect()->route('user.profile.show');
-        }else{
+        } else {
             $detail = new UserDetail();
+            $detail->user_id = $user->id;
             $detail->photo = $request->foto;
             $detail->biodata = $request->biodata;
-            $detail->alamat = $request->alamat;
+            $detail->address = $request->alamat;
             $detail->facebook = $request->facebook;
             $detail->twitter = $request->twitter;
             $detail->instagram = $request->instagram;
