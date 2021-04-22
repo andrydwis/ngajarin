@@ -25,43 +25,43 @@
                             <div>
                                 <label for="senin" class="ml-0 border cursor-pointer btn" @click="inputHari('senin')" :class="{ 'btn-outline-primary' : !isSenin() , 'btn-primary' : isSenin() }">senin</label>
 
-                                <input type="radio" name="hari"  id="senin" value="senin" @if(old('hari')=='senin' ){{'checked'}}@endif>
+                                <input type="radio" name="hari" class="hidden" id="senin" value="senin" @if(old('hari')=='senin' ){{'checked'}}@endif>
                             </div>
 
                             <div>
                                 <label for="selasa" class="border cursor-pointer btn" @click="inputHari('selasa')" :class="{ 'btn-outline-primary' : !isSelasa(), 'btn-primary' : isSelasa() }">selasa</label>
 
-                                <input type="radio" name="hari"  id="selasa" value="selasa" @if(old('hari')=='selasa' ){{'checked'}}@endif>
+                                <input type="radio" name="hari" class="hidden" id="selasa" value="selasa" @if(old('hari')=='selasa' ){{'checked'}}@endif>
                             </div>
 
                             <div>
                                 <label for="rabu" class="border cursor-pointer btn" @click="inputHari('rabu')" :class="{ 'btn-outline-primary' : !isRabu(), 'btn-primary' : isRabu() }">rabu</label>
 
-                                <input type="radio" name="hari"  id="rabu" value="rabu" @if(old('hari')=='rabu' ){{'checked'}}@endif>
+                                <input type="radio" name="hari" class="hidden" id="rabu" value="rabu" @if(old('hari')=='rabu' ){{'checked'}}@endif>
                             </div>
 
                             <div>
                                 <label for="kamis" class="border cursor-pointer btn" @click="inputHari('kamis')" :class="{ 'btn-outline-primary' : !isKamis(), 'btn-primary' : isKamis() }">Kamis</label>
 
-                                <input type="radio" name="hari"  id="kamis" value="kamis" @if(old('hari')=='kamis' ){{'checked'}}@endif>
+                                <input type="radio" name="hari" class="hidden" id="kamis" value="kamis" @if(old('hari')=='kamis' ){{'checked'}}@endif>
                             </div>
 
                             <div>
                                 <label for="jumat" class="border cursor-pointer btn" @click="inputHari('jumat')" :class="{ 'btn-outline-primary' : !isJumat(), 'btn-primary' : isJumat() }">Jumat</label>
 
-                                <input type="radio" name="hari"  id="jumat" value="jumat" @if(old('hari')=='jumat' ){{'checked'}}@endif>
+                                <input type="radio" name="hari" class="hidden" id="jumat" value="jumat" @if(old('hari')=='jumat' ){{'checked'}}@endif>
                             </div>
 
                             <div>
                                 <label for="sabtu" class="border cursor-pointer btn" @click="inputHari('sabtu')" :class="{ 'btn-outline-primary' : !isSabtu(), 'btn-primary' : isSabtu() }">Sabtu</label>
 
-                                <input type="radio" name="hari"  id="sabtu" value="sabtu" @if(old('hari')=='sabtu' ){{'checked'}}@endif>
+                                <input type="radio" name="hari" class="hidden" id="sabtu" value="sabtu" @if(old('hari')=='sabtu' ){{'checked'}}@endif>
                             </div>
 
                             <div>
                                 <label for="minggu" class="border cursor-pointer btn" @click="inputHari('minggu')" :class="{ 'btn-outline-primary' : !isMinggu(), 'btn-primary' : isMinggu() }">Minggu</label>
 
-                                <input type="radio" name="hari"  id="minggu" value="minggu" @if(old('hari')=='minggu' ){{'checked'}}@endif>
+                                <input type="radio" name="hari" class="hidden" id="minggu" value="minggu" @if(old('hari')=='minggu' ){{'checked'}}@endif>
                             </div>
 
                         </div>
