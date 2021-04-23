@@ -25,45 +25,45 @@
                         <div id="list-hari" x-data="hariSelector()" x-init="checkHari()" class="flex flex-wrap gap-1">
 
                             <div>
-                                <label for="senin" class="ml-0 border cursor-pointer btn" @click="inputHari('senin')" :class="{ 'btn-outline-primary' : !isSenin() , 'btn-primary' : isSenin() }">senin</label>
+                                <label for="monday" class="ml-0 border cursor-pointer btn" @click="inputHari('monday')" :class="{ 'btn-outline-primary' : !isMonday() , 'btn-primary' : isMonday() }">senin</label>
 
-                                <input type="radio" name="hari" class="hidden" id="senin" value="senin" @if($schedule->day=='senin'){{'checked'}}@endif>
+                                <input type="radio" name="hari" class="hidden" id="monday" value="monday" @if($schedule->day=='monday'){{'checked'}}@endif>
                             </div>
 
                             <div>
-                                <label for="selasa" class="border cursor-pointer btn" @click="inputHari('selasa')" :class="{ 'btn-outline-primary' : !isSelasa(), 'btn-primary' : isSelasa() }">selasa</label>
+                                <label for="tuesday" class="border cursor-pointer btn" @click="inputHari('tuesday')" :class="{ 'btn-outline-primary' : !isTuesday(), 'btn-primary' : isTuesday() }">selasa</label>
 
-                                <input type="radio" name="hari" class="hidden" id="selasa" value="selasa" @if($schedule->day=='selasa'){{'checked'}}@endif>
+                                <input type="radio" name="hari" class="hidden" id="tuesday" value="tuesday" @if($schedule->day=='tuesday'){{'checked'}}@endif>
                             </div>
 
                             <div>
-                                <label for="rabu" class="border cursor-pointer btn" @click="inputHari('rabu')" :class="{ 'btn-outline-primary' : !isRabu(), 'btn-primary' : isRabu() }">rabu</label>
+                                <label for="wednesday" class="border cursor-pointer btn" @click="inputHari('wednesday')" :class="{ 'btn-outline-primary' : !isWednesday(), 'btn-primary' : isWednesday() }">rabu</label>
 
-                                <input type="radio" name="hari" class="hidden" id="rabu" value="rabu" @if($schedule->day=='rabu'){{'checked'}}@endif>
+                                <input type="radio" name="hari" class="hidden" id="wednesday" value="wednesday" @if($schedule->day=='wednesday'){{'checked'}}@endif>
                             </div>
 
                             <div>
-                                <label for="kamis" class="border cursor-pointer btn" @click="inputHari('kamis')" :class="{ 'btn-outline-primary' : !isKamis(), 'btn-primary' : isKamis() }">Kamis</label>
+                                <label for="thursday" class="border cursor-pointer btn" @click="inputHari('thursday')" :class="{ 'btn-outline-primary' : !isThursday(), 'btn-primary' : isThursday() }">kamis</label>
 
-                                <input type="radio" name="hari" class="hidden" id="kamis" value="kamis" @if($schedule->day=='kamis'){{'checked'}}@endif>
+                                <input type="radio" name="hari" class="hidden" id="thursday" value="thursday" @if($schedule->day=='thursday'){{'checked'}}@endif>
                             </div>
 
                             <div>
-                                <label for="jumat" class="border cursor-pointer btn" @click="inputHari('jumat')" :class="{ 'btn-outline-primary' : !isJumat(), 'btn-primary' : isJumat() }">Jumat</label>
+                                <label for="friday" class="border cursor-pointer btn" @click="inputHari('friday')" :class="{ 'btn-outline-primary' : !isFriday(), 'btn-primary' : isFriday() }">jumat</label>
 
-                                <input type="radio" name="hari" class="hidden" id="jumat" value="jumat" @if($schedule->day=='jumat'){{'checked'}}@endif>
+                                <input type="radio" name="hari" class="hidden" id="friday" value="friday" @if($schedule->day=='friday'){{'checked'}}@endif>
                             </div>
 
                             <div>
-                                <label for="sabtu" class="border cursor-pointer btn" @click="inputHari('sabtu')" :class="{ 'btn-outline-primary' : !isSabtu(), 'btn-primary' : isSabtu() }">Sabtu</label>
+                                <label for="saturday" class="border cursor-pointer btn" @click="inputHari('saturday')" :class="{ 'btn-outline-primary' : !isSaturday(), 'btn-primary' : isSaturday() }">sabtu</label>
 
-                                <input type="radio" name="hari" class="hidden" id="sabtu" value="sabtu" @if($schedule->day=='sabtu'){{'checked'}}@endif>
+                                <input type="radio" name="hari" class="hidden" id="saturday" value="saturday" @if($schedule->day=='saturday'){{'checked'}}@endif>
                             </div>
 
                             <div>
-                                <label for="minggu" class="border cursor-pointer btn" @click="inputHari('minggu')" :class="{ 'btn-outline-primary' : !isMinggu(), 'btn-primary' : isMinggu() }">Minggu</label>
+                                <label for="sunday" class="border cursor-pointer btn" @click="inputHari('sunday')" :class="{ 'btn-outline-primary' : !isSunday(), 'btn-primary' : isSunday() }">minggu</label>
 
-                                <input type="radio" name="hari" class="hidden" id="minggu" value="minggu" @if($schedule->day=='minggu'){{'checked'}}@endif>
+                                <input type="radio" name="hari" class="hidden" id="sunday" value="sunday" @if($schedule->day=='sunday'){{'checked'}}@endif>
                             </div>
 
                         </div>
@@ -144,26 +144,26 @@
                 }
 
             },
-            isSenin() {
-                return this.hari === "senin"
+            isMonday() {
+                return this.hari === "monday"
             },
-            isSelasa() {
-                return this.hari === "selasa"
+            isTuesday() {
+                return this.hari === "tuesday"
             },
-            isRabu() {
-                return this.hari === "rabu"
+            isWednesday() {
+                return this.hari === "wednesday"
             },
-            isKamis() {
-                return this.hari === "kamis"
+            isThursday() {
+                return this.hari === "thursday"
             },
-            isJumat() {
-                return this.hari === "jumat"
+            isFriday() {
+                return this.hari === "friday"
             },
-            isSabtu() {
-                return this.hari === "sabtu"
+            isSaturday() {
+                return this.hari === "saturday"
             },
-            isMinggu() {
-                return this.hari === "minggu"
+            isSunday() {
+                return this.hari === "sunday"
             },
         }
     }
