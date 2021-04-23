@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Schedule;
 use App\Models\Tutoring;
 use App\Models\User;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -35,9 +37,30 @@ class TutoringController extends Controller
     public function create(User $user)
     {
         //
+        $startDate = Carbon::now();
+        $endDate = Carbon::now()->addDays(30);
+        $period = CarbonPeriod::create($startDate, $endDate);
+        $schedules = Schedule::where('user_id', $user->id)->get();
+        $dates = [];
+        $sch = [];
+
+        if ($schedules) {
+            foreach ($period as $date) {
+                foreach ($schedules as $schedule) {
+                    if ($date->is($schedule->day)) {
+                        $dates[] = $date->format('Y-m-d');
+                        $sch[] = $schedule->id;
+                    }
+                }
+            }
+            $dates = array_combine($dates, $sch);
+        }
+
         $data = [
-            'schedules' => Schedule::where('user_id', $user->id)->get(),
-            'tutorings' => Tutoring::where('mentor_id', $user->id)->where('student_id', Auth::user()->id)->get()
+            'user' => $user,
+            'schedules' => $schedules,
+            'dates' => $dates,
+            'tutorings' => Tutoring::where('mentor_id', $user->id)->where('student_id', Auth::user()->id)->get(),
         ];
 
         return view('student.tutoring.create', $data);
