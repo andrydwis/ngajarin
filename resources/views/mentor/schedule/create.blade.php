@@ -87,7 +87,7 @@
                         @enderror
                     </div>
 
-                    <div class="flex justify-center pt-5">
+                    <div class="flex justify-end pt-5">
                         <button type="submit" class="w-full md:w-auto btn-bs-primary">Tambahkan</button>
                     </div>
                 </div>

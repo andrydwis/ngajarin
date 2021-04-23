@@ -26,7 +26,7 @@
                                 <span class="ml-3 "> {{$loop->index+1}} </span>
                             </td>
                             <td class="border-b">
-                                <span class="ml-3 "> {{$schedule->day}} </span>
+                                <span class="ml-3 "> {{$schedule->dayTrans()}} </span>
                             </td>
                             <td class="border-b">
                                 <span class="ml-3 "> {{$schedule->hour_start}} </span>
