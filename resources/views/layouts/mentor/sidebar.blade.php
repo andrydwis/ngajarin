@@ -4,10 +4,10 @@
             <i class="text-white fas fa-chevron-right"></i>
         </button>
 
-        <div :class="{'hidden' : isOpen4}" @click.away="isOpen4 = !isOpen4" id="sideBar" class="fixed top-0 left-0 z-50 flex-col flex-wrap flex-none w-64 min-h-full p-6 mt-0 bg-white border-r border-gray-200 md:z-20 lg:relative md:pt-4 md:top-12 lg:flex">
+        <div :class="{'hidden' : isOpen4}" @click.away="isOpen4 = !isOpen4" id="sideBar" class="fixed top-0 left-0 z-50 flex-col flex-wrap flex-none w-64 min-h-full max-h-[100vh] px-6 mt-0 overflow-auto bg-white border-r border-gray-200 md:z-20 lg:relative md:pt-4 md:top-12 lg:flex">
 
             <!-- sidebar content -->
-            <div class="flex flex-col pt-7">
+            <div class="flex flex-col pt-2 md:pt-7">
 
                 <!-- sidebar toggle -->
                 <div class="block mb-4 text-right lg:hidden">
@@ -84,14 +84,15 @@
                 <p class="mt-4 mb-3 text-sm tracking-wider text-gray-600 uppercase">Tutoring</p>
 
                 <a href="/mentor/schedule" class="sidebar-item
-                {{ Route::currentRouteNamed('mentor.schedule.index') ? 'sidebar-item-active' : '' }}
+                {{ Route::currentRouteNamed('mentor.schedule.*')
+                ? 'sidebar-item-active' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-base fas fa-calendar-day"></i>
                     Atur Jadwal
                 </a>
 
                 <a href="/mentor/tutoring" class="sidebar-item
-                {{ Route::currentRouteNamed('mentor.tutoring.index') ? 'sidebar-item-active' : '' }}
+                {{ Route::currentRouteNamed('mentor.tutoring.*') ? 'sidebar-item-active' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-sm fas fa-calendar-check"></i>
                     Permintaan Tutoring
