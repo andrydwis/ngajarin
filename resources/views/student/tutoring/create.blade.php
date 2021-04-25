@@ -9,8 +9,9 @@
         </button>
     </a>
 
-    <div class="grid grid-cols-1 gap-5 px-5 pt-10 pb-20 space lg:gap-10 lg:px-20 md:grid-cols-3">
+    <div class="grid grid-cols-1 gap-5 px-5 pt-10 pb-20 space lg:gap-10 lg:px-20 lg:grid-cols-3">
         <div class="mb-5 md:col-span-2">
+
             <div class="shadow-xl card">
                 <div class="card-header">
                     <h6 class="h6">Review Mentor</h6>
@@ -19,8 +20,8 @@
                 <div class="card-body">
                     <!-- bio -->
                     <div class="flex col-span-1 gap-2">
-                        <div class="flex-grow-0 flex-shrink-0 w-20 h-20">
-                            <img src="{{$user->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name='.$user->name}}">
+                        <div class="flex-grow-0 flex-shrink-0 w-14 h-14 md:w-20 md:h-20">
+                            <img src="{{$user->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name='.$user->name}}" class="rounded-xl">
                         </div>
                         <div>
                             <span>Nama : {{$user->name}}</span>
@@ -34,7 +35,7 @@
                                 <i class="mr-1 text-xs text-opacity-70 text-primary-lighter md:text-sm fas fa-star"></i>
                                 <span class="text-primary-lighter">
                                     @if($rate)
-                                    <span>{{$rate}} dari {{$sum}} ulasan</span>
+                                    <span>{{round($rate, 1)}} dari {{$sum}} ulasan</span>
                                     @else
                                     <span> - </span>
                                     @endif
@@ -58,43 +59,94 @@
                     </div>
                     <!-- end of bio -->
 
+                </div>
+
+            </div>
+
+            <div class="mt-10 shadow-xl card">
+                <div class="card-header">
+                    <h6 class="h6">
+                        Form Request Tutoring
+                    </h6>
+                </div>
+                <div class="card-body">
                     <!-- input waktu -->
                     <div class="grid col-span-1 gap-5 mt-5">
                         @livewire('tutor-request', ['user' => $user, 'dates' => $dates])
                     </div>
                     <!-- end of input waktu -->
                 </div>
-
             </div>
+
         </div>
-        <div class="md:col-span-1">
-            <div class="shadow-xl card">
-                <div class="card-header">
-                    <h6 class="h6">Jadwal Mentor</h6>
+
+
+        <div class=" md:col-span-1">
+
+            <div class="w-full md:sticky md:top-10">
+                <div class="shadow-xl card lg:w-[340px] ">
+                    <div class="card-header">
+                        <h6 class="h6">Jadwal Mentor</h6>
+                    </div>
+                    <div class="card-body">
+                        <ul class="-mt-5 text-gray-700 ">
+                            @forelse($schedules as $schedule)
+                            <li class="p-3 text-sm border-b md:text-base">
+                                <div class="flex justify-between">
+                                    <div>{{$schedule->dayTrans()}}</div>
+                                    <div class="">
+                                        {{Str::limit($schedule->hour_start, 5, '')}} -
+                                        {{Str::limit($schedule->hour_end, 5, '')}}
+                                    </div>
+                                </div>
+                            </li>
+                            @empty
+                            <span>Mentor ini belum mengatur jadwal tutoring</span>
+                            @endforelse
+                        </ul>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <div class="flex flex-col">
-                        @forelse($schedules as $schedule)
-                        <span class="text-sm md:text-base">{{$schedule->dayTrans()}}, {{$schedule->hour_start}} - {{$schedule->hour_end}}</span>
-                        @empty
-                        <span>Mentor ini belum mengatur jadwal tutoring</span>
-                        @endforelse
+
+                <div class="mt-10 shadow-xl card lg:w-[340px]">
+                    <div class="card-header">
+                        <h6 class="h6">Riwayat</h6>
+                    </div>
+                    <div class="card-body">
+                        <ul class="-mt-5 text-gray-700 ">
+                            @foreach($tutorings as $tutoring)
+                            <li class="p-3 text-sm border-b md:text-base">
+                                <div x-data="{ isOpen : false }">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            {{\Carbon\Carbon::parse($tutoring->date)->isoFormat('D MMMM Y')}}
+                                        </div>
+                                        <button @click="isOpen = !isOpen" type="button" class="flex items-center px-3 py-2 mt-0 text-white capitalize focus:outline-none bg-primary-lighter alert">
+                                            {{$tutoring->status}}
+                                            <i class="ml-2 text-xs duration-300 fas fa-chevron-down" :class="{'transform rotate-180' : isOpen}"></i>
+                                        </button>
+                                    </div>
+                                    <div x-cloak x-show.transition.duration.300ms="isOpen">
+                                        <div class="flex justify-between pb-3 font-semibold border-b mt-7">
+                                            <div>
+                                                {{\Carbon\Carbon::parse($tutoring->date)->isoFormat('dddd')}}
+                                            </div>
+                                            <div>
+                                                {{Str::limit($tutoring->hour_start, 5, '')}} -
+                                                {{Str::limit($tutoring->hour_end, 5, '')}}
+                                            </div>
+                                        </div>
+                                        <div class="mt-5">
+                                            <button class="w-full btn btn-outline-danger md:text-sm">Batalkan</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
             </div>
 
-            <div class="mt-10 shadow-xl card">
-                <div class="card-header">
-                    <h6 class="h6">Riwayat</h6>
-                </div>
-                <div class="prose card-body">
-                    <ul>
-                        @foreach($tutorings as $tutoring)
-                        <li>{{\Carbon\Carbon::parse($tutoring->date)->isoFormat('dddd, D MMMM Y')}} status : {{$tutoring->status}}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
         </div>
     </div>
 </div>

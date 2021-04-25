@@ -8,7 +8,7 @@
         var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-[readonly].form-input {
+[readonly].form-input, [disabled].form-input {
     box-shadow: none;
     background-color: rgb(243, 244, 246) !important;
     cursor: not-allowed;
