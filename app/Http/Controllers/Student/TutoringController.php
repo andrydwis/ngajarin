@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Models\Review;
 use App\Models\Schedule;
 use App\Models\Tutoring;
 use App\Models\User;
@@ -60,7 +61,8 @@ class TutoringController extends Controller
             'user' => $user,
             'schedules' => $schedules,
             'dates' => $dates,
-            'tutorings' => Tutoring::where('mentor_id', $user->id)->where('student_id', Auth::user()->id)->get(),
+            'reviews' => Review::where('user_id', $user->id)->inRandomOrder()->limit(3)->get(),
+            'tutorings' => Tutoring::where('mentor_id', $user->id)->where('student_id', Auth::user()->id)->orderBy('created_at', 'desc')->get(),
         ];
 
         return view('student.tutoring.create', $data);
@@ -72,7 +74,7 @@ class TutoringController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, User $user)
+    public function store(User $user, Request $request)
     {
         //
         $request->validate([
@@ -82,7 +84,7 @@ class TutoringController extends Controller
             'detail' => ['required']
         ]);
 
-        $check = Tutoring::where('mentor_id', $user->id)->where('student_id', Auth::user()->id)->where('date', $request->tanggal)->get();
+        $check = Tutoring::where('mentor_id', $user->id)->where('student_id', Auth::user()->id)->where('status', 'menunggu')->first();
         if (!$check) {
             $tutoring = new Tutoring();
             $tutoring->mentor_id = $user->id;
@@ -96,11 +98,11 @@ class TutoringController extends Controller
 
             Alert::success('Permintaan tutoring berhasil dibuat');
 
-            return redirect()->route('student.mentoring.create', ['user', $user]);
+            return redirect()->route('student.tutoring.create', ['user' => $user]);
         } else {
             Alert::error('Permintaan tutoring sudah ada, harap tunggu konfimasi mentor');
 
-            return redirect()->route('student.tutoring.create', ['user', $user]);
+            return redirect()->route('student.tutoring.create', ['user' => $user]);
         }
     }
 
@@ -113,10 +115,10 @@ class TutoringController extends Controller
     public function show(Tutoring $tutoring)
     {
         //
-        if($tutoring->student_id != Auth::user()->id){
+        if ($tutoring->student_id != Auth::user()->id) {
             return abort(403, 'Unauthorized action.');
         }
-        
+
         $data = [
             'tutoring' => $tutoring
         ];

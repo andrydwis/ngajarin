@@ -20,7 +20,7 @@
             font-family: 'Nunito';
         }
     </style>
-
+    @livewireStyles
 </head>
 
 <body class="antialiased">
@@ -39,6 +39,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     @yield('customJS')
     @include('sweetalert::alert')
+    @livewireScripts
 </body>
 
 </html>
