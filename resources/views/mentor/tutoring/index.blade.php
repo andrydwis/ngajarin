@@ -16,8 +16,8 @@
                             <th>Tanggal</th>
                             <th>Jam Mulai</th>
                             <th>Jam akhir</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody class="text-gray-700">
@@ -47,13 +47,19 @@
                                 </span>
 
                             </td>
-                            <td class="border-b">
+                            <td class="text-center border-b">
+                                @if($tutoring->status == 'menunggu')
+                                <span class="px-3 py-2 ml-3 text-xs tracking-wider text-white bg-gray-500 rounded-full bg-opacity-80 md:text-xs">
+                                    {{$tutoring->status}}
+                                </span>
+                                @else
                                 <span class="px-3 py-2 ml-3 text-xs tracking-wider text-white rounded-full bg-primary-lighter bg-opacity-80 md:text-xs">
                                     {{$tutoring->status}}
                                 </span>
+                                @endif
 
                             </td>
-                            <td class="border-b">
+                            <td class="text-center border-b">
                                 <span>
                                     <a href="{{route('mentor.tutoring.show', ['tutoring' =>$tutoring])}}">
                                         <button class="text-sm border-none btn btn-outline-primary md:text-sm">Detail</button>
