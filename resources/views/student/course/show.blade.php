@@ -28,12 +28,14 @@
                 <div class="flex justify-center">
                     @if(in_array(auth()->user()->id, $course->users->pluck('id')->toArray()))
                     @if($isFinished)
+                    @if($course->certificate)
                     <form action="{{route('student.export-certicate', ['certificate' => $certificate])}}" method="post">
                         @csrf
                         <button class="inline-flex px-6 py-2 text-lg bg-white border-0 rounded text-primary focus:outline-none hover:bg-gray-200">
                             Cetak Sertifikat
                         </button>
                     </form>
+                    @endif
                     @else
                     <button class="inline-flex px-6 py-2 text-lg bg-white border-0 rounded text-primary focus:outline-none hover:bg-gray-200">
                         Sudah Bergabung

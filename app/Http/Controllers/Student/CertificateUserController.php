@@ -8,6 +8,7 @@ use App\Models\CertificateUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PhpOffice\PhpWord\TemplateProcessor;
+use Illuminate\Support\Str;
 
 class CertificateUserController extends Controller
 {
@@ -68,8 +69,7 @@ class CertificateUserController extends Controller
     
             return back();
         } else {
-            
-            // $templateProcessor = new TemplateProcessor(public_path($certificate->template));
+            // $templateProcessor = new TemplateProcessor($certificate->template);
             $templateProcessor = new TemplateProcessor(public_path('template/template.docx'));
             
             $templateProcessor->setValue('name', Auth::user()->name);

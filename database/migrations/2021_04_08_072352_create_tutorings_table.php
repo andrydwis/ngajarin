@@ -21,7 +21,7 @@ class CreateTutoringsTable extends Migration
             $table->string('hour_start');
             $table->string('hour_end');
             $table->text('detail');
-            $table->enum('status', ['diterima', 'ditolak', 'menunggu']);
+            $table->enum('status', ['diterima', 'ditolak', 'menunggu', 'selesai']);
             $table->timestamps();
         });
     }

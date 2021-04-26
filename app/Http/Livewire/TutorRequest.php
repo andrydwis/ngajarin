@@ -3,6 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\Schedule;
+use App\Models\Tutoring;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class TutorRequest extends Component
@@ -12,6 +14,23 @@ class TutorRequest extends Component
     public $date_selected;
     public $min;
     public $max;
+    public $schedule_now;
+    public $review_form;
+
+    protected $listeners = ['show' => 'showReviewForm'];
+
+    public function mount()
+    {
+        $this->schedule_now = Tutoring::where('date', Carbon::now()->isoFormat('Y-M-D'))->where('status', 'diterima')->first();
+        $this->review_form = false;
+    }
+
+    public function showReviewForm(Tutoring $tutoring)
+    {
+        $this->review_form = true;
+        $tutoring->status = 'selesai';
+        $tutoring->save();
+    }
 
     public function getSchedule($date, $id)
     {

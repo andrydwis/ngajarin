@@ -61,7 +61,7 @@ class SubmissionController extends Controller
         $submission = new Submission();
         $submission->course_id = $course->id;
         $submission->title = $request->judul;
-        $submission->slug = Str::slug($request->judul);
+        $submission->slug = Str::slug($request->judul) . '-' . Str::random(5);
         $submission->task = $request->tugas;
         $submission->file = $request->file;
 
@@ -123,7 +123,7 @@ class SubmissionController extends Controller
 
         $submission->course_id = $course->id;
         $submission->title = $request->judul;
-        $submission->slug = Str::slug($request->judul);
+        $submission->slug = Str::slug($request->judul) . '-' . Str::random(5);
         $submission->task = $request->tugas;
         $submission->file = $request->file;
 

@@ -60,7 +60,7 @@ class CourseController extends Controller
 
         $course = new Course();
         $course->title = $request->judul;
-        $course->slug = Str::slug($request->judul);
+        $course->slug = Str::slug($request->judul) . '-' . Str::random(5);
         $course->description = $request->deskripsi;
         $course->thumbnail = $request->thumbnail;
         $course->level = $request->level;
@@ -127,7 +127,7 @@ class CourseController extends Controller
         ]);
 
         $course->title = $request->judul;
-        $course->slug = Str::slug($request->judul);
+        $course->slug = Str::slug($request->judul) . '-' . Str::random(5);
         $course->description = $request->deskripsi;
         $course->thumbnail = $request->thumbnail;
         $course->level = $request->level;
