@@ -51,7 +51,8 @@ class CertificateUserController extends Controller
             $certificateUser->user_id = Auth::user()->id;
             $certificateUser->save();
 
-            $templateProcessor = new TemplateProcessor($certificate->template);
+            // $templateProcessor = new TemplateProcessor($certificate->template);
+            $templateProcessor = new TemplateProcessor(public_path('template/template.docx'));
             $templateProcessor->setValue('name', Auth::user()->name);
             $templateProcessor->setValue('course', $certificate->course->title);
             $templateProcessor->setValue('created_at', $certificateUser->created_at);
