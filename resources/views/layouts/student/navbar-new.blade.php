@@ -21,19 +21,25 @@
                         </div>
                     </a>
 
-                    <a href="{{ route('student.course.index') }}" class="h-full border-b-4 border-primary hover:border-white">
+                    <a href="{{ route('student.course.index') }}" 
+                    class="h-full border-b-4 hover:border-white
+                     {{ Route::currentRouteNamed('student.course.index') ? 'border-white text-white' : 'border-primary' }}">
                         <div class="flex items-center h-full px-4 mx-2 font-semibold hover:text-white lg:mx-3">
                             Course
                         </div>
                     </a>
 
-                    <a href="{{ route('user.post.index') }}" class="h-full border-b-4 border-primary hover:border-white">
+                    <a href="{{ route('user.post.index') }}" 
+                    class="h-full border-b-4 hover:border-white
+                     {{ Route::currentRouteNamed('user.post.index') ? 'border-white text-white' : 'border-primary' }}">
                         <div class="flex items-center h-full px-4 mx-2 font-semibold hover:text-white lg:mx-3">
                             Forum
                         </div>
                     </a>
 
-                    <a href="/" class="h-full border-b-4 border-primary hover:border-white">
+                    <a href="{{ route('student.tutoring.index')}}" 
+                    class="h-full border-b-4 hover:border-white
+                     {{ Route::currentRouteNamed('student.tutoring.index') ? 'border-white text-white' : 'border-primary' }}">
                         <div class="flex items-center h-full px-4 mx-2 font-semibold hover:text-white lg:mx-3">
                             Tutoring
                         </div>
@@ -61,7 +67,7 @@
 
 
                     @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="inline-flex mt-0 mr-0 text-base bg-white border border-white rounded-full text-primary btn hover:bg-primary hover:text-white">Daftar Sekarang</a>
+                    <a href="{{ route('register') }}" class="inline-flex mt-0 mr-0 text-base bg-white border border-white rounded-full text-primary btn hover:bg-primary hover:text-white">Daftar <span class="hidden ml-2 xl:inline">Sekarang</span> </a>
                     @endif
 
                     <a href="{{ route('login') }}" class="inline-flex mt-0 text-base text-white border-white rounded-full btn hover:underline">Masuk</a>

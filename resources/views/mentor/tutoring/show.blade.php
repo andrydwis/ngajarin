@@ -1,19 +1,28 @@
 @extends('layouts.mentor.app')
 @section('content')
-<div class="w-full p-5 mt-20 md:w-full lg:w-4/6 xl:w-3/4">
+<div x-data="{ dismiss : false}" class="w-full p-5 mt-20 md:w-full lg:w-4/6 xl:w-3/4">
 
     @if(session('message'))
-    <div class="alert alert-danger mb-5">
-        <p>Permintaan ini awdwdbkwaw pokok intine tabrakan mbek sing mbok acc dino iki</p>
-        <p>yakin gelem nerimo ?</p>
-        <button class="btn">batal (iki dismiss no alert e wkwk)</button>
-        <form action="{{route('mentor.tutoring.force-accept', ['tutoring' => $tutoring])}}" method="POST">
-            @csrf
-            @method('PATCH')
-            <button type="submit" class="btn">Gass ae lah anjir</button>
-        </form>
+    <div x-show.transition.duration.300ms="!dismiss" class="flex flex-col items-center gap-4 mb-5 md:gap-10 md:flex-row md:p-8 alert bg-primary-lighter">
+        <div>
+            <i class="md:ml-5 text-5xl md:text-[4rem] text-white fas fa-exclamation-circle"></i>
+        </div>
+        <div class="text-sm font-normal prose text-center text-white normal-case md:text-left md:text-lg">
+
+            <span>Anda sudah menerima request tutoring pada jam yang sama, <br class="hidden xl:inline"> apakah anda yakin ingin menerima request ini ?</span>
+
+            <div class="flex justify-center mt-3 md:justify-start">
+                <button @click="dismiss = true" class="ml-0 text-white border-none btn btn-outline-primary hover:border md:text-base">Batal</button>
+                <form action="{{route('mentor.tutoring.force-accept', ['tutoring' => $tutoring])}}" method="POST">
+                    @csrf
+                    @method('PATCH')
+                    <button type="submit" class="ml-0 bg-white btn hover:bg-opacity-90 focus:bg-opacity-75 text-primary-darker md:text-base">Terima</button>
+                </form>
+            </div>
+        </div>
     </div>
     @endif
+
     <div class="card">
         <div class="flex justify-between card-header">
             <div>

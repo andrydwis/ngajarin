@@ -6,12 +6,12 @@
     <div class="flex flex-col max-w-5xl py-5 md:flex-row md:mx-5 ">
 
 
-        <div class="flex-1 md:min-w-[36rem] lg:min-w-[42rem] mt-10 mb-5">
-            <h6 class="mb-5 text-base font-bold text-center text-gray-700 md:text-xl">
+        <div class="w-full mt-10 mb-5">
+            <h6 class="mb-10 text-base font-bold text-center text-gray-700 md:text-xl">
                 Pilih Mentor untuk mendampingi sesi tutoring kamu
             </h6>
             <!-- card mentor list -->
-            <div class="flex flex-col">
+            <div class="flex flex-wrap">
                 @foreach($mentors as $mentor)
                 <!-- perhitungan rata-rata -->
                 @php
@@ -19,11 +19,11 @@
                 $sum = $mentor->reviews->count();
                 @endphp
 
-                <div class="grid px-3 py-4 mx-4 mb-4 transition-all bg-gray-100 border border-gray-100 cursor-pointer md:px-6 bg-opacity-30 md:hover:bg-gray-100 rounded-xl">
+                <div class="w-full px-4 mb-4 lg:min-w-[490px] lg:w-1/2 ">
 
-                    <div class="flex items-center justify-between gap-1 md:gap-3">
+                    <div class="flex items-center justify-between gap-1 transition-all bg-gray-100 border border-gray-100 cursor-pointer md:gap-3 bg-opacity-30 md:hover:bg-gray-100 rounded-xl">
 
-                        <div class="flex items-center gap-2 md:gap-4">
+                        <div class="flex items-center gap-2 pl-3 my-4 md:gap-4 md:pl-6">
                             <div class="flex flex-shrink-0 w-12 h-12 md:h-14 md:w-14">
                                 <img src="{{$mentor->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name='.$mentor->name}}" class="w-full h-full">
                             </div>
@@ -42,9 +42,9 @@
                             </div>
                         </div>
 
-                        <div class="flex">
+                        <div class="flex border-l">
                             <a href="{{route('student.tutoring.create', $mentor->id)}}">
-                                <button class="rounded-full md:text-sm btn btn-outline-primary hover:bg-primary-lighter text-primary ">
+                                <button class="border-none rounded-full md:text-sm btn btn-outline-primary hover:border hover:bg-primary-lighter text-primary ">
                                     <span class="hidden md:flex">Request</span>
                                     <i class="flex text-xs fill-current md:hidden md:text-sm fas fa-chevron-right"></i>
                                 </button>
@@ -54,7 +54,8 @@
                     </div>
 
                 </div>
-                @endforeach
+
+             @endforeach
 
             </div>
 
