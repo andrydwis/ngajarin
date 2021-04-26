@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Schedule;
 use App\Models\Tutoring;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -20,11 +21,11 @@ class TutoringController extends Controller
     public function index()
     {
         //
-       $data = [
-           'tutorings' => Tutoring::where('mentor_id', Auth::user()->id)->with('student')->get()
-       ];
+        $data = [
+            'tutorings' => Tutoring::where('mentor_id', Auth::user()->id)->with('student')->get()
+        ];
 
-       return view('mentor.tutoring.index', $data);
+        return view('mentor.tutoring.index', $data);
     }
 
     /**
@@ -35,7 +36,7 @@ class TutoringController extends Controller
     public function create(User $user)
     {
         //
-        
+
     }
 
     /**
@@ -47,7 +48,7 @@ class TutoringController extends Controller
     public function store(Request $request, User $user)
     {
         //
-       
+
     }
 
     /**
@@ -59,10 +60,10 @@ class TutoringController extends Controller
     public function show(Tutoring $tutoring)
     {
         //
-        if($tutoring->mentor_id != Auth::user()->id){
+        if ($tutoring->mentor_id != Auth::user()->id) {
             return abort(403, 'Unauthorized action.');
         }
-        
+
         $data = [
             'tutoring' => $tutoring
         ];
@@ -92,10 +93,50 @@ class TutoringController extends Controller
     {
         //
         $request->validate([
-            'status'=> ['required']
+            'status' => ['required']
         ]);
 
-        $tutoring->status = $request->status;
+        $isFuture = Carbon::parse($tutoring->date)->isFuture();
+        if ($isFuture) {
+            $check = Tutoring::where('date', $tutoring->date)->where('status', 'diterima')->first();
+            if ($check && $request->status == 'diterima') {
+                if ($tutoring->hour_start >= $check->hour_start && $tutoring->hour_start < $check->hour_end) {
+                    session()->flash('message', 'Conflict Request');
+
+                    return redirect()->route('mentor.tutoring.show', ['tutoring' => $tutoring]);
+                } elseif ($tutoring->hour_end > $check->hour_start && $tutoring->hour_end <= $check->hour_end) {
+                    session()->flash('message', 'Conflict Request');
+
+                    return redirect()->route('mentor.tutoring.show', ['tutoring' => $tutoring]);
+                } else {
+                    $tutoring->status = $request->status;
+                    $tutoring->save();
+
+                    Alert::success('Permintaan tutoring berhasil diproses');
+
+                    return redirect()->route('mentor.tutoring.show', ['tutoring' => $tutoring]);
+                }
+            } else {
+                $tutoring->status = $request->status;
+                $tutoring->save();
+
+                Alert::success('Permintaan tutoring berhasil diproses');
+
+                return redirect()->route('mentor.tutoring.show', ['tutoring' => $tutoring]);
+            }
+        } else {
+            $tutoring->status = 'ditolak';
+            $tutoring->save();
+
+            Alert::error('Permintaan tutoring telah kadaluwarsa');
+
+            return redirect()->route('mentor.tutoring.show', ['tutoring' => $tutoring]);
+        }
+    }
+
+    public function forceAccept(Request $request, Tutoring $tutoring)
+    {
+        $tutoring->status = 'diterima';
         $tutoring->save();
 
         Alert::success('Permintaan tutoring berhasil diproses');

@@ -2,6 +2,18 @@
 @section('content')
 <div class="w-full p-5 mt-20 md:w-full lg:w-4/6 xl:w-3/4">
 
+    @if(session('message'))
+    <div class="alert alert-danger mb-5">
+        <p>Permintaan ini awdwdbkwaw pokok intine tabrakan mbek sing mbok acc dino iki</p>
+        <p>yakin gelem nerimo ?</p>
+        <button class="btn">batal (iki dismiss no alert e wkwk)</button>
+        <form action="{{route('mentor.tutoring.force-accept', ['tutoring' => $tutoring])}}" method="POST">
+            @csrf
+            @method('PATCH')
+            <button type="submit" class="btn">Gass ae lah anjir</button>
+        </form>
+    </div>
+    @endif
     <div class="card">
         <div class="flex justify-between card-header">
             <div>

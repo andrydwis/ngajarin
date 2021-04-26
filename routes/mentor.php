@@ -69,4 +69,5 @@ Route::middleware(['auth', 'verified', 'role:mentor'])->group(function () {
     Route::get('/mentor/tutoring', [TutoringController::class, 'index'])->name('mentor.tutoring.index');
     Route::get('/mentor/tutoring/show/{tutoring}', [TutoringController::class, 'show'])->name('mentor.tutoring.show');
     Route::patch('/mentor/tutoring/edit/{tutoring}', [TutoringController::class, 'update'])->name('mentor.tutoring.update');
+    Route::patch('/mentor/tutoring/force-accept/{tutoring}', [TutoringController::class, 'forceAccept'])->name('mentor.tutoring.force-accept');
 });

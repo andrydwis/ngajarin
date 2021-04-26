@@ -155,13 +155,13 @@ class TutoringController extends Controller
      * @param  \App\Models\Tutoring  $tutoring
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tutoring $tutoring, User $user)
+    public function destroy(User $user, Tutoring $tutoring)
     {
         //
         $tutoring->delete();
 
         Alert::success('Permintaan tutoring berhasil dibatalkan');
 
-        return redirect()->route('student.tutoring.create', ['user', $user]);
+        return redirect()->route('student.tutoring.create', ['user' => $user]);
     }
 }

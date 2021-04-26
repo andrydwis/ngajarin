@@ -36,4 +36,5 @@ Route::middleware(['auth', 'verified', 'role:student'])->group(function () {
     Route::get('/student/tutoring', [TutoringController::class, 'index'])->name('student.tutoring.index');
     Route::get('/student/tutoring/create/{user}', [TutoringController::class, 'create'])->name('student.tutoring.create');
     Route::post('/student/tutoring/create/{user}', [TutoringController::class, 'store'])->name('student.tutoring.store');
+    Route::delete('/student/tutoring/create/{user}/{tutoring}', [TutoringController::class, 'destroy'])->name('student.tutoring.destroy');
 });

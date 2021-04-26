@@ -115,6 +115,7 @@
                         <ul class="-mt-5 text-gray-700 ">
                             @foreach($tutorings as $tutoring)
                             <li class="p-3 text-sm border-b md:text-base">
+                                @if($tutoring->status=='menunggu')
                                 <div x-data="{ isOpen : false }">
                                     <div class="flex items-center justify-between">
                                         <div>
@@ -135,11 +136,62 @@
                                                 {{Str::limit($tutoring->hour_end, 5, '')}}
                                             </div>
                                         </div>
-                                        <div class="mt-5">
-                                            <button class="w-full btn btn-outline-danger md:text-sm">Batalkan</button>
+                                        <form action="{{route('student.tutoring.destroy', ['user' => $user, 'tutoring' => $tutoring])}}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <div class="mt-5">
+                                                <button type="submit" class="w-full btn btn-outline-danger md:text-sm">Batalkan</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                @elseif($tutoring->status=='diterima')
+                                <div x-data="{ isOpen : false }">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            {{\Carbon\Carbon::parse($tutoring->date)->isoFormat('D MMMM Y')}}
+                                        </div>
+                                        <button @click="isOpen = !isOpen" type="button" class="flex items-center px-3 py-2 mt-0 text-white capitalize focus:outline-none bg-success-lighter alert">
+                                            {{$tutoring->status}}
+                                            <i class="ml-2 text-xs duration-300 fas fa-chevron-down" :class="{'transform rotate-180' : isOpen}"></i>
+                                        </button>
+                                    </div>
+                                    <div x-cloak x-show.transition.duration.300ms="isOpen">
+                                        <div class="flex justify-between pb-3 font-semibold border-b mt-7">
+                                            <div>
+                                                {{\Carbon\Carbon::parse($tutoring->date)->isoFormat('dddd')}}
+                                            </div>
+                                            <div>
+                                                {{Str::limit($tutoring->hour_start, 5, '')}} -
+                                                {{Str::limit($tutoring->hour_end, 5, '')}}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                @elseif($tutoring->status=='ditolak')
+                                <div x-data="{ isOpen : false }">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            {{\Carbon\Carbon::parse($tutoring->date)->isoFormat('D MMMM Y')}}
+                                        </div>
+                                        <button @click="isOpen = !isOpen" type="button" class="flex items-center px-3 py-2 mt-0 text-white capitalize focus:outline-none bg-red-400 alert">
+                                            {{$tutoring->status}}
+                                            <i class="ml-2 text-xs duration-300 fas fa-chevron-down" :class="{'transform rotate-180' : isOpen}"></i>
+                                        </button>
+                                    </div>
+                                    <div x-cloak x-show.transition.duration.300ms="isOpen">
+                                        <div class="flex justify-between pb-3 font-semibold border-b mt-7">
+                                            <div>
+                                                {{\Carbon\Carbon::parse($tutoring->date)->isoFormat('dddd')}}
+                                            </div>
+                                            <div>
+                                                {{Str::limit($tutoring->hour_start, 5, '')}} -
+                                                {{Str::limit($tutoring->hour_end, 5, '')}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
                             </li>
                             @endforeach
                         </ul>
