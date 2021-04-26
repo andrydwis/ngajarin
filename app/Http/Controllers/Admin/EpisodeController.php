@@ -55,14 +55,14 @@ class EpisodeController extends Controller
         //
         if ($request->tipe == 'video') {
             $request->validate([
-                'judul' => ['required', 'string', Rule::unique('episodes', 'title')],
+                'judul' => ['required', 'string'],
                 'link' => ['required'],
                 'deskripsi' => ['required', 'string'],
                 'tipe' => ['required'],
             ]);
         } elseif ($request->tipe == 'text') {
             $request->validate([
-                'judul' => ['required', 'string', Rule::unique('episodes', 'title')],
+                'judul' => ['required', 'string'],
                 'deskripsi' => ['required', 'string'],
                 'tipe' => ['required'],
             ]);
@@ -134,14 +134,14 @@ class EpisodeController extends Controller
         //
         if ($request->tipe == 'video') {
             $request->validate([
-                'judul' => ['required', 'string', Rule::unique('episodes', 'title')->ignore($episode)],
+                'judul' => ['required', 'string'],
                 'link' => ['required'],
                 'deskripsi' => ['required', 'string'],
                 'tipe' => ['required'],
             ]);
         } elseif ($request->tipe == 'text') {
             $request->validate([
-                'judul' => ['required', 'string', Rule::unique('episodes', 'title')->ignore($episode)],
+                'judul' => ['required', 'string'],
                 'deskripsi' => ['required', 'string'],
                 'tipe' => ['required'],
             ]);

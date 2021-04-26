@@ -17,6 +17,7 @@ class CreateCertificateUsersTable extends Migration
             $table->id();
             $table->foreignId('certificate_id')->constrained('certificates')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('serial_number')->unique();
             $table->timestamps();
         });
     }

@@ -55,14 +55,14 @@ class EpisodeController extends Controller
         //
         if ($request->tipe == 'video') {
             $request->validate([
-                'judul' => ['required', 'string', Rule::unique('episodes', 'title')],
+                'judul' => ['required', 'string'],
                 'link' => ['required'],
                 'deskripsi' => ['required', 'string'],
                 'tipe' => ['required'],
             ]);
         } elseif ($request->tipe == 'text') {
             $request->validate([
-                'judul' => ['required', 'string', Rule::unique('episodes', 'title')],
+                'judul' => ['required', 'string'],
                 'deskripsi' => ['required', 'string'],
                 'tipe' => ['required'],
             ]);
@@ -71,7 +71,7 @@ class EpisodeController extends Controller
         $episode = new Episode();
         $episode->course_id = $course->id;
         $episode->title = $request->judul;
-        $episode->slug = Str::slug($request->judul);
+        $episode->slug = Str::slug($request->judul) . '-' . Str::random(5);
         $episode->description = $request->deskripsi;
         $episode->type = $request->tipe;
         if ($request->tipe == 'video') {
@@ -134,14 +134,14 @@ class EpisodeController extends Controller
         //
         if ($request->tipe == 'video') {
             $request->validate([
-                'judul' => ['required', 'string', Rule::unique('episodes', 'title')->ignore($episode)],
+                'judul' => ['required', 'string'],
                 'link' => ['required'],
                 'deskripsi' => ['required', 'string'],
                 'tipe' => ['required'],
             ]);
         } elseif ($request->tipe == 'text') {
             $request->validate([
-                'judul' => ['required', 'string', Rule::unique('episodes', 'title')->ignore($episode)],
+                'judul' => ['required', 'string'],
                 'deskripsi' => ['required', 'string'],
                 'tipe' => ['required'],
             ]);
@@ -149,7 +149,7 @@ class EpisodeController extends Controller
 
         $episode->course_id = $course->id;
         $episode->title = $request->judul;
-        $episode->slug = Str::slug($request->judul);
+        $episode->slug = Str::slug($request->judul) . '-' . Str::random(5);
         $episode->description = $request->deskripsi;
         $episode->type = $request->tipe;
         if ($request->tipe == 'video') {

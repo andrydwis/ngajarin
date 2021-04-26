@@ -11,7 +11,8 @@ class Certificate extends Model
 
     protected $fillable = [
         'course_id',
-        'template'
+        'user_id',
+        'serial_number'
     ];
 
     public function course()

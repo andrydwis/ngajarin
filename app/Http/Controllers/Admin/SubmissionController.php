@@ -54,7 +54,7 @@ class SubmissionController extends Controller
     {
         //
         $request->validate([
-            'judul' => ['required', 'string', Rule::unique('submissions', 'title')],
+            'judul' => ['required', 'string'],
             'tugas' => ['required', 'string'],
         ]);
 
@@ -117,7 +117,7 @@ class SubmissionController extends Controller
     {
         //
         $request->validate([
-            'judul' => ['required', 'string', Rule::unique('submissions', 'title')->ignore($submission)],
+            'judul' => ['required', 'string'],
             'tugas' => ['required', 'string'],
         ]);
 

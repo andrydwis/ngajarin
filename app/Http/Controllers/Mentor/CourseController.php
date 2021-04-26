@@ -53,7 +53,7 @@ class CourseController extends Controller
     {
         //
         $request->validate([
-            'judul' => ['required', 'string', Rule::unique('courses', 'title')],
+            'judul' => ['required', 'string'],
             'deskripsi' => ['required', 'string'],
             'level' => ['required'],
         ]);
@@ -121,7 +121,7 @@ class CourseController extends Controller
     {
         //
         $request->validate([
-            'judul' => ['required', 'string', Rule::unique('courses', 'title')->ignore($course)],
+            'judul' => ['required', 'string'],
             'deskripsi' => ['required', 'string'],
             'level' => ['required'],
         ]);
