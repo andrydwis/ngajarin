@@ -18,4 +18,8 @@ class CertificateUser extends Model
     {
         return $this->belongsTo(Certificate::class);
     }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

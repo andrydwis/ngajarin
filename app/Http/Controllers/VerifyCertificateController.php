@@ -21,9 +21,20 @@ class VerifyCertificateController extends Controller
 
         $certificateUser = CertificateUser::where('serial_number', $request->nomor_seri)->first();
         if($certificateUser){
-            return 'valid';
+            $data = [
+                'serial_number' => $request->nomor_seri,
+                'status' => 'valid',
+                'certificate' => $certificateUser
+            ];
+
+            return view('user.certificate.show', $data);
         }else{
-            return 'gak valid';
+            $data = [
+                'serial_number' => $request->nomor_seri,
+                'status' => 'tidak valid'
+            ];
+
+            return view('user.certificate.show', $data);
         }
     }
 }
