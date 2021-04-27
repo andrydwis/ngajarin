@@ -29,10 +29,10 @@
                                 <span class="ml-3 "> {{$schedule->dayTrans()}} </span>
                             </td>
                             <td class="border-b">
-                                <span class="ml-3 "> {{$schedule->hour_start}} </span>
+                                <span class="ml-3 "> {{Str::limit($schedule->hour_start, 5, '')}} </span>
                             </td>
                             <td class="border-b">
-                                <span class="ml-3 "> {{$schedule->hour_end}} </span>
+                                <span class="ml-3 "> {{Str::limit($schedule->hour_end, 5, '')}} </span>
                             </td>
                             <td class="grid justify-center border-b md:flex">
                                 <a href="{{route('mentor.schedule.edit', ['schedule' => $schedule])}}">

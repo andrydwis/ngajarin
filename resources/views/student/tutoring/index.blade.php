@@ -33,7 +33,7 @@
                                     <i class="mr-1 text-xs text-opacity-70 text-primary-lighter md:text-sm fas fa-star"></i>
                                     <span class="text-primary-lighter">
                                         @if($rate)
-                                        <span>{{round($rate, 1)}} / {{$sum}} ulasan</span>
+                                        <span>{{round($rate, 1)}} dari {{$sum}} ulasan</span>
                                         @else
                                         <span> - </span>
                                         @endif
@@ -50,15 +50,11 @@
                                 </button>
                             </a>
                         </div>
-
                     </div>
-
                 </div>
-
-             @endforeach
-
+                @endforeach
+                
             </div>
-
         </div>
     </div>
 </div>

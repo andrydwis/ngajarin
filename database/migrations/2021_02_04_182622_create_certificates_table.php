@@ -16,7 +16,6 @@ class CreateCertificatesTable extends Migration
         Schema::create('certificates', function (Blueprint $table) {
             $table->id();
             $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
-            $table->string('template');
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Certificate;
 use App\Models\Course;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -53,14 +54,14 @@ class CourseController extends Controller
     {
         //
         $request->validate([
-            'judul' => ['required', 'string', Rule::unique('courses', 'title')],
+            'judul' => ['required', 'string'],
             'deskripsi' => ['required', 'string'],
             'level' => ['required'],
         ]);
 
         $course = new Course();
         $course->title = $request->judul;
-        $course->slug = Str::slug($request->judul);
+        $course->slug = Str::slug($request->judul) . '-' . Str::random(5);
         $course->description = $request->deskripsi;
         $course->thumbnail = $request->thumbnail;
         $course->level = $request->level;
@@ -70,6 +71,10 @@ class CourseController extends Controller
         if ($request->tag) {
             $course->tags()->sync($request->tag);
         }
+
+        $certificate = new Certificate();
+        $certificate->course_id = $course->id;
+        $certificate->save();
 
         Alert::success('Course berhasil ditambahkan');
 
@@ -121,13 +126,13 @@ class CourseController extends Controller
     {
         //
         $request->validate([
-            'judul' => ['required', 'string', Rule::unique('courses', 'title')->ignore($course)],
+            'judul' => ['required', 'string'],
             'deskripsi' => ['required', 'string'],
             'level' => ['required'],
         ]);
 
         $course->title = $request->judul;
-        $course->slug = Str::slug($request->judul);
+        $course->slug = Str::slug($request->judul) . '-' . Str::random(5);
         $course->description = $request->deskripsi;
         $course->thumbnail = $request->thumbnail;
         $course->level = $request->level;

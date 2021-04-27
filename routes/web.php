@@ -3,6 +3,7 @@
 use App\Http\Controllers\CourseUserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DocumentationController;
+use App\Http\Controllers\VerifyCertificateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,9 @@ Route::get('/admin/dashboard', [DashboardController::class, 'admin'])->middlewar
 Route::get('/mentor/dashboard', [DashboardController::class, 'mentor'])->middleware(['auth', 'verified', 'role:mentor'])->name('dashboard.mentor');
 Route::get('/student/dashboard', [DashboardController::class, 'student'])->middleware(['auth', 'verified', 'role:student'])->name('dashboard.student');
 
+Route::get('/verify-certificate', [VerifyCertificateController::class, 'index'])->name('verify-certificate.index');
+Route::post('/verify-certificate', [VerifyCertificateController::class, 'store'])->name('verify-certificate.store');
+
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth', 'verified']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
@@ -34,3 +38,5 @@ require __DIR__ . '/admin.php';
 require __DIR__ . '/mentor.php';
 require __DIR__ . '/student.php';
 require __DIR__ . '/user.php';
+
+

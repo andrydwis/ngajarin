@@ -61,7 +61,7 @@ class TutoringController extends Controller
             'user' => $user,
             'schedules' => $schedules,
             'dates' => $dates,
-            'reviews' => Review::where('user_id', $user->id)->inRandomOrder()->limit(3)->get(),
+            'reviews' => Review::where('mentor_id', $user->id)->inRandomOrder()->limit(3)->get(),
             'tutorings' => Tutoring::where('mentor_id', $user->id)->where('student_id', Auth::user()->id)->orderBy('created_at', 'desc')->get(),
         ];
 
@@ -115,15 +115,6 @@ class TutoringController extends Controller
     public function show(Tutoring $tutoring)
     {
         //
-        if ($tutoring->student_id != Auth::user()->id) {
-            return abort(403, 'Unauthorized action.');
-        }
-
-        $data = [
-            'tutoring' => $tutoring
-        ];
-
-        return view('student.tutoring.show', $data);
     }
 
     /**

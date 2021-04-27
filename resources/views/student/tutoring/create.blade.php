@@ -225,9 +225,43 @@
                                         <div>
                                             {{\Carbon\Carbon::parse($tutoring->date)->isoFormat('dddd')}}
                                         </div>
+                                        <button @click="isOpen = !isOpen" type="button" class="flex items-center px-3 py-2 mt-0 text-white capitalize focus:outline-none bg-danger-lighter alert">
+                                            {{$tutoring->status}}
+                                            <i class="ml-2 text-xs duration-300 fas fa-chevron-down" :class="{'transform rotate-180' : isOpen}"></i>
+                                        </button>
+                                    </div>
+                                    <div x-cloak x-show.transition.duration.300ms="isOpen">
+                                        <div class="flex justify-between pb-3 font-semibold border-b mt-7">
+                                            <div>
+                                                {{\Carbon\Carbon::parse($tutoring->date)->isoFormat('dddd')}}
+                                            </div>
+                                            <div>
+                                                {{Str::limit($tutoring->hour_start, 5, '')}} -
+                                                {{Str::limit($tutoring->hour_end, 5, '')}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @elseif($tutoring->status=='selesai')
+                                <div x-data="{ isOpen : false }">
+                                    <div class="flex items-center justify-between">
                                         <div>
-                                            {{Str::limit($tutoring->hour_start, 5, '')}} -
-                                            {{Str::limit($tutoring->hour_end, 5, '')}}
+                                            {{\Carbon\Carbon::parse($tutoring->date)->isoFormat('D MMMM Y')}}
+                                        </div>
+                                        <button @click="isOpen = !isOpen" type="button" class="flex items-center px-3 py-2 mt-0 text-white capitalize focus:outline-none bg-primary-lighter alert">
+                                            {{$tutoring->status}}
+                                            <i class="ml-2 text-xs duration-300 fas fa-chevron-down" :class="{'transform rotate-180' : isOpen}"></i>
+                                        </button>
+                                    </div>
+                                    <div x-cloak x-show.transition.duration.300ms="isOpen">
+                                        <div class="flex justify-between pb-3 font-semibold border-b mt-7">
+                                            <div>
+                                                {{\Carbon\Carbon::parse($tutoring->date)->isoFormat('dddd')}}
+                                            </div>
+                                            <div>
+                                                {{Str::limit($tutoring->hour_start, 5, '')}} -
+                                                {{Str::limit($tutoring->hour_end, 5, '')}}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

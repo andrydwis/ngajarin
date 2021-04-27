@@ -1,7 +1,7 @@
 <div>
+    @if(!$schedule_now)
     <form action="{{route('student.tutoring.store', ['user' => $user->id])}}" method="POST">
         @csrf
-
         <div class="flex flex-wrap items-center gap-2">
             <div class="w-full md:flex-1" x-data="{ isOpen : false }">
                 <label>Tanggal</label>
@@ -70,12 +70,68 @@
             <button type="submit" class="mt-0 btn btn-primary md:text-sm">Kirim</button>
         </div>
     </form>
+    @else
+    @php
+    $start = \Carbon\Carbon::parse($schedule_now->date.' '.$schedule_now->hour_start);
+    $end = \Carbon\Carbon::parse($schedule_now->date.' '.$schedule_now->hour_end);
+    @endphp
+    @if($start->isFuture())
+    <p>akan mulai pada</p>
+    <div id="countdown_start"></div>
+    @endif
+    @if(!$start->isFuture() && $end->isFuture())
+    <p>sisa durasi</p>
+    <div id="countdown_end"></div>
+    @endif
+    @endif
+
+    @if($review_form)
+    <form action="">
+        <p>review</p>
+        <label for="rate">Rate</label>
+        <input type="range" name="rate" value="{{old('rate')}}">
+        <label for="pesan">Pesan</label>
+        <textarea name="pesan">{{old('pesan')}}</textarea>
+        <button type="submit">Kirim</button>
+    </form>
+    @endif
 </div>
 
 @section('customCSS')
 <style>
-    input, textarea {
+    input,
+    textarea {
         margin-top: 10px;
     }
 </style>
+@endsection
+
+@section('customJS')
+<script src="{{asset('js/countdown.js')}}"></script>
+<script type="text/javascript">
+    @if($schedule_now)
+    @if($start->isFuture())
+    $("#countdown_start")
+        .countdown("{{$start}}", function(event) {
+            $(this).text(
+                event.strftime('%H:%M:%S')
+            );
+        })
+        .on('finish.countdown', function(event) {
+            location.reload();
+        });
+    @endif
+    @if(!$start->isFuture() && $end->isFuture())
+    $("#countdown_end")
+        .countdown("{{$end}}", function(event) {
+            $(this).text(
+                event.strftime('%H:%M:%S')
+            );
+        })
+        .on('finish.countdown', function(event) {
+            Livewire.emit('show', '{{$schedule_now->id}}');
+        });
+    @endif
+    @endif
+</script>
 @endsection
