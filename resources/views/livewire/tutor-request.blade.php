@@ -11,7 +11,7 @@
                     </button>
                     <input type="date" name="tanggal" class="w-full cursor-not-allowed form-input" value="{{old('tanggal') ?? $date_selected ?? ''}}" readonly>
                 </div>
-                <div x-cloak x-show.transition.origin.top="isOpen" @click.away="isOpen = false" class="w-full py-2 text-right text-gray-500 bg-white rounded shadow-md md:text-left md:absolute md:w-52">
+                <div x-cloak x-show.transition.origin.top="isOpen" @click.away="isOpen = false" class="w-full py-2 text-right text-gray-500 bg-white rounded shadow-md md:text-left md:absolute md:w-auto max-h-[250px] overflow-y-scroll">
                     @foreach($dates as $date => $id)
                     <!-- item -->
                     <button class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" wire:click="getSchedule('{{ $date }}', {{ $id }})" type="button">
@@ -75,26 +75,89 @@
     $start = \Carbon\Carbon::parse($schedule_now->date.' '.$schedule_now->hour_start);
     $end = \Carbon\Carbon::parse($schedule_now->date.' '.$schedule_now->hour_end);
     @endphp
-    @if($start->isFuture())
-    <p>akan mulai pada</p>
-    <div id="countdown_start"></div>
-    @endif
-    @if(!$start->isFuture() && $end->isFuture())
-    <p>sisa durasi</p>
-    <div id="countdown_end"></div>
-    @endif
+
+    <div class="">
+        @if($start->isFuture())
+        <div class="flex flex-col items-center gap-4 p-8 mb-5 prose text-white normal-case rounded-lg md:gap-10 md:flex-row bg-primary-lighter">
+            <div>
+                <i class="text-2xl text-white md:ml-5 md:text-5xl fas fa-exclamation-circle"></i>
+            </div>
+            <div class="text-sm text-center md:text-left md:text-lg">
+                <span>Sesi Tutoring anda akan dimulai pada: </span>
+                <div id="countdown_start" class="mt-2 text-2xl"></div>
+            </div>
+        </div>
+        @endif
+        @if(!$start->isFuture() && $end->isFuture())
+        <div class="flex flex-col items-center gap-4 p-8 mb-5 prose text-white normal-case rounded-lg md:gap-10 md:flex-row bg-success-lighter">
+            <div>
+                <i class="text-2xl text-white md:ml-5 md:text-5xl fas fa-check-circle"></i>
+            </div>
+            <div class="text-sm text-center md:text-left md:text-lg">
+                <span>Sesi Tutoring anda sedang berjalan,</span> <br>
+                <span>Sisa waktu :</span>
+                <div id="countdown_end" class="mt-2 text-2xl"></div>
+            </div>
+        </div>
+        @endif
+    </div>
     @endif
 
     @if($review_form)
-    <form action="">
-        <p>review</p>
-        <label for="rate">Rate</label>
-        <input type="range" name="rate" value="{{old('rate')}}">
-        <label for="pesan">Pesan</label>
-        <textarea name="pesan">{{old('pesan')}}</textarea>
-        <button type="submit">Kirim</button>
-    </form>
+    <div class="p-8 mb-5 prose normal-case rounded-lg bg-primary-lighter">
+        <form action="">
+
+            <div class="block text-center text-white">
+                <h6 class="h6">Sesi tutoring telah Selesai!</h6>
+                <span>Tulis pendapatmu mengenai mentor kamu hari ini</span>
+            </div>
+
+            <div class="flex justify-center w-full gap-2 my-10 text-2xl text-gray-100 md:text-4xl" x-data="rating()" x-init="checkRating()">
+                <div>
+                    <input type="radio" id="star1" class="hidden" name="rate" value="1" @if(old('rate')==1 ){{'checked'}}@endif />
+                    <label @click="setRating(1)" for="star1" class="fill-current rate hover:text-yellow-300">
+                        <i class="fas fa-star"></i>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" id="star2" class="hidden" name="rate" value="2" @if(old('rate')==2 ){{'checked'}}@endif />
+                    <label @click="setRating(2)" for="star2" class="fill-current rate hover:text-yellow-300">
+                        <i class="fas fa-star"></i>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" id="star3" class="hidden" name="rate" value="3" @if(old('rate')==3 ){{'checked'}}@endif />
+                    <label @click="setRating(3)" for="star3" class="fill-current rate hover:text-yellow-300">
+                        <i class="fas fa-star"></i>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" id="star4" class="hidden" name="rate" value="4" @if(old('rate')==4 ){{'checked'}}@endif />
+                    <label @click="setRating(4)" for="star4" class="fill-current rate hover:text-yellow-300">
+                        <i class="fas fa-star"></i>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" id="star5" class="hidden" name="rate" value="5" @if(old('rate')==5 ){{'checked'}}@endif />
+                    <label @click="setRating(5)" for="star5" class="fill-current rate hover:text-yellow-300">
+                        <i class="fas fa-star"></i>
+                    </label>
+                </div>
+
+
+            </div>
+
+            <div>
+                <textarea name="pesan" class="block w-full form-textarea" rows="3" placeholder="Ulasan mengenai mentor..">{{old('pesan')}}</textarea>
+            </div>
+            <div class="flex justify-end w-full mt-5">
+                <button type="submit" class="w-full m-0 font-semibold bg-white btn text-primary hover:bg-opacity-75 md:text-sm">Kirim</button>
+            </div>
+        </form>
+
+    </div>
     @endif
+
 </div>
 
 @section('customCSS')
@@ -106,9 +169,51 @@
 </style>
 @endsection
 
+
 @section('customJS')
 <script src="{{asset('js/countdown.js')}}"></script>
 <script type="text/javascript">
+    function checkRating() {
+        const radioButton = document.querySelectorAll('input[name="rate"]');
+        let rating;
+        for (const rb of radioButton) {
+            if (rb.checked) {
+                rating = rb.value - 1;
+                // udah dapet inputan
+
+                let labelRating = document.querySelectorAll('label[class~="rate"]');
+
+                for (i = rating; i != -1; i--) {
+                    labelRating[i].classList.add("text-yellow-300")
+                }
+
+                break;
+            }
+        }
+    }
+
+    function rating() {
+
+        return {
+            setRating(inputanRating) {
+                const rating = inputanRating - 1;
+
+                let labelRating = document.querySelectorAll('label[class~="rate"]');
+
+                // clear style
+                for (const label of labelRating) {
+                    label.classList.remove("text-yellow-300")
+                }
+
+                // apply style
+                for (i = rating; i != -1; i--) {
+                    labelRating[i].classList.add("text-yellow-300")
+                }
+
+            }
+        }
+    }
+
     @if($schedule_now)
     @if($start->isFuture())
     $("#countdown_start")

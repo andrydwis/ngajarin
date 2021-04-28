@@ -9,7 +9,10 @@
         </button>
     </a>
 
+
     <div class="grid grid-cols-1 gap-5 px-5 pt-10 pb-20 space lg:gap-10 lg:px-20 lg:grid-cols-3">
+
+        <!-- bagian kiri -->
         <div class="mb-5 md:col-span-2">
 
             <div class="shadow-md card">
@@ -24,7 +27,7 @@
                             <img src="{{$user->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name='.$user->name}}" class="rounded-xl">
                         </div>
                         <div>
-                            <span>Nama : {{$user->name}}</span>
+                            <span>{{$user->name}}</span>
                             <!-- rating -->
                             @php
                             $rate = $user->reviews->avg('rate');
@@ -59,179 +62,171 @@
 
             </div>
 
-            <div class="mt-10 shadow-md card">
+            <!-- <div class="mt-10 shadow-md card">
                 <div class="card-header">
                     <h6 class="h6">
-                        Ulasan Terbaru
+                        Review tentang mentor
                     </h6>
                 </div>
                 <div class="card-body">
 
                     <div class="grid col-span-1 gap-5 mt-5">
-                        {{-- <div>
+
+
+                        <div class="flex flex-col items-center w-full gap-2">
+                            {{-- <div>
                             @if($reviews)
                             @foreach($reviews as $review)
                             <p>{{$review->message}}</p>
-                        @endforeach
-                        @else
-                        <p>Belum ada ulasan</p>
-                        @endif
-                    </div> --}}
-
-                    <div class="flex flex-col items-center w-full gap-2">
-
-                        <div class="flex-grow-0 flex-shrink-0 w-14 h-14 md:w-20 md:h-20">
-                            <img src="{{$user->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name=random'}}" class="rounded-xl">
-                        </div>
-                        <div class="flex flex-col items-center w-full font-semibold prose">
-
-                            <span> Miftahul Huda </span>
-
-                            <div class="flex justify-center">
-                                @for($i = 0; $i < 4; $i++) <i class="mr-1 text-xs text-opacity-70 text-primary-lighter md:text-sm fas fa-star"></i>
-                                    @endfor
-                                    <i class="mr-1 text-xs text-gray-300 md:text-sm fas fa-star"></i>
+                            @endforeach
+                            @else
+                            <p>Belum ada ulasan</p>
+                            @endif
                             </div>
+                            --}}
 
-                            <div class="w-3/4 p-5 mt-2 font-normal text-center normal-case resize-none form-textarea">Metode pengajarannya mudah dimengerti, mentor nya juga asik
+                            <div class="flex-grow-0 flex-shrink-0 w-14 h-14 md:w-20 md:h-20">
+                                <img src="{{$user->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name=random'}}" class="rounded-xl">
                             </div>
+                            <div class="flex flex-col items-center w-full font-semibold prose">
 
+                                <span> Miftahul Huda </span>
+
+                                <div class="flex justify-center">
+                                    @for($i = 0; $i < 4; $i++) <i class="mr-1 text-xs text-opacity-70 text-primary-lighter md:text-sm fas fa-star"></i>
+                                        @endfor
+                                        <i class="mr-1 text-xs text-gray-300 md:text-sm fas fa-star"></i>
+                                </div>
+
+                                <div class="w-3/4 p-5 mt-2 font-normal text-center normal-case resize-none form-textarea">Metode pengajarannya mudah dimengerti, mentor nya juga asik
+                                </div>
+
+                            </div>
                         </div>
+
                     </div>
 
                 </div>
+            </div> -->
 
-            </div>
-        </div>
-
-        <div class="mt-10 shadow-md card">
-            <div class="card-header">
-                <h6 class="h6">
-                    Form Request Tutoring
-                </h6>
-            </div>
-            <div class="card-body">
-                <!-- input waktu -->
-                <div class="grid col-span-1 gap-5 mt-5">
-                    @livewire('tutor-request', ['user' => $user, 'dates' => $dates])
-                </div>
-                <!-- end of input waktu -->
-            </div>
-        </div>
-
-    </div>
-
-
-    <div class=" md:col-span-1">
-
-        <div class="w-full md:sticky md:top-10">
-            <div class="shadow-md card lg:w-[340px] ">
+            <div class="mt-10 shadow-md card">
                 <div class="card-header">
-                    <h6 class="h6">Jadwal Mentor</h6>
+                    <h6 class="h6">
+                        Form Request Tutoring
+                    </h6>
                 </div>
                 <div class="card-body">
-                    <ul class="-mt-5 text-gray-700 ">
-                        @forelse($schedules as $schedule)
-                        <li class="p-3 text-sm border-b md:text-base">
-                            <div class="flex justify-between">
-                                <div>{{$schedule->dayTrans()}}</div>
-                                <div class="">
-                                    {{Str::limit($schedule->hour_start, 5, '')}} -
-                                    {{Str::limit($schedule->hour_end, 5, '')}}
-                                </div>
-                            </div>
-                        </li>
-                        @empty
-                        <span>Mentor ini belum mengatur jadwal tutoring</span>
-                        @endforelse
-                    </ul>
+                    <!-- input waktu -->
+                    <div class="grid col-span-1 gap-5 mt-5">
+                        @livewire('tutor-request', ['user' => $user, 'dates' => $dates])
+                    </div>
+                    <!-- end of input waktu -->
                 </div>
             </div>
 
-            <div class="mt-10 shadow-md card lg:w-[340px]">
-                <div class="card-header">
-                    <h6 class="h6">Riwayat</h6>
+        </div>
+
+        <!-- bagian kanan -->
+        <div class=" md:col-span-1">
+
+            <div class="w-full md:sticky md:top-10">
+                <div class="shadow-md card lg:w-[340px] ">
+                    <div class="card-header">
+                        <h6 class="h6">Jadwal Mentor</h6>
+                    </div>
+                    <div class="card-body">
+                        <ul class="-mt-5 text-gray-700 ">
+                            @forelse($schedules as $schedule)
+                            <li class="p-3 text-sm border-b md:text-base">
+                                <div class="flex justify-between">
+                                    <div>{{$schedule->dayTrans()}}</div>
+                                    <div class="">
+                                        {{Str::limit($schedule->hour_start, 5, '')}} -
+                                        {{Str::limit($schedule->hour_end, 5, '')}}
+                                    </div>
+                                </div>
+                            </li>
+                            @empty
+                            <span>Mentor ini belum mengatur jadwal tutoring</span>
+                            @endforelse
+                        </ul>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <ul class="-mt-5 text-gray-700 ">
-                        @foreach($tutorings as $tutoring)
-                        <li class="p-3 text-sm border-b md:text-base">
-                            @if($tutoring->status=='menunggu')
-                            <div x-data="{ isOpen : false }">
-                                <div class="flex items-center justify-between">
-                                    <div>
-                                        {{\Carbon\Carbon::parse($tutoring->date)->isoFormat('D MMMM Y')}}
-                                    </div>
-                                    <button @click="isOpen = !isOpen" type="button" class="flex items-center px-3 py-2 mt-0 text-white capitalize focus:outline-none bg-primary-lighter alert">
-                                        {{$tutoring->status}}
-                                        <i class="ml-2 text-xs duration-300 fas fa-chevron-down" :class="{'transform rotate-180' : isOpen}"></i>
-                                    </button>
-                                </div>
-                                <div x-cloak x-show.transition.duration.300ms="isOpen">
-                                    <div class="flex justify-between pb-3 font-semibold mt-7">
+
+                <div class="mt-10 shadow-md card lg:w-[340px]">
+                    <div class="card-header">
+                        <h6 class="h6">Riwayat</h6>
+                    </div>
+                    <div class="card-body max-h-[40vh] overflow-y-scroll">
+                        <ul class="-mt-5 text-gray-700 ">
+                            @foreach($tutorings as $tutoring)
+                            <li class="p-3 text-sm border-b md:text-base">
+                                @if($tutoring->status=='menunggu')
+                                <div x-data="{ isOpen : false }">
+                                    <div class="flex items-center justify-between">
                                         <div>
-                                            {{\Carbon\Carbon::parse($tutoring->date)->isoFormat('dddd')}}
+                                            {{\Carbon\Carbon::parse($tutoring->date)->isoFormat('D MMMM Y')}}
                                         </div>
-                                        <div>
-                                            {{Str::limit($tutoring->hour_start, 5, '')}} -
-                                            {{Str::limit($tutoring->hour_end, 5, '')}}
-                                        </div>
-                                    </div>
-                                    <form action="{{route('student.tutoring.destroy', ['user' => $user, 'tutoring' => $tutoring])}}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <div class="mt-5">
-                                            <button type="submit" class="w-full btn btn-outline-danger md:text-sm">Batalkan</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            @elseif($tutoring->status=='diterima')
-                            <div x-data="{ isOpen : false }">
-                                <div class="flex items-center justify-between">
-                                    <div>
-                                        {{\Carbon\Carbon::parse($tutoring->date)->isoFormat('D MMMM Y')}}
-                                    </div>
-                                    <button @click="isOpen = !isOpen" type="button" class="flex items-center px-3 py-2 mt-0 text-white capitalize focus:outline-none bg-success-lighter alert">
-                                        {{$tutoring->status}}
-                                        <i class="ml-2 text-xs duration-300 fas fa-chevron-down" :class="{'transform rotate-180' : isOpen}"></i>
-                                    </button>
-                                </div>
-                                <div x-cloak x-show.transition.duration.300ms="isOpen">
-                                    <div class="flex justify-between pb-3 font-semibold mt-7">
-                                        <div>
-                                            {{\Carbon\Carbon::parse($tutoring->date)->isoFormat('dddd')}}
-                                        </div>
-                                        <div>
-                                            {{Str::limit($tutoring->hour_start, 5, '')}} -
-                                            {{Str::limit($tutoring->hour_end, 5, '')}}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @elseif($tutoring->status=='ditolak')
-                            <div x-data="{ isOpen : false }">
-                                <div class="flex items-center justify-between">
-                                    <div>
-                                        {{\Carbon\Carbon::parse($tutoring->date)->isoFormat('D MMMM Y')}}
-                                    </div>
-                                    <button @click="isOpen = !isOpen" type="button" class="flex items-center px-3 py-2 mt-0 text-white capitalize bg-red-400 focus:outline-none alert">
-                                        {{$tutoring->status}}
-                                        <i class="ml-2 text-xs duration-300 fas fa-chevron-down" :class="{'transform rotate-180' : isOpen}"></i>
-                                    </button>
-                                </div>
-                                <div x-cloak x-show.transition.duration.300ms="isOpen">
-                                    <div class="flex justify-between pb-3 font-semibold mt-7">
-                                        <div>
-                                            {{\Carbon\Carbon::parse($tutoring->date)->isoFormat('dddd')}}
-                                        </div>
-                                        <button @click="isOpen = !isOpen" type="button" class="flex items-center px-3 py-2 mt-0 text-white capitalize focus:outline-none bg-danger-lighter alert">
+                                        <button @click="isOpen = !isOpen" type="button" class="flex items-center px-3 py-2 mt-0 text-white capitalize bg-gray-500 focus:outline-none alert">
                                             {{$tutoring->status}}
                                             <i class="ml-2 text-xs duration-300 fas fa-chevron-down" :class="{'transform rotate-180' : isOpen}"></i>
                                         </button>
                                     </div>
                                     <div x-cloak x-show.transition.duration.300ms="isOpen">
-                                        <div class="flex justify-between pb-3 font-semibold border-b mt-7">
+                                        <div class="flex justify-between pb-3 font-semibold mt-7">
+                                            <div>
+                                                {{\Carbon\Carbon::parse($tutoring->date)->isoFormat('dddd')}}
+                                            </div>
+                                            <div>
+                                                {{Str::limit($tutoring->hour_start, 5, '')}} -
+                                                {{Str::limit($tutoring->hour_end, 5, '')}}
+                                            </div>
+                                        </div>
+                                        <form action="{{route('student.tutoring.destroy', ['user' => $user, 'tutoring' => $tutoring])}}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <div class="mt-5">
+                                                <button type="submit" class="w-full btn btn-outline-danger md:text-sm">Batalkan</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                @elseif($tutoring->status=='diterima')
+                                <div x-data="{ isOpen : false }">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            {{\Carbon\Carbon::parse($tutoring->date)->isoFormat('D MMMM Y')}}
+                                        </div>
+                                        <button @click="isOpen = !isOpen" type="button" class="flex items-center px-3 py-2 mt-0 text-white capitalize focus:outline-none bg-success-lighter alert">
+                                            {{$tutoring->status}}
+                                            <i class="ml-2 text-xs duration-300 fas fa-chevron-down" :class="{'transform rotate-180' : isOpen}"></i>
+                                        </button>
+                                    </div>
+                                    <div x-cloak x-show.transition.duration.300ms="isOpen">
+                                        <div class="flex justify-between pb-3 font-semibold mt-7">
+                                            <div>
+                                                {{\Carbon\Carbon::parse($tutoring->date)->isoFormat('dddd')}}
+                                            </div>
+                                            <div>
+                                                {{Str::limit($tutoring->hour_start, 5, '')}} -
+                                                {{Str::limit($tutoring->hour_end, 5, '')}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @elseif($tutoring->status=='ditolak')
+                                <div x-data="{ isOpen : false }">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            {{\Carbon\Carbon::parse($tutoring->date)->isoFormat('D MMMM Y')}}
+                                        </div>
+                                        <button @click="isOpen = !isOpen" type="button" class="flex items-center px-3 py-2 mt-0 text-white capitalize bg-red-400 focus:outline-none alert">
+                                            {{$tutoring->status}}
+                                            <i class="ml-2 text-xs duration-300 fas fa-chevron-down" :class="{'transform rotate-180' : isOpen}"></i>
+                                        </button>
+                                    </div>
+                                    <div x-cloak x-show.transition.duration.300ms="isOpen">
+                                        <div class="flex justify-between pb-3 font-semibold mt-7">
                                             <div>
                                                 {{\Carbon\Carbon::parse($tutoring->date)->isoFormat('dddd')}}
                                             </div>
@@ -254,7 +249,7 @@
                                         </button>
                                     </div>
                                     <div x-cloak x-show.transition.duration.300ms="isOpen">
-                                        <div class="flex justify-between pb-3 font-semibold border-b mt-7">
+                                        <div class="flex justify-between pb-3 font-semibold mt-7">
                                             <div>
                                                 {{\Carbon\Carbon::parse($tutoring->date)->isoFormat('dddd')}}
                                             </div>
@@ -265,17 +260,19 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            @endif
-                        </li>
-                        @endforeach
-                    </ul>
+                                @endif
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+
+
                 </div>
             </div>
         </div>
 
     </div>
 </div>
-</div>
+
 
 @endsection
