@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Review;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ReviewController extends Controller
@@ -41,7 +42,7 @@ class ReviewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, User $user)
+    public function store(Request $request)
     {
         //
         $request->validate([
@@ -50,12 +51,15 @@ class ReviewController extends Controller
         ]);
 
         $review = new Review();
-        $review->user_id = $user->id;
+        $review->mentor_id = $request->mentor_id;
+        $review->student_id = Auth::user()->id;
         $review->rate = $request->rate;
         $review->message = $request->pesan;
         $review->save();
 
         Alert::success('Terima kasih telah melakukan review');
+
+        return back();
     }
 
     /**

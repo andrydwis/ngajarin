@@ -105,16 +105,16 @@
 
     @if($review_form)
     <div class="p-8 mb-5 prose normal-case rounded-lg bg-primary-lighter">
-        <form action="">
-
+        <form action="{{route('student.review.store')}}" method="POST">
+            @csrf
             <div class="block text-center text-white">
                 <h6 class="h6">Sesi tutoring telah Selesai!</h6>
                 <span>Tulis pendapatmu mengenai mentor kamu hari ini</span>
             </div>
-
+            <input type="hidden" name="mentor_id" value="{{$user->id}}">
             <div class="flex justify-center w-full gap-2 my-10 text-2xl text-gray-100 md:text-4xl" x-data="rating()" x-init="checkRating()">
                 <div>
-                    <input type="radio" id="star1" class="hidden" name="rate" value="1" @if(old('rate')==1 ){{'checked'}}@endif />
+                    <input type="radio" id="star1" class="hidden" name="rate" value="1" @if(old('rate')==1 ){{'checked'}}@endif required/>
                     <label @click="setRating(1)" for="star1" class="fill-current rate hover:text-yellow-300">
                         <i class="fas fa-star"></i>
                     </label>
@@ -143,12 +143,9 @@
                         <i class="fas fa-star"></i>
                     </label>
                 </div>
-
-
             </div>
-
             <div>
-                <textarea name="pesan" class="block w-full form-textarea" rows="3" placeholder="Ulasan mengenai mentor..">{{old('pesan')}}</textarea>
+                <textarea name="pesan" class="block w-full form-textarea" rows="3" placeholder="Ulasan mengenai mentor.." required>{{old('pesan')}}</textarea>
             </div>
             <div class="flex justify-end w-full mt-5">
                 <button type="submit" class="w-full m-0 font-semibold bg-white btn text-primary hover:bg-opacity-75 md:text-sm">Kirim</button>

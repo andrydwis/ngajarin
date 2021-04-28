@@ -18,8 +18,8 @@ class CreateTutoringsTable extends Migration
             $table->foreignId('mentor_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('student_id')->constrained('users')->onDelete('cascade');
             $table->date('date');
-            $table->string('hour_start');
-            $table->string('hour_end');
+            $table->time('hour_start');
+            $table->time('hour_end');
             $table->text('detail');
             $table->enum('status', ['diterima', 'ditolak', 'menunggu', 'selesai']);
             $table->timestamps();

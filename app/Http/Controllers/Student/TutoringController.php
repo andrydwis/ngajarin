@@ -24,7 +24,7 @@ class TutoringController extends Controller
     {
         //
         $data = [
-            'mentors' => User::role('mentor')->with('reviews', 'detail')->get()
+            'mentors' => User::role('mentor')->with('reviews.student.detail', 'detail')->get()
         ];
 
         return view('student.tutoring.index', $data);
