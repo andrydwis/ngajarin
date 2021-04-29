@@ -22,7 +22,7 @@ class TutoringController extends Controller
     {
         //
         $data = [
-            'tutorings' => Tutoring::where('mentor_id', Auth::user()->id)->with('student')->get()
+            'tutorings' => Tutoring::where('mentor_id', Auth::user()->id)->with('student')->orderBy('date', 'desc')->get()
         ];
 
         return view('mentor.tutoring.index', $data);

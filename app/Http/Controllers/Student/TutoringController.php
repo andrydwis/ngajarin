@@ -80,7 +80,7 @@ class TutoringController extends Controller
         $request->validate([
             'tanggal' => ['required', 'date', 'after_or_equal:now()'],
             'jam_mulai' => ['required'],
-            'jam_akhir' => ['required', 'after:hour_start'],
+            'jam_akhir' => ['required', 'after:jam_mulai'],
             'detail' => ['required']
         ]);
 
