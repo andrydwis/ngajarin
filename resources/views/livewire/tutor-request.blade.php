@@ -105,40 +105,43 @@
 
     @if($review_form)
     <div class="p-8 mb-5 prose normal-case rounded-lg bg-primary-lighter">
-        <form action="{{route('student.review.store')}}" method="POST">
+        <form action="{{route('student.review.store')}}" method="POST" x-data="{ openTooltip : false}">
             @csrf
+
             <div class="block text-center text-white">
                 <h6 class="h6">Sesi tutoring telah Selesai!</h6>
                 <span>Tulis pendapatmu mengenai mentor kamu hari ini</span>
             </div>
             <input type="hidden" name="mentor_id" value="{{$user->id}}">
-            <div class="flex justify-center w-full gap-2 my-10 text-2xl text-gray-100 md:text-4xl" x-data="rating()" x-init="checkRating()">
-                <div>
-                    <input type="radio" id="star1" class="hidden" name="rate" value="1" @if(old('rate')==1 ){{'checked'}}@endif required/>
+
+            <div class="flex justify-center w-full gap-2 mt-10 text-2xl text-gray-100 mb-14 md:text-4xl" x-data="rating()" x-init="checkRating()">
+
+                <div class="flex flex-col-reverse">
+                    <input type="radio" id="star1" name="rate" value="1" @if(old('rate')==1 ){{'checked'}}@endif required />
                     <label @click="setRating(1)" for="star1" class="fill-current rate hover:text-yellow-300">
                         <i class="fas fa-star"></i>
                     </label>
                 </div>
-                <div>
-                    <input type="radio" id="star2" class="hidden" name="rate" value="2" @if(old('rate')==2 ){{'checked'}}@endif />
+                <div class="flex flex-col-reverse">
+                    <input type="radio" id="star2" name="rate" value="2" @if(old('rate')==2 ){{'checked'}}@endif />
                     <label @click="setRating(2)" for="star2" class="fill-current rate hover:text-yellow-300">
                         <i class="fas fa-star"></i>
                     </label>
                 </div>
-                <div>
-                    <input type="radio" id="star3" class="hidden" name="rate" value="3" @if(old('rate')==3 ){{'checked'}}@endif />
+                <div class="flex flex-col-reverse">
+                    <input type="radio" id="star3" name="rate" value="3" @if(old('rate')==3 ){{'checked'}}@endif />
                     <label @click="setRating(3)" for="star3" class="fill-current rate hover:text-yellow-300">
                         <i class="fas fa-star"></i>
                     </label>
                 </div>
-                <div>
-                    <input type="radio" id="star4" class="hidden" name="rate" value="4" @if(old('rate')==4 ){{'checked'}}@endif />
+                <div class="flex flex-col-reverse">
+                    <input type="radio" id="star4" name="rate" value="4" @if(old('rate')==4 ){{'checked'}}@endif />
                     <label @click="setRating(4)" for="star4" class="fill-current rate hover:text-yellow-300">
                         <i class="fas fa-star"></i>
                     </label>
                 </div>
-                <div>
-                    <input type="radio" id="star5" class="hidden" name="rate" value="5" @if(old('rate')==5 ){{'checked'}}@endif />
+                <div class="flex flex-col-reverse">
+                    <input type="radio" id="star5" name="rate" value="5" @if(old('rate')==5 ){{'checked'}}@endif />
                     <label @click="setRating(5)" for="star5" class="fill-current rate hover:text-yellow-300">
                         <i class="fas fa-star"></i>
                     </label>
@@ -155,6 +158,7 @@
     </div>
     @endif
 
+
 </div>
 
 @section('customCSS')
@@ -163,9 +167,16 @@
     textarea {
         margin-top: 10px;
     }
+
+    input[type="radio"] {
+        opacity: 0;
+        cursor: none;
+        height: 0;
+        width: 0;
+        margin-top: -10px;
+    }
 </style>
 @endsection
-
 
 @section('customJS')
 <script src="{{asset('js/countdown.js')}}"></script>
@@ -189,7 +200,7 @@
         }
     }
 
-    function rating() {
+    window.rating = function(){
 
         return {
             setRating(inputanRating) {
