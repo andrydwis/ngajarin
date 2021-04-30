@@ -142,8 +142,8 @@
                                 <div class="flex justify-between">
                                     <div>{{$schedule->dayTrans()}}</div>
                                     <div class="">
-                                        {{Str::limit($schedule->hour_start, 5, '')}} -
-                                        {{Str::limit($schedule->hour_end, 5, '')}}
+                                        {{\Carbon\Carbon::parse($schedule->hour_start)->format('h:i A')}} -
+                                        {{\Carbon\Carbon::parse($schedule->hour_end)->format('h:i A')}}
                                     </div>
                                 </div>
                             </li>
@@ -255,8 +255,8 @@
                                                 {{\Carbon\Carbon::parse($tutoring->date)->isoFormat('dddd')}}
                                             </div>
                                             <div>
-                                                {{Str::limit($tutoring->hour_start, 5, '')}} -
-                                                {{Str::limit($tutoring->hour_end, 5, '')}}
+                                                {{\Carbon\Carbon::parse($tutoring->hour_start)->format('h:i A')}} -
+                                                {{\Carbon\Carbon::parse($tutoring->hour_end)->format('h:i A')}}
                                             </div>
                                         </div>
                                     </div>
