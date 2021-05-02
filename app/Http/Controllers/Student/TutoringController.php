@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Models\Notification;
 use App\Models\Review;
 use App\Models\Schedule;
 use App\Models\Tutoring;
 use App\Models\User;
+use App\Notifications\NewTutoringRequest;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
@@ -23,8 +25,11 @@ class TutoringController extends Controller
     public function index()
     {
         //
+        $recents =  Tutoring::where('student_id', Auth::user()->id)->where('status', 'diterima')->latest()->limit(5)->get()->pluck('mentor_id')->unique()->toArray();
+
         $data = [
-            'mentors' => User::role('mentor')->with('reviews.student.detail', 'detail')->get()
+            'mentors' => User::role('mentor')->with('reviews.student.detail', 'detail')->get(),
+            'recents' => User::role('mentor')->whereIn('id', $recents)->with('reviews.student.detail', 'detail')->get()
         ];
 
         return view('student.tutoring.index', $data);
@@ -96,6 +101,9 @@ class TutoringController extends Controller
             $tutoring->status = 'menunggu';
             $tutoring->save();
 
+            $mentor = User::find($user->id);
+            $mentor->notify(new NewTutoringRequest($tutoring, Auth::user()));
+
             Alert::success('Permintaan tutoring berhasil dibuat');
 
             return redirect()->route('student.tutoring.create', ['user' => $user]);
@@ -149,6 +157,14 @@ class TutoringController extends Controller
     public function destroy(User $user, Tutoring $tutoring)
     {
         //
+        $notifications = Notification::where('notifiable_id', $tutoring->mentor_id)->where('type', 'App\Notifications\NewTutoringRequest')->get();
+
+        foreach($notifications as $notification){
+            if($notification->data['tutoring_id'] == $tutoring->id){
+                $notification->delete();
+            }
+        }
+
         $tutoring->delete();
 
         Alert::success('Permintaan tutoring berhasil dibatalkan');

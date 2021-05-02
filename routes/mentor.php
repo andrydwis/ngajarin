@@ -5,6 +5,7 @@ use App\Http\Controllers\Mentor\ClassroomCourseController;
 use App\Http\Controllers\Mentor\ClassroomMemberController;
 use App\Http\Controllers\Mentor\CourseController;
 use App\Http\Controllers\Mentor\EpisodeController;
+use App\Http\Controllers\Mentor\NotificationHandlerController;
 use App\Http\Controllers\Mentor\ScheduleController;
 use App\Http\Controllers\Mentor\ScoreController;
 use App\Http\Controllers\Mentor\SubmissionController;
@@ -70,4 +71,9 @@ Route::middleware(['auth', 'verified', 'role:mentor'])->group(function () {
     Route::get('/mentor/tutoring/show/{tutoring}', [TutoringController::class, 'show'])->name('mentor.tutoring.show');
     Route::patch('/mentor/tutoring/edit/{tutoring}', [TutoringController::class, 'update'])->name('mentor.tutoring.update');
     Route::patch('/mentor/tutoring/force-accept/{tutoring}', [TutoringController::class, 'forceAccept'])->name('mentor.tutoring.force-accept');
+
+    Route::get('/mentor/notification/read-all', [NotificationHandlerController::class, 'readAll'])->name('mentor.notification.read-all');
+    Route::get('/mentor/notification/destroy/{notification}', [NotificationHandlerController::class, 'destroy'])->name('mentor.notification.destroy');
+    Route::get('/mentor/notification/destroy-all', [NotificationHandlerController::class, 'destroyAll'])->name('mentor.notification.destroy-all');
+    Route::get('/mentor/notification/{notification}', [NotificationHandlerController::class, 'handling'])->name('mentor.notification.handling');
 });

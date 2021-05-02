@@ -112,6 +112,16 @@ class TutoringController extends Controller
                     $tutoring->status = $request->status;
                     $tutoring->save();
 
+                    $notifications = User::find(Auth::user()->id)->notifications;
+
+                    foreach ($notifications as $notification) {
+                        if ($notification->type == 'App\Notifications\NewTutoringRequest') {
+                            $tutoring = Tutoring::find($notification->data['tutoring_id']);
+
+                            $notification->delete();
+                        }
+                    }
+
                     Alert::success('Permintaan tutoring berhasil diproses');
 
                     return redirect()->route('mentor.tutoring.show', ['tutoring' => $tutoring]);
@@ -119,6 +129,16 @@ class TutoringController extends Controller
             } else {
                 $tutoring->status = $request->status;
                 $tutoring->save();
+
+                $notifications = User::find(Auth::user()->id)->notifications;
+
+                foreach ($notifications as $notification) {
+                    if ($notification->type == 'App\Notifications\NewTutoringRequest') {
+                        $tutoring = Tutoring::find($notification->data['tutoring_id']);
+
+                        $notification->delete();
+                    }
+                }
 
                 Alert::success('Permintaan tutoring berhasil diproses');
 

@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Course;
+use Illuminate\Http\Request;
+use App\Models\User;
+
+class RootController extends Controller
+{
+    /**
+     * Handle the incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function __invoke(Request $request)
+    {
+        //
+        $admin = User::role('admin')->get()->pluck('id')->toArray();
+
+        $data = [
+            'courses' => Course::whereIn('created_by', $admin)->latest()->limit(6)->get()
+        ];
+
+        return view('welcome', $data);
+    }
+}
