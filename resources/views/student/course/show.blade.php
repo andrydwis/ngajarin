@@ -112,14 +112,12 @@
 
             <div class="mt-10 shadow-xl card">
                 <div class="card-header">
-                    <h6 class="h6">Course Serupa / Statistik</h6>
+                    <h6 class="h6">Statistik</h6>
                 </div>
                 <div class="prose card-body">
-
                     <p>Jumlah mahasiswa yang ikut course ini: {{$course->users->count()}}</p>
                     <p>Jumlah episode: {{$course->episodes->count()}}</p>
                     <p>Jumlah submission: {{$course->submissions->count()}}</p>
-
                 </div>
             </div>
         </div>

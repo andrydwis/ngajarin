@@ -29,12 +29,12 @@
 </section>
 <!-- end of hero section -->
 
-<!-- course highlight section -->
+<!-- recent course section -->
 <section class="w-full py-20 bg-white">
     <div class="container max-w-6xl mx-auto">
-        <h2 class="text-4xl font-bold tracking-tight text-center">Highlight Course</h2>
-        <p class="mt-2 text-lg text-center text-gray-600">Course terbaik untuk mulai belajar pemrograman</p>
-        @foreach($courses as $course)
+        <h2 class="text-4xl font-bold tracking-tight text-center">Course Terbaru</h2>
+        <p class="mt-2 text-lg text-center text-gray-600">Course terbaru milik kami yang selalu up to date dengan materi yang fresh</p>
+        @foreach($recent_courses as $course)
         <div class="grid grid-cols-4 gap-8 mt-10 sm:grid-cols-8 lg:grid-cols-12 sm:px-8 xl:px-0">
             <div class="relative flex flex-col items-center justify-between col-span-4 px-8 py-12 space-y-4 overflow-hidden bg-gray-100 sm:rounded-xl">
                 <img src="{{$course->thumbnail}}" alt="thumbnail" class="rounded">
@@ -45,7 +45,26 @@
         @endforeach
     </div>
 </section>
-<!-- end of course highlight section -->
+<!-- end of recent course section -->
+
+<!-- recent course section -->
+<section class="w-full py-20 bg-white">
+    <div class="container max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold tracking-tight text-center">Course Terpopuler</h2>
+        <p class="mt-2 text-lg text-center text-gray-600">Course yang paling banyak diikuti member Ngajar.IN</p>
+        @foreach($popular_courses as $course)
+        <div class="grid grid-cols-4 gap-8 mt-10 sm:grid-cols-8 lg:grid-cols-12 sm:px-8 xl:px-0">
+            <div class="relative flex flex-col items-center justify-between col-span-4 px-8 py-12 space-y-4 overflow-hidden bg-gray-100 sm:rounded-xl">
+                <img src="{{$course->thumbnail}}" alt="thumbnail" class="rounded">
+                <h4 class="text-xl font-medium text-gray-700">{{$course->title}}</h4>
+                <p>Jumlah member yang join : {{$course->users->count()}}</p>
+                <a href="{{route('student.course.show', ['course' => $course])}}" class="btn btn-primary">lihat</a>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</section>
+<!-- end of recent course section -->
 
 <!-- benefit section -->
 <section class="w-full h-full px-8 py-20 mx-auto bg-white">

@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\CertificateController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\EpisodeController;
 use App\Http\Controllers\Admin\MentorController;
+use App\Http\Controllers\Admin\NotificationHandlerController;
 use App\Http\Controllers\Admin\SubmissionController;
 use App\Http\Controllers\Admin\TagController;
 use Illuminate\Support\Facades\Route;
@@ -49,4 +49,9 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('/admin/course/{course:slug}/submission/review-accepted/{submission:slug}', [SubmissionController::class, 'reviewAccepted'])->name('admin.course.submission.review-accepted');
     Route::get('/admin/course/{course:slug}/submission/review-rejected/{submission:slug}', [SubmissionController::class, 'reviewRejected'])->name('admin.course.submission.review-rejected');
     Route::post('/admin/course/{course:slug}/submission/review-process/{submission:slug}/{submissionUser}', [SubmissionController::class, 'reviewProcess'])->name('admin.course.submission.review-process');
+
+    Route::get('/admin/notification/read-all', [NotificationHandlerController::class, 'readAll'])->name('admin.notification.read-all');
+    Route::get('/admin/notification/destroy/{notification}', [NotificationHandlerController::class, 'destroy'])->name('admin.notification.destroy');
+    Route::get('/admin/notification/destroy-all', [NotificationHandlerController::class, 'destroyAll'])->name('admin.notification.destroy-all');
+    Route::get('/admin/notification/{notification}', [NotificationHandlerController::class, 'handling'])->name('admin.notification.handling');
 });

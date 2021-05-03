@@ -118,60 +118,7 @@
         <!-- dropdown notif & chat -->
         <div class="flex">
             <!-- notif -->
-            <div class="static mr-1 xs:mr-5 md:relative" x-data="{ isOpen2 : false }">
-
-                <button class="p-0 m-0 text-gray-500 transition-all duration-300 ease-in-out menu-btn hover:text-gray-900 focus:text-gray-900 focus:outline-none" @click="isOpen2 = true">
-                    <i class="fas fa-bell"></i>
-                </button>
-
-                <div x-cloak x-show.transition.origin.top="isOpen2" @click.away="isOpen2 = false" class="absolute right-0 z-20 w-full py-2 mt-5 bg-white rounded shadow-md md:w-80 animated">
-                    <!-- top -->
-                    <div class="flex flex-row items-center justify-between px-4 py-2 text-sm font-semibold capitalize">
-                        <h1>notifications</h1>
-                        <div class="px-1 text-xs text-green-500 bg-green-100 border border-green-200 rounded">
-                            <strong>5</strong>
-                        </div>
-                    </div>
-                    <hr>
-                    <!-- end top -->
-
-                    <!-- body -->
-
-                    @for ($i = 0; $i < 5; $i++) <!-- item -->
-                        <a class="flex px-4 py-4 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white md:flex md:flex-row md:items-center md:justify-start hover:bg-gray-200" href="#">
-
-                            <div class="px-3 py-2 mr-3 bg-gray-100 border border-gray-300 rounded">
-                                <i class="text-sm fas fa-birthday-cake"></i>
-                            </div>
-
-                            <div class="flex flex-row flex-1">
-                                <div class="flex-1">
-                                    <h1 class="text-sm font-semibold">poll..</h1>
-                                    <p class="text-xs text-gray-500">text here also</p>
-                                </div>
-                                <div class="text-xs text-right text-gray-500">
-                                    <p>4 min ago</p>
-                                </div>
-
-                            </div>
-
-                        </a>
-                        <hr>
-                        <!-- end item -->
-                        @endfor
-
-                        <!-- end body -->
-
-                        <!-- bottom -->
-                        <hr>
-                        <div class="px-4 py-2 mt-2">
-                            <a href="#" class="block p-1 text-xs text-center uppercase transition-all duration-500 ease-in-out border border-gray-300 rounded hover:text-green-500">
-                                lihat semua
-                            </a>
-                        </div>
-                        <!-- end bottom -->
-                </div>
-            </div>
+            <x-admin-notifications></x-admin-notifications>
             <!-- end notif -->
 
             <!-- chat -->

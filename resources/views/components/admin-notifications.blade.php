@@ -22,35 +22,6 @@
             <!-- body -->
             <!-- item -->
             @foreach($notifications as $notification)
-            <!-- notif tutoring -->
-            @if($notification->type == 'App\Notifications\NewTutoringRequest')
-            @php
-            $student = \App\Models\User::find($notification->data['student_id']);
-            @endphp
-            @if(!$notification->read_at)
-            <span class="flex h-3 w-3">
-                <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-purple-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
-            </span>
-            @endif
-            <a href="{{route('mentor.notification.handling', ['notification' => $notification])}}" class="flex px-4 py-4 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white md:flex md:flex-row md:items-center md:justify-start hover:bg-gray-200">
-                <div class="px-3 py-2 mr-3 bg-gray-100 border border-gray-300 rounded">
-                    <i class="text-sm fas fa-user"></i>
-                </div>
-                <div class="flex flex-row flex-1">
-                    <div class="flex-1">
-                        <h1 class="text-sm font-semibold">Request Tutoring baru</h1>
-                        <p class="text-xs text-gray-500">{{$student->name}} mengirim request tutoring baru kepada anda</p>
-                    </div>
-                    <div class="text-xs text-right text-gray-500">
-                        <p>{{$notification->created_at->diffForHumans()}}</p>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('mentor.notification.destroy', ['notification' => $notification])}}">Hapus</a>
-            <hr>
-            @endif
-            <!-- notif submission -->
             @if($notification->type == 'App\Notifications\NewSubmission')
             @php
             $student = \App\Models\User::find($notification->data['student_id']);
@@ -62,7 +33,7 @@
                 <span class="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
             </span>
             @endif
-            <a href="{{route('mentor.notification.handling', ['notification' => $notification])}}" class="flex px-4 py-4 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white md:flex md:flex-row md:items-center md:justify-start hover:bg-gray-200">
+            <a href="{{route('admin.notification.handling', ['notification' => $notification])}}" class="flex px-4 py-4 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white md:flex md:flex-row md:items-center md:justify-start hover:bg-gray-200">
                 <div class="px-3 py-2 mr-3 bg-gray-100 border border-gray-300 rounded">
                     <i class="text-sm fas fa-user"></i>
                 </div>
@@ -76,7 +47,7 @@
                     </div>
                 </div>
             </a>
-            <a href="{{route('mentor.notification.destroy', ['notification' => $notification])}}">Hapus</a>
+            <a href="{{route('admin.notification.destroy', ['notification' => $notification])}}">Hapus</a>
             <hr>
             @endif
             @endforeach
@@ -86,14 +57,14 @@
             <hr>
             @if($notifications->isNotEmpty())
             <div class="px-4 py-2 mt-2">
-                <a href="{{route('mentor.notification.destroy-all')}}" class="block p-1 text-xs text-center uppercase transition-all duration-500 ease-in-out border border-gray-300 rounded hover:text-indigo-500">
+                <a href="{{route('admin.notification.destroy-all')}}" class="block p-1 text-xs text-center uppercase transition-all duration-500 ease-in-out border border-gray-300 rounded hover:text-indigo-500">
                     Hapus semua notifikasi
                 </a>
             </div>
             @endif
             @if($unreadNotifications->isNotEmpty())
             <div class="px-4 py-2 mt-2">
-                <a href="{{route('mentor.notification.read-all')}}" class="block p-1 text-xs text-center uppercase transition-all duration-500 ease-in-out border border-gray-300 rounded hover:text-indigo-500">
+                <a href="{{route('admin.notification.read-all')}}" class="block p-1 text-xs text-center uppercase transition-all duration-500 ease-in-out border border-gray-300 rounded hover:text-indigo-500">
                     Tandai Baca Semua
                 </a>
             </div>

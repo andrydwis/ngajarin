@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Course;
 use App\Models\Submission;
 use App\Models\SubmissionUser;
+use App\Notifications\NewSubmission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -52,6 +54,9 @@ class SubmissionUserController extends Controller
         $submissionUser->file = $request->file;
         $submissionUser->status = 'dalam review';
         $submissionUser->save();
+
+        $mentor = User::find($submission->course->created_by);
+        $mentor->notify(new NewSubmission($submission, Auth::user()));
 
         Alert::success('Submission berhasil disimpan');
 
@@ -104,6 +109,9 @@ class SubmissionUserController extends Controller
         $submissionUser->file = $request->file;
         $submissionUser->status = 'dalam review';
         $submissionUser->save();
+
+        $mentor = User::find($submission->course->created_by);
+        $mentor->notify(new NewSubmission($submission, Auth::user()));
 
         Alert::success('Submission berhasil diupdate');
 

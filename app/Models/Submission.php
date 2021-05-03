@@ -19,6 +19,11 @@ class Submission extends Model
         'deadline'
     ];
 
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
+
     public function unlocked()
     {
         $check = SubmissionUser::where('submission_id', $this->id)->where('user_id', Auth::user()->id)->latest()->first();
