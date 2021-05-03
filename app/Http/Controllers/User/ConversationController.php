@@ -56,6 +56,7 @@ class ConversationController extends Controller
     {
         //
         $data = [
+            'conversations' => Conversation::with(['userOne', 'userTwo', 'replies.user'])->where('user_one', Auth::user()->id)->orWhere('user_two', Auth::user()->id)->get(),
             'conversation' => $conversation,
             'replies' => Reply::where('conversation_id', $conversation->id)->with('user')->get()
         ];

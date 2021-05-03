@@ -25,14 +25,17 @@
 
 <body class="antialiased">
 
+    @if(!Route::currentRouteNamed('user.chat.show'))
     @include('layouts.student.navbar-new')
-
+    @endif
     <main class="min-h-[75vh]">
         @yield('content')
     </main>
 
+    @if(!Route::currentRouteNamed('user.chat.show'))
     @include('layouts.student.footer')
-    
+    @endif
+
     <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
     @livewireScripts
