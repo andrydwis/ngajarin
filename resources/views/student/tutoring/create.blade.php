@@ -15,13 +15,14 @@
         <!-- bagian kiri -->
         <div class="mb-5 md:col-span-2">
 
+            <!-- bio -->
             <div class="shadow-md card">
                 <div class="card-header">
-                    <h6 class="h6">Review Mentor</h6>
+                    <h6 class="h6">Tentang Mentor</h6>
                 </div>
 
                 <div class="card-body">
-                    <!-- bio -->
+                   
                     <div class="flex col-span-1 gap-2">
                         <div class="flex-grow-0 flex-shrink-0 w-14 h-14 md:w-20 md:h-20">
                             <img src="{{$user->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name='.$user->name}}" class="rounded-xl">
@@ -56,60 +57,13 @@
 
                         </div>
                     </div>
-                    <!-- end of bio -->
-
+                    
                 </div>
 
             </div>
+            <!-- end of bio -->
 
-            <div class="mt-10 shadow-md card">
-                <div class="card-header">
-                    <h6 class="h6">
-                        Review tentang mentor
-                    </h6>
-                </div>
-                <div class="card-body">
-
-                    <div class="grid col-span-1 gap-5 mt-5">
-
-
-                        <div class="flex flex-col items-center w-full gap-2">
-                            <div>
-                                @if($reviews)
-                                @foreach($reviews as $review)
-                                <div class="flex-grow-0 flex-shrink-0 w-14 h-14 md:w-20 md:h-20">
-                                    <img src="{{$review->student->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name=' . $review->student->name}}" class="rounded-xl">
-                                </div>
-                                <div class="flex flex-col items-center w-full font-semibold prose">
-                                    <span>{{$review->student->name}}</span>
-                                    <div class="flex justify-center">
-                                        @php
-                                            $fillStar = $review->rate;
-                                            $blankStar = 5-$review->rate
-                                        @endphp
-                                        @for($i=1; $i<=$fillStar; $i++)
-                                        <i class="mr-1 text-xs text-opacity-70 text-primary-lighter md:text-sm fas fa-star"></i>
-                                        @endfor
-                                        @for($i=1; $i<=$blankStar; $i++)
-                                        <i class="mr-1 text-xs text-gray-300 md:text-sm fas fa-star"></i>
-                                        @endfor
-                                    </div>
-                                    <div class="w-3/4 p-5 mt-2 font-normal text-center normal-case resize-none form-textarea">
-                                        {{$review->message}}
-                                    </div>
-                                </div>
-                                @endforeach
-                                @else
-                                <p>Belum ada ulasan</p>
-                                @endif
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
+            <!-- form -->
             <div class="mt-10 shadow-md card">
                 <div class="card-header">
                     <h6 class="h6">
@@ -124,6 +78,57 @@
                     <!-- end of input waktu -->
                 </div>
             </div>
+            <!-- form -->   
+
+            <!-- review -->
+            <div class="mt-10 shadow-md card">
+                <div class="card-header">
+                    <h6 class="h6">
+                        Review tentang mentor
+                    </h6>
+                </div>
+                <div class="card-body">
+
+                    <div class="grid col-span-1 gap-5 mt-5">
+
+                        <div class="flex flex-col items-center gap-2"> 
+                                @if($reviews)
+                                @foreach($reviews as $review)
+                                <div class="flex flex-col items-center w-full mb-7 md:items-start md:flex-row">
+                                    <div class="flex-grow-0 flex-shrink-0 w-14 h-14 md:w-20 md:h-20">
+                                        <img src="{{$review->student->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name=' . $review->student->name}}" class="rounded-xl">
+                                    </div>
+                                    <div class="flex flex-col items-center flex-1 w-full font-semibold prose md:items-start">
+                                   
+                                        <span>{{$review->student->name}}</span>
+                                        <div>
+                                            @php
+                                                $fillStar = $review->rate;
+                                                $blankStar = 5-$review->rate
+                                            @endphp
+                                            @for($i=1; $i<=$fillStar; $i++)
+                                            <i class="mr-1 text-xs text-opacity-70 text-primary-lighter md:text-sm fas fa-star"></i>
+                                            @endfor
+                                            @for($i=1; $i<=$blankStar; $i++)
+                                            <i class="mr-1 text-xs text-gray-300 md:text-sm fas fa-star"></i>
+                                            @endfor
+                                        </div>
+                                        <div class="w-full p-3 mt-2 font-normal normal-case resize-none form-textarea">
+                                            {{$review->message}}
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                                @else
+                                <p>Belum ada ulasan</p>
+                                @endif
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- review -->
 
         </div>
 
@@ -156,7 +161,7 @@
 
                 <div class="mt-10 shadow-md card lg:w-[340px]">
                     <div class="card-header">
-                        <h6 class="h6">Riwayat</h6>
+                        <h6 class="h6">Riwayat Tutoring Anda</h6>
                     </div>
                     <div class="card-body max-h-[40vh] overflow-y-scroll">
                         <ul class="-mt-5 text-gray-700 ">

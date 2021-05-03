@@ -1,5 +1,5 @@
 <!-- navbar -->
-<nav class="sticky top-0 z-30 flex items-center w-full h-16 duration-200 select-none md:h-20 bg-primary md:relative">
+<nav class="sticky top-0 z-30 flex items-center flex-shrink-0 w-full h-16 duration-200 select-none md:h-20 bg-primary md:relative">
     <div class="relative flex flex-wrap items-center justify-between w-full h-full mx-auto font-medium" x-data="{ openMenu : false }">
 
         <a href="/" class="pl-6 pr-4 md:pl-4 md:py-0">
@@ -21,24 +21,21 @@
                         </div>
                     </a>
 
-                    <a href="{{ route('student.course.index') }}" 
-                    class="h-full border-b-4 hover:border-white
+                    <a href="{{ route('student.course.index') }}" class="h-full border-b-4 hover:border-white
                      {{ Route::currentRouteNamed('student.course.index') ? 'border-white text-white' : 'border-primary' }}">
                         <div class="flex items-center h-full px-4 mx-2 font-semibold hover:text-white lg:mx-3">
                             Course
                         </div>
                     </a>
 
-                    <a href="{{ route('user.post.index') }}" 
-                    class="h-full border-b-4 hover:border-white
+                    <a href="{{ route('user.post.index') }}" class="h-full border-b-4 hover:border-white
                      {{ Route::currentRouteNamed('user.post.index') ? 'border-white text-white' : 'border-primary' }}">
                         <div class="flex items-center h-full px-4 mx-2 font-semibold hover:text-white lg:mx-3">
                             Forum
                         </div>
                     </a>
 
-                    <a href="{{ route('student.tutoring.index')}}" 
-                    class="h-full border-b-4 hover:border-white
+                    <a href="{{ route('student.tutoring.index')}}" class="h-full border-b-4 hover:border-white
                      {{ Route::currentRouteNamed('student.tutoring.index') ? 'border-white text-white' : 'border-primary' }}">
                         <div class="flex items-center h-full px-4 mx-2 font-semibold hover:text-white lg:mx-3">
                             Tutoring
@@ -49,6 +46,17 @@
 
 
                 <div class="flex items-center justify-end w-1/3 mt-3 ">
+                    @if(Route::currentRouteNamed('user.chat.show'))
+                    <div class="flex mb-2 ml-4 bg-primary-lighter rounded-xl" x-data>
+                        <button @click="toggleLight()" type="button" class="flex items-center justify-center flex-shrink-0 px-4 py-2 text-white focus:outline-none rounded-xl">
+                            <i class="w-4 h-4 fas fa-sun"></i>
+                        </button>
+                        <button @click="toggleDark()" type="button" class="flex items-center justify-center flex-shrink-0 px-4 py-2 text-white focus:outline-none rounded-xl">
+                            <i class="w-4 h-4 fas fa-moon"></i>
+                        </button>
+                    </div>
+                    @endif
+                    
                     @if (Route::has('login'))
 
                     @auth
