@@ -13,7 +13,7 @@
             </button>
         </a>
 
-        <div x-data x-init="document.getElementById('list_chat').scrollTop = document.getElementById('list_chat').scrollHeight" class="flex flex-row w-full overflow-x-hidden">
+        <div class="flex flex-row w-full overflow-x-hidden">
 
             <!-- left section -->
             <div class="z-40 flex-col flex-shrink-0 hidden w-64 py-8 pl-6 pr-2 bg-white lg:flex">
@@ -175,6 +175,13 @@
 
 @section('customJS')
 <script>
+
+    const scrollBawah = function() {
+        document.getElementById('list_chat').scrollTop = document.getElementById('list_chat').scrollHeight;
+        console.log('scroll sukses')
+    }
+    scrollBawah();
+
     function toggleDark() {
         document.documentElement.classList.add('dark')
         console.log('mode dark')
