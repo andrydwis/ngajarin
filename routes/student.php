@@ -21,7 +21,7 @@ Route::middleware(['auth', 'verified', 'role:student'])->group(function () {
 
     Route::get('/student/classroom/courses/{classroom}', [ClassroomCourseController::class, 'index'])->middleware(['verify_class'])->name('student.classroom-course.index');
 
-    Route::get('/student/course', [CourseController::class, 'index'])->name('student.course.index');
+    Route::get('/student/course', [CourseController::class, 'index'])->name('student.course.index')->withoutMiddleware(['auth', 'verified', 'role:student']);;
     Route::get('/student/course/show/{course:slug}', [CourseController::class, 'show'])->name('student.course.show');
     Route::get('/student/course/{course:slug}/episode/show/{episode:slug}', [EpisodeController::class, 'show'])->name('student.course.episode.show');
     Route::get('/student/course/{course:slug}/submission/show/{submission:slug}', [SubmissionUserController::class, 'show'])->name('student.course.submission.show');

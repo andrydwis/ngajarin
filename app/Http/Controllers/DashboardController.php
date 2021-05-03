@@ -2,7 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ClassroomMember;
+use App\Models\Course;
+use App\Models\Post;
+use App\Models\Submission;
+use App\Models\SubmissionUser;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Tutoring;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -21,12 +29,32 @@ class DashboardController extends Controller
 
     public function admin()
     {
-        return view('admin.dashboard.index');
+        $data = [
+            'tutorings' => Tutoring::where('status', 'selesai')->get()->count(),
+            'posts' => Post::get()->count(),
+            'mentors' => User::role('mentor')->get()->count(),
+            'students' => User::role('student')->get()->count(),
+            'charts' => Tutoring::where('status', 'selesai')->select('date', DB::raw('count(*) as amount'))->groupBy('date')->get()
+        ];
+
+        return view('admin.dashboard.index', $data);
     }
 
     public function mentor()
     {
-        return view('mentor.dashboard.index');
+        $course = Course::where('created_by', Auth::user()->id)->get()->pluck('id');
+        $submission = Submission::whereIn('course_id', $course)->get()->pluck('id');
+        $submissionUser = SubmissionUser::whereIn('submission_id', $submission)->where('status', 'dalam review')->get()->count();
+
+        $data = [
+            'submissions' => $submissionUser,
+            'classes' => ClassroomMember::where('user_id', Auth::user()->id)->get()->count(),
+            'courses' => Course::where('created_by', Auth::user()->id)->get()->count(),
+            'tutorings' => Tutoring::where('mentor_id', Auth::user()->id)->where('status', 'menunggu')->get()->count(),
+            'charts' => Tutoring::where('mentor_id', Auth::user()->id)->where('status', 'selesai')->select('date', DB::raw('count(*) as amount'))->groupBy('date')->get()
+        ];
+
+        return view('mentor.dashboard.index', $data);
     }
 
     public function student()

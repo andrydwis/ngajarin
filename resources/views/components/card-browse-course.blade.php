@@ -36,6 +36,7 @@
                     </a>
                 </div>
                 <div class="flex-1">
+                    @auth
                     @if(in_array(auth()->user()->id, $course->users->pluck('id')->toArray()))              
                         <button class="w-full btn-bs-secondary">Sudah Bergabung</button>
                     @else
@@ -44,6 +45,13 @@
                         <button type="submit" class="w-full btn-bs-primary">Join Course</button>
                     </form>
                     @endif
+                    @endauth
+                    @guest
+                    <form action="{{route('student.course-list.store', $slug)}}" method="post">
+                        @csrf
+                        <button type="submit" class="w-full btn-bs-primary">Join Course</button>
+                    </form>
+                    @endguest
                 </div>
             </div>
             <!-- end of bagian bawah -->
