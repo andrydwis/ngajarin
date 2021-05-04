@@ -3,10 +3,10 @@
 
 <!-- hero section -->
 <section class="w-full px-3 antialiased bg-indigo-600 lg:section6">
-    <div class="container min-h-screen mx-auto mb-5 text-center py-28 sm:px-4">
+    <div class="container min-h-screen mx-auto text-center py-28 sm:px-4">
 
         <h1 class="text-4xl font-semibold leading-10 tracking-tight text-white sm:text-4xl sm:leading-none md:text-5xl xl:text-6xl">
-            <span class="block">Belajar sampai jago tanpa ribet?</span>
+            <span class="block">Belajar <b>programming</b> tanpa ribet?</span>
             <div class="relative inline-block mt-3">
                 belajar di <span class="font-bold">Ngajar.in!</span>
             </div>
@@ -30,41 +30,68 @@
 <!-- end of hero section -->
 
 <!-- recent course section -->
-<section class="w-full py-20 bg-white">
+<section class="w-full py-20 bg-gray-100">
     <div class="container max-w-6xl mx-auto">
         <h2 class="text-4xl font-bold tracking-tight text-center">Course Terbaru</h2>
         <p class="mt-2 text-lg text-center text-gray-600">Course terbaru milik kami yang selalu up to date dengan materi yang fresh</p>
-        @foreach($recent_courses as $course)
-        <div class="grid grid-cols-4 gap-8 mt-10 sm:grid-cols-8 lg:grid-cols-12 sm:px-8 xl:px-0">
-            <div class="relative flex flex-col items-center justify-between col-span-4 px-8 py-12 space-y-4 overflow-hidden bg-gray-100 sm:rounded-xl">
-                <img src="{{$course->thumbnail}}" alt="thumbnail" class="rounded">
-                <h4 class="text-xl font-medium text-gray-700">{{$course->title}}</h4>
-                <a href="{{route('student.course.show', ['course' => $course])}}" class="btn btn-primary">lihat</a>
+
+        <div class="grid grid-cols-4 gap-8 px-6 mt-10 sm:grid-cols-8 lg:grid-cols-12 sm:px-8 xl:px-0 md:py-10">
+            @foreach($recent_courses as $course)
+            <div class="relative col-span-4 space-y-4 overflow-hidden duration-300 transform bg-white shadow-xl rounded-xl md:px-0 hover:-translate-y-2">
+                <a href="{{route('student.course.show', ['course' => $course])}}" class="flex flex-col">
+                    <img src="{{$course->thumbnail}}" alt="thumbnail" class="w-full rounded">
+                    <div class="px-5 py-5">
+                        <h4 class="text-lg font-medium text-gray-700 line-clamp-1">{{$course->title}}</h4>
+
+                        <div class="flex py-2 mt-2 prose prose-indigo md:py-0">
+                            @foreach($course->tags as $tag)
+                            <span class="mr-2 text-sm font-semibold tracking-tight border-b-2 border-indigo-300 ">
+                                {{ $tag->name }}
+                            </span>
+                            @endforeach
+                        </div>
+                    </div>
+                </a>
             </div>
+            @endforeach
         </div>
-        @endforeach
+
     </div>
 </section>
 <!-- end of recent course section -->
 
-<!-- recent course section -->
+<!-- popular course section -->
 <section class="w-full py-20 bg-white">
     <div class="container max-w-6xl mx-auto">
         <h2 class="text-4xl font-bold tracking-tight text-center">Course Terpopuler</h2>
         <p class="mt-2 text-lg text-center text-gray-600">Course yang paling banyak diikuti member Ngajar.IN</p>
-        @foreach($popular_courses as $course)
-        <div class="grid grid-cols-4 gap-8 mt-10 sm:grid-cols-8 lg:grid-cols-12 sm:px-8 xl:px-0">
-            <div class="relative flex flex-col items-center justify-between col-span-4 px-8 py-12 space-y-4 overflow-hidden bg-gray-100 sm:rounded-xl">
-                <img src="{{$course->thumbnail}}" alt="thumbnail" class="rounded">
-                <h4 class="text-xl font-medium text-gray-700">{{$course->title}}</h4>
-                <p>Jumlah member yang join : {{$course->users->count()}}</p>
-                <a href="{{route('student.course.show', ['course' => $course])}}" class="btn btn-primary">lihat</a>
+
+        <div class="grid grid-cols-4 gap-8 px-6 mt-10 sm:grid-cols-8 lg:grid-cols-12 sm:px-8 xl:px-0 md:py-10">
+            @foreach($popular_courses as $course)
+            <div class="relative col-span-4 space-y-4 overflow-hidden duration-300 transform bg-white shadow-xl rounded-xl md:px-0 hover:-translate-y-2">
+                <a href="{{route('student.course.show', ['course' => $course])}}" class="flex flex-col">
+                    <img src="{{$course->thumbnail}}" alt="thumbnail" class="w-full rounded">
+                    <div class="px-5 py-5">
+                        <h4 class="text-lg font-medium text-gray-700 line-clamp-1">{{$course->title}}</h4>
+
+                        <div class="prose">Total Member : {{$course->users->count()}}</div>
+                        
+                        <div class="flex py-2 mt-2 prose prose-indigo md:py-0">
+                            @foreach($course->tags as $tag)
+                            <span class="mr-2 text-sm font-semibold tracking-tight border-b-2 border-indigo-300 ">
+                                {{ $tag->name }}
+                            </span>
+                            @endforeach
+                        </div>
+                    </div>
+                </a>
             </div>
+            @endforeach
         </div>
-        @endforeach
+
     </div>
 </section>
-<!-- end of recent course section -->
+<!-- end of popular course section -->
 
 <!-- benefit section -->
 <section class="w-full h-full px-8 py-20 mx-auto bg-white">
