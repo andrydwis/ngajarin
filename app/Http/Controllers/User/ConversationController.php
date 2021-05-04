@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Conversation;
 use App\Models\Reply;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,6 +20,7 @@ class ConversationController extends Controller
     {
         //
         $data = [
+            'user' => User::find(Auth::user()->id),
             'conversations' => Conversation::with(['userOne', 'userTwo', 'replies.user'])->where('user_one', Auth::user()->id)->orWhere('user_two', Auth::user()->id)->get()
         ];
 
@@ -58,7 +60,6 @@ class ConversationController extends Controller
         $data = [
             'conversations' => Conversation::with(['userOne', 'userTwo', 'replies.user'])->where('user_one', Auth::user()->id)->orWhere('user_two', Auth::user()->id)->get(),
             'conversation' => $conversation,
-            'replies' => Reply::where('conversation_id', $conversation->id)->with('user')->get()
         ];
 
         return view('user.chat.show', $data);

@@ -39,17 +39,6 @@ class ReplyController extends Controller
     public function store(Request $request, Conversation $conversation)
     {
         //
-        $request->validate([
-            'pesan' => ['required']
-        ]);
-
-        $reply = new Reply();
-        $reply->conversation_id = $conversation->id;
-        $reply->user_id = Auth::user()->id;
-        $reply->message = $request->pesan;
-        $reply->save();
-
-        return redirect()->route('user.chat.show', ['conversation' => $conversation]);
     }
 
     /**

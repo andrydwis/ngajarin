@@ -34,6 +34,13 @@
                     <i class="ml-4 mr-2 text-sm fas fa-comments"></i>
                     Forum Diskusi
                 </a>
+
+                <a href="/user/chat" class="sidebar-item
+                {{ Route::currentRouteNamed('user.chat.index') ? 'sidebar-item-active' : '' }}
+                ">
+                    <i class="ml-4 mr-2 text-sm fas fa-comment-dots"></i>
+                    Chat
+                </a>
                 <!-- pembatas -->
 
 

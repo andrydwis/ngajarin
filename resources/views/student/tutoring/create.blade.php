@@ -17,12 +17,13 @@
 
             <!-- bio -->
             <div class="shadow-md card">
-                <div class="card-header">
+                <div class="card-header flex justify-between items-center">
                     <h6 class="h6">Tentang Mentor</h6>
+                    @livewire('start-chat', ['user' => $user])
                 </div>
 
                 <div class="card-body">
-                   
+
                     <div class="flex col-span-1 gap-2">
                         <div class="flex-grow-0 flex-shrink-0 w-14 h-14 md:w-20 md:h-20">
                             <img src="{{$user->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name='.$user->name}}" class="rounded-xl">
@@ -57,7 +58,7 @@
 
                         </div>
                     </div>
-                    
+
                 </div>
 
             </div>
@@ -78,7 +79,7 @@
                     <!-- end of input waktu -->
                 </div>
             </div>
-            <!-- form -->   
+            <!-- form -->
 
             <!-- review -->
             <div class="mt-10 shadow-md card">
@@ -91,37 +92,35 @@
 
                     <div class="grid col-span-1 gap-5 mt-5">
 
-                        <div class="flex flex-col items-center gap-2"> 
-                                @if($reviews)
-                                @foreach($reviews as $review)
-                                <div class="flex flex-col items-center w-full mb-7 md:items-start md:flex-row">
-                                    <div class="flex-grow-0 flex-shrink-0 w-14 h-14 md:w-20 md:h-20">
-                                        <img src="{{$review->student->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name=' . $review->student->name}}" class="rounded-xl">
+                        <div class="flex flex-col items-center gap-2">
+                            @if($reviews)
+                            @foreach($reviews as $review)
+                            <div class="flex flex-col items-center w-full mb-7 md:items-start md:flex-row">
+                                <div class="flex-grow-0 flex-shrink-0 w-14 h-14 md:w-20 md:h-20">
+                                    <img src="{{$review->student->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name=' . $review->student->name}}" class="rounded-xl">
+                                </div>
+                                <div class="flex flex-col items-center flex-1 w-full font-semibold prose md:items-start">
+
+                                    <span>{{$review->student->name}}</span>
+                                    <div>
+                                        @php
+                                        $fillStar = $review->rate;
+                                        $blankStar = 5-$review->rate
+                                        @endphp
+                                        @for($i=1; $i<=$fillStar; $i++) <i class="mr-1 text-xs text-opacity-70 text-primary-lighter md:text-sm fas fa-star"></i>
+                                            @endfor
+                                            @for($i=1; $i<=$blankStar; $i++) <i class="mr-1 text-xs text-gray-300 md:text-sm fas fa-star"></i>
+                                                @endfor
                                     </div>
-                                    <div class="flex flex-col items-center flex-1 w-full font-semibold prose md:items-start">
-                                   
-                                        <span>{{$review->student->name}}</span>
-                                        <div>
-                                            @php
-                                                $fillStar = $review->rate;
-                                                $blankStar = 5-$review->rate
-                                            @endphp
-                                            @for($i=1; $i<=$fillStar; $i++)
-                                            <i class="mr-1 text-xs text-opacity-70 text-primary-lighter md:text-sm fas fa-star"></i>
-                                            @endfor
-                                            @for($i=1; $i<=$blankStar; $i++)
-                                            <i class="mr-1 text-xs text-gray-300 md:text-sm fas fa-star"></i>
-                                            @endfor
-                                        </div>
-                                        <div class="w-full p-3 mt-2 font-normal normal-case resize-none form-textarea">
-                                            {{$review->message}}
-                                        </div>
+                                    <div class="w-full p-3 mt-2 font-normal normal-case resize-none form-textarea">
+                                        {{$review->message}}
                                     </div>
                                 </div>
-                                @endforeach
-                                @else
-                                <p>Belum ada ulasan</p>
-                                @endif
+                            </div>
+                            @endforeach
+                            @else
+                            <p>Belum ada ulasan</p>
+                            @endif
                         </div>
 
                     </div>

@@ -15,19 +15,6 @@
 
                 <div class="flex items-center justify-center w-2/3 h-full text-indigo-100">
 
-                    <a href="/" class="h-full border-b-4 border-primary hover:border-white">
-                        <div class="flex items-center h-full px-4 mx-2 font-semibold hover:text-white lg:mx-3">
-                            Home
-                        </div>
-                    </a>
-
-                    <a href="{{ route('student.course.index') }}" class="h-full border-b-4 hover:border-white
-                     {{ Route::currentRouteNamed('student.course.index') ? 'border-white text-white' : 'border-primary' }}">
-                        <div class="flex items-center h-full px-4 mx-2 font-semibold hover:text-white lg:mx-3">
-                            Course
-                        </div>
-                    </a>
-
                     <a href="{{ route('user.post.index') }}" class="h-full border-b-4 hover:border-white
                      {{ Route::currentRouteNamed('user.post.index') ? 'border-white text-white' : 'border-primary' }}">
                         <div class="flex items-center h-full px-4 mx-2 font-semibold hover:text-white lg:mx-3">
@@ -35,10 +22,10 @@
                         </div>
                     </a>
 
-                    <a href="{{ route('student.tutoring.index')}}" class="h-full border-b-4 hover:border-white
-                     {{ Route::currentRouteNamed('student.tutoring.index') ? 'border-white text-white' : 'border-primary' }}">
+                    <a href="{{ route('user.chat.index')}}" class="h-full border-b-4 hover:border-white
+                     {{ Route::currentRouteNamed('user.chat.index') ? 'border-white text-white' : 'border-primary' }}">
                         <div class="flex items-center h-full px-4 mx-2 font-semibold hover:text-white lg:mx-3">
-                            Tutoring
+                            Chat
                         </div>
                     </a>
 
@@ -115,10 +102,6 @@
                     @if (Route::has('login'))
 
                     <a href="{{route('root.index')}}" class="inline-block px-4 py-2 mx-2 font-medium hover:text-indigo-300">Beranda</a>
-
-                    <a href="{{route('student.course.index')}}" class="inline-block px-4 py-2 mx-2 font-medium hover:text-indigo-300">Course</a>
-
-                    <a href="{{route('student.tutoring.index')}}" class="inline-block px-4 py-2 mx-2 font-medium hover:text-indigo-300">Tutoring</a>
 
                     <a href="{{route('user.post.index')}}" class="inline-block px-4 py-2 mx-2 font-medium hover:text-indigo-300">Forum</a>
 

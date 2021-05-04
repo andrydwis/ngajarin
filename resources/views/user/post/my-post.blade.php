@@ -1,4 +1,4 @@
-@extends('layouts.student.app-new')
+@extends('layouts.user.app')
 @section('content')
 
 <div class="flex justify-center">

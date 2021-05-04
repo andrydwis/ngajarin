@@ -34,5 +34,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/user/chat', [ConversationController::class, 'index'])->name('user.chat.index');
     Route::get('/user/chat/{conversation}', [ConversationController::class, 'show'])->name('user.chat.show');
-    Route::post('/user/chat/{conversation}', [ReplyController::class, 'store'])->name('user.chat.store');
 });
