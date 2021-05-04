@@ -115,6 +115,7 @@
         <!-- end header -->
         <!-- body -->
         <div class="card-body">
+            @if($charts->isNotEmpty())
             @php
             foreach ($charts as $chart){
             $arrayJumlah[] = array('Jumlah' => $chart->amount);
@@ -124,6 +125,12 @@
             <div class="mt-2 mb-5 border-b">
                 <div id="tutoringStat"></div>
             </div>
+            @else
+            <div class="flex flex-col justify-center items-center">
+                <img src="{{asset('img/empty.svg')}}" alt="" class="w-[500px] h-[250px]">
+                <h3 class="h3 text-indigo-500 mt-5">Data tutoring kosong</h3>
+            </div>
+            @endif
         </div>
         <!-- end body -->
     </div>
@@ -142,6 +149,7 @@
 @endsection
 
 @section('customJS')
+@if($charts->isNotEmpty())
 <script>
     // APEX Charts setting
     var apexOptions = function(type, height, numbers, numbers2, color) {
@@ -183,4 +191,5 @@
     chart.render();
     // end Nilai Overview
 </script>
+@endif
 @endsection
