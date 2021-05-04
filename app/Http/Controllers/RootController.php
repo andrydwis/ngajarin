@@ -21,7 +21,7 @@ class RootController extends Controller
 
         $data = [
             'recent_courses' => Course::whereIn('created_by', $admin)->latest()->limit(6)->get(),
-            'popular_courses' => Course::whereIn('created_by', $admin)->withCount('users')->orderBy('users_count', 'desc')->limit(6)->get()
+            'popular_courses' => Course::whereIn('created_by', $admin)->withCount('users')->orderBy('users_count', 'desc')->limit(3)->get()
         ];
 
         return view('welcome', $data);
