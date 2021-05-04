@@ -3,6 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\Reply;
+use App\Models\User;
+use App\Notifications\NewChat;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -25,6 +27,13 @@ class ChatList extends Component
         $reply->save();
 
         $this->reset('pesan');
+
+        if($this->conversation->user_one == Auth::user()->id){
+            $user = User::find($this->conversation->user_two);
+        }else{
+            $user = User::find($this->conversation->user_one);
+        }
+        $user->notify(new NewChat($this->conversation, Auth::user()));
     }
 
     public function render()

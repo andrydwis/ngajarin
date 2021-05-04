@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Mentor;
 
 use App\Http\Controllers\Controller;
+use App\Models\Conversation;
 use App\Models\Notification;
 use App\Models\Submission;
 use App\Models\Tutoring;
@@ -31,6 +32,12 @@ class NotificationHandlerController extends Controller
             $notification->save();
 
             return redirect()->route('mentor.course.submission.review', ['course' => $course, 'submission' => $submission]);
+        } elseif ($notification->type == 'App\Notifications\NewChat') {
+            $conversation = Conversation::find($notification->data['conversation_id']);
+            
+            Notification::where('data', json_encode($notification->data))->delete();
+
+            return redirect()->route('user.chat.show', ['conversation' => $conversation]);
         }
     }
 

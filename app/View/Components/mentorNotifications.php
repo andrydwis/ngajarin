@@ -2,14 +2,17 @@
 
 namespace App\View\Components;
 
+use App\Models\Notification;
 use Illuminate\View\Component;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class mentorNotifications extends Component
 {
     public $user;
     public $notifications;
+    public $chats;
     public $unreadNotifications;
     /**
      * Create a new component instance.
@@ -20,7 +23,8 @@ class mentorNotifications extends Component
     {
         //
         $this->user = User::find(Auth::user()->id);
-        $this->notifications = $this->user->notifications;
+        $this->notifications = Notification::where('notifiable_id', Auth::user()->id)->where('type', '!=', 'App\Notifications\NewChat')->get();
+        $this->chats = Notification::where('notifiable_id', Auth::user()->id)->where('type', 'App\Notifications\NewChat')->select('type', 'data', DB::raw('count(*) as amount'))->groupBy('data', 'type')->get();
         $this->unreadNotifications = $this->user->unreadNotifications;
     }
 
