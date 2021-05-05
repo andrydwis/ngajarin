@@ -11,7 +11,8 @@
                 <i class="text-lg fas fa-bell"></i>
             </button>
         </div>
-        <div x-cloak x-show.transition.origin.top="openDropdown" @click.away="openDropdown = false" class="absolute right-0 z-20 w-full mt-5 bg-white border-t-4 rounded shadow-md border-primary-lighter md:w-80">
+
+        <div x-cloak x-show.transition.origin.top="openDropdown" @click.away="openDropdown = false" class="absolute right-0 z-20 w-full mt-5 bg-white border-t-4 border-b-4 rounded shadow-md border-primary-lighter md:w-80">
 
             <!-- top -->
             <div class="flex flex-row items-center justify-between px-4 py-2 text-sm font-semibold capitalize">
@@ -176,5 +177,6 @@
             <!-- end bottom -->
 
         </div>
+
     </div>
 </div>

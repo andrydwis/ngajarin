@@ -121,8 +121,8 @@
             <x-admin-notifications></x-admin-notifications>
             <!-- end notif -->
 
-            <!-- chat -->
-            <div class="static mr-2 xs:mr-5 md:relative" x-data="{ isOpen3 : false }">
+            <!-- chat HIDDEN-->
+            <div class="static hidden mr-2 xs:mr-5 md:relative" x-data="{ isOpen3 : false }">
 
                 <button @click="isOpen3 = true" class="p-0 m-0 text-gray-500 transition-all duration-300 ease-in-out menu-btn hover:text-gray-900 focus:text-gray-900 focus:outline-none">
                     <i class="fas fa-comments"></i>
