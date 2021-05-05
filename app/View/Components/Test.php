@@ -6,6 +6,7 @@ use Illuminate\View\Component;
 
 class Test extends Component
 {
+    public $name;
     /**
      * Create a new component instance.
      *
@@ -14,6 +15,7 @@ class Test extends Component
     public function __construct()
     {
         //
+        $this->name = 'Andry';
     }
 
     /**
