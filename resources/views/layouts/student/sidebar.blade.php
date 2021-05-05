@@ -21,7 +21,7 @@
                 <!-- pembatas -->
                 <p class="mb-3 ml-2 text-sm tracking-wider text-gray-600 uppercase">Beranda</p>
 
-                <a href="/student/dashboard" class="sidebar-item 
+                <a href="{{route('dashboard.student')}}" class="sidebar-item 
                 {{ Route::currentRouteNamed('dashboard.student') ? 'sidebar-item-active ' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-sm fas fa-chart-pie"></i>
@@ -33,21 +33,21 @@
                 <!-- pembatas -->
                 <!-- <p class="mt-4 mb-3 ml-2 text-sm tracking-wider text-gray-600 uppercase">Mentor</p> -->
 
-                <a href="/student/classroom" class="sidebar-item mt-2 
+                <a href="{{route('student.classroom.index')}}" class="sidebar-item mt-2 
                 {{ Route::currentRouteNamed('student.classroom*') ? 'sidebar-item-active ' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-sm fas fa-user-friends"></i>
                     Kelas
                 </a>
 
-                <a href="/student/course-list" class="sidebar-item my-2
+                <a href="{{route('student.course-list.index')}}" class="sidebar-item my-2
                 {{ Route::currentRouteNamed('student.course-list*') ? 'sidebar-item-active ' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-sm fas fa-folder"></i>
                     Course Saya
                 </a>
 
-                <a href="/student/course" class="sidebar-item 
+                <a href="{{route('student.course.index')}}" class="sidebar-item 
                 {{ Route::currentRouteNamed('student.course.index') ? 'sidebar-item-active ' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-sm fas fa-folder-plus"></i>

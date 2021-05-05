@@ -19,21 +19,21 @@
 
                 <p class="mb-3 text-sm tracking-wider text-gray-600 uppercase">Beranda</p>
 
-                <a href="/mentor/dashboard" class="sidebar-item
+                <a href="{{route('dashboard.mentor')}}" class="sidebar-item
                 {{ Route::currentRouteNamed('dashboard.mentor') ? 'sidebar-item-active' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-sm fas fa-chart-pie"></i>
                     Dashboard
                 </a>
 
-                <a href="/user/post" class="sidebar-item
+                <a href="{{route('user.post.index')}}" class="sidebar-item
                 {{ Route::currentRouteNamed('user.post.index') ? 'sidebar-item-active' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-sm fas fa-comments"></i>
                     Forum Diskusi
                 </a>
 
-                <a href="/user/chat" class="sidebar-item
+                <a href="{{route('user.chat.index')}}" class="sidebar-item
                 {{ Route::currentRouteNamed('user.chat.index') ? 'sidebar-item-active' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-sm fas fa-comment-dots"></i>
@@ -44,7 +44,7 @@
                 <p class="mt-4 mb-3 text-sm tracking-wider text-gray-600 uppercase">Course</p>
 
 
-                <a href="/mentor/course" class="sidebar-item
+                <a href="{{route('mentor.course.index')}}" class="sidebar-item
                 {{ Route::currentRouteNamed('mentor.course.index') ||
                     Route::currentRouteNamed('mentor.course.show') ||
                     Route::currentRouteNamed('mentor.course.edit') ||
@@ -57,7 +57,7 @@
                     Course List
                 </a>
 
-                <a href="/mentor/course/create" class="sidebar-item
+                <a href="{{route('mentor.course.create')}}" class="sidebar-item
                 {{ Route::currentRouteNamed('mentor.course.create') ? 'sidebar-item-active' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-base fas fa-folder-plus"></i>
@@ -68,7 +68,7 @@
                 <p class="mt-4 mb-3 text-sm tracking-wider text-gray-600 uppercase">Ruang Kelas</p>
 
 
-                <a href="/mentor/classroom" class="sidebar-item
+                <a href="{{route('mentor.classroom.index')}}" class="sidebar-item
                 {{ Route::currentRouteNamed('mentor.classroom.index') ||
                     Route::currentRouteNamed('mentor.classroom.edit') ||
                     Route::currentRouteNamed('mentor.classroom-member.*') ||
@@ -79,7 +79,7 @@
                     Daftar Ruang Kelas
                 </a>
 
-                <a href="/mentor/classroom/create" class="sidebar-item
+                <a href="{{route('mentor.classroom.create')}}" class="sidebar-item
                 {{ Route::currentRouteNamed('mentor.classroom.create') ? 'sidebar-item-active' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-base fas fa-folder-plus"></i>
@@ -89,7 +89,7 @@
                 <!-- pembatas link -->
                 <p class="mt-4 mb-3 text-sm tracking-wider text-gray-600 uppercase">Tutoring</p>
 
-                <a href="/mentor/schedule" class="sidebar-item
+                <a href="{{route('mentor.schedule.index')}}" class="sidebar-item
                 {{ Route::currentRouteNamed('mentor.schedule.*')
                 ? 'sidebar-item-active' : '' }}
                 ">
@@ -97,7 +97,7 @@
                     Atur Jadwal
                 </a>
 
-                <a href="/mentor/tutoring" class="sidebar-item
+                <a href="{{route('mentor.tutoring.index')}}" class="sidebar-item
                 {{ Route::currentRouteNamed('mentor.tutoring.*') ? 'sidebar-item-active' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-sm fas fa-calendar-check"></i>

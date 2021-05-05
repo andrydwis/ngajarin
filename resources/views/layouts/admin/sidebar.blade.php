@@ -21,21 +21,21 @@
                 <!-- pembatas -->
                 <p class="mb-3 ml-2 text-sm tracking-wider text-gray-600 uppercase">Beranda</p>
 
-                <a href="/admin/dashboard" class="sidebar-item 
+                <a href="{{route('dashboard.admin')}}" class="sidebar-item 
                 {{ Route::currentRouteNamed('dashboard.admin') ? 'sidebar-item-active ' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-sm fas fa-chart-pie"></i>
                     Dashboard
                 </a>
 
-                <a href="/user/post" class="sidebar-item
+                <a href="{{route('user.post.index')}}" class="sidebar-item
                 {{ Route::currentRouteNamed('user.post.index') ? 'sidebar-item-active' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-sm fas fa-comments"></i>
                     Forum Diskusi
                 </a>
 
-                <a href="/user/chat" class="sidebar-item
+                <a href="{{route('user.chat.index')}}" class="sidebar-item
                 {{ Route::currentRouteNamed('user.chat.index') ? 'sidebar-item-active' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-sm fas fa-comment-dots"></i>
@@ -47,14 +47,14 @@
                 <!-- pembatas -->
                 <p class="mt-4 mb-3 ml-2 text-sm tracking-wider text-gray-600 uppercase">Mentor</p>
 
-                <a href="/admin/mentor-list" class="sidebar-item 
+                <a href="{{route('admin.mentor-list.index')}}" class="sidebar-item 
                 {{ Route::currentRouteNamed('admin.mentor-list.index') ? 'sidebar-item-active ' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-sm fas fa-user-friends"></i>
                     Mentor List
                 </a>
 
-                <a href="/admin/mentor-list/create" class="sidebar-item 
+                <a href="{{route('admin.mentor-list.create')}}" class="sidebar-item 
                 {{ Route::currentRouteNamed('admin.mentor-list.create') ? 'sidebar-item-active ' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-sm fas fa-user-plus"></i>
@@ -65,7 +65,7 @@
                 <!-- pembatas -->
                 <p class="mt-4 mb-3 ml-2 text-sm tracking-wider text-gray-600 uppercase">Course</p>
 
-                <a href="/admin/tag" class="sidebar-item 
+                <a href="{{route('admin.tag.index')}}" class="sidebar-item 
                 {{ Route::currentRouteNamed('admin.tag.index') ||
                     Route::currentRouteNamed('admin.tag.edit')
                      ? 'sidebar-item-active ' : '' }}
@@ -74,14 +74,14 @@
                     Tag List
                 </a>
 
-                <a href="/admin/tag/create" class="sidebar-item 
+                <a href="{{route('admin.tag.create')}}" class="sidebar-item 
                 {{ Route::currentRouteNamed('admin.tag.create') ? 'sidebar-item-active ' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-sm fas fa-tag"></i>
                     Tambahkan Tag
                 </a>
 
-                <a href="/admin/course" class="sidebar-item 
+                <a href="{{route('admin.course.index')}}" class="sidebar-item 
                 {{ Route::currentRouteNamed('admin.course.index') ||
                     Route::currentRouteNamed('admin.course.edit') ||
                     Route::currentRouteNamed('admin.course.episode.*') ||
@@ -94,7 +94,7 @@
                 </a>
 
 
-                <a href="/admin/course/create" class="sidebar-item 
+                <a href="{{route('admin.course.create')}}" class="sidebar-item 
                 {{ Route::currentRouteNamed('admin.course.create') ? 'sidebar-item-active ' : '' }}
                 ">
                     <i class="ml-4 mr-2 text-sm fas fa-folder-plus"></i>
