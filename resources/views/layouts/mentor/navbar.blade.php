@@ -1,8 +1,9 @@
 <!-- start navbar -->
 <div class="fixed top-0 z-40 flex flex-row flex-wrap justify-between w-full p-5 bg-white border-b border-gray-200 shadow-sm">
-    <div class="flex flex-none text-gray-900">
-        <strong class="flex-1 mx-2 capitalize text-primary-lighter">ngajar.in</strong>
+    <div class="flex flex-none text-primary-lighter">
+        <strong class="flex-1 mx-2 capitalize">ngajar.in</strong>
     </div>
+
 
     <!-- navbar content -->
     <div class="flex flex-row-reverse items-center">
@@ -26,33 +27,12 @@
 
 
 
-            <div x-cloak x-show.transition.origin.top.transition.origin.top="isOpen" @click.away="isOpen = false" class="fixed right-0 z-20 w-full py-2 mt-5 text-right text-gray-500 bg-white rounded shadow-md md:text-left md:absolute md:w-40 menu animated faster">
+            <div x-cloak x-show.transition.origin.top.transition.origin.top="isOpen" @click.away="isOpen = false" class="fixed right-0 z-20 w-full py-2 mt-5 text-right text-gray-500 bg-white border-t-4 rounded shadow-md border-primary-lighter md:text-left md:absolute md:w-40 menu animated faster">
 
                 <!-- item -->
                 <a class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
                     <i class="mr-1 text-xs fas fa-user-edit"></i>
                     Profile
-                </a>
-                <!-- end item -->
-
-                <!-- item -->
-                <a class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
-                    <i class="mr-1 text-xs fas fa-inbox"></i>
-                    Inbox
-                </a>
-                <!-- end item -->
-
-                <!-- item -->
-                <a class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
-                    <i class="mr-1 text-xs fas fa-cogs"></i>
-                    Settings
-                </a>
-                <!-- end item -->
-
-                <!-- item -->
-                <a class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
-                    <i class="mr-1 text-xs fas fa-list"></i>
-                    Activity Log
                 </a>
                 <!-- end item -->
 
@@ -121,8 +101,8 @@
             <x-mentor-notifications></x-mentor-notifications>
             <!-- end notif -->
 
-            <!-- chat -->
-            <div class="static mr-1 xs:mr-5 md:relative" x-data="{ isOpen3 : false }">
+            <!-- chat HIDDEN -->
+            <div class="hidden mr-1 xs:mr-5 md:relative" x-data="{ isOpen3 : false }">
 
                 <button @click="isOpen3 = true" class="p-0 m-0 text-gray-500 transition-all duration-300 ease-in-out menu-btn hover:text-gray-900 focus:text-gray-900 focus:outline-none">
                     <i class="fas fa-comments"></i>

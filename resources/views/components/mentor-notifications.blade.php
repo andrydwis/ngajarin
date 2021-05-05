@@ -1,15 +1,19 @@
 <div>
-    <div class="static mr-1 xs:mr-5 md:relative" x-data="{ isOpen2 : false }">
-        @if($unreadNotifications->isNotEmpty())
-        <span class="flex h-3 w-3">
-            <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-purple-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
-        </span>
-        @endif
-        <button class="p-0 m-0 text-gray-500 transition-all duration-300 ease-in-out menu-btn hover:text-gray-900 focus:text-gray-900 focus:outline-none" @click="isOpen2 = true">
-            <i class="fas fa-bell"></i>
-        </button>
-        <div x-cloak x-show.transition.origin.top="isOpen2" @click.away="isOpen2 = false" class="absolute right-0 z-20 w-full py-2 mt-5 bg-white rounded shadow-md md:w-80 animated">
+    <div class="static mr-1 xs:mr-5 md:relative" x-data="{ openDropdown : false }">
+        <div @click="openDropdown = true" class="cursor-pointer">
+            @if($unreadNotifications->isNotEmpty())
+            <span class="absolute flex ml-2">
+                <span class="absolute inline-flex w-3 h-3 bg-purple-400 rounded-full opacity-75 animate-ping"></span>
+                <span class="relative inline-flex w-3 h-3 bg-indigo-500 rounded-full opacity-75"></span>
+            </span>
+            @endif
+            <button class="p-0 m-0 text-gray-500 transition-all duration-300 ease-in-out menu-btn hover:text-gray-900 focus:text-gray-900 focus:outline-none">
+                <i class="text-lg fas fa-bell"></i>
+            </button>
+        </div>
+
+        <div x-cloak x-show.transition.origin.top="openDropdown" @click.away="openDropdown = false" class="absolute right-0 z-20 w-full mt-5 bg-white border-t-4 border-b-4 rounded shadow-md border-primary-lighter md:w-80">
+
             <!-- top -->
             <div class="flex flex-row items-center justify-between px-4 py-2 text-sm font-semibold capitalize">
                 <h1>Notifikasi</h1>
@@ -19,114 +23,160 @@
             </div>
             <hr>
             <!-- end top -->
-            <!-- body -->
-            <!-- item -->
-            @foreach($notifications as $notification)
-            <!-- notif tutoring -->
-            @if($notification->type == 'App\Notifications\NewTutoringRequest')
-            @php
-            $student = \App\Models\User::find($notification->data['student_id']);
-            @endphp
-            @if(!$notification->read_at)
-            <span class="flex h-3 w-3">
-                <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-purple-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
-            </span>
-            @endif
-            <a href="{{route('mentor.notification.handling', ['notification' => $notification])}}" class="flex px-4 py-4 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white md:flex md:flex-row md:items-center md:justify-start hover:bg-gray-200">
-                <div class="px-3 py-2 mr-3 bg-gray-100 border border-gray-300 rounded">
-                    <i class="text-sm fas fa-user"></i>
+
+            <div class="overflow-y-scroll" style="max-height: 70vh">
+                <!-- item -->
+                @foreach($notifications as $notification)
+
+                <!-- notif tutoring -->
+                @if($notification->type == 'App\Notifications\NewTutoringRequest')
+
+                @php
+                $student = \App\Models\User::find($notification->data['student_id']);
+                @endphp
+
+                <div x-data class="flex flex-col">
+                    @if(!$notification->read_at)
+                    <span class="absolute left-0 flex mt-3 ml-2">
+                        <span class="absolute inline-flex w-3 h-3 bg-purple-400 rounded-full opacity-75 animate-ping"></span>
+                        <span class="relative inline-flex w-3 h-3 bg-indigo-500 rounded-full opacity-75"></span>
+                    </span>
+                    @endif
+
+                    <a href="{{route('mentor.notification.handling', ['notification' => $notification])}}" class="flex px-4 py-4 text-sm tracking-wide transition-all duration-300 ease-in-out bg-white md:flex md:flex-row md:items-center md:justify-start hover:bg-gray-200">
+
+                        <div class="self-start px-3 py-2 mr-3 bg-gray-100 border border-gray-300 rounded">
+                            <i class="text-sm fas fa-user"></i>
+                        </div>
+
+                        <div class="flex flex-col flex-1">
+                            <div class="font-semibold">Request Tutoring baru</div>
+                            <div class="text-gray-500">
+                                {{$student->name}} mengirim request tutoring baru kepada anda
+                            </div>
+
+                            <div class="flex items-center justify-between mt-2 text-xs text-gray-500">
+                                <div>
+                                    {{$notification->created_at->diffForHumans()}}
+                                </div>
+                                <div>
+                                    @if(!$notification->read_at)
+                                    <button @click="$refs.{{$notification->id}}.click()" class="px-1 text-xs btn hover:bg-primary-lighter hover:text-white">tandai baca</button>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a x-ref="{{$notification->id}}" class="hidden" href="{{route('mentor.notification.destroy', ['notification' => $notification])}}">Hapus</a>
                 </div>
-                <div class="flex flex-row flex-1">
-                    <div class="flex-1">
-                        <h1 class="text-sm font-semibold">Request Tutoring baru</h1>
-                        <p class="text-xs text-gray-500">{{$student->name}} mengirim request tutoring baru kepada anda</p>
-                    </div>
-                    <div class="text-xs text-right text-gray-500">
-                        <p>{{$notification->created_at->diffForHumans()}}</p>
-                    </div>
+                <hr>
+                @endif
+
+                <!-- notif submission -->
+                @if($notification->type == 'App\Notifications\NewSubmission')
+
+                @php
+                $student = \App\Models\User::find($notification->data['student_id']);
+                $submission = \App\Models\Submission::find($notification->data['submission_id'])
+                @endphp
+
+                <div x-data class="flex flex-col">
+                    @if(!$notification->read_at)
+                    <span class="absolute left-0 flex mt-3 ml-2">
+                        <span class="absolute inline-flex w-3 h-3 bg-purple-400 rounded-full opacity-75 animate-ping"></span>
+                        <span class="relative inline-flex w-3 h-3 bg-indigo-500 rounded-full opacity-75"></span>
+                    </span>
+                    @endif
+
+                    <a href="{{route('mentor.notification.handling', ['notification' => $notification])}}" class="flex px-4 py-4 text-sm tracking-wide transition-all duration-300 ease-in-out bg-white md:flex md:flex-row md:items-center md:justify-start hover:bg-gray-200">
+                        <div class="self-start px-3 py-2 mr-3 bg-gray-100 border border-gray-300 rounded">
+                            <i class="text-sm fas fa-file"></i>
+                        </div>
+
+                        <div class="flex flex-col flex-1">
+
+                            <div class="font-semibold">Pengumpulan Submission baru</div>
+                            <div class="text-gray-500">
+                                <b>{{$student->name}}</b> Mengumpulkan submission {{$submission->title}}
+                            </div>
+
+                            <div class="flex items-center justify-between mt-2 text-xs text-gray-500">
+                                <div>
+                                    {{$notification->created_at->diffForHumans()}}
+                                </div>
+                                <div>
+                                    @if(!$notification->read_at)
+                                    <button @click="$refs.{{$notification->id}}.click()" class="px-1 text-xs btn hover:bg-primary-lighter hover:text-white">tandai baca</button>
+                                    @endif
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </a>
+                    <a x-ref="{{$notification->id}}" class="hidden" href="{{route('mentor.notification.destroy', ['notification' => $notification])}}">Hapus</a>
                 </div>
-            </a>
-            <a href="{{route('mentor.notification.destroy', ['notification' => $notification])}}">Hapus</a>
-            <hr>
-            @endif
-            <!-- notif submission -->
-            @if($notification->type == 'App\Notifications\NewSubmission')
-            @php
-            $student = \App\Models\User::find($notification->data['student_id']);
-            $submission = \App\Models\Submission::find($notification->data['submission_id'])
-            @endphp
-            @if(!$notification->read_at)
-            <span class="flex h-3 w-3">
-                <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-purple-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
-            </span>
-            @endif
-            <a href="{{route('mentor.notification.handling', ['notification' => $notification])}}" class="flex px-4 py-4 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white md:flex md:flex-row md:items-center md:justify-start hover:bg-gray-200">
-                <div class="px-3 py-2 mr-3 bg-gray-100 border border-gray-300 rounded">
-                    <i class="text-sm fas fa-user"></i>
+                <hr>
+                @endif
+
+                @endforeach
+
+                <!-- notif CHAT -->
+                @foreach($chats as $chat)
+
+                @php
+                $sender = \App\Models\User::find($chat->data['sender_id']);
+                $notification = \App\Models\Notification::where('data', json_encode($chat->data))->latest()->first();
+                @endphp
+
+                <div>
+                    @if(!$notification->read_at)
+                    <span class="absolute left-0 flex mt-3 ml-2">
+                        <span class="absolute inline-flex w-3 h-3 bg-purple-400 rounded-full opacity-75 animate-ping"></span>
+                        <span class="relative inline-flex w-3 h-3 bg-indigo-500 rounded-full opacity-75"></span>
+                    </span>
+                    @endif
+                    <a href="{{route('mentor.notification.handling', ['notification' => $notification])}}" class="flex px-4 py-4 text-sm tracking-wide transition-all duration-300 ease-in-out bg-white md:flex md:flex-row md:items-center md:justify-start hover:bg-gray-200">
+                        <div class="self-start px-3 py-2 mr-3 bg-gray-100 border border-gray-300 rounded">
+                            <i class="text-sm fas fa-comment"></i>
+                        </div>
+                        <div class="flex-col flex-1">
+                            <div class="font-semibold">{{$sender->name}}</div>
+                            <div class="text-gray-500">
+                                {{$sender->name}} mengirim <b>{{$chat->amount}}</b> pesan baru
+                            </div>
+                            <div class="mt-2 text-xs text-gray-500">
+                                {{$notification->created_at->diffForHumans()}}
+                            </div>
+                        </div>
+                    </a>
                 </div>
-                <div class="flex flex-row flex-1">
-                    <div class="flex-1">
-                        <h1 class="text-sm font-semibold">Pengumpulan Submission baru</h1>
-                        <p class="text-xs text-gray-500">{{$student->name}} mengirim pengumpulan submission {{$submission->title}} kepada anda</p>
-                    </div>
-                    <div class="text-xs text-right text-gray-500">
-                        <p>{{$notification->created_at->diffForHumans()}}</p>
-                    </div>
-                </div>
-            </a>
-            <a href="{{route('mentor.notification.destroy', ['notification' => $notification])}}">Hapus</a>
-            <hr>
-            @endif
-            @endforeach
-            <!-- notif chat -->
-            @foreach($chats as $chat)
-            @php
-            $sender = \App\Models\User::find($chat->data['sender_id']);
-            $notification = \App\Models\Notification::where('data', json_encode($chat->data))->latest()->first();
-            @endphp
-            @if(!$notification->read_at)
-            <span class="flex h-3 w-3">
-                <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-purple-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
-            </span>
-            @endif
-            <a href="{{route('mentor.notification.handling', ['notification' => $notification])}}" class="flex px-4 py-4 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white md:flex md:flex-row md:items-center md:justify-start hover:bg-gray-200">
-                <div class="px-3 py-2 mr-3 bg-gray-100 border border-gray-300 rounded">
-                    <i class="text-sm fas fa-user"></i>
-                </div>
-                <div class="flex flex-row flex-1">
-                    <div class="flex-1">
-                        <h1 class="text-sm font-semibold">Pesan Baru</h1>
-                        <p class="text-xs text-gray-500">{{$sender->name}} mengirim {{$chat->amount}} pesan baru
-                    </div>
-                    <div class="text-xs text-right text-gray-500">
-                        <p>{{$notification->created_at->diffForHumans()}}</p>
-                    </div>
-                </div>
-            </a>
-            <hr>
-            @endforeach
-            <!-- end item -->
-            <!-- end body -->
+
+                @endforeach
+                <!-- end item -->
+            </div>
+
             <!-- bottom -->
             <hr>
-            @if($notifications->isNotEmpty() || $chats->isNotEmpty())
-            <div class="px-4 py-2 mt-2">
-                <a href="{{route('mentor.notification.destroy-all')}}" class="block p-1 text-xs text-center uppercase transition-all duration-500 ease-in-out border border-gray-300 rounded hover:text-indigo-500">
-                    Hapus semua notifikasi
-                </a>
+            <div class="p-4">
+                @if($notifications->isNotEmpty() || $chats->isNotEmpty())
+                <div>
+                    <a href="{{route('mentor.notification.read-all')}}" class="block py-2 text-xs text-center uppercase transition-all duration-300 ease-in-out border border-gray-200 hover:text-white hover:bg-primary-lighter">
+                        Tandai Baca Semua
+                    </a>
+                </div>
+                @endif
+                @if($notifications->isNotEmpty() || $chats->isNotEmpty())
+                <div>
+                    <a href="{{route('mentor.notification.destroy-all')}}" class="block py-2 text-xs text-center uppercase transition-all duration-300 ease-in-out border border-gray-200 hover:text-white hover:bg-danger-lighter">
+                        Hapus semua notifikasi
+                    </a>
+                </div>
+                @endif
             </div>
-            @endif
-            @if($unreadNotifications->isNotEmpty() )
-            <div class="px-4 py-2 mt-2">
-                <a href="{{route('mentor.notification.read-all')}}" class="block p-1 text-xs text-center uppercase transition-all duration-500 ease-in-out border border-gray-300 rounded hover:text-indigo-500">
-                    Tandai Baca Semua
-                </a>
-            </div>
-            @endif
             <!-- end bottom -->
+
         </div>
+
     </div>
 </div>
