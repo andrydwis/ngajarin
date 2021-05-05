@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\Component;
 
-class adminNotifications extends Component
+class AdminNotifications extends Component
 {
     public $user;
     public $notifications;
