@@ -4,7 +4,7 @@ namespace App\View\Components\skeleton;
 
 use Illuminate\View\Component;
 
-class cardCourse extends Component
+class CardCourse extends Component
 {
     /**
      * Create a new component instance.

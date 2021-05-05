@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class cardBrowseCourse extends Component
+class CardBrowseCourse extends Component
 {
     /**
      * Create a new component instance.

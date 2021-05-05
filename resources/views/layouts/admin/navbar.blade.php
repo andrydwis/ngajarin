@@ -118,7 +118,6 @@
         <!-- dropdown notif & chat -->
         <div class="flex">
             <!-- notif -->
-            <x-test/>
             <x-admin-notifications/>
             <!-- end notif -->
 
