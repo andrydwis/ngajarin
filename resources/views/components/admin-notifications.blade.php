@@ -1,5 +1,5 @@
 <div>
-    <div class="static mr-1 xs:mr-5 md:relative" x-data="{ openDropdown : true }">
+    <div class="static mr-1 xs:mr-5 md:relative" x-data="{ openDropdown : false }">
         <div @click="openDropdown = true" class="cursor-pointer">
             @if($unreadNotifications->isNotEmpty())
             <span class="absolute flex ml-2">
