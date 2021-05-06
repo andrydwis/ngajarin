@@ -5,7 +5,7 @@ namespace App\View\Components\student;
 use App\Models\Submission;
 use Illuminate\View\Component;
 
-class indexSubmission extends Component
+class IndexSubmission extends Component
 {
     /**
      * Create a new component instance.

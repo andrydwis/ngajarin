@@ -118,7 +118,7 @@
         <!-- dropdown notif & chat -->
         <div class="flex">
             <!-- notif -->
-            <x-admin-notifications></x-admin-notifications>
+            <x-admin-notifications/>
             <!-- end notif -->
 
             <!-- chat HIDDEN-->

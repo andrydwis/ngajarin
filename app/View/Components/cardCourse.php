@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class cardCourse extends Component
+class CardCourse extends Component
 {
     public $slug;
     public $title;

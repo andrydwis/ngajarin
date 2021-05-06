@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class indexEpisode extends Component
+class IndexEpisode extends Component
 {
     /**
      * Create a new component instance.

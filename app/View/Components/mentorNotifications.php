@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class mentorNotifications extends Component
+class MentorNotifications extends Component
 {
     public $user;
     public $notifications;

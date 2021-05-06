@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class modalReviewSubmission extends Component
+class ModalReviewSubmission extends Component
 {
     /**
      * Create a new component instance.
