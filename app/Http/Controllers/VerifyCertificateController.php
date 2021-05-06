@@ -31,7 +31,8 @@ class VerifyCertificateController extends Controller
         }else{
             $data = [
                 'serial_number' => $request->nomor_seri,
-                'status' => 'tidak valid'
+                'status' => 'tidak valid',
+                'certificate' => null
             ];
 
             return view('user.certificate.show', $data);

@@ -1,23 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.student.app-new')
+@section('content')
+<section class="p-3 @if(!$certificate) h-screen @endif antialiased bg-primary">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <div class="container @if($certificate) min-h-[90vh] @endif p-3 mx-auto text-center bg-white rounded">
+        <div class="h-full border-none card">
+            @if($certificate)
+            <div class="grid py-10 text-white rounded bg-primary">
+                <h1 class="mb-5 h1">Ngajar.in</h1>
+                <div class="font-semibold">diterbitkan :</div>
+                <div class="text-lg font-semibold">{{\Carbon\Carbon::parse($certificate->created_at)->isoFormat('dddd, D MMMM Y')}}</div>
+            </div>
+            <div class="flex flex-col h-full text-gray-800 card-body">
 
-<body>
-    <p>Sertifikat no seri : {{$serial_number}}</p>
-    <p>status : {{$status}}</p>
-    @if($certificate)
-    <hr>
-    <p>info sertif</p>
-    <p>pemilik : {{$certificate->user->name}}</p>
-    <p>course yang diambil : {{$certificate->certificate->course->title}}</p>
-    <p>dicetak pada : {{$certificate->created_at}}</p>
-    @endif
-</body>
+                <div class="font-normal h6">Sertifikat penyelesaian</div>
+                <div class="mb-5 font-normal h6">diberikan kepada : </div>
+                <div class="mb-5 h4">{{$certificate->user->name}}</div>
+                <div class="mb-5 font-normal h6">telah menyelesaikan course : </div>
+                <div class="mb-5 h4">{{$certificate->certificate->course->title}}</div>
 
-</html>
+                <div class="mt-5 text-lg">nomor seri : <span class="h6">{{$serial_number}}</span></div>
+
+            </div>
+            @else
+            <div class="grid h-full text-gray-800 place-items-center card-body">
+                <span class="h6">Sertifikat tidak ditemukan</span> 
+            </div>
+            @endif
+        </div>
+    </div>
+
+</section>
+@endsection
