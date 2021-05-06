@@ -83,14 +83,14 @@
                                         @csrf
                                         @method('DELETE')
                                         <div class="form-group">
-                                            <button id="btn_delete_{{$classroom->classroom->name}}" type="submit">Hapus</button>
+                                            <button id="btn_delete_{{$classroom->classroom->id}}" type="submit">Hapus</button>
                                         </div>
                                     </form>
                                     <!-- hidden form -->
 
                                     <!-- button -->
                                     <div x-data="{ tooltip: false }" class="flex-1">
-                                        <a @click.prevent="$('#btn_delete_{{$classroom->classroom->name}}').click()" @mouseover="tooltip = true" @mouseleave="tooltip = false" href="#" class="my-1 md:my-0 button btn-bs-danger">
+                                        <a @click="$('#btn_delete_{{$classroom->classroom->id}}').click()" @mouseover="tooltip = true" @mouseleave="tooltip = false" href="#" class="my-1 md:my-0 button btn-bs-danger">
                                             <i class="text-sm fas fa-trash-alt"></i>
                                         </a>
                                         <div class="relative" x-cloak x-show.transition.origin.top="tooltip">

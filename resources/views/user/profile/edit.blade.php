@@ -1,10 +1,18 @@
-@if(auth()->user()->hasrole('admin') )
-    @extends('layouts.admin.app')
-@elseif(auth()->user()->hasrole('mentor'))
-    @extends('layouts.mentor.app')
-@elseif(auth()->user()->hasrole('student'))
-    @extends('layouts.student.app')
+@if(auth()->user()->getRoleNames()->first() == 'admin')
+@php
+$layout = 'layouts.admin.app';
+@endphp
+@elseif(auth()->user()->getRoleNames()->first() == 'mentor')
+@php
+$layout = 'layouts.mentor.app';
+@endphp
+@elseif(auth()->user()->getRoleNames()->first() == 'student')
+@php
+$layout = 'layouts.student.app';
+@endphp
 @endif
+
+@extends($layout)
 
 @section('content')
 <div class="w-full p-5 mt-20 md:w-auto lg:w-4/6 xl:w-3/4">
@@ -13,7 +21,7 @@
             <h6 class="h6">Edit Data Profil</h6>
         </div>
         <div x-data="{tab : 'data_pribadi'}" class="max-w-2xl card-body">
-            <form action="" method="POST">
+            <form action="{{route('user.profile.update')}}" method="POST">
                 @csrf
                 @method('PATCH')
                 <!-- tabs -->
@@ -35,10 +43,28 @@
                     <div x-cloak x-show.transition.origin.right="tab === 'data_pribadi'">
                         <div class="grid gap-6">
                             <div>
-                                <label for="foto">foto</label>
-                                <input type="file" name="foto" value="{{old('foto') ?? $user->foto}}" placeholder="masukkan foto" class="form-input py-2 mt-2 block w-full @error('foto') is-invalid @enderror">
+                                <label for="foto">Foto</label>
+                                <div class="flex items-center">
+                                    <a id="lfm" data-input="foto" data-preview="holder" class="pr-2 mt-2 text-white">
+                                        <button id="btn_lfm" class="flex items-center align-middle btn-bs-primary">
+                                            <i class="pr-2 fas fa-camera"></i>
+                                            Pilih
+                                        </button>
+                                    </a>
+                                    <input id="foto" class="block w-full py-2 mt-2 form-input" type="text" name="foto" value="{{old('foto')}}" readonly>
+                                </div>
+                                <div class="mt-8">
+                                    <label>Preview : </label>
+                                    <div id="holder" class="w-40 h-40" x-data>
+                                        <button type="button" @click="$('#btn_lfm').click();">
+                                            <div class="grid w-56 h-40 text-gray-600 bg-gray-100 border-2 border-gray-200 border-dashed hover:bg-gray-50 place-items-center hover:text-gray-400 ">
+                                                <i class="text-4xl fas fa-camera"></i>
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
                                 @error('foto')
-                                <div class=" alert alert-error">
+                                <div class="alert alert-error">
                                     {{$message}}
                                 </div>
                                 @enderror
@@ -180,11 +206,17 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </form>
         </div>
     </div>
 </div>
+@endsection
+
+@section('customJS')
+<!-- upload-button -->
+<script src="{{asset('vendor/laravel-filemanager/js/stand-alone-button.js')}}"></script>
+<script>
+    $('#lfm').filemanager('image');
+</script>
 @endsection
