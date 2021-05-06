@@ -20,7 +20,7 @@ $layout = 'layouts.student.app';
         <div class="card-header">
             <h6 class="h6">Edit Data Profil</h6>
         </div>
-        <div x-data="{tab : 'data_pribadi'}" class="max-w-2xl card-body">
+        <div x-data="{tab : 'data_pribadi'}" class="card-body">
             <form action="{{route('user.profile.update')}}" method="POST">
                 @csrf
                 @method('PATCH')

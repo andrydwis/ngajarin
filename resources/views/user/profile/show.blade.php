@@ -1,4 +1,18 @@
-@extends('layouts.mentor.app')
+@if(auth()->user()->getRoleNames()->first() == 'admin')
+@php
+$layout = 'layouts.admin.app';
+@endphp
+@elseif(auth()->user()->getRoleNames()->first() == 'mentor')
+@php
+$layout = 'layouts.mentor.app';
+@endphp
+@elseif(auth()->user()->getRoleNames()->first() == 'student')
+@php
+$layout = 'layouts.student.app';
+@endphp
+@endif
+
+@extends($layout)
 @section('content')
 <div class="w-full p-5 mt-20 md:w-auto lg:w-4/6 xl:w-3/4">
     <div class="card">
@@ -26,16 +40,16 @@
                 <div x-cloak x-show.transition.origin.right="tab === 'data_pribadi'">
                     <div class="grid gap-6">
                         <div class="flex flex-col">
-                            @if($user->foto)
-                            <div class="self-center w-40 h-40">
-                                <img src="{{$user->foto}}" class="object-cover w-56 h-40">
-                            </div>
-                            @else
-                            <div class="self-center w-40 h-40">
-                                <div class="grid w-56 h-40 text-gray-600 bg-gray-100 border-2 border-gray-200 border-dashed hover:bg-gray-50 place-items-center hover:text-gray-400 ">
-                                    <i class="text-4xl fas fa-camera"></i>
+                            @if($user->detail)
+                                @if($user->detail->photo)
+                                <div class="self-center w-40 h-40">
+                                  <img src="{{$user->detail->photo}}" class="object-cover w-56 h-40 rounded-xl">
                                 </div>
-                            </div>
+                                @else
+                                <div class="self-center w-40 h-40">
+                                    <img src="{{'https://ui-avatars.com/api/?background=random&name='.$user->name}}" class="object-cover w-56 h-40 rounded-xl">
+                                </div>
+                                @endif
                             @endif
                         </div>
 
@@ -108,24 +122,3 @@
     </div>
 </div>
 @endsection
-
-{{-- <div>
-    {{$user->name}} <br>
-{{$user->email}} <br>
-{{$user->email_verified_at->diffForHumans()}} <br>
-{{$user->phone}} <br>
-<hr>
-detail <br>
-@if($user->detail)
-{{$user->detail->photo}} <br>
-{{$user->detail->biodata}} <br>
-{{$user->detail->facebook}} <br>
-{{$user->detail->twitter}} <br>
-{{$user->detail->instagram}} <br>
-{{$user->detail->github}} <br>
-{{$user->detail->linkedin}}
-@else
-anda belum melengkapi detail profil anda <br>
-@endif
-<a href="{{route('user.profile.edit')}}">update detail</a>
-</div> --}}

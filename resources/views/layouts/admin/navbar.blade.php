@@ -29,30 +29,9 @@
             <div x-cloak x-show.transition.origin.top="isOpen" @click.away="isOpen = false" class="fixed right-0 z-20 w-full py-2 text-right text-gray-500 bg-white rounded shadow-md md:text-left md:absolute md:w-40">
 
                 <!-- item -->
-                <a class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
+                <a href="{{route('user.profile.show')}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900">
                     <i class="mr-1 text-xs fas fa-user-edit"></i>
                     Profile
-                </a>
-                <!-- end item -->
-
-                <!-- item -->
-                <a class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
-                    <i class="mr-1 text-xs fas fa-inbox"></i>
-                    Inbox
-                </a>
-                <!-- end item -->
-
-                <!-- item -->
-                <a class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
-                    <i class="mr-1 text-xs fas fa-cogs"></i>
-                    Settings
-                </a>
-                <!-- end item -->
-
-                <!-- item -->
-                <a class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
-                    <i class="mr-1 text-xs fas fa-list"></i>
-                    Activity Log
                 </a>
                 <!-- end item -->
 
@@ -80,14 +59,14 @@
                             <div class="px-4 text-left">
                                 <!--Title-->
                                 <div class="flex items-center justify-between pb-3">
-                                    <p class="text-2xl font-bold text-gray-600">Ready to Leave?</p>
+                                    <p class="text-2xl font-bold text-gray-600">Yakin ingin keluar?</p>
                                     <button class="z-50" @click="modalLogout = !modalLogout">
                                         <i class="fas fa-times hover:text-red-500"></i>
                                     </button>
                                 </div>
                                 <hr>
                                 <!--Body-->
-                                <p class="py-4 ">Select "Logout" below if you are ready to end your current session</p>
+                                <p class="py-4 ">tekan tombol "Logout" dibawah apabila anda ingin mengakhiri sesi anda</p>
 
                                 <!--Footer-->
                                 <div class="flex justify-end pt-8">
@@ -118,7 +97,7 @@
         <!-- dropdown notif & chat -->
         <div class="flex">
             <!-- notif -->
-            <x-admin-notifications/>
+            <x-admin-notifications />
             <!-- end notif -->
 
             <!-- chat HIDDEN-->
