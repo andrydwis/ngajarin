@@ -4,7 +4,6 @@
         <!-- list pesan -->
         <div id="list_chat" class="flex flex-col h-[75vh] md:h-[65vh] mb-4 overflow-y-scroll" wire:poll.1000ms>
             <div class="flex flex-col normal-case">
-
                 @foreach($replies as $reply)
 
                 @if($reply->user->name == auth()->user()->name)
@@ -42,6 +41,14 @@
             </div>
         </div>
         <!-- list pesan -->
+
+        <div class="flex w-full py-2 md:hidden">
+            <a href="{{ Route::currentRouteNamed('user.chat.index') }}">
+                <button class="text-base text-white btn btn-outline-primary bg-primary-lighter">
+                    <i class="mr-1 fill-current fas fa-chevron-left"></i> Kembali
+                </button>
+            </a>
+        </div>
 
         <!-- input pesan -->
         <form wire:submit.prevent="send">

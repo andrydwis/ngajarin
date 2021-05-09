@@ -1,27 +1,36 @@
-@extends('layouts.student.app')
+@extends('layouts.student.app-new')
 @section('content')
-<div class="w-full p-5 mt-20 md:w-auto lg:w-4/6 xl:w-3/4">
+<div class="max-w-4xl mx-auto my-10 ">
     <div class="col-span-1 mt-5 md:mt-0 md:col-span-2">
         <div>
-            <div class="card">
-                <div class="flex justify-between card-header">
-                    <h4 class="h6">Daftar Kelas</h4>
-                    <div x-data="{modal_join : false}">
-                        <!-- modal trigger -->
-                        <a @click="modal_join = !modal_join" href="#">
-                            <button type="submit" class="btn-bs-primary">Join Kelas</button>
-                        </a>
-                        <!-- end modal trigger -->
+            <div class="">
+                <div class="w-full mb-5">
 
-                        <!-- Modal-->
-                        <div x-cloak x-show="modal_join" x-transition:enter="transition duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click.away="modal_join = !modal_join" class="fixed inset-0 z-50 flex items-center justify-center w-full h-full">
+                    <!-- page title -->
+                    <div x-data="{ active : false, modal_join : false}" class="flex flex-col items-start justify-center w-full md:flex-row">
+
+                        <div class="flex items-center p-5 duration-300 cursor-pointer rounded-xl hover:bg-gray-100">
+                            <div class="flex items-center justify-center w-10 h-10 bg-indigo-100 text-primary rounded-2xl">
+                                <i class="text-xl fas fa-user"></i>
+                            </div>
+                            <div class="ml-2 text-2xl font-bold">Daftar Kelas</div>
+                        </div>
+
+                        <div @click="modal_join = true" @mouseover="active = true" @mouseleave="active = false" class="flex items-center p-5 mt-3 duration-300 cursor-pointer hover:bg-gray-100 rounded-xl md:mt-0" :class="{'text-primary' : active, 'text-gray-400' : !active}">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-2xl">
+                                <i class="text-xl fas fa-check"></i>
+                            </div>
+                            <div class="ml-2 text-2xl font-bold" :class="{ 'text-primary' : active, 'text-gray-400' : !active }">Join Kelas</div>
+                        </div>
+
+                        <div x-cloak x-show.transition.duration.300ms.opacity="modal_join" @click.away="modal_join = !modal_join" class="fixed inset-0 z-50 flex items-center justify-center w-full h-full">
 
                             <!-- overlay -->
                             <div class="absolute z-10 w-full h-full bg-gray-900 opacity-50">
                             </div>
                             <!-- overlay -->
 
-                            <div class="fixed z-20 flex flex-col w-full mx-auto mt-10 bg-white border rounded-lg lg:w-2/6 md:w-1/2 md:ml-auto md:mt-0">
+                            <div class="fixed z-20 flex flex-col w-full mx-auto mt-10 bg-white border rounded-lg card lg:w-2/6 md:w-1/2 md:ml-auto md:mt-0">
 
                                 <div>
                                     <!-- body -->
@@ -41,8 +50,8 @@
                                                 @enderror
                                             </div>
                                             <div class="flex justify-end mt-5">
-                                                <button @click.prevent="modal_join = !modal_join" class="mx-0 btn btn-outline-primary">Batal</button>
-                                                <button type="submit" class="px-6 font-semibold btn btn-primary">Join</button>
+                                                <button @click.prevent="modal_join = !modal_join" class="mx-0 text-base btn btn-outline-primary">Batal</button>
+                                                <button type="submit" class="px-6 text-base font-semibold btn btn-primary">Join</button>
                                             </div>
                                         </form>
                                     </div>
@@ -53,10 +62,12 @@
 
 
                         </div>
-
                     </div>
+                    <!-- end of page title -->
+
+
                 </div>
-                <div class="card-body">
+                <div class="">
                     <table id="datatables" class="w-auto text-left">
                         <thead class="pt-10 text-white bg-gray-600 shadow-md">
                             <tr>
@@ -64,7 +75,6 @@
                                 <th>Nama Kelas</th>
                                 <th>Tahun</th>
                                 <th>Semester</th>
-                                <th>Token Invite</th>
                                 <th>Menu</th>
                             </tr>
                         </thead>
@@ -75,7 +85,6 @@
                                 <td>{{$classroom->classroom->name}}</td>
                                 <td>{{$classroom->classroom->year}}</td>
                                 <td>{{$classroom->classroom->semester}}</td>
-                                <td>{{$classroom->classroom->token}}</td>
                                 <td class="flex flex-wrap gap-1 px-6 py-4">
 
                                     <!-- hidden form -->

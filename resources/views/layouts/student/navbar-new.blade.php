@@ -42,7 +42,7 @@
                     <a href="{{ route('student.course.index') }}" class="h-full border-b-4 hover:border-white
                      {{ Route::currentRouteNamed('student.course.index') ? 'border-white text-white' : $border }}">
                         <div class="flex items-center h-full px-4 mx-2 font-semibold hover:text-white lg:mx-3">
-                            Course
+                            Cari Course
                         </div>
                     </a>
 
@@ -112,7 +112,7 @@
                             <!-- item -->
                             <a href="{{ route('student.course.index') }}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out hover:bg-gray-200 hover:text-gray-900">
                                 <i class="mr-1 text-xs fas fa-folder-plus"></i>
-                                Course
+                                Cari Course
                             </a>
                             <!-- end item -->
 

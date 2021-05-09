@@ -1,12 +1,8 @@
 @extends('layouts.user.app')
 @section('content')
-<div class="flex flex-col h-screen overflow-hidden">
+<div class="flex flex-col min-h-screen mb-4 overflow-auto">
     <div class="flex antialiased text-gray-800">
-        <a href="{{ Route::currentRouteNamed('user.chat.index') }}">
-            <button class="fixed z-50 w-14 h-14 text-white duration-300 rounded-full lg:hidden left-5 bottom-[15%] focus:outline-none bg-primary-lighter hover:bg-primary">
-                <i class="text-base fill-current fas fa-chevron-left"></i>
-            </button>
-        </a>
+        
         <div class="flex flex-row w-full overflow-x-hidden">
             <!-- left section -->
             <div class="z-40 flex-col flex-shrink-0 hidden w-64 py-8 pl-6 pr-2 bg-white lg:flex">
@@ -26,7 +22,7 @@
                     }
                     @endphp
 
-                    <div class="flex flex-col items-center w-full px-4 py-6 mt-4 border border-gray-100 rounded-lg bg-gray-100 bg-opacity-30 md:hover:bg-gray-100">
+                    <div class="flex flex-col items-center w-full px-4 py-6 mt-4 bg-gray-100 border border-gray-100 rounded-lg bg-opacity-30 md:hover:bg-gray-100">
                         <div class="w-20 h-20 overflow-hidden border rounded-full">
                             <img src="{{$reciever->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name='.$reciever->name}}" alt="gambar" class="w-full h-full" />
                         </div>
@@ -54,11 +50,11 @@
 
                         <a href="{{route('user.chat.show', ['conversation' => $conversation])}}" class="flex flex-row items-center p-4 bg-gray-100 border border-gray-100 md:flex-row bg-opacity-30 md:hover:bg-gray-100 rounded-xl">
                             @if($conversation->userOne->id == auth()->user()->id)
-                            <div class="flex items-center justify-center w-10 h-10">
+                            <div class="flex items-center justify-center w-10 h-10 overflow-hidden rounded-full">
                                 <img src="{{ $conversation->userTwo->detail->photo ??'https://ui-avatars.com/api/?background=random&name='.$conversation->userTwo->name}}" alt="missing_img" class="rounded-full">
                             </div>
                             @else
-                            <div class="flex items-center justify-center w-10 h-10">
+                            <div class="flex items-center justify-center w-10 h-10 overflow-hidden rounded-full">
                                 <img src="{{ $conversation->userOne->detail->photo ??'https://ui-avatars.com/api/?background=random&name='.$conversation->userOne->name}}" alt="missing_img" class="rounded-full">
                             </div>
                             @endif
