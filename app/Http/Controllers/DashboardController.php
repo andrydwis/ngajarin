@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CertificateUser;
+use App\Models\Classroom;
 use App\Models\ClassroomMember;
 use App\Models\Course;
 use App\Models\Post;
@@ -59,6 +61,28 @@ class DashboardController extends Controller
 
     public function student()
     {
-        return view('student.dashboard.index');
+        $courseUser = DB::table('course_user')
+                    ->where('user_id', Auth::user()->id)
+                    ->get()->pluck('course_id')->toArray();
+        $courses = Course::whereIn('id', $courseUser)->with('submissions')->limit(3)->get();
+
+        $classUser = DB::table('classroom_members')
+                    ->where('user_id', Auth::user()->id)
+                    ->get()->pluck('classroom_id')->toArray();
+        $classrooms = Classroom::whereIn('id', $classUser)->limit(3)->get();
+
+        $certificates = CertificateUser::where('user_id', Auth::user()->id)->with('certificate.course')->get();
+
+        $tutorings = Tutoring::where('student_id', Auth::user()->id)->where('status', 'diterima')->with('mentor.detail')->get();
+
+        $data = [
+            'user' => User::with('detail')->find(Auth::user()->id),
+            'courses' => $courses,
+            'classrooms' => $classrooms,
+            'certificates' => $certificates,
+            'tutorings' => $tutorings
+        ];
+
+        return view('student.dashboard.index', $data);
     }
 }

@@ -67,45 +67,50 @@ class CertificateUserController extends Controller
             $path = public_path('certificate/certificate.docx');
             $templateProcessor->saveAs($path);
 
-            // $temporary = \PhpOffice\PhpWord\IOFactory::load($path);
-            // $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($temporary, 'PDF');
-            // $xmlWriter->save(public_path('certificate/certificate.pdf'), TRUE);
-            // return response()->download(public_path('certificate/certificate.pdf'));
-
-            ConvertApi::setApiSecret('ERhEamUQp0JuFdtg');
-            $result = ConvertApi::convert(
-                'pdf',
-                [
-                    'File' => $path,
-                ],
-                'docx'
-            );
-            $result->saveFiles(public_path('certificate/certificate.pdf'));
-
+            $temporary = \PhpOffice\PhpWord\IOFactory::load($path);
+            $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($temporary, 'PDF');
+            $xmlWriter->save(public_path('certificate/certificate.pdf'), TRUE);
             return response()->download(public_path('certificate/certificate.pdf'));
+
+            // ConvertApi::setApiSecret('ERhEamUQp0JuFdtg');
+            // $result = ConvertApi::convert(
+            //     'pdf',
+            //     [
+            //         'File' => $path,
+            //     ],
+            //     'docx'
+            // );
+            // $result->saveFiles(public_path('certificate/certificate.pdf'));
+
+            // return response()->download(public_path('certificate/certificate.pdf'));
         } else {
             // $templateProcessor = new TemplateProcessor($certificate->template);
             $templateProcessor = new TemplateProcessor(public_path('template/template.docx'));
 
             $templateProcessor->setValue('name', Auth::user()->name);
             $templateProcessor->setValue('course', $certificate->course->title);
-            $templateProcessor->setValue('created_at', $check->created_at);
+            $templateProcessor->setValue('created_at', $check->created_at->format('d-m-Y'));
             $templateProcessor->setValue('serial_number', $check->serial_number);
 
             $path = public_path('certificate/certificate.docx');
             $templateProcessor->saveAs($path);
 
-            ConvertApi::setApiSecret('ERhEamUQp0JuFdtg');
-            $result = ConvertApi::convert(
-                'pdf',
-                [
-                    'File' => $path,
-                ],
-                'docx'
-            );
-            $result->saveFiles(public_path('certificate/certificate.pdf'));
-
+            $temporary = \PhpOffice\PhpWord\IOFactory::load($path);
+            $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($temporary, 'PDF');
+            $xmlWriter->save(public_path('certificate/certificate.pdf'), TRUE);
             return response()->download(public_path('certificate/certificate.pdf'));
+
+            // ConvertApi::setApiSecret('ERhEamUQp0JuFdtg');
+            // $result = ConvertApi::convert(
+            //     'pdf',
+            //     [
+            //         'File' => $path,
+            //     ],
+            //     'docx'
+            // );
+            // $result->saveFiles(public_path('certificate/certificate.pdf'));
+
+            // return response()->download(public_path('certificate/certificate.pdf'));
         }
     }
 

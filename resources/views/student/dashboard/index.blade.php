@@ -7,11 +7,17 @@
         <div class="px-10">
             <div class="flex flex-col items-center w-full max-w-3xl gap-10 p-10 mx-auto text-center text-gray-100 md:text-left rounded-xl md:flex-row">
                 <div class="flex-grow-0 flex-shrink-0 overflow-hidden rounded-full w-28 h-28">
-                    <img src="https://ui-avatars.com/api/?background=dddddd&name=pak_bagas" class="w-full ">
+                    @if($user->detail)
+                    @if($user->detail->photo)
+                    <img src="{{$user->detail->photo}}" class="w-full">
+                    @else
+                    <img src="https://ui-avatars.com/api/?background=random&name={{$user->name}}" class="w-full">
+                    @endif
+                    @endif
                 </div>
                 <div class="flex flex-col justify-center flex-1 h-full gap-1 font-semibold">
-                    <h6 class="text-2xl">Student</h6>
-                    <h6 class="text-xl">student@example.com</h6>
+                    <h6 class="text-2xl">{{$user->name}}</h6>
+                    <h6 class="text-xl">{{$user->email}}</h6>
                     <div class="flex justify-center gap-2 text-3xl text-gray-200 md:justify-start">
                         <a href="">
                             <i class=" fab fa-github-square hover:text-white"></i>
@@ -32,8 +38,9 @@
                     </div>
                 </div>
                 <div class="flex flex-row md:flex-col">
-                    <button class="text-base font-bold text-white border border-white hover:bg-white hover:text-gray-700 btn">Profil</button>
-                    <button class="text-base font-bold text-white btn">Keluar</button>
+                    <a href="{{route('user.profile.show')}}">
+                        <button class="text-base font-bold text-white border border-white hover:bg-white hover:text-gray-700 btn">Profil</button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -43,35 +50,44 @@
     <div class="relative w-full max-w-[800px] gap-10 px-10 mx-auto -mt-16 text-gray-700 md:flex-row ">
         <div class="flex flex-col items-center justify-between px-10 py-5 bg-gray-800 shadow-md md:flex-row rounded-xl">
             <h6 class="text-lg font-semibold text-center text-gray-300 normal-case md:text-left">Upgrade skill kamu dengan course terbaru dari kami!</h6>
-            <button class="text-base font-semibold btn btn-primary ">Semua Course</button>
+            <a href="{{route('student.course.index')}}">
+                <button class="text-base font-semibold btn btn-primary ">Semua Course</button>
+            </a>
         </div>
 
         <div class="grid grid-cols-1 gap-5 mt-10 md:grid-cols-2">
 
             <!-- lanjutkan course -->
             <div class="flex flex-col gap-4 px-8 py-5 bg-white shadow-md rounded-xl">
-                <h6 class="text-gray-800 h6">Lanjukan Course</h6>
+                <h6 class="text-gray-800 h6">Lanjutkan Course</h6>
 
                 <div>
+                    @foreach($courses as $course)
                     <!-- items -->
-                    <a href="" class="mb-1 duration-100">
+                    <a href="{{route('student.course.show', ['course' => $course])}}" class="mb-1 duration-100">
                         <div class="flex w-full px-1 py-4 rounded-lg hover:bg-gray-100">
                             <div class="flex items-center gap-2">
                                 <div>
-                                    <div class="grid w-10 h-10 bg-gray-700 border rounded-full md:w-14 md:h-14 place-items-center">
-                                        <!-- diganti gambar -->
-                                        <!-- <img src="" class="w-full h-full" alt="missing img"> -->
-                                        <i class="ml-1 text-xl text-gray-100 fab fa-react"></i>
+                                    <div class="grid w-10 h-10 bg-gray-700 rounded-full md:w-14 md:h-14 place-items-center">
+                                        <img src="{{$course->thumbnail}}" class="w-full h-full rounded-full" alt="missing img">
                                     </div>
                                 </div>
                                 <div class="flex flex-col">
                                     <span class="text-xs font-bold text-gray-800 md:text-base line-clamp-1">
-                                        ReactJS untuk Pemula ReactJS untuk Pemula
+                                        {{$course->title}}
                                     </span>
 
                                     <div class="flex text-xs text-gray-600 md:text-sm line-clamp-1">
                                         <span class="mr-2">
-                                            4 / 12 Progress Submission
+                                            @php
+                                            $finished = 0;
+                                            foreach($course->submissions as $submission){
+                                            if($submission->finished()){
+                                            $finished += 1;
+                                            }
+                                            }
+                                            @endphp
+                                            {{$finished}} / {{$course->submissions->count()}} Progress Submission
                                         </span>
                                     </div>
                                 </div>
@@ -79,12 +95,14 @@
                         </div>
                     </a>
                     <!-- items -->
+                    @endforeach
                 </div>
 
-                <div>
-                    <button class="w-full text-base font-semibold border-opacity-50 border-none btn btn-outline-primary border-primary-lighter hover:bg-primary-lighter">Lihat Semua</button>
-                </div>
-
+                <a href="{{route('student.course.index')}}">
+                    <div>
+                        <button class="w-full text-base font-semibold border-opacity-50 border-none btn btn-outline-primary border-primary-lighter hover:bg-primary-lighter">Lihat Semua</button>
+                    </div>
+                </a>
             </div>
             <!-- end of lanjutkan course -->
 
@@ -93,24 +111,95 @@
                 <h6 class="text-gray-800 h6">Kelas Saya</h6>
 
                 <div>
+                    @foreach($classrooms as $classroom)
                     <!-- items -->
-                    <a href="" class="mb-1 duration-100">
+                    <a href="{{route('student.classroom-course.index', ['classroom' => $classroom])}}" class="mb-1 duration-100">
                         <div class="flex w-full px-1 py-4 rounded-lg hover:bg-gray-100">
                             <div class="flex items-center gap-2">
                                 <div>
                                     <div class="grid w-10 h-10 overflow-hidden border rounded-full md:w-14 md:h-14 place-items-center">
-                                        <!-- diganti gambar -->
-                                        <img src="https://ui-avatars.com/api/?background=dddddd&name=pak_bagas" class="w-full h-full" alt="missing img">
+                                        <img src="https://ui-avatars.com/api/?background=random&name={{$classroom->name}}" class="w-full h-full" alt="missing img">
                                     </div>
                                 </div>
                                 <div class="flex flex-col">
                                     <span class="text-xs font-bold text-gray-800 md:text-base line-clamp-1">
-                                        Kelas Database pak Bagas
+                                        Kelas {{$classroom->name}}
                                     </span>
 
+                                    <a href="{{route('student.classroom-course.index', ['classroom' => $classroom])}}">
+                                        <div class="flex text-xs text-gray-600 md:text-sm line-clamp-1">
+                                            <span class="mr-2">
+                                                kunjungi kelas
+                                            </span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- items -->
+                    @endforeach
+                </div>
+
+                <a href="{{route('student.classroom.index')}}">
+                    <div>
+                        <button class="w-full text-base font-semibold border-opacity-50 border-none btn btn-outline-primary border-primary-lighter hover:bg-primary-lighter">Lihat Semua</button>
+                    </div>
+                </a>
+            </div>
+            <!-- end of kelas saya -->
+
+            <!-- sertifikat saya -->
+            <div class="flex flex-col gap-4 px-8 py-5 bg-white shadow-md rounded-xl">
+                <h6 class="text-gray-800 h6">Sertifikat Saya</h6>
+
+                <div>
+                    @foreach($certificates as $certificate)
+                    <!-- items -->
+                    <a href="{{route('student.course.show', ['course' => $course])}}" class="mb-1 duration-100">
+                        <div class="flex w-full px-1 py-4 rounded-lg hover:bg-gray-100">
+                            <div class="flex items-center gap-2">
+                                <div>
+                                    <div class="grid w-10 h-10 overflow-hidden border rounded-full md:w-14 md:h-14 place-items-center">
+                                        <img src="{{$certificate->certificate->course->thumbnail}}" class="w-full h-full" alt="missing img">
+                                    </div>
+                                </div>
+                                <div class="flex flex-col">
+                                    <span class="text-xs font-bold text-gray-800 md:text-base line-clamp-1">
+                                        Sertifikat {{$certificate->certificate->course->title}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- items -->
+                    @endforeach
+                </div>
+            </div>
+            <!-- end of sertifikat saya -->
+
+            <!-- tutoring saya -->
+            <div class="flex flex-col gap-4 px-8 py-5 bg-white shadow-md rounded-xl">
+                <h6 class="text-gray-800 h6">Jadwal Tutoring Saya</h6>
+
+                <div>
+                    @foreach($tutorings as $tutoring)
+                    <!-- items -->
+                    <a href="{{route('student.tutoring.create', ['user' => $tutoring->mentor_id])}}" class="mb-1 duration-100">
+                        <div class="flex w-full px-1 py-4 rounded-lg hover:bg-gray-100">
+                            <div class="flex items-center gap-2">
+                                <div>
+                                    <div class="grid w-10 h-10 overflow-hidden border rounded-full md:w-14 md:h-14 place-items-center">
+                                        <img src="{{$tutoring->mentor->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name=' . $tutoring->mentor->name}}" class="w-full h-full" alt="missing img">
+                                    </div>
+                                </div>
+                                <div class="flex flex-col">
+                                    <span class="text-xs font-bold text-gray-800 md:text-base line-clamp-1">
+                                        {{$tutoring->mentor->name}}
+                                    </span>
                                     <div class="flex text-xs text-gray-600 md:text-sm line-clamp-1">
                                         <span class="mr-2">
-                                            kunjungi kelas
+                                           {{\Carbon\Carbon::parse($tutoring->date.' '.$tutoring->hour_start)->diffForHumans()}}
                                         </span>
                                     </div>
                                 </div>
@@ -118,16 +207,10 @@
                         </div>
                     </a>
                     <!-- items -->
+                    @endforeach
                 </div>
-
-                <div>
-                    <button class="w-full text-base font-semibold border-opacity-50 border-none btn btn-outline-primary border-primary-lighter hover:bg-primary-lighter">Lihat Semua</button>
-                </div>
-
             </div>
-            <!-- end of kelas saya -->
-
-
+            <!-- end of tutoring saya -->
         </div>
 
         <div class="flex flex-col items-center justify-between px-10 py-5 my-10 bg-gray-800 shadow-md md:flex-row rounded-xl">

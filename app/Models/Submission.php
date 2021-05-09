@@ -34,6 +34,16 @@ class Submission extends Model
         }
     }
 
+    public function finished()
+    {
+        $check = SubmissionUser::where('submission_id', $this->id)->where('user_id', Auth::user()->id)->where('status', 'diterima')->latest()->first();
+        if ($check) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function score(User $user)
     {
         $check = SubmissionUser::where('submission_id', $this->id)->where('user_id', $user->id)->latest()->first();

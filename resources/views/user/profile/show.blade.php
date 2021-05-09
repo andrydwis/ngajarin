@@ -77,12 +77,7 @@ $layout = 'layouts.student.app';
                             <label for="biodata">biodata</label>
                             <textarea disabled rows="4" name="biodata" class="form-input py-2 mt-2 block w-full @error('biodata') is-invalid @enderror">{{old('biodata') ?? $user->detail->biodata ?? ''}}</textarea>
                         </div>
-
-
-                        <div>
-                            <div for="alamat">email terverifikasi pada :</div>
-                            <div>{{$user->email_verified_at->diffForHumans()}}</div>
-                        </div>
+                        
                     </div>
 
                 </div>
