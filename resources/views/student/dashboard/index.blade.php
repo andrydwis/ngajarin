@@ -215,10 +215,7 @@
 
         <div class="flex flex-col items-center justify-between px-10 py-5 my-10 bg-gray-700 shadow-md md:flex-row rounded-xl">
             <h6 class="text-lg font-semibold text-gray-300 normal-case">Butuh bantuan atau menemukan bug?</h6>
-            <button class="text-base font-semibold btn btn-success">
-                <i class="mr-1 fas fa-comments"></i>
-                Hubungi Admin
-            </button>
+            @livewire('chat-admin')
         </div>
 
     </div>

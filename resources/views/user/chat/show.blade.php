@@ -17,21 +17,21 @@
                         <span class="font-bold">Sedang Mengobrol dengan</span>
                     </div>
 
-                    <?php
-                    $nama_user;
+                    @php
+                    $reciever;
                     if ($conversation->userOne->id == auth()->user()->id) {
-                        $nama_user = $conversation->userTwo->name;
+                        $reciever = $conversation->userTwo;
                     } else {
-                        $nama_user = $conversation->userOne->name;
+                        $reciever = $conversation->userOne;
                     }
-                    ?>
+                    @endphp
 
                     <div class="flex flex-col items-center w-full px-4 py-6 mt-4 border border-gray-100 rounded-lg bg-gray-100 bg-opacity-30 md:hover:bg-gray-100">
                         <div class="w-20 h-20 overflow-hidden border rounded-full">
-                            <img src="https://ui-avatars.com/api/?background=random&name={{$nama_user}}" alt="gambar" class="w-full h-full" />
+                            <img src="{{$reciever->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name='.$reciever->name}}" alt="gambar" class="w-full h-full" />
                         </div>
                         <div class="mt-2 text-sm font-semibold">
-                            <span class="text-sm font-semibold">{{$nama_user}}</span>
+                            <span class="text-sm font-semibold">{{$reciever->name}}</span>
                         </div>
                     </div>
 
