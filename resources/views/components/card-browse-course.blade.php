@@ -1,6 +1,6 @@
 <!-- start card -->
-<div class="w-full px-2 py-4 report-card md:w-1/2 2xl:w-1/3">
-    <div class="h-full px-5 pt-8 pb-5 bg-white border border-gray-300 rounded-md shadow card ">
+<div class="w-full px-2 py-4 duration-300 transform border border-gray-50 hover:-translate-y-2 md:w-1/2 2xl:w-1/3">
+    <div class="h-full px-5 pt-8 pb-5 bg-white rounded-md shadow-xl">
         <!-- card -->
         <div class="flex flex-col">
             <!-- bagian atas -->

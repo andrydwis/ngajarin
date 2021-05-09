@@ -1,12 +1,8 @@
 @extends('layouts.user.app')
 @section('content')
-<div class="flex flex-col h-screen overflow-hidden">
+<div class="flex flex-col min-h-screen mb-4 overflow-auto">
     <div class="flex antialiased text-gray-800">
-        <a href="{{ Route::currentRouteNamed('user.chat.index') }}">
-            <button class="fixed z-50 w-14 h-14 text-white duration-300 rounded-full lg:hidden left-5 bottom-[15%] focus:outline-none bg-primary-lighter hover:bg-primary">
-                <i class="text-base fill-current fas fa-chevron-left"></i>
-            </button>
-        </a>
+        
         <div class="flex flex-row w-full overflow-x-hidden">
             <!-- left section -->
             <div class="z-40 flex-col flex-shrink-0 hidden w-64 py-8 pl-6 pr-2 bg-white lg:flex">

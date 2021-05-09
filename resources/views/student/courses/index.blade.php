@@ -1,46 +1,47 @@
-@extends('layouts.student.app')
+@extends('layouts.student.app-new')
 @section('content')
-<div class="w-full p-5 mt-20 md:w-auto lg:w-4/6 xl:w-3/4">
-    <div class="col-span-1 mt-5 md:mt-0 md:col-span-2">
-        <div>
-            <div class="card">
-                <div class="flex justify-between card-header">
-                    <h4 class="h6">Daftar Course Anda</h4>
-                </div>
-                <div class="card-body">
-                    <table id="datatables" class="w-auto text-left">
-                        <thead class="pt-10 text-white bg-gray-600 shadow-md">
-                            <tr>
-                                <th>No</th>
-                                <th>title</th>
-                                <th>level</th>
-                                <!-- <th>description</th> -->
-                                <th>Menu</th>
-                            </tr>
-                        </thead>
-                        <tbody class="shadow-md">
-                            @foreach($courses as $course)
-                            <tr class="hover:bg-gray-100">
-                                <td>{{$loop->index+1}}</td>
-                                <td>{{$course->title}}</td>
-                                <td>{{$course->level}}</td>
-                                <!-- <td>{{$course->description}}</td> -->
-                                <td class="flex flex-wrap gap-1 px-6 py-4">
-                                    <a href="{{route('student.course.show', ['course' => $course->slug])}}" @mouseover="tooltip = true" @mouseleave="tooltip = false" class="button btn-bs-success">
-                                        <i class="mr-2 text-sm fas fa-folder"></i>
-                                        <span class="hidden md:inline">Lihat Course</span>
-                                    </a>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+<section class="max-w-4xl px-4 mx-auto">
+
+    <!-- page title -->
+    <div class="flex flex-row items-center justify-center w-full h-12 my-10">
+        <div class="flex items-center justify-center w-10 h-10 text-indigo-700 bg-gray-100 rounded-2xl">
+            <i class="text-xl far fa-folder"></i>
         </div>
+        <div class="ml-2 text-2xl font-bold">Course Saya</div>
+    </div>
+    <!-- end of page title -->
+
+    <div class="grid grid-cols-4 gap-8 px-6 mt-10 place-items-center sm:grid-cols-8 lg:grid-cols-8 sm:px-8 xl:px-0 md:py-10">
+        @if($courses)
+        @foreach($courses as $course)
+        <div class="relative col-span-4 space-y-4 overflow-hidden duration-300 transform bg-white shadow-xl rounded-xl md:px-0 hover:-translate-y-2">
+            <a href="{{route('student.course.show', ['course' => $course])}}" class="flex flex-col">
+                <img src="{{$course->thumbnail}}" alt="thumbnail" class="w-full rounded">
+                <div class="px-5 py-5">
+                    <h4 class="text-lg font-medium text-gray-700 line-clamp-1">{{$course->title}}</h4>
+
+                    <div class="flex py-2 mt-2 prose prose-indigo md:py-0">
+                        @foreach($course->tags as $tag)
+                        <span class="mr-2 text-sm font-semibold tracking-tight border-b-2 border-indigo-300 ">
+                            {{ $tag->name }}
+                        </span>
+                        @endforeach
+                    </div>
+
+                </div>
+            </a>
+        </div>
+        @endforeach
+        @else
+        <div class="flex items-center justify-center mx-auto w-96 h-96">
+            <span class="h6">Anda Belum memiliki Course</span>
+        </div>
+        @endif
     </div>
 
-</div>
+
+
+</section>
 @endsection
 
 @section('customCSS')
