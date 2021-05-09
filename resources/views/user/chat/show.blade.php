@@ -26,7 +26,7 @@
                     }
                     ?>
 
-                    <div class="flex flex-col items-center w-full px-4 py-6 mt-4 border border-gray-100 rounded-lg bg-gray-100 bg-opacity-30 md:hover:bg-gray-100">
+                    <div class="flex flex-col items-center w-full px-4 py-6 mt-4 bg-gray-100 border border-gray-100 rounded-lg bg-opacity-30 md:hover:bg-gray-100">
                         <div class="w-20 h-20 overflow-hidden border rounded-full">
                             <img src="https://ui-avatars.com/api/?background=random&name={{$nama_user}}" alt="gambar" class="w-full h-full" />
                         </div>
@@ -54,11 +54,11 @@
 
                         <a href="{{route('user.chat.show', ['conversation' => $conversation])}}" class="flex flex-row items-center p-4 bg-gray-100 border border-gray-100 md:flex-row bg-opacity-30 md:hover:bg-gray-100 rounded-xl">
                             @if($conversation->userOne->id == auth()->user()->id)
-                            <div class="flex items-center justify-center w-10 h-10">
+                            <div class="flex items-center justify-center w-10 h-10 overflow-hidden rounded-full">
                                 <img src="{{ $conversation->userTwo->detail->photo ??'https://ui-avatars.com/api/?background=random&name='.$conversation->userTwo->name}}" alt="missing_img" class="rounded-full">
                             </div>
                             @else
-                            <div class="flex items-center justify-center w-10 h-10">
+                            <div class="flex items-center justify-center w-10 h-10 overflow-hidden rounded-full">
                                 <img src="{{ $conversation->userOne->detail->photo ??'https://ui-avatars.com/api/?background=random&name='.$conversation->userOne->name}}" alt="missing_img" class="rounded-full">
                             </div>
                             @endif
