@@ -1686,12 +1686,7 @@ flex-direction: row-reverse;
 .btn:disabled{
 	opacity: 0.5;
 }
-@media (min-width: 768px){
-	.btn{
-		font-size: 1rem;
-		line-height: 1.5rem;
-	}
-}
+@media (min-width: 768px){}
 .btn-primary{
 	--tw-bg-opacity: 1;
 	background-color: rgba(79, 70, 229, var(--tw-bg-opacity));
@@ -1893,12 +1888,7 @@ code {
     font-size: 0.875rem !important;
     line-height: 1.25rem !important;
 }
-@media (min-width: 768px){
-	code{
-		font-size: 1.125rem !important;
-		line-height: 1.75rem !important;
-	}
-}
+@media (min-width: 768px){}
 body, h1, h2, h3, h4, h5, h6, p, a{
 	text-transform: capitalize;
 }
@@ -2998,6 +2988,10 @@ a.breadcrumbs-item:not(:last-child)::after {
 	--tw-border-opacity: 1;
 	border-color: rgba(59, 130, 246, var(--tw-border-opacity));
 }
+.border-gray-700{
+	--tw-border-opacity: 1;
+	border-color: rgba(51, 65, 85, var(--tw-border-opacity));
+}
 .border-opacity-50{
 	--tw-border-opacity: 0.5;
 }
@@ -3103,6 +3097,10 @@ a.breadcrumbs-item:not(:last-child)::after {
 .bg-gray-300{
 	--tw-bg-opacity: 1;
 	background-color: rgba(203, 213, 225, var(--tw-bg-opacity));
+}
+.bg-danger-lighter{
+	--tw-bg-opacity: 1;
+	background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
 }
 .bg-opacity-30{
 	--tw-bg-opacity: 0.3;
@@ -3345,6 +3343,9 @@ a.breadcrumbs-item:not(:last-child)::after {
 }
 .pt-3{
 	padding-top: 0.75rem;
+}
+.pb-10{
+	padding-bottom: 2.5rem;
 }
 .text-center{
 	text-align: center;
@@ -3735,6 +3736,9 @@ background-color: rgba(99, 102, 241, var(--tw-bg-opacity));
 .hover\:border-l-4:hover{
 	border-left-width: 4px;
 }
+.hover\:border-b-4:hover{
+	border-bottom-width: 4px;
+}
 .hover\:border-primary:hover{
 	--tw-border-opacity: 1;
 	border-color: rgba(79, 70, 229, var(--tw-border-opacity));
@@ -3807,6 +3811,10 @@ background-color: rgba(99, 102, 241, var(--tw-bg-opacity));
 	--tw-bg-opacity: 1;
 	background-color: rgba(15, 23, 42, var(--tw-bg-opacity));
 }
+.hover\:bg-indigo-100:hover{
+	--tw-bg-opacity: 1;
+	background-color: rgba(224, 231, 255, var(--tw-bg-opacity));
+}
 .hover\:bg-opacity-90:hover{
 	--tw-bg-opacity: 0.9;
 }
@@ -3815,6 +3823,9 @@ background-color: rgba(99, 102, 241, var(--tw-bg-opacity));
 }
 .hover\:bg-opacity-10:hover{
 	--tw-bg-opacity: 0.1;
+}
+.hover\:bg-opacity-80:hover{
+	--tw-bg-opacity: 0.8;
 }
 .hover\:text-blue-600:hover{
 	--tw-text-opacity: 1;
@@ -4737,6 +4748,9 @@ background-color: rgba(99, 102, 241, var(--tw-bg-opacity));
 	.md\:hover\:bg-gray-100:hover{
 		--tw-bg-opacity: 1;
 		background-color: rgba(241, 245, 249, var(--tw-bg-opacity));
+	}
+	.md\:w-3\/4{
+		width: 75%;
 	}
 }
 @media (min-width: 1024px){

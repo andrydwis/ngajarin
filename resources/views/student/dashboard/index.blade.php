@@ -1,7 +1,7 @@
 @extends('layouts.student.app-new')
 @section('content')
 
-<section class="min-h-screen mb-10 bg-gray-100" style="overflow-x: hidden">
+<section class="min-h-screen bg-gray-100" style="overflow-x: hidden">
     <div class="relative md:w-[110%] w-full md:left-[-5%] bg-[gray-700] pt-10 pb-14 md:pb-24 md:rounded-bl-[50%] md:rounded-br-[50%]" style="background: url( {{asset('img/patternpad.svg')}} )">
 
         <div class="px-10">
@@ -213,7 +213,7 @@
             <!-- end of tutoring saya -->
         </div>
 
-        <div class="flex flex-col items-center justify-between px-10 py-5 my-10 bg-gray-800 shadow-md md:flex-row rounded-xl">
+        <div class="flex flex-col items-center justify-between px-10 py-5 my-10 bg-gray-700 shadow-md md:flex-row rounded-xl">
             <h6 class="text-lg font-semibold text-gray-300 normal-case">Butuh bantuan atau menemukan bug?</h6>
             <button class="text-base font-semibold btn btn-success">
                 <i class="mr-1 fas fa-comments"></i>
