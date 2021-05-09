@@ -73,7 +73,7 @@ class DashboardController extends Controller
 
         $certificates = CertificateUser::where('user_id', Auth::user()->id)->with('certificate.course')->get();
 
-        $tutorings = Tutoring::where('student_id', Auth::user()->id)->where('status', 'diterima')->with('mentor.detail')->get();
+        $tutorings = Tutoring::where('student_id', Auth::user()->id)->where('status', 'diterima')->orderBy('date', 'desc')->with('mentor.detail')->get();
 
         $data = [
             'user' => User::with('detail')->find(Auth::user()->id),

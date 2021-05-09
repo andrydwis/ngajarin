@@ -6,8 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Submission;
 use App\Models\SubmissionUser;
+use App\Models\User;
+use App\Notifications\ReviewSubmission;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -210,6 +213,9 @@ class SubmissionController extends Controller
         $submissionUser->feedback = $request->feedback;
         $submissionUser->status = $request->status;
         $submissionUser->save();
+
+        $student = User::find($submissionUser->user_id);
+        $student->notify(new ReviewSubmission($submission, Auth::user()));
 
         Alert::success('Submission berhasil direview');
 

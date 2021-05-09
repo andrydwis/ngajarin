@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Student\NotificationHandlerController;
 use App\Http\Controllers\Student\CertificateUserController;
 use App\Http\Controllers\Student\EpisodeController;
 use App\Http\Controllers\Student\SubmissionUserController;
@@ -40,4 +41,9 @@ Route::middleware(['auth', 'verified', 'role:student'])->group(function () {
     Route::delete('/student/tutoring/create/{user}/{tutoring}', [TutoringController::class, 'destroy'])->name('student.tutoring.destroy');
 
     Route::post('/student/review', [ReviewController::class, 'store'])->name('student.review.store');
+
+    Route::get('/student/notification/read-all', [NotificationHandlerController::class, 'readAll'])->name('student.notification.read-all');
+    Route::get('/student/notification/destroy/{notification}', [NotificationHandlerController::class, 'destroy'])->name('student.notification.destroy');
+    Route::get('/student/notification/destroy-all', [NotificationHandlerController::class, 'destroyAll'])->name('student.notification.destroy-all');
+    Route::get('/student/notification/{notification}', [NotificationHandlerController::class, 'handling'])->name('student.notification.handling');
 });

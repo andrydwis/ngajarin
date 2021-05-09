@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Schedule;
 use App\Models\Tutoring;
 use App\Models\User;
+use App\Notifications\ProcessedTutoring;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -122,6 +123,9 @@ class TutoringController extends Controller
                         }
                     }
 
+                    $student = User::find($tutoring->student_id);
+                    $student->notify(new ProcessedTutoring($tutoring, Auth::user()));
+
                     Alert::success('Permintaan tutoring berhasil diproses');
 
                     return redirect()->route('mentor.tutoring.show', ['tutoring' => $tutoring]);
@@ -140,6 +144,9 @@ class TutoringController extends Controller
                     }
                 }
 
+                $student = User::find($tutoring->student_id);
+                $student->notify(new ProcessedTutoring($tutoring, Auth::user()));
+
                 Alert::success('Permintaan tutoring berhasil diproses');
 
                 return redirect()->route('mentor.tutoring.show', ['tutoring' => $tutoring]);
@@ -147,6 +154,9 @@ class TutoringController extends Controller
         } else {
             $tutoring->status = 'ditolak';
             $tutoring->save();
+
+            $student = User::find($tutoring->student_id);
+            $student->notify(new ProcessedTutoring($tutoring, Auth::user()));
 
             Alert::error('Permintaan tutoring telah kadaluwarsa');
 
@@ -158,6 +168,9 @@ class TutoringController extends Controller
     {
         $tutoring->status = 'diterima';
         $tutoring->save();
+
+        $student = User::find($tutoring->student_id);
+        $student->notify(new ProcessedTutoring($tutoring, Auth::user()));
 
         Alert::success('Permintaan tutoring berhasil diproses');
 
