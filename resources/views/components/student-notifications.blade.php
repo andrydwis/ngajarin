@@ -33,38 +33,38 @@
                 @php
                 $mentor = \App\Models\User::find($notification->data['mentor_id']);
                 @endphp
-                <div x-data class="flex flex-col">
+                <div class="flex flex-col">
                     @if(!$notification->read_at)
                     <span class="absolute left-0 flex mt-3 ml-2">
                         <span class="absolute inline-flex w-3 h-3 bg-purple-400 rounded-full opacity-75 animate-ping"></span>
                         <span class="relative inline-flex w-3 h-3 bg-indigo-500 rounded-full opacity-75"></span>
                     </span>
                     @endif
-                    <a href="{{route('student.notification.handling', ['notification' => $notification])}}" class="flex px-4 py-4 text-sm tracking-wide transition-all duration-300 ease-in-out bg-white md:flex md:flex-row md:items-center md:justify-start hover:bg-gray-200">
+                    <div class="flex px-4 py-4 text-sm tracking-wide transition-all duration-300 ease-in-out bg-white md:flex md:flex-row md:items-center md:justify-start hover:bg-gray-200">
 
                         <div class="self-start px-3 py-2 mr-3 bg-gray-100 border border-gray-300 rounded">
                             <i class="text-sm fas fa-user"></i>
                         </div>
 
                         <div class="flex flex-col flex-1">
-                            <div class="font-semibold">Pembaruan Status Tutoring</div>
-                            <div class="text-gray-500">
-                                {{$mentor->name}} menjawab request tutoring yang anda ajukan
-                            </div>
-
+                            <a href="{{route('student.notification.handling', ['notification' => $notification])}}" class="flex flex-col">
+                                <div class="font-semibold">Pembaruan Status Tutoring</div>
+                                <div class="text-gray-500">
+                                    {{$mentor->name}} menjawab request tutoring yang anda ajukan
+                                </div>
+                            </a>
                             <div class="flex items-center justify-between mt-2 text-xs text-gray-500">
                                 <div>
                                     {{$notification->created_at->diffForHumans()}}
                                 </div>
                                 <div>
                                     @if(!$notification->read_at)
-                                    <button @click="$refs.{{$notification->id}}.click()" class="px-1 text-xs btn hover:bg-primary-lighter hover:text-white">tandai baca</button>
+                                    <button @click="window.location.href = '{{route('student.notification.destroy', ['notification' => $notification])}}'" class="px-1 text-xs btn hover:bg-primary-lighter hover:text-white">Hapus</button>
                                     @endif
                                 </div>
                             </div>
                         </div>
-                    </a>
-                    <a x-ref="{{$notification->id}}" class="hidden" href="{{route('student.notification.destroy', ['notification' => $notification])}}">Hapus</a>
+                    </div>
                 </div>
                 <hr>
                 @endif
@@ -75,24 +75,26 @@
                 $reviewer = \App\Models\User::find($notification->data['reviewer_id']);
                 $submission = \App\Models\Submission::find($notification->data['submission_id'])
                 @endphp
-                <div x-data class="flex flex-col">
+                <div class="flex flex-col">
                     @if(!$notification->read_at)
                     <span class="absolute left-0 flex mt-3 ml-2">
                         <span class="absolute inline-flex w-3 h-3 bg-purple-400 rounded-full opacity-75 animate-ping"></span>
                         <span class="relative inline-flex w-3 h-3 bg-indigo-500 rounded-full opacity-75"></span>
                     </span>
                     @endif
-                    <a href="{{route('student.notification.handling', ['notification' => $notification])}}" class="flex px-4 py-4 text-sm tracking-wide transition-all duration-300 ease-in-out bg-white md:flex md:flex-row md:items-center md:justify-start hover:bg-gray-200">
+                    <div class="flex px-4 py-4 text-sm tracking-wide transition-all duration-300 ease-in-out bg-white md:flex md:flex-row md:items-center md:justify-start hover:bg-gray-200">
                         <div class="self-start px-3 py-2 mr-3 bg-gray-100 border border-gray-300 rounded">
                             <i class="text-sm fas fa-file"></i>
                         </div>
 
                         <div class="flex flex-col flex-1">
 
-                            <div class="font-semibold">Submission telah direview</div>
-                            <div class="text-gray-500">
-                                {{$reviewer->name}} telah Mereview submission {{$submission->title}} kamu
-                            </div>
+                            <a href="{{route('student.notification.handling', ['notification' => $notification])}}" class="flex flex-col">
+                                <div class="font-semibold">Submission telah direview</div>
+                                <div class="text-gray-500">
+                                    {{$reviewer->name}} telah Mereview submission {{$submission->title}} kamu
+                                </div>
+                            </a>
 
                             <div class="flex items-center justify-between mt-2 text-xs text-gray-500">
                                 <div>
@@ -100,13 +102,12 @@
                                 </div>
                                 <div>
                                     @if(!$notification->read_at)
-                                    <button @click="$refs.{{$notification->id}}.click()" class="px-1 text-xs btn hover:bg-primary-lighter hover:text-white">tandai baca</button>
+                                    <button @click="window.location.href='{{route('student.notification.destroy', ['notification' => $notification])}}'" class="px-1 text-xs btn hover:bg-primary-lighter hover:text-white">Hapus</button>
                                     @endif
                                 </div>
                             </div>
                         </div>
-                    </a>
-                    <a x-ref="{{$notification->id}}" class="hidden" href="{{route('student.notification.destroy', ['notification' => $notification])}}">Hapus</a>
+                    </div>
                 </div>
                 <hr>
                 @endif

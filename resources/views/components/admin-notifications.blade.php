@@ -44,16 +44,18 @@
                     </span>
                     @endif
 
-                    <a href="{{route('admin.notification.handling', ['notification' => $notification])}}" class="flex px-4 py-4 text-sm tracking-wide transition-all duration-300 ease-in-out bg-white md:flex md:flex-row md:items-center md:justify-start hover:bg-gray-200">
+                    <div class="flex px-4 py-4 text-sm tracking-wide transition-all duration-300 ease-in-out bg-white md:flex md:flex-row md:items-center md:justify-start hover:bg-gray-200">
                         <div class="self-start px-3 py-2 mr-3 bg-gray-100 border border-gray-300 rounded">
                             <i class="text-sm fas fa-file"></i>
                         </div>
 
                         <div class="flex flex-col flex-1">
-                            <div class="font-semibold">Pengumpulan Submission baru</div>
-                            <div class="text-gray-500">
-                                <b>{{$student->name}}</b> Mengumpulkan submission {{$submission->title}}
-                            </div>
+                            <a href="{{route('admin.notification.handling', ['notification' => $notification])}}" class="flex flex-col">
+                                <div class="font-semibold">Pengumpulan Submission baru</div>
+                                <div class="text-gray-500">
+                                    <b>{{$student->name}}</b> Mengumpulkan submission {{$submission->title}}
+                                </div>
+                            </a>
 
                             <div class="flex items-center justify-between mt-2 text-xs text-gray-500">
                                 <div>
@@ -61,14 +63,13 @@
                                 </div>
                                 <div>
                                     @if(!$notification->read_at)
-                                    <button @click="$refs.{{$notification->id}}.click()" class="px-1 text-xs btn hover:bg-primary-lighter hover:text-white">tandai baca</button>
+                                    <button @click="window.location.href='{{route('admin.notification.destroy', ['notification' => $notification])}}'" class="px-1 text-xs btn hover:bg-primary-lighter hover:text-white">hapus</button>
                                     @endif
                                 </div>
                             </div>
                         </div>
 
-                    </a>
-                    <a x-ref="{{$notification->id}}" class="hidden" href="{{route('admin.notification.destroy', ['notification' => $notification])}}">Hapus</a>
+                    </div>
                 </div>
                 <hr>
                 @endif
