@@ -56,7 +56,6 @@ class CertificateUserController extends Controller
             $certificateUser->serial_number = $serial_number;
             $certificateUser->save();
 
-            // $templateProcessor = new TemplateProcessor($certificate->template);
             $templateProcessor = new TemplateProcessor(public_path('template/template.docx'));
 
             $templateProcessor->setValue('name', Auth::user()->name);
@@ -67,24 +66,27 @@ class CertificateUserController extends Controller
             $path = public_path('certificate/certificate.docx');
             $templateProcessor->saveAs($path);
 
-            $temporary = \PhpOffice\PhpWord\IOFactory::load($path);
-            $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($temporary, 'PDF');
-            $xmlWriter->save(public_path('certificate/certificate.pdf'), TRUE);
-            return response()->download(public_path('certificate/certificate.pdf'));
-
-            // ConvertApi::setApiSecret('ERhEamUQp0JuFdtg');
-            // $result = ConvertApi::convert(
-            //     'pdf',
-            //     [
-            //         'File' => $path,
-            //     ],
-            //     'docx'
-            // );
-            // $result->saveFiles(public_path('certificate/certificate.pdf'));
-
+            // $temporary = \PhpOffice\PhpWord\IOFactory::load($path);
+            // $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($temporary, 'PDF');
+            // $xmlWriter->save(public_path('certificate/certificate.pdf'), TRUE);
             // return response()->download(public_path('certificate/certificate.pdf'));
+
+            ConvertApi::setApiSecret('ERhEamUQp0JuFdtg');
+            $result = ConvertApi::convert(
+                'pdf',
+                [
+                    'File' => $path,
+                ]
+            );
+            $result->saveFiles(public_path('certificate/certificate.pdf'));
+
+            $headers =[
+                'Content-Description' => 'File Transfer',
+                'Content-Type' => 'application/pdf',
+            ];
+
+            return response()->download(public_path('certificate/certificate.pdf'), 'sertifikat.pdf', $headers);
         } else {
-            // $templateProcessor = new TemplateProcessor($certificate->template);
             $templateProcessor = new TemplateProcessor(public_path('template/template.docx'));
 
             $templateProcessor->setValue('name', Auth::user()->name);
@@ -95,22 +97,26 @@ class CertificateUserController extends Controller
             $path = public_path('certificate/certificate.docx');
             $templateProcessor->saveAs($path);
 
-            $temporary = \PhpOffice\PhpWord\IOFactory::load($path);
-            $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($temporary, 'PDF');
-            $xmlWriter->save(public_path('certificate/certificate.pdf'), TRUE);
-            return response()->download(public_path('certificate/certificate.pdf'));
-
-            // ConvertApi::setApiSecret('ERhEamUQp0JuFdtg');
-            // $result = ConvertApi::convert(
-            //     'pdf',
-            //     [
-            //         'File' => $path,
-            //     ],
-            //     'docx'
-            // );
-            // $result->saveFiles(public_path('certificate/certificate.pdf'));
-
+            // $temporary = \PhpOffice\PhpWord\IOFactory::load($path);
+            // $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($temporary, 'PDF');
+            // $xmlWriter->save(public_path('certificate/certificate.pdf'), TRUE);
             // return response()->download(public_path('certificate/certificate.pdf'));
+
+            ConvertApi::setApiSecret('ERhEamUQp0JuFdtg');
+            $result = ConvertApi::convert(
+                'pdf',
+                [
+                    'File' => $path,
+                ]
+            );
+            $result->saveFiles(public_path('certificate/certificate.pdf'));
+
+            $headers =[
+                'Content-Description' => 'File Transfer',
+                'Content-Type' => 'application/pdf',
+            ];
+
+            return response()->download(public_path('certificate/certificate.pdf'), 'sertifikat.pdf', $headers);
         }
     }
 

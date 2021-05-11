@@ -22,7 +22,7 @@ class NotificationHandlerController extends Controller
             $notification->read_at = Carbon::now();
             $notification->save();
             
-            return redirect()->route('student.tutoring.create', ['user', $mentor]);
+            return redirect()->route('student.tutoring.create', ['user' => $mentor]);
         } elseif ($notification->type == 'App\Notifications\ReviewSubmission') {
             $submission = Submission::find($notification->data['submission_id']);
 

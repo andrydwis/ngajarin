@@ -97,7 +97,7 @@ class TutoringController extends Controller
             'status' => ['required']
         ]);
 
-        $isFuture = Carbon::parse($tutoring->date . ' ' . $tutoring->hour_start)->isFuture();
+        $isFuture = Carbon::parse($tutoring->date . ' ' . $tutoring->hour_end)->isFuture();
         if ($isFuture) {
             $check = Tutoring::where('date', $tutoring->date)->where('status', 'diterima')->first();
             if ($check && $request->status == 'diterima') {
