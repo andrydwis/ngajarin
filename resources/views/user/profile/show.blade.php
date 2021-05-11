@@ -8,13 +8,13 @@ $layout = 'layouts.mentor.app';
 @endphp
 @elseif(auth()->user()->getRoleNames()->first() == 'student')
 @php
-$layout = 'layouts.student.app';
+$layout = 'layouts.student.app-new';
 @endphp
 @endif
 
 @extends($layout)
 @section('content')
-<div class="w-full p-5 mt-20 md:w-auto lg:w-4/6 xl:w-3/4">
+<div class="w-full p-5 mx-auto mt-20 md:w-auto lg:w-4/6 xl:w-3/4">
     <div class="card">
         <div class="flex items-center justify-between card-header">
             <h6 class="h6">Data Profil</h6>
@@ -46,8 +46,8 @@ $layout = 'layouts.student.app';
                                   <img src="{{$user->detail->photo}}" class="object-cover w-56 h-40 rounded-xl">
                                 </div>
                                 @else
-                                <div class="self-center w-40 h-40">
-                                    <img src="{{'https://ui-avatars.com/api/?background=random&name='.$user->name}}" class="object-cover w-56 h-40 rounded-xl">
+                                <div class="self-center w-56 h-40 overflow-hidden">
+                                    <img src="{{'https://ui-avatars.com/api/?background=random&name='.$user->name}}" class="object-cover w-full h-full rounded-xl">
                                 </div>
                                 @endif
                             @endif
