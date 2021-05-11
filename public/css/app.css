@@ -4790,6 +4790,14 @@ background-color: rgba(99, 102, 241, var(--tw-bg-opacity));
 	.md\:h-\[400px\]{
 		height: 400px;
 	}
+	.md\:px-10{
+		padding-left: 2.5rem;
+		padding-right: 2.5rem;
+	}
+	.md\:px-8{
+		padding-left: 2rem;
+		padding-right: 2rem;
+	}
 }
 @media (min-width: 1024px){
 	.lg\:relative{

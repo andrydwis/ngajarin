@@ -1,7 +1,7 @@
 @extends('layouts.guest.app')
 @section('content')
 <!-- Section 1 -->
-<section class="w-full min-h-screen px-8 py-10 bg-gray-100 md:py-16 xl:px-8">
+<section class="w-full min-h-screen px-2 py-10 bg-gray-100 md:px-8 md:py-16 xl:px-8">
     <div class="max-w-5xl mx-auto mt-3 mb-5 ">
 
         <div class="bg-white shadow-xl rounded-xl">
@@ -15,7 +15,7 @@
 
                 </div>
 
-                <div class="w-full p-10 mt-5 md:mt-5 md:w-2/4">
+                <div class="w-full px-1 py-5 mt-5 md:py-10 md:px-10 md:mt-5 md:w-2/4">
                     <div class="relative z-10 h-auto py-10 overflow-hidden border-gray-300 rounded-lg px-7">
                         <h2 class="inline text-xl font-extrabold leading-none text-center text-black md:hidden md:text-3xl">
                             Mulai dengan mendaftarkan diri anda sekarang
@@ -23,8 +23,6 @@
 
                         <form x-data="{tab : 'data1'}" action="{{route('register')}}" method="post" class="relative flex mt-8 " :class="{'flex-col' : tab === 'data1', 'flex-col-reverse' : tab === 'data2'}">
                             @csrf
-
-
 
                             <!-- data 1 -->
                             <div x-cloak style="min-height: 300px;" :class="{'w-full absolute' : tab != 'data1'}" x-show="tab === 'data1'" x-transition:enter="transition duration-1000 opacity-0" x-transition:enter-start="transform -translate-x-full" x-transition:enter-end="transform translate-x-0 opacity-100" x-transition:leave="transition duration-1000 " x-transition:leave-start="transform opacity-10" x-transition:leave-end="transform -translate-x-full opacity-0">
