@@ -1686,12 +1686,7 @@ flex-direction: row-reverse;
 .btn:disabled{
 	opacity: 0.5;
 }
-@media (min-width: 768px){
-	.btn{
-		font-size: 1rem;
-		line-height: 1.5rem;
-	}
-}
+@media (min-width: 768px){}
 .btn-primary{
 	--tw-bg-opacity: 1;
 	background-color: rgba(79, 70, 229, var(--tw-bg-opacity));
@@ -1893,12 +1888,7 @@ code {
     font-size: 0.875rem !important;
     line-height: 1.25rem !important;
 }
-@media (min-width: 768px){
-	code{
-		font-size: 1.125rem !important;
-		line-height: 1.75rem !important;
-	}
-}
+@media (min-width: 768px){}
 body, h1, h2, h3, h4, h5, h6, p, a{
 	text-transform: capitalize;
 }
@@ -2435,6 +2425,9 @@ a.breadcrumbs-item:not(:last-child)::after {
 .h-9{
 	height: 2.25rem;
 }
+.h-\[400px\]{
+	height: 400px;
+}
 .h-56{
 	height: 14rem;
 }
@@ -2491,6 +2484,9 @@ a.breadcrumbs-item:not(:last-child)::after {
 }
 .max-h-\[45vh\]{
 	max-height: 45vh;
+}
+.max-h-\[400px\]{
+	max-height: 400px;
 }
 .min-h-full{
 	min-height: 100%;
@@ -4759,6 +4755,9 @@ background-color: rgba(99, 102, 241, var(--tw-bg-opacity));
 	.md\:hover\:bg-gray-100:hover{
 		--tw-bg-opacity: 1;
 		background-color: rgba(241, 245, 249, var(--tw-bg-opacity));
+	}
+	.md\:h-\[400px\]{
+		height: 400px;
 	}
 }
 @media (min-width: 1024px){

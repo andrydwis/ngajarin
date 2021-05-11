@@ -39,7 +39,9 @@
             @foreach($recent_courses as $course)
             <div class="relative col-span-4 space-y-4 overflow-hidden duration-300 transform bg-white shadow-xl rounded-xl md:px-0 hover:-translate-y-2">
                 <a href="{{route('student.course.show', ['course' => $course])}}" class="flex flex-col">
-                    <img src="{{$course->thumbnail}}" alt="thumbnail" class="w-full rounded">
+                    <div class="h-56">
+                        <img src="{{$course->thumbnail}}" alt="thumbnail" class="object-cover w-full h-full rounded">
+                    </div>
                     <div class="px-5 py-5">
                         <h4 class="text-lg font-medium text-gray-700 line-clamp-1">{{$course->title}}</h4>
 
@@ -70,12 +72,14 @@
             @foreach($popular_courses as $course)
             <div class="relative col-span-4 space-y-4 overflow-hidden duration-300 transform bg-white shadow-xl rounded-xl md:px-0 hover:-translate-y-2">
                 <a href="{{route('student.course.show', ['course' => $course])}}" class="flex flex-col">
-                    <img src="{{$course->thumbnail}}" alt="thumbnail" class="w-full rounded">
+                    <div class="h-56">
+                        <img src="{{$course->thumbnail}}" alt="thumbnail" class="object-cover w-full h-full rounded">
+                    </div>
                     <div class="px-5 py-5">
                         <h4 class="text-lg font-medium text-gray-700 line-clamp-1">{{$course->title}}</h4>
 
                         <div class="prose">Total Member : {{$course->users->count()}}</div>
-                        
+
                         <div class="flex py-2 mt-2 prose prose-indigo md:py-0">
                             @foreach($course->tags as $tag)
                             <span class="mr-2 text-sm font-semibold tracking-tight border-b-2 border-indigo-300 ">
