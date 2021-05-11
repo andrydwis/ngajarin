@@ -3,7 +3,7 @@
 
 
 <!-- Section 1 -->
-<section class="w-full min-h-screen px-8 py-10 bg-gray-100 md:py-16 xl:px-8">
+<section class="w-full min-h-screen px-2 py-10 bg-gray-100 md:px-8 md:py-16 xl:px-8">
     <div class="max-w-5xl mx-auto md:mt-10">
         <div class="flex flex-col items-center md:flex-row ">
 

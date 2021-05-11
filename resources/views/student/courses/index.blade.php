@@ -16,7 +16,9 @@
         @foreach($courses as $course)
         <div class="relative col-span-4 space-y-4 overflow-hidden duration-300 transform bg-white shadow-xl rounded-xl md:px-0 hover:-translate-y-2">
             <a href="{{route('student.course.show', ['course' => $course])}}" class="flex flex-col">
-                <img src="{{$course->thumbnail}}" alt="thumbnail" class="w-full rounded">
+                <div class="h-56">
+                    <img src="{{$course->thumbnail}}" alt="thumbnail" class="object-cover w-full h-full rounded">
+                </div>
                 <div class="px-5 py-5">
                     <h4 class="text-lg font-medium text-gray-700 line-clamp-1">{{$course->title}}</h4>
 

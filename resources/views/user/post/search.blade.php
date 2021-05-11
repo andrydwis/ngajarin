@@ -4,6 +4,30 @@
 <div class="flex justify-center">
     <div class="flex flex-col items-start max-w-5xl py-5 md:flex-row md:mx-5">
 
+        <!-- dropdown mobile -->
+        <div x-data="{isOpen : false}" class="fixed z-20 inline lg:hidden right-4 bottom-4">
+            <div x-cloak x-show.transition.duration.300ms="isOpen" @click.away="isOpen = false" class="absolute z-50 flex flex-col gap-4 py-2 text-gray-500 bg-white border border-gray-300 rounded shadow-md bottom-14 right-14 w-max">
+
+                <a href="{{route('user.post.create')}}" class="block px-4 py-2 text-sm hover:bg-gray-200 hover:text-gray-900">
+                    <i class="mr-2 fas fa-plus"></i> Buat Postingan
+                </a>
+                <a href="{{route('user.post.index')}}" class="block px-4 py-2 text-sm hover:bg-gray-200 hover:text-gray-900">
+                    <i class="mr-2 fas fa-bars"></i> Postingan terbaru
+                </a>
+                <a href="{{route('user.post.my-post')}}" class="block px-4 py-2 text-sm hover:bg-gray-200 hover:text-gray-900">
+                    <i class="mr-2 fas fa-history"></i> Postingan Saya
+                </a>
+                <a href="{{route('user.post.bookmark')}}" class="block px-4 py-2 text-sm hover:bg-gray-200 hover:text-gray-900">
+                    <i class="mr-2 fas fa-bookmark"></i> Disimpan
+                </a>
+
+            </div>
+            <button @click="isOpen = !isOpen" class="w-16 h-16 text-white duration-300 rounded-full focus:outline-none bg-primary-lighter hover:bg-primary">
+                <i class="text-xl fill-current fas fa-ellipsis-h"></i>
+            </button>
+        </div>
+        <!-- end dropdown mobile -->
+
         <div class="flex-none hidden mr-9 lg:block lg:sticky lg:self-start top-10 w-52">
 
             <div class="lg:sticky lg:text-center">
@@ -221,6 +245,6 @@
             <div class="px-6">
                 {{$posts->links()}}
             </div>
+        </div>
     </div>
-</div>
-@endsection
+    @endsection

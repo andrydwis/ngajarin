@@ -3,11 +3,29 @@
 
 <div class="flex justify-center">
 
-    <a href="{{route('user.post.create')}}" class="fixed z-20 inline lg:hidden right-4 bottom-4">
-        <button class="w-16 h-16 text-white duration-300 rounded-full focus:outline-none bg-primary-lighter hover:bg-primary">
-            <i class="text-xl fill-current fas fa-plus"></i>
+    <!-- dropdown mobile -->
+    <div x-data="{isOpen : false}" class="fixed z-20 inline lg:hidden right-4 bottom-4">
+        <div x-cloak x-show.transition.duration.300ms="isOpen" @click.away="isOpen = false" class="absolute z-50 flex flex-col gap-4 py-2 text-gray-500 bg-white border border-gray-300 rounded shadow-md bottom-14 right-14 w-max">
+
+            <a href="{{route('user.post.create')}}" class="block px-4 py-2 text-sm hover:bg-gray-200 hover:text-gray-900">
+                <i class="mr-2 fas fa-plus"></i> Buat Postingan
+            </a>
+            <a href="{{route('user.post.index')}}" class="block px-4 py-2 text-sm hover:bg-gray-200 hover:text-gray-900">
+                <i class="mr-2 fas fa-bars"></i> Postingan terbaru
+            </a>
+            <a href="{{route('user.post.my-post')}}" class="block px-4 py-2 text-sm hover:bg-gray-200 hover:text-gray-900">
+                <i class="mr-2 fas fa-history"></i> Postingan Saya
+            </a>
+            <a href="{{route('user.post.bookmark')}}" class="block px-4 py-2 text-sm hover:bg-gray-200 hover:text-gray-900">
+                <i class="mr-2 fas fa-bookmark"></i> Disimpan
+            </a>
+
+        </div>
+        <button @click="isOpen = !isOpen" class="w-16 h-16 text-white duration-300 rounded-full focus:outline-none bg-primary-lighter hover:bg-primary">
+            <i class="text-xl fill-current fas fa-ellipsis-h"></i>
         </button>
-    </a>
+    </div>
+    <!-- end dropdown mobile -->
 
     <div class="flex flex-col items-start max-w-5xl py-5 md:flex-row md:mx-5 ">
 
@@ -75,7 +93,7 @@
 
             <!-- postingan list -->
             <div class="py-3">
-                @foreach($posts as $post)
+                @forelse($posts as $post)
 
                 <div class="flex flex-col h-auto px-6 py-4 mx-4 mb-4 transition-all bg-gray-100 border border-gray-100 cursor-pointer lg:h-36 md:flex-row bg-opacity-30 md:hover:bg-gray-100 rounded-xl">
 
@@ -214,7 +232,12 @@
                     </div>
                 </div>
 
-                @endforeach
+                @empty
+                <div class="flex flex-col items-center justify-center h-auto px-6 py-4 mx-4 mb-4 transition-all bg-gray-100 border border-gray-100 cursor-pointer lg:h-36 md:flex-row bg-opacity-30 md:hover:bg-gray-100 rounded-xl">
+                    <h6 class="text-xl font-semibold"> Belum ada Postingan baru</h6>
+                </div>
+                @endforelse
+
             </div>
             <!-- end of postingan list -->
             {{$posts->links()}}

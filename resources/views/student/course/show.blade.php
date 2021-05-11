@@ -53,7 +53,7 @@
                 </div>
             </div>
             <div class="w-5/6 lg:max-w-lg lg:w-full md:w-1/2">
-                <img class="object-cover object-center w-full h-full rounded-lg shadow-xl" alt="hero" src="{{$course->thumbnail}}">
+                <img class="object-cover w-full rounded-lg shadow-xl" style="max-height: 300px;" alt="course_img" src="{{$course->thumbnail}}">
             </div>
         </div>
     </div>

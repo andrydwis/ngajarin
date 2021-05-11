@@ -2,7 +2,7 @@
 @section('content')
 
 <section class="min-h-screen bg-gray-100" style="overflow-x: hidden">
-    <div class="relative md:w-[110%] w-full md:left-[-5%] bg-[gray-700] pt-10 pb-14 md:pb-24 md:rounded-bl-[50%] md:rounded-br-[50%]" style="background: url( {{asset('img/patternpad.svg')}} )">
+    <div id="header_profile" class="relative md:w-[110%] w-full md:left-[-5%] bg-gray-700 pt-10 pb-14 md:pb-24 md:rounded-bl-[50%] md:rounded-br-[50%]">
 
         <div class="px-10">
             <div class="flex flex-col items-center w-full max-w-3xl gap-10 p-10 mx-auto text-center text-gray-100 md:text-left rounded-xl md:flex-row">
@@ -75,8 +75,8 @@
                             <div class="flex w-full px-1 py-4 rounded-lg hover:bg-gray-100">
                                 <div class="flex items-center gap-2">
                                     <div>
-                                        <div class="grid w-10 h-10 bg-gray-700 rounded-full md:w-14 md:h-14 place-items-center">
-                                            <img src="{{$course->thumbnail}}" class="object-cover w-full h-full rounded-full" alt="missing img">
+                                        <div class="grid w-10 h-10 overflow-hidden bg-gray-700 rounded-full md:w-14 md:h-14 place-items-center">
+                                            <img src="{{$course->thumbnail}}" class="object-cover w-full h-full " alt="missing img">
                                         </div>
                                     </div>
                                     <div class="flex flex-col">
@@ -254,5 +254,11 @@
 @endsection
 
 @section('customCSS')
-
+<style>
+    @media (min-width: 640px) {
+        #header_profile{
+            background: url( {{asset('img/patternpad.svg')}} )
+        }
+    }
+</style>
 @endsection
