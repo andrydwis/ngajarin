@@ -12,10 +12,7 @@
                 <!-- <h2 class="text-2xl font-extrabold leading-none text-black sm:text-3xl md:text-5xl">
                     Changing The Way People Do Business.
                 </h2> -->
-                <img
-                src="http://api.elements.buildwithangga.com/storage/files/2/assets/Empty%20State/EmptyState3/Empty-3-5.png"
-                alt="missing img" 
-                class="hidden transform translate-y-10 md:inline">
+                <img src="http://api.elements.buildwithangga.com/storage/files/2/assets/Empty%20State/EmptyState3/Empty-3-5.png" alt="missing img" class="hidden transform translate-y-10 md:inline">
                 <!-- <p class="text-xl text-gray-600 md:pr-16">Learn how to engage with your visitors and teach them about your mission. We're revolutionizing the way customers and businesses interact.</p> -->
             </div>
 
@@ -49,13 +46,24 @@
 
                         <div class="py-1">
                             <label for="password" class="px-1 text-sm text-gray-600 md:text-base">Password</label>
-                            <div>
+                            <div x-data="{show : false}">
                                 <span class="absolute z-10 pt-4 pl-3 text-gray-600 md:pt-3">
                                     <svg class="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
                                     </svg>
                                 </span>
-                                <input name="password" id="password" placeholder="Masukan Password" type="password" class="input-text-icon @error('password') input-is-invalid @enderror" />
+
+                                <input name="password" id="password" placeholder="Masukan Password" :type="show ? 'text' : 'password'" class="input-text-icon @error('password') input-is-invalid @enderror" />
+
+                                <span @click="show = !show" class="absolute right-0 z-10 pt-3 pr-10 text-gray-600 cursor-pointer md:pt-3">
+                                    <i x-show="show" class="w-5 h-5 fas fa-eye-slash"></i>
+                                    <i x-show="!show" class="w-5 h-5 fas fa-eye"></i>
+                                </span>
+
+                                <div class="mt-2 text-right">
+                                    <a href="{{ route('password.request') }}" class="text-gray-600 hover:text-blue-500 hover:underline ">Lupa Password?</a></p>
+                                </div>
+
                             </div>
                             @error('password')
                             <div class="alert alert-danger">

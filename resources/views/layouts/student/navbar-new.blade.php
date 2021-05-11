@@ -42,7 +42,7 @@
                     <a href="{{ route('student.course.index') }}" class="h-full border-b-4 hover:border-white
                      {{ Route::currentRouteNamed('student.course.index') ? 'border-white text-white' : $border }}">
                         <div class="flex items-center h-full px-4 mx-2 font-semibold hover:text-white lg:mx-3">
-                            Cari Course
+                            Course
                         </div>
                     </a>
 
@@ -65,6 +65,7 @@
 
                 <div class="flex items-center justify-end mt-3 md:w-1/3 ">
 
+                    
                     @if(Route::currentRouteNamed('user.chat.show'))
                     <div class="flex mb-2 ml-4 bg-primary-lighter rounded-xl" x-data>
                         <button @click="toggleLight()" type="button" class="flex items-center justify-center flex-shrink-0 px-4 py-2 text-white focus:outline-none rounded-xl">
@@ -78,9 +79,12 @@
 
                     @if (Route::has('login'))
                     @auth
+                    
+                    <!-- notif -->
                     <div class="flex mb-3">
                         <x-student-notifications />
                     </div>
+                    <!-- end of notif -->
 
                     <!-- profile -->
                     <div class="relative mb-3 mr-5 md:static" x-data="{ isOpen : false }">
@@ -91,9 +95,12 @@
                                 <i class="text-2xl fill-current fas fa-user-circle"></i>
                             </div>
 
-                            <div class="flex ml-2 capitalize ">
-                                <h1 class="p-0 m-0 font-semibold leading-none">
-                                    {{auth()->user()->name}}
+                            <div class="flex ml-1 capitalize ">
+                                <h1 class="inline p-0 m-0 font-semibold leading-none lg:hidden">
+                                    {{ Str::words(auth()->user()->name, 1, '') }}
+                                </h1>
+                                <h1 class="hidden p-0 m-0 font-semibold leading-none lg:inline">
+                                    {{ Str::words(auth()->user()->name, 2, '') }}
                                 </h1>
                                 <i class="block ml-2 text-sm leading-none fas fa-chevron-down"></i>
                             </div>
