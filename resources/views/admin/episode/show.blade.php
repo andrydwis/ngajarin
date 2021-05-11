@@ -28,13 +28,13 @@
                         <h6 class="mb-2 text-sm font-semibold md:text-lg">
                             Syarat :
                         </h6>
-                        @if($episode->unlock_submission)
+                        @if($episode->submission == null)
                         <p>
                             Tidak ada syarat submission
                         </p>
                         @else
                         <p>
-                            {$episode->submission->title}
+                            {{$episode->submission->title}}
                         </p>
                         @endif
                     </div>

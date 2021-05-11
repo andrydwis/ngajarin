@@ -85,7 +85,7 @@
                         <form action="{{route('admin.course.destroy', $slug)}}" method="post" class="hidden">
                             @csrf
                             @method('DELETE')
-                            <button id="{{ $title }}" type="submit">
+                            <button id="{{ $slug }}" type="submit">
                                 Hapus
                             </button>
                         </form>
@@ -93,14 +93,14 @@
                         <form action="{{route('mentor.course.destroy', $slug)}}" method="post" class="hidden">
                             @csrf
                             @method('DELETE')
-                            <button id="{{ $title }}" type="submit">
+                            <button id="{{ $slug }}" type="submit">
                                 Hapus
                             </button>
                         </form>
                         @endrole
 
 
-                        <a href="#" @click.prevent="$('#{{ $title }}').click();" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900">
+                        <a href="#" @click.prevent="$('#{{ $slug }}').click();" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900">
                             <i class="mr-1 text-xs fas fa-trash"></i>
                             Hapus
                         </a>

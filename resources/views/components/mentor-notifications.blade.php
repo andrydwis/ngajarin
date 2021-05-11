@@ -106,7 +106,7 @@
                                 </div>
                                 <div>
                                     @if(!$notification->read_at)
-                                    <button @click="window.location.href='{{route('mentor.notification.destroy', ['notification' => $notification])}}'" class="px-1 text-xs btn hover:bg-primary-lighter hover:text-white">tandai baca</button>
+                                    <button @click="window.location.href='{{route('mentor.notification.destroy', ['notification' => $notification])}}'" class="px-1 text-xs btn hover:bg-primary-lighter hover:text-white">hapus</button>
                                     @endif
                                 </div>
                             </div>

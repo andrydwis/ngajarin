@@ -25,7 +25,7 @@
                                 {{$submissionUserAccepted->user->name}}
                             </td>
                             <td class="px-1 py-2 text-sm text-center border-b md:text-left md:text-base md:px-4">
-                                2-10-2021
+                                {{$submissionUserAccepted->created_at->format('d-m-Y')}}
                             </td>
                             <td class="px-1 py-2 text-sm text-center border-b md:text-left md:text-base md:px-4" x-data="{ isOpen : false }">
                                 <a href="{{$submissionUserAccepted->file}}" target="_blank">
