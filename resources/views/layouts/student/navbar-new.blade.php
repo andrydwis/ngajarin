@@ -110,28 +110,28 @@
                         <div x-cloak x-show.transition.origin.top="isOpen" @click.away="isOpen = false" class="fixed right-0 z-20 w-full py-2 text-right text-gray-500 rounded shadow-md md:text-left md:absolute md:w-40 @if(Route::currentRouteNamed('dashboard.student')) bg-gray-100 @else bg-white @endif">
 
                             <!-- item -->
-                            <a href="{{ url('/dashboard') }}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out hover:bg-gray-200 hover:text-gray-900">
+                            <a href="{{ url('/dashboard') }}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out md:hidden hover:bg-gray-200 hover:text-gray-900">
                                 <i class="mr-1 text-xs fas fa-chart-pie"></i>
                                 Dashboard
                             </a>
                             <!-- end item -->
 
                             <!-- item -->
-                            <a href="{{ route('student.course.index') }}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out hover:bg-gray-200 hover:text-gray-900">
+                            <a href="{{ route('student.course.index') }}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out md:hidden hover:bg-gray-200 hover:text-gray-900">
                                 <i class="mr-1 text-xs fas fa-folder-plus"></i>
                                 Cari Course
                             </a>
                             <!-- end item -->
 
                             <!-- item -->
-                            <a href="{{ route('user.post.index') }}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out hover:bg-gray-200 hover:text-gray-900">
+                            <a href="{{ route('user.post.index') }}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out md:hidden hover:bg-gray-200 hover:text-gray-900">
                                 <i class="mr-1 text-xs fas fa-comments"></i>
                                 Forum
                             </a>
                             <!-- end item -->
 
                             <!-- item -->
-                            <a href="{{ route('student.tutoring.index')}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out hover:bg-gray-200 hover:text-gray-900">
+                            <a href="{{ route('student.tutoring.index')}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out md:hidden hover:bg-gray-200 hover:text-gray-900">
                                 <i class="mr-1 text-xs fas fa-calendar-check"></i>
                                 Tutoring
                             </a>

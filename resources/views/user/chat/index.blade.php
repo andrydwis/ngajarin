@@ -16,7 +16,7 @@
         <!-- bio -->
         <div class="flex flex-col items-center w-full px-4 py-6 mt-4 bg-gray-100 border border-gray-200 rounded-lg">
             <div class="overflow-hidden border rounded-full md:w-20 md:h-20 w-14 h-14">
-                <img src="{{$user->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name='.$user->name}}" class="w-full h-full">
+                <img src="{{$user->detail->photo ?? 'https://ui-avatars.com/api/?background=random&name='.$user->name}}" class="object-cover w-full h-full">
             </div>
             <div class="mt-2 text-sm font-semibold">{{$user->name}}</div>
             <a href="{{route('user.profile.show')}}" class="text-sm font-semibold text-gray-500 hover:text-primary">Profil Saya</a>

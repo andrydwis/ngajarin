@@ -1,6 +1,6 @@
-@extends('layouts.student.app')
+@extends('layouts.student.app-new')
 @section('content')
-<div class="w-full p-5 mt-20 md:w-auto lg:w-4/6 xl:w-3/4">
+<div class="w-full p-5 mx-auto mt-20 md:w-auto lg:w-4/6 xl:w-3/4">
     <div class="col">
         <div class="card">
             <div class="card-header">
