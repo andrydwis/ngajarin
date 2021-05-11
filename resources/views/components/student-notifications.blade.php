@@ -73,7 +73,6 @@
                 @if($notification->type == 'App\Notifications\ReviewSubmission')
                 @php
                 $reviewer = \App\Models\User::find($notification->data['reviewer_id']);
-                $submission = \App\Models\Submission::find($notification->data['submission_id'])
                 @endphp
                 <div class="flex flex-col">
                     @if(!$notification->read_at)
@@ -92,7 +91,7 @@
                             <a href="{{route('student.notification.handling', ['notification' => $notification])}}" class="flex flex-col">
                                 <div class="font-semibold">Submission telah direview</div>
                                 <div class="text-gray-500">
-                                    {{$reviewer->name}} telah Mereview submission {{$submission->title}} kamu
+                                    {{$reviewer->name}} telah Mereview submission kamu
                                 </div>
                             </a>
 

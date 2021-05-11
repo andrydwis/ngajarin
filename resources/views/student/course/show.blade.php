@@ -27,7 +27,7 @@
                 </div>
                 <div class="flex justify-center">
                     @if(in_array(auth()->user()->id, $course->users->pluck('id')->toArray()))
-                    @if($isFinished)
+                    @if($isFinished && $course->submission != 0)
                     @if($course->certificate)
                     <form action="{{route('student.export-certicate', ['certificate' => $certificate])}}" method="post">
                         @csrf

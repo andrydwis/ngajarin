@@ -77,7 +77,6 @@
 
                 @php
                 $student = \App\Models\User::find($notification->data['student_id']);
-                $submission = \App\Models\Submission::find($notification->data['submission_id'])
                 @endphp
 
                 <div class="flex flex-col">
@@ -97,7 +96,7 @@
                             <a href="{{route('mentor.notification.handling', ['notification' => $notification])}}" class="flex flex-col">
                                 <div class="font-semibold">Pengumpulan Submission baru</div>
                                 <div class="text-gray-500">
-                                    <b>{{$student->name}}</b> Mengumpulkan submission {{$submission->title}}
+                                    <b>{{$student->name}}</b> Mengumpulkan submission baru
                                 </div>
                             </a>
                             <div class="flex items-center justify-between mt-2 text-xs text-gray-500">
