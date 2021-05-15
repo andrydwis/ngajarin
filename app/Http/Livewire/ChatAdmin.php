@@ -12,7 +12,7 @@ class ChatAdmin extends Component
     public function chat()
     {
         $admin = User::role('admin')->first();
-        $conversation = Conversation::where('user_one', Auth::user()->id)->where('user_two', $admin)->first();
+        $conversation = Conversation::where('user_one', Auth::user()->id)->where('user_two', $admin->id)->first();
         if($conversation){
             return redirect()->route('user.chat.show', ['conversation' => $conversation]);
         }else{
