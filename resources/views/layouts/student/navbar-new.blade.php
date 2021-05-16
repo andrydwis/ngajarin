@@ -207,10 +207,10 @@
 
 
                     @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="inline-flex mt-0 mr-0 text-base bg-white border border-white rounded-full text-primary btn hover:bg-primary hover:text-white">Daftar <span class="hidden ml-2 xl:inline">Sekarang</span> </a>
+                    <!-- <a href="{{ route('register') }}" class="inline-flex mt-0 mr-0 text-base bg-white border border-white rounded-full text-primary btn hover:bg-primary hover:text-white">Daftar <span class="hidden ml-2 xl:inline">Sekarang</span> </a> -->
                     @endif
 
-                    <a href="{{ route('login') }}" class="inline-flex mt-0 text-base text-white border-white rounded-full btn hover:underline">Masuk</a>
+                    <!-- <a href="{{ route('login') }}" class="inline-flex mt-0 text-base text-white border-white rounded-full btn hover:underline">Masuk</a> -->
 
                     @endauth
                     @endif
