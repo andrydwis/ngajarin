@@ -75,7 +75,7 @@ class SubmissionUserController extends Controller
         $data = [
             'course' => $course,
             'submission' => $submission,
-            'submission_user' => SubmissionUser::where('submission_id', $submission->id)->first()
+            'submission_user' => SubmissionUser::where('submission_id', $submission->id)->where('user_id', Auth::user()->id)->first()
         ];
 
         return view('student.submission.show', $data);
