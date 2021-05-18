@@ -80,6 +80,8 @@ class CertificateUserController extends Controller
             );
             $result->saveFiles(public_path('certificate/certificate.pdf'));
 
+            sleep(3);
+
             $headers =[
                 'Content-Description' => 'File Transfer',
                 'Content-Type' => 'application/pdf',
@@ -110,6 +112,8 @@ class CertificateUserController extends Controller
                 ]
             );
             $result->saveFiles(public_path('certificate/certificate.pdf'));
+
+            sleep(3);
 
             $headers =[
                 'Content-Description' => 'File Transfer',
