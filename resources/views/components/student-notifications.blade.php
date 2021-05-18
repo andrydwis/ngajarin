@@ -1,3 +1,4 @@
+@if(!Route::currentRouteNamed('root.index'))
 <div>
     <div class="static mr-1 xs:mr-3 md:relative" x-data="{ openDropdown : false }">
         <div @click="openDropdown = true" class="cursor-pointer">
@@ -169,3 +170,4 @@
 
     </div>
 </div>
+ @endif
