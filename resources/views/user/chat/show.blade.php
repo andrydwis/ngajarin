@@ -42,28 +42,28 @@
 
                     <div class="flex flex-col mt-4 -mx-2 space-y-1 h-[30vh] overflow-y-scroll">
 
-                        @foreach($conversations as $conversation)
+                        @foreach($conversations as $list)
 
                         @php
-                        $latest = $conversation->replies->last()
+                        $latest = $list->replies->last()
                         @endphp
 
-                        <a href="{{route('user.chat.show', ['conversation' => $conversation])}}" class="flex flex-row items-center p-4 bg-gray-100 border border-gray-100 md:flex-row bg-opacity-30 md:hover:bg-gray-100 rounded-xl">
-                            @if($conversation->userOne->id == auth()->user()->id)
+                        <a href="{{route('user.chat.show', ['conversation' => $list])}}" class="flex flex-row items-center p-4 bg-gray-100 border border-gray-100 md:flex-row bg-opacity-30 md:hover:bg-gray-100 rounded-xl">
+                            @if($list->userOne->id == auth()->user()->id)
                             <div class="flex items-center justify-center w-10 h-10 overflow-hidden rounded-full">
-                                <img src="{{ $conversation->userTwo->detail->photo ??'https://ui-avatars.com/api/?background=random&name='.$conversation->userTwo->name}}" alt="missing_img" class="rounded-full">
+                                <img src="{{ $list->userTwo->detail->photo ??'https://ui-avatars.com/api/?background=random&name='.$list->userTwo->name}}" alt="missing_img" class="rounded-full">
                             </div>
                             @else
                             <div class="flex items-center justify-center w-10 h-10 overflow-hidden rounded-full">
-                                <img src="{{ $conversation->userOne->detail->photo ??'https://ui-avatars.com/api/?background=random&name='.$conversation->userOne->name}}" alt="missing_img" class="rounded-full">
+                                <img src="{{ $list->userOne->detail->photo ??'https://ui-avatars.com/api/?background=random&name='.$list->userOne->name}}" alt="missing_img" class="rounded-full">
                             </div>
                             @endif
                             <div class="flex flex-col items-start justify-start ml-4">
 
-                                @if($conversation->userOne->id == auth()->user()->id)
-                                <span class="text-sm font-semibold">{{$conversation->userTwo->name}}</span>
+                                @if($list->userOne->id == auth()->user()->id)
+                                <span class="text-sm font-semibold">{{$list->userTwo->name}}</span>
                                 @else
-                                <span class="text-sm font-semibold">{{$conversation->userOne->name}}</span>
+                                <span class="text-sm font-semibold">{{$list->userOne->name}}</span>
                                 @endif
 
                             </div>
