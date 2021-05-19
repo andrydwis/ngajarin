@@ -23,7 +23,7 @@ class MentorNotifications extends Component
     {
         //
         $this->user = User::find(Auth::user()->id);
-        $this->notifications = Notification::where('notifiable_id', Auth::user()->id)->where('type', '!=', 'App\Notifications\NewChat')->get();
+        $this->notifications = Notification::where('notifiable_id', Auth::user()->id)->where('type', '!=', 'App\Notifications\NewChat')->orderBy('created_at', 'desc')->get();
         $this->chats = Notification::where('notifiable_id', Auth::user()->id)->where('type', 'App\Notifications\NewChat')->select('type', 'data', DB::raw('count(*) as amount'))->groupBy('data', 'type')->get();
         $this->unreadNotifications = $this->user->unreadNotifications;
     }
