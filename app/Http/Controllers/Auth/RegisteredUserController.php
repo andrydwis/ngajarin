@@ -48,7 +48,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'phone' => $request->telepon,
             'password' => Hash::make($request->password),
-            'email_verified_at' => Carbon::now()
+            // 'email_verified_at' => Carbon::now()
         ]);
 
         $user->assignRole('student');

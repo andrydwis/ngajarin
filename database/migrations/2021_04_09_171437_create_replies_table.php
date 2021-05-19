@@ -17,7 +17,7 @@ class CreateRepliesTable extends Migration
             $table->id();
             $table->foreignId('conversation_id')->constrained('conversations')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('message');
+            $table->text('message');
             $table->timestamps();
         });
     }
