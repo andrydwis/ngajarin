@@ -48,7 +48,7 @@
                         </div>
                     </a>
 
-                    <a href="{{('user.post.my-post')}}">
+                    <a href="{{route('user.post.my-post')}}">
                         <div class="pl-6 my-1 text-base text-left border border-white sidebar-item hover:border-primary">
                             <i class="mx-1 text-sm fill-current fas fa-history"></i> Postingan Saya
                         </div>
@@ -159,32 +159,6 @@
                                             @endforeach
                                         </div>
                                     </div>
-
-                                    @if(!$post->bookmarked())
-                                    <form action="{{route('user.post.bookmark-process', ['post' => $post])}}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="focus:outline-none">
-                                            <div class="flex items-center justify-center ml-4 hover:text-primary-lighter">
-                                                <i class="mr-1 text-sm far fa-bookmark"></i>
-                                                <span class="relative text-xs font-semibold leading-none text-left">
-                                                    Simpan
-                                                </span>
-                                            </div>
-                                        </button>
-                                    </form>
-                                    @elseif($post->bookmarked())
-                                    <form action="{{route('user.post.bookmark-process', ['post' => $post])}}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="focus:outline-none">
-                                            <div class="flex items-center justify-center ml-4 hover:text-primary-lighter">
-                                                <i class="mr-1 text-sm fill-current fas fa-bookmark"></i>
-                                                <span class="relative text-xs font-semibold leading-none text-left ">
-                                                    Tersimpan
-                                                </span>
-                                            </div>
-                                        </button>
-                                    </form>
-                                    @endif
 
                                     <div class="flex items-center justify-center ml-4">
                                         <i class="mr-1 text-sm fas fa-thumbs-up"></i>
