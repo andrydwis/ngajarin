@@ -78,7 +78,7 @@ class CertificateUserController extends Controller
                     'File' => $path,
                 ]
             );
-            $result->saveFiles(public_path('certificate/certificate.pdf'));
+            $result->getFile()->save(public_path('certificate/certificate.pdf'));
 
             sleep(3);
 
@@ -111,7 +111,7 @@ class CertificateUserController extends Controller
                     'File' => $path,
                 ]
             );
-            $result->saveFiles(public_path('certificate/certificate.pdf'));
+            $result->getFile()->save(public_path('certificate/certificate.pdf'));
 
             sleep(3);
 
