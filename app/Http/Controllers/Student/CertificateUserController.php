@@ -71,11 +71,13 @@ class CertificateUserController extends Controller
             // $xmlWriter->save(public_path('certificate/certificate.pdf'), TRUE);
             // return response()->download(public_path('certificate/certificate.pdf'));
 
+            $upload = new \ConvertApi\FileUpload($path);
+
             ConvertApi::setApiSecret('ERhEamUQp0JuFdtg');
             $result = ConvertApi::convert(
                 'pdf',
                 [
-                    'File' => $path,
+                    'File' => $upload,
                 ]
             );
             $result->getFile()->save(public_path('certificate/certificate.pdf'));
@@ -99,6 +101,8 @@ class CertificateUserController extends Controller
             $path = public_path('certificate/certificate.docx');
             $templateProcessor->saveAs($path);
 
+            $upload = new \ConvertApi\FileUpload($path);
+
             // $temporary = \PhpOffice\PhpWord\IOFactory::load($path);
             // $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($temporary, 'PDF');
             // $xmlWriter->save(public_path('certificate/certificate.pdf'), TRUE);
@@ -108,7 +112,7 @@ class CertificateUserController extends Controller
             $result = ConvertApi::convert(
                 'pdf',
                 [
-                    'File' => $path,
+                    'File' => $upload,
                 ]
             );
             $result->getFile()->save(public_path('certificate/certificate.pdf'));
