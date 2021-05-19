@@ -2326,6 +2326,9 @@ a.breadcrumbs-item:not(:last-child)::after {
 .ml-10{
 	margin-left: 2.5rem;
 }
+.mr-0{
+	margin-right: 0px;
+}
 .-mb-px{
 	margin-bottom: -1px;
 }
@@ -2352,9 +2355,6 @@ a.breadcrumbs-item:not(:last-child)::after {
 }
 .mb-10{
 	margin-bottom: 2.5rem;
-}
-.mr-0{
-	margin-right: 0px;
 }
 .ml-3{
 	margin-left: 0.75rem;
@@ -2473,11 +2473,11 @@ a.breadcrumbs-item:not(:last-child)::after {
 .h-64{
 	height: 16rem;
 }
-.max-h-\[40vh\]{
-	max-height: 40vh;
-}
 .max-h-\[100vh\]{
 	max-height: 100vh;
+}
+.max-h-\[40vh\]{
+	max-height: 40vh;
 }
 .max-h-\[250px\]{
 	max-height: 250px;
@@ -2684,6 +2684,21 @@ a.breadcrumbs-item:not(:last-child)::after {
 }
 .translate-x-full{
 	--tw-translate-x: 100%;
+}
+.translate-y-7{
+	--tw-translate-y: 1.75rem;
+}
+.translate-x-5{
+	--tw-translate-x: 1.25rem;
+}
+.translate-x-4{
+	--tw-translate-x: 1rem;
+}
+.translate-x-3{
+	--tw-translate-x: 0.75rem;
+}
+.translate-y-6{
+	--tw-translate-y: 1.5rem;
 }
 .rotate-180{
 	--tw-rotate: 180deg;
@@ -3096,6 +3111,9 @@ a.breadcrumbs-item:not(:last-child)::after {
 	--tw-bg-opacity: 1;
 	background-color: rgba(99, 102, 241, var(--tw-bg-opacity));
 }
+.bg-transparent{
+	background-color: transparent;
+}
 .bg-gray-500{
 	--tw-bg-opacity: 1;
 	background-color: rgba(100, 116, 139, var(--tw-bg-opacity));
@@ -3119,9 +3137,6 @@ a.breadcrumbs-item:not(:last-child)::after {
 .bg-gray-300{
 	--tw-bg-opacity: 1;
 	background-color: rgba(203, 213, 225, var(--tw-bg-opacity));
-}
-.bg-transparent{
-	background-color: transparent;
 }
 .bg-opacity-30{
 	--tw-bg-opacity: 0.3;
@@ -3327,6 +3342,9 @@ a.breadcrumbs-item:not(:last-child)::after {
 .pt-3{
 	padding-top: 0.75rem;
 }
+.pt-2{
+	padding-top: 0.5rem;
+}
 .pt-6{
 	padding-top: 1.5rem;
 }
@@ -3341,9 +3359,6 @@ a.breadcrumbs-item:not(:last-child)::after {
 }
 .pr-5{
 	padding-right: 1.25rem;
-}
-.pt-2{
-	padding-top: 0.5rem;
 }
 .pb-2{
 	padding-bottom: 0.5rem;
@@ -3828,6 +3843,9 @@ background-color: rgba(99, 102, 241, var(--tw-bg-opacity));
 	--tw-bg-opacity: 1;
 	background-color: rgba(203, 213, 225, var(--tw-bg-opacity));
 }
+.hover\:bg-opacity-70:hover{
+	--tw-bg-opacity: 0.7;
+}
 .hover\:bg-opacity-80:hover{
 	--tw-bg-opacity: 0.8;
 }
@@ -3839,9 +3857,6 @@ background-color: rgba(99, 102, 241, var(--tw-bg-opacity));
 }
 .hover\:bg-opacity-75:hover{
 	--tw-bg-opacity: 0.75;
-}
-.hover\:bg-opacity-70:hover{
-	--tw-bg-opacity: 0.7;
 }
 .hover\:text-blue-600:hover{
 	--tw-text-opacity: 1;
@@ -4493,6 +4508,12 @@ background-color: rgba(99, 102, 241, var(--tw-bg-opacity));
 	.md\:-ml-6{
 		margin-left: -1.5rem;
 	}
+	.md\:ml-4{
+		margin-left: 1rem;
+	}
+	.md\:mr-1{
+		margin-right: 0.25rem;
+	}
 	.md\:mt-3{
 		margin-top: 0.75rem;
 	}
@@ -4711,6 +4732,9 @@ background-color: rgba(99, 102, 241, var(--tw-bg-opacity));
 	.md\:pt-3{
 		padding-top: 0.75rem;
 	}
+	.md\:pt-7{
+		padding-top: 1.75rem;
+	}
 	.md\:pb-24{
 		padding-bottom: 6rem;
 	}
@@ -4722,9 +4746,6 @@ background-color: rgba(99, 102, 241, var(--tw-bg-opacity));
 	}
 	.md\:pl-10{
 		padding-left: 2.5rem;
-	}
-	.md\:pt-7{
-		padding-top: 1.75rem;
 	}
 	.md\:text-left{
 		text-align: left;
@@ -4774,15 +4795,6 @@ background-color: rgba(99, 102, 241, var(--tw-bg-opacity));
 	.md\:hover\:bg-gray-100:hover{
 		--tw-bg-opacity: 1;
 		background-color: rgba(241, 245, 249, var(--tw-bg-opacity));
-	}
-	.md\:ml-4{
-		margin-left: 1rem;
-	}
-	.md\:mr-2{
-		margin-right: 0.5rem;
-	}
-	.md\:mr-1{
-		margin-right: 0.25rem;
 	}
 }
 @media (min-width: 1024px){

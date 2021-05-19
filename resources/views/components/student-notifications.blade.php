@@ -1,3 +1,4 @@
+@if(!Route::currentRouteNamed('root.index'))
 <div>
     <div class="static mr-1 xs:mr-3 md:relative" x-data="{ openDropdown : false }">
         <div @click="openDropdown = true" class="cursor-pointer">
@@ -35,7 +36,7 @@
                 @endphp
                 <div class="flex flex-col">
                     @if(!$notification->read_at)
-                    <span class="absolute left-0 flex mt-3 ml-2">
+                    <span class="relative flex transform translate-x-3 translate-y-6">
                         <span class="absolute inline-flex w-3 h-3 bg-purple-400 rounded-full opacity-75 animate-ping"></span>
                         <span class="relative inline-flex w-3 h-3 bg-indigo-500 rounded-full opacity-75"></span>
                     </span>
@@ -76,7 +77,7 @@
                 @endphp
                 <div class="flex flex-col">
                     @if(!$notification->read_at)
-                    <span class="absolute left-0 flex mt-3 ml-2">
+                    <span class="relative flex transform translate-x-3 translate-y-6">
                         <span class="absolute inline-flex w-3 h-3 bg-purple-400 rounded-full opacity-75 animate-ping"></span>
                         <span class="relative inline-flex w-3 h-3 bg-indigo-500 rounded-full opacity-75"></span>
                     </span>
@@ -120,7 +121,7 @@
                 @endphp
                 <div>
                     @if(!$notification->read_at)
-                    <span class="absolute left-0 flex mt-3 ml-2">
+                    <span class="relative flex transform translate-x-3 translate-y-6">
                         <span class="absolute inline-flex w-3 h-3 bg-purple-400 rounded-full opacity-75 animate-ping"></span>
                         <span class="relative inline-flex w-3 h-3 bg-indigo-500 rounded-full opacity-75"></span>
                     </span>
@@ -169,3 +170,4 @@
 
     </div>
 </div>
+ @endif
