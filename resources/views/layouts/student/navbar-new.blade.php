@@ -65,7 +65,7 @@
 
                 <div class="flex items-center justify-end mt-3 md:w-1/3 ">
 
-                    
+
                     @if(Route::currentRouteNamed('user.chat.show'))
                     <div class="flex mb-2 ml-4 bg-primary-lighter rounded-xl" x-data>
                         <button @click="toggleLight()" type="button" class="flex items-center justify-center flex-shrink-0 px-4 py-2 text-white focus:outline-none rounded-xl">
@@ -79,12 +79,13 @@
 
                     @if (Route::has('login'))
                     @auth
-                    
+
                     <!-- notif -->
                     <div class="flex mb-3">
                         <x-student-notifications />
                     </div>
                     <!-- end of notif -->
+
 
                     <!-- profile -->
                     <div class="relative mb-3 mr-5 md:static" x-data="{ isOpen : false }">
@@ -107,7 +108,7 @@
                         </button>
 
 
-                        <div x-cloak x-show.transition.origin.top="isOpen" @click.away="isOpen = false" class="fixed right-0 z-20 w-full py-2 text-right text-gray-500 rounded shadow-md md:text-left md:absolute md:w-40 @if(Route::currentRouteNamed('dashboard.student')) bg-gray-100 @else bg-white @endif">
+                        <div x-cloak x-show.transition.origin.top="isOpen" @click.away="isOpen = false" class="fixed right-0 z-20 w-full py-2 text-right text-gray-500 rounded shadow-md md:text-left md:absolute md:w-52 @if(Route::currentRouteNamed('dashboard.student')) bg-gray-100 @else bg-white @endif">
 
                             <!-- item -->
                             <a href="{{ url('/dashboard') }}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out md:hidden hover:bg-gray-200 hover:text-gray-900">
@@ -142,6 +143,13 @@
                             <a href="{{route('user.profile.show')}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out hover:bg-gray-200 hover:text-gray-900">
                                 <i class="mr-1 text-xs fas fa-user-edit"></i>
                                 Profile
+                            </a>
+                            <!-- end item -->
+
+                            <!-- item -->
+                            <a href="{{ route('verify-certificate.index') }}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out hover:bg-gray-200 hover:text-gray-900">
+                                <i class="mr-1 text-xs fas fa-clipboard-check"></i>
+                                Validasi Sertifikat
                             </a>
                             <!-- end item -->
 
