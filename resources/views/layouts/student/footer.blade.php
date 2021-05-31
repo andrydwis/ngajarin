@@ -4,13 +4,13 @@
         <a href="#_" class="text-xl font-black leading-none text-gray-200 select-none">
             Ngajar<span class="text-white">.in</span>
         </a>
-        <p class="mt-4 text-sm text-gray-100 sm:ml-4 sm:pl-4 sm:border-l sm:border-gray-200 sm:mt-0">
-            ©2021 - Ngajarin | Andry Dwi S. | Muhammad Ihya F. B.
+        <p class="mt-4 text-sm text-center text-gray-100 sm:ml-4 sm:pl-4 sm:border-l sm:border-gray-200 sm:mt-0 md:text-left">
+            ©2021 - Ngajarin <br> Andry Dwi S. | Muhammad Ihya F. B.
         </p>
         <span class="inline-flex flex-wrap justify-center mt-4 space-x-5 sm:ml-auto sm:mt-0 sm:justify-start">
 
-            <a href="#" class="text-gray-200 hover:text-gray-500">
-                <span class="">Visit our GitHub!</span>
+            <a href="{{ route('verify-certificate.index') }}" class="text-gray-200 hover:text-gray-500">
+                <span class="">Validasi Sertifikat</span>
             </a>
 
         </span>

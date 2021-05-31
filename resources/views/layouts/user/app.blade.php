@@ -28,7 +28,7 @@
     <main class="min-h-[75vh]">
         @yield('content')
     </main>
-    @include('layouts.user.footer')
+    @include('layouts.student.footer')
 
     <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>

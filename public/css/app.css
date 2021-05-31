@@ -2673,6 +2673,12 @@ a.breadcrumbs-item:not(:last-child)::after {
 .translate-y-10{
 	--tw-translate-y: 2.5rem;
 }
+.translate-x-3{
+	--tw-translate-x: 0.75rem;
+}
+.translate-y-6{
+	--tw-translate-y: 1.5rem;
+}
 .-translate-y-8{
 	--tw-translate-y: -2rem;
 }
@@ -2684,21 +2690,6 @@ a.breadcrumbs-item:not(:last-child)::after {
 }
 .translate-x-full{
 	--tw-translate-x: 100%;
-}
-.translate-y-7{
-	--tw-translate-y: 1.75rem;
-}
-.translate-x-5{
-	--tw-translate-x: 1.25rem;
-}
-.translate-x-4{
-	--tw-translate-x: 1rem;
-}
-.translate-x-3{
-	--tw-translate-x: 0.75rem;
-}
-.translate-y-6{
-	--tw-translate-y: 1.5rem;
 }
 .rotate-180{
 	--tw-rotate: 180deg;
@@ -4795,6 +4786,12 @@ background-color: rgba(99, 102, 241, var(--tw-bg-opacity));
 	.md\:hover\:bg-gray-100:hover{
 		--tw-bg-opacity: 1;
 		background-color: rgba(241, 245, 249, var(--tw-bg-opacity));
+	}
+	.md\:w-60{
+		width: 15rem;
+	}
+	.md\:w-52{
+		width: 13rem;
 	}
 }
 @media (min-width: 1024px){

@@ -130,7 +130,7 @@
                                 <div class="flex items-center gap-2">
                                     <div>
                                         <div class="grid w-10 h-10 overflow-hidden border rounded-full md:w-14 md:h-14 place-items-center">
-                                            <img src="{{$certificate->certificate->course->thumbnail}}" class="w-full h-full" alt="missing img">
+                                            <img src="{{$certificate->certificate->course->thumbnail}}" class="object-cover w-full h-full" alt="missing img">
                                         </div>
                                     </div>
                                     <div class="flex flex-col">
