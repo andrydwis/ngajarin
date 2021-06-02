@@ -131,8 +131,9 @@
         path_absolute: "/",
         selector: 'textarea',
         menubar: false,
+        paste_as_text: true,
         plugins: [
-            "autolink link image emoticons codesample"
+            "paste autolink link image emoticons codesample"
         ],
         toolbar: "bold emoticons link image codesample",
         file_picker_callback: function(callback, value, meta) {
