@@ -32,6 +32,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/user/post/comment/like/{comment}', [CommentController::class, 'like'])->name('user.post.comment.like');
     Route::post('/user/post/comment/dislike/{comment}', [CommentController::class, 'dislike'])->name('user.post.comment.dislike');
 
-    Route::get('/user/chat', [ConversationController::class, 'index'])->name('user.chat.index');
-    Route::get('/user/chat/{conversation}', [ConversationController::class, 'show'])->name('user.chat.show');
+    Route::get('/user/chat', [ConversationController::class, 'index'])->middleware('caffeinated')->name('user.chat.index');
+    Route::get('/user/chat/{conversation}', [ConversationController::class, 'show'])->middleware('caffeinated')->name('user.chat.show');
 });
