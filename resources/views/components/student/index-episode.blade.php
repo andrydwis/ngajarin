@@ -35,7 +35,7 @@
                 </span>
                 @endif
 
-                <div class="flex text-xs text-gray-600 md:text-sm">
+                <div class="flex text-xs text-gray-600 md:text-sm line-clamp-1">
                     <span class="inline mr-2 xs:hidden">
                         Eps {{ $episode }}
                     </span>
