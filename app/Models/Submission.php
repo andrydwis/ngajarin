@@ -29,9 +29,8 @@ class Submission extends Model
         $check = SubmissionUser::where('submission_id', $this->id)->where('user_id', Auth::user()->id)->latest()->first();
         if ($check) {
             return $check->status;
-        } else {
-            return 'belum mengumpulkan';
         }
+        return 'belum mengumpulkan';
     }
 
     public function finished()
@@ -39,9 +38,8 @@ class Submission extends Model
         $check = SubmissionUser::where('submission_id', $this->id)->where('user_id', Auth::user()->id)->where('status', 'diterima')->latest()->first();
         if ($check) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     public function score(User $user)
@@ -49,9 +47,8 @@ class Submission extends Model
         $check = SubmissionUser::where('submission_id', $this->id)->where('user_id', $user->id)->latest()->first();
         if ($check) {
             return $check->score;
-        } else {
-            return 0;
         }
+        return 0;
     }
 
     public function submissionUsers()

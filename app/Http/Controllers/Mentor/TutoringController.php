@@ -98,60 +98,7 @@ class TutoringController extends Controller
         ]);
 
         $isFuture = Carbon::parse($tutoring->date . ' ' . $tutoring->hour_end)->isFuture();
-        if ($isFuture) {
-            $check = Tutoring::where('date', $tutoring->date)->where('status', 'diterima')->first();
-            if ($check && $request->status == 'diterima') {
-                if ($tutoring->hour_start >= $check->hour_start && $tutoring->hour_start < $check->hour_end) {
-                    session()->flash('message', 'Conflict Request');
-
-                    return redirect()->route('mentor.tutoring.show', ['tutoring' => $tutoring]);
-                } elseif ($tutoring->hour_end > $check->hour_start && $tutoring->hour_end <= $check->hour_end) {
-                    session()->flash('message', 'Conflict Request');
-
-                    return redirect()->route('mentor.tutoring.show', ['tutoring' => $tutoring]);
-                } else {
-                    $tutoring->status = $request->status;
-                    $tutoring->save();
-
-                    $notifications = User::find(Auth::user()->id)->notifications;
-
-                    foreach ($notifications as $notification) {
-                        if ($notification->type == 'App\Notifications\NewTutoringRequest') {
-                            $tutoring = Tutoring::find($notification->data['tutoring_id']);
-
-                            $notification->delete();
-                        }
-                    }
-
-                    $student = User::find($tutoring->student_id);
-                    $student->notify(new ProcessedTutoring($tutoring, Auth::user()));
-
-                    Alert::success('Permintaan tutoring berhasil diproses');
-
-                    return redirect()->route('mentor.tutoring.show', ['tutoring' => $tutoring]);
-                }
-            } else {
-                $tutoring->status = $request->status;
-                $tutoring->save();
-
-                $notifications = User::find(Auth::user()->id)->notifications;
-
-                foreach ($notifications as $notification) {
-                    if ($notification->type == 'App\Notifications\NewTutoringRequest') {
-                        $tutoring = Tutoring::find($notification->data['tutoring_id']);
-
-                        $notification->delete();
-                    }
-                }
-
-                $student = User::find($tutoring->student_id);
-                $student->notify(new ProcessedTutoring($tutoring, Auth::user()));
-
-                Alert::success('Permintaan tutoring berhasil diproses');
-
-                return redirect()->route('mentor.tutoring.show', ['tutoring' => $tutoring]);
-            }
-        } else {
+        if (!$isFuture) {
             $tutoring->status = 'ditolak';
             $tutoring->save();
 
@@ -159,6 +106,57 @@ class TutoringController extends Controller
             $student->notify(new ProcessedTutoring($tutoring, Auth::user()));
 
             Alert::error('Permintaan tutoring telah kadaluwarsa');
+
+            return redirect()->route('mentor.tutoring.show', ['tutoring' => $tutoring]);
+        }
+        $check = Tutoring::where('date', $tutoring->date)->where('status', 'diterima')->first();
+        if (!($check && $request->status == 'diterima')) {
+            $tutoring->status = $request->status;
+            $tutoring->save();
+
+            $notifications = User::find(Auth::user()->id)->notifications;
+
+            foreach ($notifications as $notification) {
+                if ($notification->type == 'App\Notifications\NewTutoringRequest') {
+                    $tutoring = Tutoring::find($notification->data['tutoring_id']);
+
+                    $notification->delete();
+                }
+            }
+
+            $student = User::find($tutoring->student_id);
+            $student->notify(new ProcessedTutoring($tutoring, Auth::user()));
+
+            Alert::success('Permintaan tutoring berhasil diproses');
+
+            return redirect()->route('mentor.tutoring.show', ['tutoring' => $tutoring]);
+        }
+        if ($tutoring->hour_start >= $check->hour_start && $tutoring->hour_start < $check->hour_end) {
+            session()->flash('message', 'Conflict Request');
+
+            return redirect()->route('mentor.tutoring.show', ['tutoring' => $tutoring]);
+        } elseif ($tutoring->hour_end > $check->hour_start && $tutoring->hour_end <= $check->hour_end) {
+            session()->flash('message', 'Conflict Request');
+
+            return redirect()->route('mentor.tutoring.show', ['tutoring' => $tutoring]);
+        } else {
+            $tutoring->status = $request->status;
+            $tutoring->save();
+
+            $notifications = User::find(Auth::user()->id)->notifications;
+
+            foreach ($notifications as $notification) {
+                if ($notification->type == 'App\Notifications\NewTutoringRequest') {
+                    $tutoring = Tutoring::find($notification->data['tutoring_id']);
+
+                    $notification->delete();
+                }
+            }
+
+            $student = User::find($tutoring->student_id);
+            $student->notify(new ProcessedTutoring($tutoring, Auth::user()));
+
+            Alert::success('Permintaan tutoring berhasil diproses');
 
             return redirect()->route('mentor.tutoring.show', ['tutoring' => $tutoring]);
         }

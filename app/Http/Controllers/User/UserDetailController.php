@@ -129,23 +129,22 @@ class UserDetailController extends Controller
             Alert::success('Profile berhasil diupdate');
 
             return redirect()->route('user.profile.show');
-        } else {
-            $detail = new UserDetail();
-            $detail->user_id = $user->id;
-            $detail->photo = $request->foto;
-            $detail->biodata = $request->biodata;
-            $detail->address = $request->alamat;
-            $detail->facebook = $request->facebook;
-            $detail->twitter = $request->twitter;
-            $detail->instagram = $request->instagram;
-            $detail->github = $request->github;
-            $detail->linkedin = $request->linkedin;
-            $detail->save();
-
-            Alert::success('Profile berhasil diupdate');
-
-            return redirect()->route('user.profile.show');
         }
+        $detail = new UserDetail();
+        $detail->user_id = $user->id;
+        $detail->photo = $request->foto;
+        $detail->biodata = $request->biodata;
+        $detail->address = $request->alamat;
+        $detail->facebook = $request->facebook;
+        $detail->twitter = $request->twitter;
+        $detail->instagram = $request->instagram;
+        $detail->github = $request->github;
+        $detail->linkedin = $request->linkedin;
+        $detail->save();
+
+        Alert::success('Profile berhasil diupdate');
+
+        return redirect()->route('user.profile.show');
     }
 
     /**

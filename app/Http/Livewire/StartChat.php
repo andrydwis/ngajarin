@@ -14,16 +14,15 @@ class StartChat extends Component
     public function start()
     {
         $conversation = Conversation::where('user_one', Auth::user()->id)->where('user_two', $this->user->id)->first();
-        if($conversation){
-            return redirect()->route('user.chat.show', ['conversation' => $conversation]);
-        }else{
-            $conversation = new Conversation();
-            $conversation->user_one = Auth::user()->id;
-            $conversation->user_two = $this->user->id;
-            $conversation->save();
-
+        if ($conversation) {
             return redirect()->route('user.chat.show', ['conversation' => $conversation]);
         }
+        $conversation = new Conversation();
+        $conversation->user_one = Auth::user()->id;
+        $conversation->user_two = $this->user->id;
+        $conversation->save();
+
+        return redirect()->route('user.chat.show', ['conversation' => $conversation]);
     }
 
     public function render()

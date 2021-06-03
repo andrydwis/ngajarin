@@ -53,8 +53,7 @@ class Post extends Model
 
         if ($check) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 }

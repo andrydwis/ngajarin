@@ -53,28 +53,26 @@ class ClassroomMemberController extends Controller
         //check token
         $check = Classroom::where('token', $request->token)->first();
 
-        if ($check) {
-            $isAlreadyJoin = ClassroomMember::where('classroom_id', $check->id)->where('user_id', Auth::user()->id)->first();
-
-            if (!$isAlreadyJoin) {
-                $classroomMember = new ClassroomMember();
-                $classroomMember->classroom_id = $check->id;
-                $classroomMember->user_id = Auth::user()->id;
-                $classroomMember->save();
-
-                Alert::success('Berhasil bergabung dengan kelas');
-
-                return redirect()->route('student.classroom.index');
-            } else {
-                Alert::error('Anda sudah bergabung di kelas ini');
-
-                return redirect()->route('student.classroom.index');
-            }
-        } else {
+        if (!$check) {
             Alert::error('Token kelas salah');
 
             return redirect()->route('student.classroom.index');
         }
+        $isAlreadyJoin = ClassroomMember::where('classroom_id', $check->id)->where('user_id', Auth::user()->id)->first();
+
+        if ($isAlreadyJoin) {
+            Alert::error('Anda sudah bergabung di kelas ini');
+
+            return redirect()->route('student.classroom.index');
+        }
+        $classroomMember = new ClassroomMember();
+        $classroomMember->classroom_id = $check->id;
+        $classroomMember->user_id = Auth::user()->id;
+        $classroomMember->save();
+
+        Alert::success('Berhasil bergabung dengan kelas');
+
+        return redirect()->route('student.classroom.index');
     }
 
     /**
