@@ -13,16 +13,15 @@ class ChatAdmin extends Component
     {
         $admin = User::role('admin')->first();
         $conversation = Conversation::where('user_one', Auth::user()->id)->where('user_two', $admin->id)->first();
-        if($conversation){
-            return redirect()->route('user.chat.show', ['conversation' => $conversation]);
-        }else{
-            $conversation = new Conversation();
-            $conversation->user_one = Auth::user()->id;
-            $conversation->user_two = $admin->id;
-            $conversation->save();
-
+        if ($conversation) {
             return redirect()->route('user.chat.show', ['conversation' => $conversation]);
         }
+        $conversation = new Conversation();
+        $conversation->user_one = Auth::user()->id;
+        $conversation->user_two = $admin->id;
+        $conversation->save();
+
+        return redirect()->route('user.chat.show', ['conversation' => $conversation]);
     }
 
     public function render()

@@ -48,49 +48,7 @@ class CertificateUserController extends Controller
         \PhpOffice\PhpWord\Style\Section::ORIENTATION_LANDSCAPE;
 
         $check = CertificateUser::where('certificate_id', $certificate->id)->where('user_id', Auth::user()->id)->first();
-        if (!$check) {
-            $serial_number = 'Ngajar.in-' . Str::random(10);
-            $certificateUser = new CertificateUser();
-            $certificateUser->certificate_id = $certificate->id;
-            $certificateUser->user_id = Auth::user()->id;
-            $certificateUser->serial_number = $serial_number;
-            $certificateUser->save();
-
-            $templateProcessor = new TemplateProcessor(public_path('template/template.docx'));
-
-            $templateProcessor->setValue('name', Auth::user()->name);
-            $templateProcessor->setValue('course', $certificate->course->title);
-            $templateProcessor->setValue('created_at', $certificateUser->created_at);
-            $templateProcessor->setValue('serial_number', $certificateUser->serial_number);
-
-            $path = public_path('certificate/certificate.docx');
-            $templateProcessor->saveAs($path);
-
-            // $temporary = \PhpOffice\PhpWord\IOFactory::load($path);
-            // $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($temporary, 'PDF');
-            // $xmlWriter->save(public_path('certificate/certificate.pdf'), TRUE);
-            // return response()->download(public_path('certificate/certificate.pdf'));
-
-            $upload = new \ConvertApi\FileUpload($path);
-
-            ConvertApi::setApiSecret('ERhEamUQp0JuFdtg');
-            $result = ConvertApi::convert(
-                'pdf',
-                [
-                    'File' => $upload,
-                ]
-            );
-            $result->getFile()->save(public_path('certificate/certificate.pdf'));
-
-            sleep(3);
-
-            $headers =[
-                'Content-Description' => 'File Transfer',
-                'Content-Type' => 'application/pdf',
-            ];
-
-            return response()->download(public_path('certificate/certificate.pdf'), 'sertifikat.pdf', $headers);
-        } else {
+        if ($check) {
             $templateProcessor = new TemplateProcessor(public_path('template/template.docx'));
 
             $templateProcessor->setValue('name', Auth::user()->name);
@@ -119,13 +77,54 @@ class CertificateUserController extends Controller
 
             sleep(3);
 
-            $headers =[
+            $headers = [
                 'Content-Description' => 'File Transfer',
                 'Content-Type' => 'application/pdf',
             ];
 
             return response()->download(public_path('certificate/certificate.pdf'), 'sertifikat.pdf', $headers);
         }
+        $serial_number = 'Ngajar.in-' . Str::random(10);
+        $certificateUser = new CertificateUser();
+        $certificateUser->certificate_id = $certificate->id;
+        $certificateUser->user_id = Auth::user()->id;
+        $certificateUser->serial_number = $serial_number;
+        $certificateUser->save();
+
+        $templateProcessor = new TemplateProcessor(public_path('template/template.docx'));
+
+        $templateProcessor->setValue('name', Auth::user()->name);
+        $templateProcessor->setValue('course', $certificate->course->title);
+        $templateProcessor->setValue('created_at', $certificateUser->created_at);
+        $templateProcessor->setValue('serial_number', $certificateUser->serial_number);
+
+        $path = public_path('certificate/certificate.docx');
+        $templateProcessor->saveAs($path);
+
+        // $temporary = \PhpOffice\PhpWord\IOFactory::load($path);
+        // $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($temporary, 'PDF');
+        // $xmlWriter->save(public_path('certificate/certificate.pdf'), TRUE);
+        // return response()->download(public_path('certificate/certificate.pdf'));
+
+        $upload = new \ConvertApi\FileUpload($path);
+
+        ConvertApi::setApiSecret('ERhEamUQp0JuFdtg');
+        $result = ConvertApi::convert(
+            'pdf',
+            [
+                'File' => $upload,
+            ]
+        );
+        $result->getFile()->save(public_path('certificate/certificate.pdf'));
+
+        sleep(3);
+
+        $headers = [
+            'Content-Description' => 'File Transfer',
+            'Content-Type' => 'application/pdf',
+        ];
+
+        return response()->download(public_path('certificate/certificate.pdf'), 'sertifikat.pdf', $headers);
     }
 
     /**

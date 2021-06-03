@@ -25,12 +25,12 @@ class PasswordChangeController extends Controller
                 'password' => ['required', 'string', 'confirmed', 'min:8']
             ]);
             return back()->withErrors(['password_sekarang' => 'Password tidak cocok']);
-        } else {
-            $request->validate([
-                'password_sekarang' => ['required', 'string', 'min:8'],
-                'password' => ['required', 'string', 'confirmed', 'min:8']
-            ]);
         }
+        $request->validate([
+            'password_sekarang' => ['required', 'string', 'min:8'],
+            'password' => ['required', 'string', 'confirmed', 'min:8']
+        ]);
+
 
         $user->password = Hash::make($request->password);
         $user->save();

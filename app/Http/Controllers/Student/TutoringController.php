@@ -90,28 +90,27 @@ class TutoringController extends Controller
         ]);
 
         $check = Tutoring::where('mentor_id', $user->id)->where('student_id', Auth::user()->id)->where('status', 'menunggu')->first();
-        if (!$check) {
-            $tutoring = new Tutoring();
-            $tutoring->mentor_id = $user->id;
-            $tutoring->student_id = Auth::user()->id;
-            $tutoring->date = $request->tanggal;
-            $tutoring->hour_start = $request->jam_mulai;
-            $tutoring->hour_end = $request->jam_akhir;
-            $tutoring->detail = $request->detail;
-            $tutoring->status = 'menunggu';
-            $tutoring->save();
-
-            $mentor = User::find($user->id);
-            $mentor->notify(new NewTutoringRequest($tutoring, Auth::user()));
-
-            Alert::success('Permintaan tutoring berhasil dibuat');
-
-            return redirect()->route('student.tutoring.create', ['user' => $user]);
-        } else {
+        if ($check) {
             Alert::error('Permintaan tutoring sudah ada, harap tunggu konfimasi mentor');
 
             return redirect()->route('student.tutoring.create', ['user' => $user]);
         }
+        $tutoring = new Tutoring();
+        $tutoring->mentor_id = $user->id;
+        $tutoring->student_id = Auth::user()->id;
+        $tutoring->date = $request->tanggal;
+        $tutoring->hour_start = $request->jam_mulai;
+        $tutoring->hour_end = $request->jam_akhir;
+        $tutoring->detail = $request->detail;
+        $tutoring->status = 'menunggu';
+        $tutoring->save();
+
+        $mentor = User::find($user->id);
+        $mentor->notify(new NewTutoringRequest($tutoring, Auth::user()));
+
+        Alert::success('Permintaan tutoring berhasil dibuat');
+
+        return redirect()->route('student.tutoring.create', ['user' => $user]);
     }
 
     /**
@@ -159,8 +158,8 @@ class TutoringController extends Controller
         //
         $notifications = Notification::where('notifiable_id', $tutoring->mentor_id)->where('type', 'App\Notifications\NewTutoringRequest')->get();
 
-        foreach($notifications as $notification){
-            if($notification->data['tutoring_id'] == $tutoring->id){
+        foreach ($notifications as $notification) {
+            if ($notification->data['tutoring_id'] == $tutoring->id) {
                 $notification->delete();
             }
         }
