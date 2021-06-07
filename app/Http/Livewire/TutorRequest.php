@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Schedule;
 use App\Models\Tutoring;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class TutorRequest extends Component
@@ -21,7 +22,7 @@ class TutorRequest extends Component
 
     public function mount()
     {
-        $this->schedule_now = Tutoring::where('date', Carbon::now()->isoFormat('Y-M-D'))->where('status', 'diterima')->first();
+        $this->schedule_now = Tutoring::where('date', Carbon::now()->isoFormat('Y-M-D'))->where('status', 'diterima')->where('student_id', Auth::user()->id)->first();
         $this->review_form = false;
     }
 
