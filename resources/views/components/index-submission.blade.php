@@ -16,7 +16,7 @@
             @endrole
             <div class="flex flex-col">
                 @role('admin')
-                <a href="{{route('admin.course.submission.show', [$course, $slug])}}">
+                <a href="{{route('admin.course.submission.show', [$course, $slug])}}" class="line-clamp-1">
                     <span class="inline text-xs font-semibold text-gray-800 sm:hidden md:font-bold md:text-base">
                         {{ Str::limit($title, $limit = 14) }}
                     </span>
@@ -25,7 +25,7 @@
                     </span>
                 </a>
                 @else
-                <a href="{{route('mentor.course.submission.show', [$course, $slug])}}">
+                <a href="{{route('mentor.course.submission.show', [$course, $slug])}}" class="line-clamp-1">
                     <span class="inline text-xs font-semibold text-gray-800 sm:hidden md:font-bold md:text-base">
                         {{ Str::limit($title, $limit = 14) }}
                     </span>

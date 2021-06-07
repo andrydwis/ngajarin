@@ -31,7 +31,7 @@
                         {{ $title }}
                     </span>
                 </a>
-                <div class="flex text-xs text-gray-600 md:text-sm">
+                <div class="flex text-xs text-gray-600 md:text-sm line-clamp-1">
                     <span class="inline pr-2 mr-2 border-r border-gray-600 xs:hidden">Eps {{ $episode }} </span>
                     <span class="hidden pr-2 mr-2 border-r border-gray-600 xs:inline">Episode {{ $episode }} </span>
 
