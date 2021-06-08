@@ -20,8 +20,8 @@ class RootController extends Controller
         $admin = User::role('admin')->get()->pluck('id')->toArray();
 
         $data = [
-            'recent_courses' => Course::whereIn('created_by', $admin)->latest()->limit(6)->get(),
-            'popular_courses' => Course::whereIn('created_by', $admin)->withCount('users')->orderBy('users_count', 'desc')->limit(3)->get()
+            'recent_courses' => Course::whereIn('created_by', $admin)->where('publish_status', 'published')->latest()->limit(6)->get(),
+            'popular_courses' => Course::whereIn('created_by', $admin)->where('publish_status', 'published')->withCount('users')->orderBy('users_count', 'desc')->limit(3)->get()
         ];
 
         return view('welcome', $data);

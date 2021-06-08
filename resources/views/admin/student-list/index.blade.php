@@ -4,10 +4,7 @@
     <div>
         <div class="card">
             <div class="flex justify-between card-header">
-                <h4 class="h6">Daftar Mentor</h4>
-                <a href="{{route('admin.mentor-list.create')}}">
-                    <button class="btn-bs-primary">Tambah</button>
-                </a>
+                <h4 class="h6">Daftar Mahasiswa</h4>
             </div>
             <div class="p-8">
                 <table id="datatables" class="w-auto text-left">
@@ -29,7 +26,7 @@
                             <td class="px-6 py-4">{{$user->email}}</td>
                             <td class="px-6 py-4">{{$user->phone}}</td>
                             <td class="px-6 py-4">{{$user->getRoleNames()->first()}}</td>
-                            <td><a href="{{route('admin.mentor-list.show', ['user' => $user])}}" class="btn btn-primary">Detail</a></td>
+                            <td class="px-6 py-4"><a href="{{route('admin.student-list.show', ['user'=>$user])}}" class="btn btn-primary">Detail</a></td>
                         </tr>
                         @endforeach
                     </tbody>

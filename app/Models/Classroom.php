@@ -16,7 +16,7 @@ class Classroom extends Model
         'token',
     ];
 
-    public function member(){
+    public function members(){
         return $this->hasMany(ClassroomMember::class);
     }
 

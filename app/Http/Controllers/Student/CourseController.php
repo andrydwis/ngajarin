@@ -21,7 +21,7 @@ class CourseController extends Controller
     {
         //
         $data = [
-            'courses' => Course::whereIn('created_by', User::role('admin')->get()->pluck('id')->toArray())->with('creator', 'users')->get()
+            'courses' => Course::whereIn('created_by', User::role('admin')->get()->pluck('id')->toArray())->where('publish_status', 'published')->with('creator', 'users')->get()
         ];
 
         return view('student.course.index', $data);

@@ -67,7 +67,7 @@
                     </a>
                     @endrole
                     <!-- end item -->
-                    
+
                     <!-- item -->
                     @role('mentor')
                     <a href="{{route('mentor.course.score.index', [$slug])}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900" href="#">
@@ -82,6 +82,13 @@
                     <!-- form di hidden -->
                     <div x-data>
                         @role('admin')
+                        <form action="{{route('admin.course.publish', $slug)}}" method="post" class="hidden">
+                            @csrf
+                            @method('PATCH')
+                            <button id="{{ $slug }}-publish" type="submit">
+                                Publish
+                            </button>
+                        </form>
                         <form action="{{route('admin.course.destroy', $slug)}}" method="post" class="hidden">
                             @csrf
                             @method('DELETE')
@@ -89,7 +96,15 @@
                                 Hapus
                             </button>
                         </form>
-                        @else
+                        @endrole
+                        @role('mentor')
+                        <form action="{{route('mentor.course.request-publish', $slug)}}" method="post" class="hidden">
+                            @csrf
+                            @method('PATCH')
+                            <button id="{{ $slug }}-publish" type="submit">
+                                Request Publish
+                            </button>
+                        </form>
                         <form action="{{route('mentor.course.destroy', $slug)}}" method="post" class="hidden">
                             @csrf
                             @method('DELETE')
@@ -99,7 +114,20 @@
                         </form>
                         @endrole
 
-
+                        @role('admin')
+                        <a href="#" @click.prevent="$('#{{ $slug }}-publish').click();" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900">
+                            <i class="mr-1 text-xs fas fa-arrow-up"></i>
+                            Publish
+                        </a>
+                        @endrole
+                        @role('mentor')
+                        @if($publishStatus!='published')
+                        <a href="#" @click.prevent="$('#{{ $slug }}-publish').click();" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900">
+                            <i class="mr-1 text-xs fas fa-arrow-up"></i>
+                            Publish
+                        </a>
+                        @endif
+                        @endrole
                         <a href="#" @click.prevent="$('#{{ $slug }}').click();" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900">
                             <i class="mr-1 text-xs fas fa-trash"></i>
                             Hapus
@@ -133,6 +161,13 @@
                         @foreach($tags as $tag)
                         <span class="px-2 py-1 text-xs tracking-tight text-gray-100 bg-indigo-600 rounded-full"> {{ $tag->name }} </span>
                         @endforeach
+                        @if($publishStatus=='created')
+                        <span class="px-2 py-1 text-xs tracking-tight text-gray-100 bg-gray-600 rounded-full">Belum Publish</span>
+                        @elseif($publishStatus=='requested')
+                        <span class="px-2 py-1 text-xs tracking-tight text-gray-100 bg-yellow-600 rounded-full">Dalam Review</span>
+                        @elseif($publishStatus=='published')
+                        <span class="px-2 py-1 text-xs tracking-tight text-gray-100 bg-indigo-600 rounded-full">Sudah Publish</span>
+                        @endif
                     </div>
                 </div>
             </div>

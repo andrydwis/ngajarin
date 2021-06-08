@@ -43,6 +43,16 @@
                 </a>
                 <!-- pembatas -->
 
+                <!-- pembatas -->
+                <p class="mt-4 mb-3 ml-2 text-sm tracking-wider text-gray-600 uppercase">Mahasiswa</p>
+
+                <a href="{{route('admin.student-list.index')}}" class="sidebar-item 
+                {{ Route::currentRouteNamed('admin.student-list.index') ? 'sidebar-item-active ' : '' }}
+                ">
+                    <i class="ml-4 mr-2 text-sm fas fa-user-friends"></i>
+                    Mahasiswa List
+                </a>
+                 <!-- pembatas -->
 
                 <!-- pembatas -->
                 <p class="mt-4 mb-3 ml-2 text-sm tracking-wider text-gray-600 uppercase">Mentor</p>

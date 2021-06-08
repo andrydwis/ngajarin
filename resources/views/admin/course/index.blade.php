@@ -21,7 +21,19 @@
         <div class="card-body">
             <div class="flex flex-wrap">
                 @foreach($courses as $course)
-                <x-card-course :slug="$course->slug" :title="$course->title" :level="$course->level" :tags="$course->tags" :thumbnail="$course->thumbnail" :episodes="$course->episodes->count()" :submission="$course->submissions->count()" />
+                <x-card-course :slug="$course->slug" :title="$course->title" :level="$course->level" :tags="$course->tags" :publishStatus="$course->publish_status" :thumbnail="$course->thumbnail" :episodes="$course->episodes->count()" :submission="$course->submissions->count()" />
+                @endforeach
+            </div>
+        </div>
+    </div>
+    <div class="card mt-5">
+        <div class="flex justify-between card-header">
+            <h4 class="h6">Daftar Course Belum di Review</h4>
+        </div>
+        <div class="card-body">
+            <div class="flex flex-wrap">
+                @foreach($coursesRequested as $course)
+                <x-card-course :slug="$course->slug" :title="$course->title" :level="$course->level" :tags="$course->tags" :publishStatus="$course->publish_status" :thumbnail="$course->thumbnail" :episodes="$course->episodes->count()" :submission="$course->submissions->count()" />
                 @endforeach
             </div>
         </div>

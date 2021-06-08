@@ -8,9 +8,9 @@ class CardCourse extends Component
 {
     public $slug;
     public $title;
-    public $created_date;
     public $students;
     public $submission;
+    public $publishStatus;
     public $tags;
     public $thumbnail;
     public $episodes;
@@ -22,12 +22,13 @@ class CardCourse extends Component
      * @return void
      */
     
-    public function __construct($slug, $title, $level, $tags, $thumbnail, $episodes, $submission)
+    public function __construct($slug, $title, $level, $tags, $publishStatus, $thumbnail, $episodes, $submission)
     {
         $this->slug = $slug;
         $this->title = $title;
         $this->level = $level;
         $this->tags = $tags;
+        $this->publishStatus = $publishStatus;
         $this->thumbnail = $thumbnail;
         $this->episodes = $episodes;
         $this->submission = $submission;

@@ -20,6 +20,7 @@ Route::middleware(['auth', 'verified', 'role:mentor'])->group(function () {
     Route::get('/mentor/course/edit/{course:slug}', [CourseController::class, 'edit'])->name('mentor.course.edit');
     Route::patch('/mentor/course/edit/{course:slug}', [CourseController::class, 'update'])->name('mentor.course.update');
     Route::delete('/mentor/course/destroy/{course:slug}', [CourseController::class, 'destroy'])->name('mentor.course.destroy');
+    Route::patch('/mentor/course/publish/{course:slug}', [CourseController::class, 'requestPublish'])->name('mentor.course.request-publish');
 
     Route::get('/mentor/course/{course:slug}/episode', [EpisodeController::class, 'index'])->name('mentor.course.episode.index');
     Route::get('/mentor/course/{course:slug}/episode/create', [EpisodeController::class, 'create'])->name('mentor.course.episode.create');

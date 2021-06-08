@@ -16,6 +16,7 @@ class Course extends Model
         'thumbnail',
         'level',
         'created_by',
+        'publish_status'
     ];
 
     public function creator()

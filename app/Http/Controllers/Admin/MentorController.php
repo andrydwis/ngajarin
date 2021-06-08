@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -79,6 +81,13 @@ class MentorController extends Controller
     public function show(User $user)
     {
         //
+        $data = [
+            'user' => $user,
+            'courses' => Course::where('created_by', Auth::user()->id)->get(),
+            'classrooms' => $user->members
+        ];
+
+        return view('admin.mentor-list.show', $data);
     }
 
     /**

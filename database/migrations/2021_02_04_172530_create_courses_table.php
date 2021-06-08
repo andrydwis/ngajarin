@@ -21,6 +21,7 @@ class CreateCoursesTable extends Migration
             $table->string('thumbnail')->nullable();
             $table->enum('level', ['pemula', 'menengah',  'expert']);
             $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
+            $table->enum('publish_status', ['created', 'requested', 'published'])->default('created');
             $table->timestamps();
         });
     }

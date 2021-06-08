@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\EpisodeController;
 use App\Http\Controllers\Admin\MentorController;
 use App\Http\Controllers\Admin\NotificationHandlerController;
+use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\SubmissionController;
 use App\Http\Controllers\Admin\TagController;
 use Illuminate\Support\Facades\Route;
@@ -12,6 +13,10 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('/admin/mentor-list', [MentorController::class, 'index'])->name('admin.mentor-list.index');
     Route::get('/admin/mentor-list/create', [MentorController::class, 'create'])->name('admin.mentor-list.create');
     Route::post('/admin/mentor-list/create', [MentorController::class, 'store'])->name('admin.mentor-list.store');
+    Route::get('/admin/mentor-list/show/{user}', [MentorController::class, 'show'])->name('admin.mentor-list.show');
+
+    Route::get('/admin/student-list', [StudentController::class, 'index'])->name('admin.student-list.index');
+    Route::get('/admin/student-list/show/{user}', [StudentController::class, 'show'])->name('admin.student-list.show');
 
     Route::get('/admin/tag', [TagController::class, 'index'])->name('admin.tag.index');
     Route::get('/admin/tag/create', [TagController::class, 'create'])->name('admin.tag.create');
@@ -27,6 +32,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('/admin/course/edit/{course:slug}', [CourseController::class, 'edit'])->name('admin.course.edit');
     Route::patch('/admin/course/edit/{course:slug}', [CourseController::class, 'update'])->name('admin.course.update');
     Route::delete('/admin/course/destroy/{course:slug}', [CourseController::class, 'destroy'])->name('admin.course.destroy');
+    Route::patch('/admin/course/publish/{course:slug}', [CourseController::class, 'publish'])->name('admin.course.publish');
 
     Route::get('/admin/course/{course:slug}/episode', [EpisodeController::class, 'index'])->name('admin.course.episode.index');
     Route::get('/admin/course/{course:slug}/episode/create', [EpisodeController::class, 'create'])->name('admin.course.episode.create');

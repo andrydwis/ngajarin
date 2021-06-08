@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Mentor;
 
 use App\Http\Controllers\Controller;
+use App\Models\Certificate;
 use App\Models\Course;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -70,6 +71,10 @@ class CourseController extends Controller
         if ($request->tag) {
             $course->tags()->sync($request->tag);
         }
+
+        $certificate = new Certificate();
+        $certificate->course_id = $course->id;
+        $certificate->save();
 
         Alert::success('Course berhasil ditambahkan');
 
@@ -156,6 +161,16 @@ class CourseController extends Controller
         $course->delete();
 
         Alert::success('Course berhasil dihapus');
+
+        return redirect()->route('mentor.course.index');
+    }
+
+    public function requestPublish(Course $course)
+    {
+        $course->publish_status = 'requested';
+        $course->save();
+
+        Alert::success('Course berhasil request publish, harap tunggu konfirmasi admin');
 
         return redirect()->route('mentor.course.index');
     }

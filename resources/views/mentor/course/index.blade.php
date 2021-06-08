@@ -15,10 +15,10 @@
                     :title="$course->title" 
                     :level="$course->level"
                     :tags="$course->tags" 
+                    :publishStatus="$course->publish_status"
                     :thumbnail="$course->thumbnail"
                     :episodes="$course->episodes->count()" 
                     :submission="$course->submissions->count()" />
-                    
                 @endforeach
                 </div>
             </div>

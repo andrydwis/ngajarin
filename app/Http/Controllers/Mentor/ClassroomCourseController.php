@@ -16,7 +16,7 @@ class ClassroomCourseController extends Controller
     {
         $data = [
             'classroom' => $classroom,
-            'courses' => Course::where('created_by', Auth::user()->id)->get(),
+            'courses' => Course::where('created_by', Auth::user()->id)->where('publish_status', 'published')->get(),
         ];
 
         return view('mentor.classroom.course', $data);

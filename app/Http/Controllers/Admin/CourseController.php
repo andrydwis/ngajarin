@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\NewCourse;
 use App\Models\Certificate;
 use App\Models\Course;
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -23,7 +26,8 @@ class CourseController extends Controller
     {
         //
         $data = [
-            'courses' => Course::where('created_by', Auth::user()->id)->with('creator')->get()
+            'courses' => Course::where('created_by', Auth::user()->id)->with('creator')->get(),
+            'coursesRequested' => Course::where('publish_status', 'requested')->with('creator')->get()
         ];
 
         return view('admin.course.index', $data);
@@ -161,6 +165,24 @@ class CourseController extends Controller
         $course->delete();
 
         Alert::success('Course berhasil dihapus');
+
+        return redirect()->route('admin.course.index');
+    }
+
+    public function publish(Course $course)
+    {
+        $course->publish_status = 'published';
+        $course->save();
+
+        if ($course->created_by == Auth::user()->id) {
+            
+            $students = User::role('student')->where('email_verified_at', '!=', null)->get();
+            foreach($students as $student){
+                Mail::to($student)->send(new NewCourse($course));
+            }
+        }
+
+        Alert::success('Course berhasil dipublish');
 
         return redirect()->route('admin.course.index');
     }
