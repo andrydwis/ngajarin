@@ -83,7 +83,7 @@ class MentorController extends Controller
         //
         $data = [
             'user' => $user,
-            'courses' => Course::where('created_by', Auth::user()->id)->get(),
+            'courses' => Course::where('created_by', $user->id)->get(),
             'classrooms' => $user->members
         ];
 

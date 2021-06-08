@@ -16,11 +16,12 @@ class CreateEpisodesTable extends Migration
         Schema::create('episodes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
-            $table->string('title')->unique();
+            $table->string('title');
             $table->string('slug')->unique();
             $table->text('description');
             $table->enum('type', ['video', 'text']);
             $table->string('link')->nullable();
+            $table->string('file')->nullable();
             $table->foreignId('unlock_submission')->nullable()->constrained('submissions')->onDelete('cascade');
             $table->timestamps();
         });

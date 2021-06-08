@@ -10,7 +10,6 @@
             </div>
         </div>
     </div>
-    @else
     @endif
 
     <div class="flex px-5 pt-10 lg:px-20">
@@ -32,7 +31,6 @@
                 </div>
 
             </div>
-            @if($episode->type === 'text')
             <div class="mt-10 shadow-xl card">
                 <div class="card-header">
                     <h6 class="h6">Lampiran</h6>
@@ -41,8 +39,8 @@
                 <div class="flex justify-center mx-auto card-body">
 
                     <button>
-                        @if($episode->link)
-                        <a href="{{$episode->link}}">
+                        @if($episode->file)
+                        <a href="{{$episode->file}}">
                             <div class="grid w-56 h-40 text-gray-600 bg-gray-100 border-2 border-gray-200 hover:bg-gray-50 place-items-center hover:text-gray-400 ">
                                 <div class="grid gap-1">
                                     <i class="text-4xl fas fa-file"></i>
@@ -63,8 +61,6 @@
                 </div>
 
             </div>
-            @else
-            @endif
         </div>
 
 

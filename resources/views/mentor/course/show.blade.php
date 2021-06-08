@@ -93,6 +93,23 @@
             </div>
             <!-- end of item -->
 
+            <!-- item -->
+            <div class="grid px-6 py-4 md:grid-cols-3 md:gap-6">
+                <div class="col-span-1">
+                    <span class="text-gray-600">Jumlah Mahasiswa yang Bergabung</span>
+                </div>
+                <div class="col-span-2 mt-2 md:mt-0">
+                    <div class="">
+                        @if($course->members)
+                        {{ $course->members->count()}}
+                        @else
+                        0
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <!-- end of item -->
+
         </div>
         <!-- end of card body -->
 

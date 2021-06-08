@@ -16,6 +16,7 @@ class Episode extends Model
         'description',
         'type',
         'link',
+        'file',
         'unlock_submission'
     ];
 

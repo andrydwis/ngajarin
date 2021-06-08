@@ -7,7 +7,6 @@ use App\Models\Course;
 use App\Models\Episode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class EpisodeController extends Controller
@@ -76,9 +75,8 @@ class EpisodeController extends Controller
         $episode->type = $request->tipe;
         if ($request->tipe == 'video') {
             $episode->link = Str::after($request->link, 'https://youtu.be/');
-        } elseif ($request->tipe == 'text') {
-            $episode->link = $request->file;
         }
+        $episode->file = $request->file;
         $episode->unlock_submission = $request->syarat;
         $episode->save();
 
@@ -154,9 +152,8 @@ class EpisodeController extends Controller
         $episode->type = $request->tipe;
         if ($request->tipe == 'video') {
             $episode->link = Str::after($request->link, 'https://youtu.be/');
-        } elseif ($request->tipe == 'text') {
-            $episode->link = $request->file;
         }
+        $episode->file = $request->file;
         $episode->unlock_submission = $request->syarat;
         $episode->save();
 

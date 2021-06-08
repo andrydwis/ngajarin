@@ -35,18 +35,21 @@
                                     @enderror
                                 </div>
                                 <div>
-                                    <label for="link">Link Video <span class="text-xs text-gray-600 lowercase">(ex: https://youtu.be...)</span>
-                                        <input type="text" name="link" id="link" class="form-input py-2 mt-2 block w-full @error('link') is-invalid @enderror" value="{{old('link') ?? $episode->link }}">
-                                        @error('link')
-                                        <div class="alert alert-error">
-                                            {{$message}}
-                                        </div>
-                                        @enderror
+                                    <label for="link">Link Video <span class="text-xs text-gray-600 lowercase">(ex: https://youtu.be...)</span></label>
+                                    @if($episode->type == 'video')
+                                    <input type="text" name="link" id="link" class="form-input py-2 mt-2 block w-full @error('link') is-invalid @enderror" value="{{old('link') ?? 'https://youtu.be/'.$episode->link }}">
+                                    @else
+                                    <input type="text" name="link" id="link" class="form-input py-2 mt-2 block w-full @error('link') is-invalid @enderror" value="{{old('link')}}">
+                                    @endif
+                                    @error('link')
+                                    <div class="alert alert-error">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
                                 </div>
                                 <div>
                                     <label for="deskripsi">Deskripsi</label>
                                     <textarea name="deskripsi" id="deskripsi" class="form-textarea deskripsi @error('deskripsi') is-invalid @enderror">{!! old('deskripsi') ?? $episode->description !!}</textarea>
-
                                     @error('deskripsi')
                                     <div class="alert alert-error">
                                         {{$message}}
@@ -62,6 +65,23 @@
                                         @endforeach
                                     </select>
                                     @error('syarat')
+                                    <div class="alert alert-error">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div>
+                                    <label for="thumbnail">Lampiran <span class="text-xs text-gray-600">(zip, word, pdf, dll)</span></label>
+                                    <div class="flex items-center">
+                                        <a id="lfm" data-input="file" data-preview="holder" class="pr-2 mt-2 text-white">
+                                            <button type="button" id="btn_lfm" class="flex items-center align-middle btn-bs-primary">
+                                                <i class="pr-2 fas fa-file-alt"></i>
+                                                Pilih
+                                            </button>
+                                        </a>
+                                        <input id="file" class="block w-full py-2 mt-2 form-input" type="text" name="file" value="{{old('file') ?? $episode->file}}" readonly>
+                                    </div>
+                                    @error('file')
                                     <div class="alert alert-error">
                                         {{$message}}
                                     </div>
@@ -103,13 +123,13 @@
                                 <div>
                                     <label for="thumbnail">Lampiran <span class="text-xs text-gray-600">(zip, word, pdf, dll)</span></label>
                                     <div class="flex items-center">
-                                        <a id="lfm" data-input="file" data-preview="holder" class="pr-2 mt-2 text-white">
-                                            <button id="btn_lfm" class="flex items-center align-middle btn-bs-primary">
+                                        <a id="lfm2" data-input="file2" data-preview="holder" class="pr-2 mt-2 text-white">
+                                            <button type="button" id="btn_lfm" class="flex items-center align-middle btn-bs-primary">
                                                 <i class="pr-2 fas fa-file-alt"></i>
                                                 Pilih
                                             </button>
                                         </a>
-                                        <input id="file" class="block w-full py-2 mt-2 form-input" type="text" name="file" value="{{old('file') ?? $episode->file}}" readonly>
+                                        <input id="file2" class="block w-full py-2 mt-2 form-input" type="text" name="file" value="{{old('file') ?? $episode->file}}" readonly>
                                     </div>
                                     @error('file')
                                     <div class="alert alert-error">
@@ -208,5 +228,6 @@
 <script src="{{asset('vendor/laravel-filemanager/js/stand-alone-button.js')}}"></script>
 <script>
     $('#lfm').filemanager('file');
+    $('#lfm2').filemanager('file2');
 </script>
 @endsection
