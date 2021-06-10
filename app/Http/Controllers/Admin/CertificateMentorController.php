@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use PhpOffice\PhpWord\TemplateProcessor;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CertificateMentorController extends Controller
 {
