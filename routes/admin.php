@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CertificateMentorController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\EpisodeController;
 use App\Http\Controllers\Admin\MentorController;
@@ -14,6 +15,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('/admin/mentor-list/create', [MentorController::class, 'create'])->name('admin.mentor-list.create');
     Route::post('/admin/mentor-list/create', [MentorController::class, 'store'])->name('admin.mentor-list.store');
     Route::get('/admin/mentor-list/show/{user}', [MentorController::class, 'show'])->name('admin.mentor-list.show');
+    Route::post('/admin/mentor-list/send-certificate/{user}', [CertificateMentorController::class, 'store'])->name('admin.mentor-list.send-certificate');
 
     Route::get('/admin/student-list', [StudentController::class, 'index'])->name('admin.student-list.index');
     Route::get('/admin/student-list/show/{user}', [StudentController::class, 'show'])->name('admin.student-list.show');

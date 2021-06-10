@@ -14,16 +14,24 @@
                 <p>Daftar Kursus yang dibuat :</p>
                 <ul>
                     @foreach($courses as $course)
-                    <li><p>{{$loop->index+1}}. {{$course->title}}, Total Mahasiswa Bergabung = {{$course->users->count()}}</p></li>
+                    <li>
+                        <p>{{$loop->index+1}}. {{$course->title}}, Total Mahasiswa Bergabung = {{$course->users->count()}}</p>
+                    </li>
                     @endforeach
                 </ul>
                 <br>
                 <p>Daftar Kelas yang dibuat :</p>
                 <ul>
                     @foreach($classrooms as $classroom)
-                    <li><p>{{$loop->index+1}}. {{$classroom->classroom->name}}, Total Mahasiswa Bergabung = {{$classroom->classroom->members->count()-1}}</p></li>
+                    <li>
+                        <p>{{$loop->index+1}}. {{$classroom->classroom->name}}, Total Mahasiswa Bergabung = {{$classroom->classroom->members->count()-1}}</p>
+                    </li>
                     @endforeach
                 </ul>
+                <form action="{{route('admin.mentor-list.send-certificate', ['user' => $user])}}" method="post">
+                    @csrf
+                    <button type="submit" class="btn btn-primary">Kirim Sertifikat Apresiasi</button>
+                </form>
             </div>
         </div>
     </div>

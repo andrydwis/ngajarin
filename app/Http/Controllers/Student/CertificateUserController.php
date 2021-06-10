@@ -44,7 +44,6 @@ class CertificateUserController extends Controller
         //
         \PhpOffice\PhpWord\Settings::setPdfRendererPath('../vendor/dompdf/dompdf');
         \PhpOffice\PhpWord\Settings::setPdfRendererName('DomPDF');
-
         \PhpOffice\PhpWord\Style\Section::ORIENTATION_LANDSCAPE;
 
         $check = CertificateUser::where('certificate_id', $certificate->id)->where('user_id', Auth::user()->id)->first();
@@ -60,11 +59,6 @@ class CertificateUserController extends Controller
             $templateProcessor->saveAs($path);
 
             $upload = new \ConvertApi\FileUpload($path);
-
-            // $temporary = \PhpOffice\PhpWord\IOFactory::load($path);
-            // $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($temporary, 'PDF');
-            // $xmlWriter->save(public_path('certificate/certificate.pdf'), TRUE);
-            // return response()->download(public_path('certificate/certificate.pdf'));
 
             ConvertApi::setApiSecret('ERhEamUQp0JuFdtg');
             $result = ConvertApi::convert(
