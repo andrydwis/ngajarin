@@ -50,13 +50,13 @@ class CertificateMentorController extends Controller
         $check = CertificateMentor::where('user_id', $user->id)->first();
 
         if ($check) {
-            $templateProcessor = new TemplateProcessor(public_path('template/template-mentor.docx'));
+            $templateProcessor = new TemplateProcessor(public_path('template/templatementor.docx'));
 
             $templateProcessor->setValue('name', $user->name);
             $templateProcessor->setValue('created_at', $check->created_at->format('d-m-Y'));
             $templateProcessor->setValue('serial_number', $check->serial_number);
 
-            $path = public_path('certificate/certificate-mentor.docx');
+            $path = public_path('certificate/certificatementor.docx');
             $templateProcessor->saveAs($path);
 
             $upload = new \ConvertApi\FileUpload($path);
@@ -68,11 +68,11 @@ class CertificateMentorController extends Controller
                     'File' => $upload,
                 ]
             );
-            $result->getFile()->save(public_path('certificate/certificate-mentor.pdf'));
+            $result->getFile()->save(public_path('certificate/certificatementor.pdf'));
 
             sleep(3);
 
-            $certificate = public_path('certificate/certificate-mentor.pdf');
+            $certificate = public_path('certificate/certificatementor.pdf');
 
             Mail::to($user)->send(new MentorCertificate($user, $certificate));
         } else {
@@ -82,13 +82,13 @@ class CertificateMentorController extends Controller
             $certificateMentor->serial_number = $serial_number;
             $certificateMentor->save();
 
-            $templateProcessor = new TemplateProcessor(public_path('template/template-mentor.docx'));
+            $templateProcessor = new TemplateProcessor(public_path('template/templatementor.docx'));
 
             $templateProcessor->setValue('name', $user->name);
             $templateProcessor->setValue('created_at', $certificateMentor->created_at->format('d-m-Y'));
             $templateProcessor->setValue('serial_number', $certificateMentor->serial_number);
 
-            $path = public_path('certificate/certificate-mentor.docx');
+            $path = public_path('certificate/certificatementor.docx');
             $templateProcessor->saveAs($path);
 
             $upload = new \ConvertApi\FileUpload($path);
@@ -100,11 +100,11 @@ class CertificateMentorController extends Controller
                     'File' => $upload,
                 ]
             );
-            $result->getFile()->save(public_path('certificate/certificate-mentor.pdf'));
+            $result->getFile()->save(public_path('certificate/certificatementor.pdf'));
 
             sleep(3);
 
-            $certificate = public_path('certificate/certificate-mentor.pdf');
+            $certificate = public_path('certificate/certificatementor.pdf');
 
             Mail::to($user)->send(new MentorCertificate($user, $certificate));
         }
