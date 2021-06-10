@@ -104,10 +104,14 @@ class CertificateMentorController extends Controller
 
             sleep(3);
 
-            $certificate = public_path('certificate/certificatementor.pdf');
+            $certificate = public_path('certificate/certificate-mentor.pdf');
 
             Mail::to($user)->send(new MentorCertificate($user, $certificate));
         }
+
+        Alert::success('Sertifikat berhasil dikirim');
+
+        return back();
     }
 
     /**

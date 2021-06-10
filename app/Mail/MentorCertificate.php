@@ -22,7 +22,7 @@ class MentorCertificate extends Mailable implements ShouldQueue
     {
         //
         $this->user = $user;
-        $this->certificate;
+        $this->certificate = $certificate;
     }
 
     /**
@@ -40,7 +40,7 @@ class MentorCertificate extends Mailable implements ShouldQueue
         // ->attach(public_path('/certificate/certificate-mentor.pdf'));
 
         return $this->markdown('emails.mentor-certificate', $data)
-            ->attach(public_path($this->certificate), [
+            ->attach($this->certificate, [
                 'as' => 'sertifikat.pdf',
                 'mime' => 'application/pdf',
             ]);
