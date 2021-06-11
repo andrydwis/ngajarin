@@ -18,6 +18,13 @@
                     @endforeach
                 </ul>
                 <br>
+                <p>Daftar Kursus yang telah diselesaikan :</p>
+                <ul>
+                    @foreach($finishedCourses as $course)
+                    <li><p>{{$loop->index+1}}. {{$course}}</p></li>
+                    @endforeach
+                </ul>
+                <br>
                 <p>Daftar Kelas yang diikuti :</p>
                 <ul>
                     @foreach($classrooms as $classroom)
