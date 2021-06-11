@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\NewMentor;
 use App\Models\Course;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -66,6 +68,8 @@ class MentorController extends Controller
         $user->assignRole('mentor');
 
         event(new Registered($user));
+
+        Mail::to($request->email)->send(new NewMentor($request->nama, $request->email, $request->password));
 
         Alert::success('Mentor berhasil ditambahkan');
 
