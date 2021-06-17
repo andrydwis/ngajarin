@@ -242,7 +242,74 @@
             </div>
         </div>
 
-        <div class="flex flex-col items-center justify-between px-10 py-5 my-10 bg-gray-700 shadow-md md:flex-row rounded-xl">
+        <div class="flex flex-col items-center justify-between px-5 py-5 my-10 bg-white shadow-md md:px-10 md:flex-row rounded-xl" x-data="{ isOpen : false }">
+            <h6 class="text-lg font-semibold text-gray-600 normal-case">Ingin berkontribusi sebagai mentor?</h6>
+            <a href="#" @click.prevent="isOpen = !isOpen">
+                <button class="text-base font-semibold border btn btn-outline-success bg-success bg-opacity-5">
+                    <i class="mr-1 fas fa-comments"></i>
+                    Pengajuan Mentor
+                </button>
+            </a>
+
+            <div x-cloak x-show.transition.duration.300ms.opacity="isOpen" class="fixed inset-0 z-50 flex items-center justify-center w-full h-full">
+
+                <!-- overlay -->
+                <div class="absolute z-10 w-full h-full bg-gray-900 opacity-50">
+                </div>
+                <!-- overlay -->
+
+                <div class="fixed z-20 flex flex-col w-5/6 mx-auto mt-10 bg-white border rounded-lg lg:w-2/6 md:w-1/2 md:mt-0 card">
+
+                    <div>
+                        <!-- body -->
+                        <div class="flex items-center justify-between card-header">
+                            <h6 class="h6">Form Pengajuan Mentor</h6>
+                            <button class="focus:outline-none">
+                                <i class="text-gray-400 fas fa-times hover:text-gray-600" @click="isOpen = !isOpen"></i>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <form action="" method="post">
+                                <div class="grid gap-6">
+                                    <div>
+                                        <label for="email">Email</label>
+                                        <input type="text" name="email" id="email" placeholder="Masukkan Email" class="block w-full py-2 mt-2 form-input @error('...') is-invalid @enderror" value="{{old('...')}}">
+
+                                        @error('...')
+                                        <div class="alert alert-error">
+                                            {{$message}}
+                                        </div>
+                                        @enderror
+
+                                    </div>
+                                    <div>
+                                        <label for="...">...</label>
+                                        <textarea name="..." id="..." rows="5" placeholder="..." class="form-input py-2 mt-2 block w-full @error('...') is-invalid @enderror" value="{{old('...')}}"></textarea>
+
+                                        @error('...')
+                                        <div class="alert alert-error">
+                                            {{$message}}
+                                        </div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="flex justify-end">
+                                        <button class="text-base border-none btn btn-outline-primary" @click.prevent="isOpen = !isOpen">Batal</button>
+                                        <button class="mx-0 text-base btn btn-primary" type="submit">Simpan</button>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- body -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="flex flex-col items-center justify-between px-5 py-5 my-10 bg-gray-700 shadow-md md:px-10 md:flex-row rounded-xl">
             <h6 class="text-lg font-semibold text-gray-300 normal-case">Butuh bantuan atau menemukan bug?</h6>
             @livewire('chat-admin')
         </div>
@@ -256,9 +323,13 @@
 @section('customCSS')
 <style>
     @media (min-width: 640px) {
-        #header_profile{
-            background: url( {{asset('img/patternpad.svg')}} )
+        #header_profile {
+            background: url({{asset('img/patternpad.svg')
         }
+    }
+
+    )
+    }
     }
 </style>
 @endsection
