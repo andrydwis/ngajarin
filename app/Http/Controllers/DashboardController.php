@@ -6,6 +6,7 @@ use App\Models\CertificateUser;
 use App\Models\Classroom;
 use App\Models\ClassroomMember;
 use App\Models\Course;
+use App\Models\MentorRequest;
 use App\Models\Post;
 use App\Models\Submission;
 use App\Models\SubmissionUser;
@@ -75,12 +76,15 @@ class DashboardController extends Controller
 
         $tutorings = Tutoring::where('student_id', Auth::user()->id)->where('status', 'diterima')->orderBy('date', 'desc')->with('mentor.detail')->get();
 
+        $mentorRequest = MentorRequest::where('user_id', Auth::user()->id)->first();
+
         $data = [
             'user' => User::with('detail')->find(Auth::user()->id),
             'courses' => $courses,
             'classrooms' => $classrooms,
             'certificates' => $certificates,
-            'tutorings' => $tutorings
+            'tutorings' => $tutorings,
+            'mentorRequest' => $mentorRequest
         ];
 
         return view('student.dashboard.index', $data);

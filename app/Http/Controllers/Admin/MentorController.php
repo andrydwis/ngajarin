@@ -36,10 +36,14 @@ class MentorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
-        return view('admin.mentor-list.create');
+        $data = [
+            'request' => $request
+        ];
+
+        return view('admin.mentor-list.create', $data);
     }
 
     /**

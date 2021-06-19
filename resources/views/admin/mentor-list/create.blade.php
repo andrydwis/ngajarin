@@ -12,7 +12,7 @@
                 <div class="grid grid-cols-1 gap-0 md:gap-6 sm:grid-cols-2">
                     <div>
                         <label for="nama">Nama</label>
-                        <input type="text" id="nama" name="nama" class="form-input py-2 mt-2 block w-full @error('nama') is-invalid @enderror" value="{{old('nama')}}">
+                        <input type="text" id="nama" name="nama" class="form-input py-2 mt-2 block w-full @error('nama') is-invalid @enderror" value="{{$request->nama ?? old('nama')}}">
                         @error('nama')
                         <div class="mt-5 alert alert-error">
                             {{$message}}
@@ -21,7 +21,7 @@
                     </div>
                     <div>
                         <label for="email">Email</label>
-                        <input id="email" type="email" name="email" class="form-input py-2 mt-2 block w-full @error('email') is-invalid @enderror" value="{{old('email')}}">
+                        <input id="email" type="email" name="email" class="form-input py-2 mt-2 block w-full @error('email') is-invalid @enderror" value="{{$request->email ?? old('email')}}">
                         @error('email')
                         <div class="mt-5 alert alert-error">
                             {{$message}}

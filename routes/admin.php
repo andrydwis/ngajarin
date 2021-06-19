@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CertificateMentorController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\EpisodeController;
 use App\Http\Controllers\Admin\MentorController;
+use App\Http\Controllers\Admin\MentorRequestController;
 use App\Http\Controllers\Admin\NotificationHandlerController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\SubmissionController;
@@ -19,6 +20,10 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
 
     Route::get('/admin/student-list', [StudentController::class, 'index'])->name('admin.student-list.index');
     Route::get('/admin/student-list/show/{user}', [StudentController::class, 'show'])->name('admin.student-list.show');
+
+    Route::get('/admin/mentor-request', [MentorRequestController::class, 'index'])->name('admin.mentor-request.index');
+    Route::post('/admin/mentor-request/process/{mentorRequest}', [MentorRequestController::class, 'process'])->name('admin.mentor-request.process');
+    Route::delete('/admin/mentor-request/destroy/{mentorRequest}', [MentorRequestController::class, 'destroy'])->name('admin.mentor-request.destroy');
 
     Route::get('/admin/tag', [TagController::class, 'index'])->name('admin.tag.index');
     Route::get('/admin/tag/create', [TagController::class, 'create'])->name('admin.tag.create');

@@ -52,6 +52,12 @@
                     <i class="ml-4 mr-2 text-sm fas fa-user-friends"></i>
                     Mahasiswa List
                 </a>
+                <a href="{{route('admin.mentor-request.index')}}" class="sidebar-item 
+                {{ Route::currentRouteNamed('admin.mentor-request.index') ? 'sidebar-item-active ' : '' }}
+                ">
+                    <i class="ml-4 mr-2 text-sm fas fa-user-plus"></i>
+                    Mentor Request List
+                </a>
                  <!-- pembatas -->
 
                 <!-- pembatas -->

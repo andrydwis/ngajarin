@@ -29,24 +29,6 @@
                         </a>
 
                     </div>
-                    <!-- <div class="flex justify-center gap-2 text-3xl text-gray-200 md:justify-start">
-                        <a href="">
-                            <i class=" fab fa-github-square hover:text-white"></i>
-                        </a>
-                        <a href="">
-                            <i class=" fab fa-linkedin hover:text-white"></i>
-                        </a>
-                        <a href="">
-                            <i class=" fab fa-facebook-square hover:text-white"></i>
-                        </a>
-                        <a href="">
-                            <i class=" fab fa-twitter-square hover:text-white"></i>
-                        </a>
-                        <a href="">
-                            <i class=" fab fa-instagram-square hover:text-white"></i>
-                        </a>
-
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -244,12 +226,19 @@
 
         <div class="flex flex-col items-center justify-between px-5 py-5 my-10 bg-white shadow-md md:px-10 md:flex-row rounded-xl" x-data="{ isOpen : false }">
             <h6 class="text-lg font-semibold text-gray-600 normal-case">Ingin berkontribusi sebagai mentor?</h6>
+            @if(!$mentorRequest)
             <a href="#" @click.prevent="isOpen = !isOpen">
                 <button class="text-base font-semibold border btn btn-outline-success bg-success bg-opacity-5">
                     <i class="mr-1 fas fa-comments"></i>
                     Pengajuan Mentor
                 </button>
             </a>
+            @else
+            <button class="text-base font-semibold border btn btn-outline-warning bg-warning bg-opacity-5">
+                <i class="mr-1 fas fa-comments"></i>
+                Dalam Review
+            </button>
+            @endif
 
             <div x-cloak x-show.transition.duration.300ms.opacity="isOpen" class="fixed inset-0 z-50 flex items-center justify-center w-full h-full">
 
@@ -269,13 +258,14 @@
                             </button>
                         </div>
                         <div class="card-body">
-                            <form action="" method="post">
+                            <form action="{{route('student.mentor-request.store')}}" method="post">
+                                @csrf
                                 <div class="grid gap-6">
                                     <div>
                                         <label for="email">Email</label>
-                                        <input type="text" name="email" id="email" placeholder="Masukkan Email" class="block w-full py-2 mt-2 form-input @error('...') is-invalid @enderror" value="{{old('...')}}">
+                                        <input type="text" name="email" id="email" placeholder="masukkan email untuk akun mentor anda" class="block w-full py-2 mt-2 form-input @error('email') is-invalid @enderror" value="{{old('email')}}">
 
-                                        @error('...')
+                                        @error('email')
                                         <div class="alert alert-error">
                                             {{$message}}
                                         </div>
@@ -283,10 +273,10 @@
 
                                     </div>
                                     <div>
-                                        <label for="...">...</label>
-                                        <textarea name="..." id="..." rows="5" placeholder="..." class="form-input py-2 mt-2 block w-full @error('...') is-invalid @enderror" value="{{old('...')}}"></textarea>
+                                        <label for="alasan">Alasan</label>
+                                        <textarea name="alasan" id="alasan" rows="5" placeholder="alasan anda ingin menjadi mentor" class="form-input py-2 mt-2 block w-full @error('alasan') is-invalid @enderror" value="{{old('alasan')}}"></textarea>
 
-                                        @error('...')
+                                        @error('alasan')
                                         <div class="alert alert-error">
                                             {{$message}}
                                         </div>
@@ -295,7 +285,7 @@
 
                                     <div class="flex justify-end">
                                         <button class="text-base border-none btn btn-outline-primary" @click.prevent="isOpen = !isOpen">Batal</button>
-                                        <button class="mx-0 text-base btn btn-primary" type="submit">Simpan</button>
+                                        <button class="mx-0 text-base btn btn-primary" type="submit">Kirim</button>
                                     </div>
 
                                 </div>
