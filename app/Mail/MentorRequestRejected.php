@@ -12,15 +12,17 @@ class MentorRequestRejected extends Mailable
     use Queueable, SerializesModels;
 
     public $user;
+    public $reason;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($user, $reason)
     {
         //
         $this->user = $user;
+        $this->reason = $reason;
     }
 
     /**
@@ -31,7 +33,8 @@ class MentorRequestRejected extends Mailable
     public function build()
     {
         $data = [
-            'name' => $this->user->name
+            'name' => $this->user->name,
+            'reason' => $this->reason,
         ];
 
         return $this->markdown('emails.mentor-request-rejected', $data);

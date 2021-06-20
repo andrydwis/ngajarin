@@ -32,7 +32,7 @@
                                     Tolak
                                 </button>
 
-                                <x-modal-mentor-request :reason="$request->reason" :actionReject="route('admin.mentor-request.destroy', [$request])" :actionAccept="route('admin.mentor-request.process', [$request])" />
+                                <x-modal-mentor-request :user="$request->user" :reason="$request->reason" :actionReject="route('admin.mentor-request.destroy', [$request])" :actionAccept="route('admin.mentor-request.process', [$request])" />
                             </td>
                         </tr>
                         @endforeach

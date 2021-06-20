@@ -89,14 +89,16 @@ class MentorRequestController extends Controller
      * @param  \App\Models\MentorRequest  $mentorRequest
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MentorRequest $mentorRequest)
+    public function destroy(Request $request, MentorRequest $mentorRequest)
     {
         //
         $user = User::find($mentorRequest->user_id);
 
+        $reason = $request->alasan ?? 'Kamu belum memenuhi kriteria sistem kami';
+
         Alert::success('Permintaan mentor request ditolak');
 
-        Mail::to($user->email)->send(new MentorRequestRejected($user));
+        Mail::to($user->email)->send(new MentorRequestRejected($user, $reason));
 
         $mentorRequest->delete();
 

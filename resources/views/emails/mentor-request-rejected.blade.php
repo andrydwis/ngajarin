@@ -1,8 +1,8 @@
 @component('mail::message')
 # Hai {{$name}}!
 
-Mohon maaf permintaan request mentor kamu harus kami tolak,
-karena kamu masih belum memenuhi kriteria kami untuk menjadi mentor.
+Mohon maaf permintaan request mentor kamu harus kami tolak, dikarenakan alasan berikut : <br>
+{{$reason}} <br>
 Coba lagi lain kali ya!<br>
 
 Terimakasih,<br>

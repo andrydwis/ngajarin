@@ -29,8 +29,8 @@
 
                         <div>
                             <span>Detail Pencapaian : </span>
-                            <a href="#" class="underline text-primary hover:opacity-75">
-                                link
+                            <a href="{{route('admin.student-list.show', [$user])}}" class="underline text-primary hover:opacity-75">
+                                Lihat
                             </a>
                         </div>
 

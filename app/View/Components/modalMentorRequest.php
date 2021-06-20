@@ -4,20 +4,21 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class modalMentorRequest extends Component
+class ModalMentorRequest extends Component
 {
     /**
      * Create a new component instance.
      *
      * @return void
      */
-
+    public $user;
     public $reason;
     public $actionAccept;
     public $actionReject;
 
-    public function __construct($reason, $actionAccept, $actionReject)
+    public function __construct($user, $reason, $actionAccept, $actionReject)
     {
+        $this->user = $user;
         $this->reason = $reason;
         $this->actionAccept = $actionAccept;
         $this->actionReject = $actionReject;
