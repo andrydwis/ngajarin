@@ -13,8 +13,7 @@
                             <th class="px-6 pt-6 pb-4 text-sm font-bold uppercase border border-gray-600">No</th>
                             <th class="px-6 pt-6 pb-4 text-sm font-bold uppercase border border-gray-600">Nama</th>
                             <th class="px-6 pt-6 pb-4 text-sm font-bold uppercase border border-gray-600">Email</th>
-                            <th class="px-6 pt-6 pb-4 text-sm font-bold uppercase border border-gray-600">Alasan</th>
-                            <th class="px-6 pt-6 pb-4 text-sm font-bold uppercase border border-gray-600">Menu</th>
+                            <th class="px-6 pt-6 pb-4 text-sm font-bold text-center uppercase border border-gray-600">Menu</th>
                         </tr>
                     </thead>
                     <tbody class="shadow-md">
@@ -22,18 +21,18 @@
                         <tr class="hover:bg-gray-100">
                             <td class="px-6 py-4">{{$loop->index+1}}</td>
                             <td class="px-6 py-4">{{$request->user->name}}</td>
-                            <td class="px-6 py-4">{{$request->email}}</td>
-                            <td class="px-6 py-4">{{$request->reason}}</td>
-                            <td class="px-6 py-4 flex">
-                                <form action="{{route('admin.mentor-request.process', [$request])}}" method="post">
-                                    @csrf
-                                    <button type="submit" class="btn btn-primary">Terima</button>
-                                </form>
-                                <form action="{{route('admin.mentor-request.destroy', [$request])}}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Tolak</button>
-                                </form>
+                            <td class="px-6 py-4">{{$request->user->email}}</td>
+                            <td class="flex justify-center px-6 py-4" x-data="{ isOpen : false, isOpen1 : false }">
+
+                                <button @click.prevent="isOpen = true" type="button" class="mr-0 btn btn-primary md:text-sm">
+                                    Detail
+                                </button>
+
+                                <button @click.prevent="isOpen1 = true" type="button" class="btn btn-danger md:text-sm">
+                                    Tolak
+                                </button>
+
+                                <x-modal-mentor-request :reason="$request->reason" :actionReject="route('admin.mentor-request.destroy', [$request])" :actionAccept="route('admin.mentor-request.process', [$request])" />
                             </td>
                         </tr>
                         @endforeach
